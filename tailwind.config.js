@@ -10,16 +10,12 @@ export default {
       'gray-l': '#f2f2f2',
       'black': '#0d0d0d',
       'white': '#f2f2f2',
+      'custom-blue': '#142740', 
     },
     fontFamily: {
       sans: ['Poppins', 'sans-serif'],
       serif: ['Lexend', 'serif'],
     },
-
-  theme: {
-    extend: {},
   },
   plugins: [],
-}
 };
-
