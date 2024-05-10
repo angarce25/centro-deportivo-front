@@ -1,10 +1,14 @@
 import React from 'react'
+import Slide from '../components/home/Slide'
 
-function Home() {
+const Home = () => {
   return (
-    <div className='max-h-screen'>
-      Home
-    </div>
+    <>
+    <Slide/>
+    
+    </>
+    
+
   )
 }
 
