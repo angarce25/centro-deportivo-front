@@ -147,7 +147,7 @@ export const Registercomponent = (props) => {
               className="input-style w-full max-w-md"
               style={{ borderRadius: "5px" }}
             />
-            <small className="mt-2 font-semibold">Número de cuenta:ES1800730100540505919252</small>
+            {/* <small className="mt-2 font-semibold">Número de cuenta:ES1800730100540505919252</small> */}
           </div>
           <div className="recaptcha flex flex-col items-center"> 
             <ReCAPTCHA
