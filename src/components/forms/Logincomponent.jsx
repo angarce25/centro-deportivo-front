@@ -27,6 +27,7 @@ const Logincomponent = (props) => {
               type="email" 
               placeholder="Correo electrónico"  
               id="email" 
+              autoComplete="off"
               name="email" 
               required 
               className="input-style w-full max-w-md"  
@@ -40,23 +41,21 @@ const Logincomponent = (props) => {
               onChange={(e) => setPass(e.target.value)} 
               type="password" 
               placeholder="Contraseña" 
+              autoComplete="off"
               id="password" 
               name="password" 
-              minLength="8" 
+              minLength="6" 
               required
-              className="input-style w-full max-w-md"  
+              className="input-style w-full max-w-md mb-3"  
               style={{ borderRadius: "5px" }} 
             />
           </div >
-          <button  className="button-login  bg-yellow-400 hover:bg-yellow-500 text-white  font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Iniciar sesión</button>
+          <button  className="button-login bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" style={{backgroundColor: "#142740", display: "block", margin: "0 auto"}}>Iniciar sesión</button>
         </form>
-        <button className="link-btn block mt-4 text-center font-bold text-yellow-400 hover:text-yellow-500" onClick={() => props.onFormSwitch('Registercomponent')}>¿No tienes cuenta? <span className="text-yellow-700">Regístrate aquí</span></button>
+        <button className="link-btn block mt-4 text-center font-bold text-yellow-700 hover:text-yellow-500" onClick={() => props.onFormSwitch('Registercomponent')} >¿No tienes cuenta? <span className="text-yellow-700">Regístrate aquí</span></button>
       </div>
     </div>
   );
 }
 
 export default Logincomponent;
-
-
-
