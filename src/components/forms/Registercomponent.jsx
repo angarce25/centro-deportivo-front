@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from 'react-google-recaptcha';
 
+
 export const Registercomponent = (props) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
