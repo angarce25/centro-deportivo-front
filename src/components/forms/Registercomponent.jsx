@@ -6,12 +6,23 @@ import { useForm, Controller } from 'react-hook-form';
 export const Registercomponent = (props) => {
   const { control, handleSubmit, formState: { errors }, register } = useForm();
   const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(false);
+  const [file, setFile] = useState(null); // Estado para almacenar el archivo seleccionado
   const navigate = useNavigate();
 
   const onChange = (value) => {
     // Si el valor del reCAPTCHA es válido, establecer el estado isRecaptchaVerified en true
     setIsRecaptchaVerified(!!value);
   }
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    // Validar el tipo de archivo
+    if (selectedFile && (selectedFile.type === 'application/pdf' || selectedFile.type === 'image/png' || selectedFile.type === 'image/jpeg')) {
+      setFile(selectedFile);
+    } else {
+      alert("Por favor, selecciona un archivo PDF, PNG o JPG.");
+    }
+  };
 
   const onSubmit = (data) => {
     // Verificar si el reCAPTCHA se ha verificado
@@ -22,6 +33,7 @@ export const Registercomponent = (props) => {
 
     // Resto del código para el envío del formulario
     console.log(data);
+    console.log("Archivo adjunto:", file); // Aquí puedes enviar el archivo al servidor si es necesario
     setTimeout(() => {
       alert("Registrado con éxito");
       // Redirige a la página de inicio después de la alerta
@@ -34,8 +46,9 @@ export const Registercomponent = (props) => {
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md" style={{ backgroundColor: "#F2F2F2" }}>
         <h2 className="text-3xl font-semibold text-center mb-6">Regístrate</h2>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+          
           <div className="flex flex-col items-center">
-            <label htmlFor="name" className="block mb-1 font-bold">Nombre</label>
+            <label htmlFor="name" className="block mb-1 font-bold"></label>
             <Controller
               control={control}
               name="name"
@@ -49,7 +62,7 @@ export const Registercomponent = (props) => {
             {errors.name && <span className="text-red-500">{errors.name.message}</span>}
           </div>
           <div className="flex flex-col items-center">
-            <label htmlFor="lastName" className="block mb-1 font-bold">Apellido</label>
+            <label htmlFor="lastName" className="block mb-1 font-bold"></label>
             <Controller
               control={control}
               name="lastName"
@@ -63,17 +76,17 @@ export const Registercomponent = (props) => {
             {errors.lastName && <span className="text-red-500">{errors.lastName.message}</span>}
           </div>
           <div className="flex flex-col items-center">
-            <label htmlFor="email" className="block mb-1 font-bold">Email</label>
+            <label htmlFor="email" className="block mb-1 font-bold"></label>
             <Controller
               control={control}
               name="email"
               rules={{ required: "Campo obligatorio", pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Email inválido" } }}
-              render={({ field }) => <input {...field} type="email" placeholder="tuemail@aaaaa.com" className="input-style w-full max-w-md" style={{ borderRadius: "5px" }} />}
+              render={({ field }) => <input {...field} type="email" placeholder="E-mail" className="input-style w-full max-w-md" style={{ borderRadius: "5px" }} />}
             />
             {errors.email && <span className="text-red-500">{errors.email.message}</span>}
           </div>
           <div className="flex flex-col items-center">
-            <label htmlFor="password" className="block mb-1 font-bold">Contraseña</label>
+            <label htmlFor="password" className="block mb-1 font-bold"></label>
             <Controller
               control={control}
               name="password"
@@ -90,23 +103,23 @@ export const Registercomponent = (props) => {
             {errors.password && <span className="text-red-500">{errors.password.message}</span>}
           </div>
           <div className="flex flex-col items-center">
-            <label htmlFor="phone" className="block mb-1 font-bold">Teléfono</label>
+            <label htmlFor="phone" className="block mb-1 font-bold"></label>
             <Controller
               control={control}
               name="phone"
               rules={{ required: "Campo obligatorio", minLength: { value: 9, message: "Debe tener 9 caracteres" }, maxLength: { value: 9, message: "Debe tener 9 caracteres" }, pattern: { value: /^[0-9]+$/, message: "Solo números" } }}
-              render={({ field }) => <input {...field} type="tel" placeholder="123456789" className="input-style w-full max-w-md" style={{ borderRadius: "5px" }} />}
+              render={({ field }) => <input {...field} type="tel" placeholder="Teléfono" className="input-style w-full max-w-md" style={{ borderRadius: "5px" }} />}
             />
             {errors.phone && <span className="text-red-500">{errors.phone.message}</span>}
           </div>
           <div className="flex flex-col items-center">
-            <label htmlFor="location" className="block mb-1 font-bold">Ubicación</label>
+            <label htmlFor="location" className="block mb-1 font-bold"></label>
             <select 
               {...register("location", { required: "Campo obligatorio" })}
               className="input-style w-full max-w-md"
               style={{ borderRadius: "5px" }}
             >
-              <option value="">Selecciona una opción</option>
+              <option value="">Opción de recogida del carnet:</option>
               <option value="Campo">Campo</option>
               <option value="Bar El Pilar">Bar El Pilar</option>
               <option value="Herbolario Herbosalud">Herbolario Herbosalud</option>
@@ -115,21 +128,34 @@ export const Registercomponent = (props) => {
             {errors.location && <span className="text-red-500">{errors.location.message}</span>}
           </div>
           <div className="flex flex-col items-center">
-            <label htmlFor="observations" className="block mb-1 font-bold">Observaciones</label>
+            <label htmlFor="observations" className="block mb-1 font-bold"></label>
             <textarea 
               {...register("observations")}
-              placeholder="Añade tus anotaciones aquí"
+              placeholder="Añade tus anotaciones aquí..."
               className="input-style w-full max-w-md"
               style={{ borderRadius: "5px", minHeight: "100px" }}
             />
           </div>
-          <div className="recaptcha flex flex-col items-center"> {/* Se centra el reCAPTCHA */}
+          {/* Campo para seleccionar archivo */}
+          <div className="flex flex-col items-center">
+            <label htmlFor="document" className="block mb-1 "></label>
+            <input
+              type="file"
+              id="document"
+              accept=".pdf,.png,.jpg"
+              onChange={handleFileChange}
+              className="input-style w-full max-w-md"
+              style={{ borderRadius: "5px" }}
+            />
+            <small className="mt-2 font-semibold">Número de cuenta:ES1800730100540505919252</small>
+          </div>
+          <div className="recaptcha flex flex-col items-center"> 
             <ReCAPTCHA
-              sitekey="6Lc22VkpAAAAAGk5Cfhs87A96VBhP3qnK-2OTKUL"
+              sitekey="6LehndkpAAAAAMU_fxlWNvfsHRJa8ujEY4hb_lMU"
               onChange={onChange}
             />
           </div>
-          <div className="flex justify-center"> {/* Se centra el botón */}
+          <div className="flex justify-center">
             <button className="button-register bg-custom-blue hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Aceptar</button>
           </div>
           
