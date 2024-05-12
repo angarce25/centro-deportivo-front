@@ -11,6 +11,16 @@ const Header = () => {
   return (
     <header className="bg-black flex items-center justify-between xl:justify-start w-full py-4 px-8 lg:px-4 xl:px-8 h-auto xl:h-[15vh] z-50">
      <nav className={`xl:flex flex-col xl:flex-row m-auto justify-between w-100 xl:items-center ${isOpen ? 'block' : 'hidden'}`}>
+       
+        <Link to="/" className="text-white mx-10 hover:text-lime-700 text-lg">
+        <img
+              src="./escudo.png"
+              width="140"
+              height="80"
+              className="d-inline-block align-top"
+              alt="Logo"
+            />
+        </Link>
         <Link to="/" className="text-white mx-10 hover:text-lime-700 text-lg">
           Home
         </Link>
