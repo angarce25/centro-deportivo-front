@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import { AuthProvider } from "./context/AuthContext";
 import Home from "./pages/Home";
 import Header from "./components/particles/Header";
+import AdminDash from "./pages/Admin.jsx";
 
 
 
@@ -21,7 +22,7 @@ function App() {
           
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
+          <Route path="/admin" element={<AdminDash />} />
         
         
         </Routes>

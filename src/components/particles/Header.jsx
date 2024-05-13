@@ -25,7 +25,7 @@ const Header = () => {
           Iniciar sesión
         </Link>
         <Link
-          to="/admin/login"
+          to="/admin"
           className="text-white mx-10 hover:text-red-700 text-lg"
         >
           Admin
