@@ -24,13 +24,8 @@ function App() {
           
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-<<<<<<< HEAD
-
-
-=======
           <Route path="/admin" element={<AdminDash />} />
         
->>>>>>> 8b210d732cb5c90998b75b6022b22b3f826ae820
         
         </Routes>
       </BrowserRouter>
