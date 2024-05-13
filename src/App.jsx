@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Logincomponent from "./components/particles/forms/Logincomponent";
 import Login from "./pages/Login";
@@ -10,6 +11,7 @@ import Header from "./components/particles/Header";
 
 
 function App() {
+
   return (
      <AuthProvider>
       <BrowserRouter>
@@ -22,7 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-        
+
         
         </Routes>
       </BrowserRouter>
