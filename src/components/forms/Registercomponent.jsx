@@ -7,6 +7,7 @@ export const Registercomponent = (props) => {
   const { control, handleSubmit, formState: { errors }, register } = useForm();
   const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(false);
   const [file, setFile] = useState(null); // Estado para almacenar el archivo seleccionado
+  const [termsAccepted, setTermsAccepted] = useState(false); // Estado para almacenar si los términos han sido aceptados
   const navigate = useNavigate();
 
   const onChange = (value) => {
@@ -23,11 +24,20 @@ export const Registercomponent = (props) => {
       alert("Por favor, selecciona un archivo PDF, PNG o JPG.");
     }
   };
+  const handleTermsChange = () => {
+    setTermsAccepted(!termsAccepted);
+  };
 
   const onSubmit = (data) => {
     // Verificar si el reCAPTCHA se ha verificado
     if (!isRecaptchaVerified) {
       alert("Por favor, verifica que no eres un robot.");
+      return;
+    }
+
+     // Verificar si los términos y condiciones han sido aceptados
+     if (!termsAccepted) {
+      alert("Debes aceptar los términos y condiciones.");
       return;
     }
 
@@ -112,7 +122,7 @@ export const Registercomponent = (props) => {
             />
             {errors.phone && <span className="text-red-500">{errors.phone.message}</span>}
           </div>
-          <div className="flex flex-col items-center">
+          {/* <div className="flex flex-col items-center">
             <label htmlFor="location" className="block mb-1 font-bold"></label>
             <select 
               {...register("location", { required: "Campo obligatorio" })}
@@ -126,7 +136,7 @@ export const Registercomponent = (props) => {
               <option value="Integrante del Club">Integrante del Club</option>
             </select>
             {errors.location && <span className="text-red-500">{errors.location.message}</span>}
-          </div>
+          </div> */}
           <div className="flex flex-col items-center">
             <label htmlFor="observations" className="block mb-1 font-bold"></label>
             <textarea 
@@ -136,8 +146,9 @@ export const Registercomponent = (props) => {
               style={{ borderRadius: "5px", minHeight: "100px" }}
             />
           </div>
+          
           {/* Campo para seleccionar archivo */}
-          <div className="flex flex-col items-center">
+          {/* <div className="flex flex-col items-center">
             <label htmlFor="document" className="block mb-1 "></label>
             <input
               type="file"
@@ -147,7 +158,19 @@ export const Registercomponent = (props) => {
               className="input-style w-full max-w-md"
               style={{ borderRadius: "5px" }}
             />
-            {/* <small className="mt-2 font-semibold">Número de cuenta:ES1800730100540505919252</small> */}
+         
+          </div> */}
+          <div className="flex justify-center">
+            <input
+              type="checkbox"
+              id="terms"
+              checked={termsAccepted}
+              onChange={handleTermsChange}
+              className="mr-2"
+            />
+            <label htmlFor="terms" className="text-sm">
+              He leído y acepto los términos y condiciones.
+            </label>
           </div>
           <div className="recaptcha flex flex-col items-center"> 
             <ReCAPTCHA
@@ -155,6 +178,7 @@ export const Registercomponent = (props) => {
               onChange={onChange}
             />
           </div>
+          
           <div className="flex justify-center">
             <button className="button-register bg-custom-blue hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Aceptar</button>
           </div>
