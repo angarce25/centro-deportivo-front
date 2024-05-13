@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import LogoutButton from "../atoms/LogoutButton/LogoutButton";
+import LogoutButton from "../../atoms/LogoutButton/LogoutButton";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +34,7 @@ const Header = () => {
           Iniciar sesión
         </Link>
         <Link
-          to="/admin/login"
+          to="/admin"
           className="text-white mx-10 hover:text-red-700 text-lg"
         >
           Admin
