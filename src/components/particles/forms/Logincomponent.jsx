@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -68,6 +69,8 @@ const Logincomponent = (props) => {
 export default Logincomponent;
 
 =======
+=======
+>>>>>>> ed6a75f40b97adfe404d2c4f1f6312adfc502678
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -97,7 +100,10 @@ const Logincomponent = (props) => {
               type="email" 
               placeholder="Correo electrónico"  
               id="email" 
+<<<<<<< HEAD
               autoComplete="off"
+=======
+>>>>>>> ed6a75f40b97adfe404d2c4f1f6312adfc502678
               name="email" 
               required 
               className="input-style w-full max-w-md"  
@@ -111,6 +117,7 @@ const Logincomponent = (props) => {
               onChange={(e) => setPass(e.target.value)} 
               type="password" 
               placeholder="Contraseña" 
+<<<<<<< HEAD
               autoComplete="off"
               id="password" 
               name="password" 
@@ -123,10 +130,29 @@ const Logincomponent = (props) => {
           <button  className="button-login bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" style={{backgroundColor: "#142740", display: "block", margin: "0 auto"}}>Iniciar sesión</button>
         </form>
         <button className="link-btn block mt-4 text-center font-bold text-yellow-700 hover:text-yellow-500" onClick={() => props.onFormSwitch('Registercomponent')} >¿No tienes cuenta? <span className="text-yellow-700">Regístrate aquí</span></button>
+=======
+              id="password" 
+              name="password" 
+              minLength="8" 
+              required
+              className="input-style w-full max-w-md"  
+              style={{ borderRadius: "5px" }} 
+            />
+          </div >
+          <button  className="button-login  bg-yellow-400 hover:bg-yellow-500 text-white  font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Iniciar sesión</button>
+        </form>
+        <button className="link-btn block mt-4 text-center font-bold text-yellow-400 hover:text-yellow-500" onClick={() => props.onFormSwitch('Registercomponent')}>¿No tienes cuenta? <span className="text-yellow-700">Regístrate aquí</span></button>
+>>>>>>> ed6a75f40b97adfe404d2c4f1f6312adfc502678
       </div>
     </div>
   );
 }
 
 export default Logincomponent;
+<<<<<<< HEAD
 >>>>>>> 8b210d732cb5c90998b75b6022b22b3f826ae820
+=======
+
+
+
+>>>>>>> ed6a75f40b97adfe404d2c4f1f6312adfc502678

@@ -10,26 +10,27 @@ import AdminDash from "./pages/Admin.jsx";
 
 
 
+import Products from "./pages/Products";
 
 function App() {
 
   return (
-     <AuthProvider>
+    <AuthProvider>
       <BrowserRouter>
         <Header />
-       
-      
+
         <Routes>
           <Route path="/" element={<Home />} />
-          
+
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<AdminDash />} />
         
         
+          <Route path="/products" element={<Products />} />
         </Routes>
       </BrowserRouter>
-     </AuthProvider>
+    </AuthProvider>
   );
 }
 

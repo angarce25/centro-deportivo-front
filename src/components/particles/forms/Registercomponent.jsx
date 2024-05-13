@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -283,6 +284,8 @@ export default Registercomponent;
 =======
 
 ========
+=======
+>>>>>>> ed6a75f40b97adfe404d2c4f1f6312adfc502678
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -384,5 +387,8 @@ export const Registercomponent = (props) => {
 
 export default Registercomponent;
 
+<<<<<<< HEAD
 >>>>>>>> 8b210d732cb5c90998b75b6022b22b3f826ae820:src/components/particles/forms/Registercomponent.jsx
 >>>>>>> 8b210d732cb5c90998b75b6022b22b3f826ae820
+=======
+>>>>>>> ed6a75f40b97adfe404d2c4f1f6312adfc502678
