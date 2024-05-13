@@ -1,6 +1,6 @@
-import Registercomponent from '../components/forms/Registercomponent'
+import Registercomponent from '../components/particles/forms/Registercomponent'
 import React, { useState } from "react";
-import Logincomponent from "../components/forms/Logincomponent"
+import Logincomponent from "../components/particles/forms/Logincomponent"
 
 const Register = () => {
     const [currentForm, setCurrentForm] = useState('Logincomponent');
