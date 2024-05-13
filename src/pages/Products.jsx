@@ -1,4 +1,4 @@
-import { Card0, Card1, Card2, Card3 } from "../components/particles/card/Card"; // Importa el componente Cards
+import { Card0, Card1, Card2, Card3 } from "../components/products/ProductsCard"; // Importa el componente Cards
 
 const Products = () => {
   return (

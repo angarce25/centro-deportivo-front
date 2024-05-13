@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import { AuthProvider } from "./context/AuthContext";
-import Home from "./pages/Home";
-import Header from "../src/components/particles/Header.jsx";
-import AdminDash from "./pages/Admin.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import { AuthProvider } from "./context/AuthContext.jsx";
+import Home from "./pages/Home.jsx";
+import Header from "./components/Home/Header.jsx";
+import AdminDash from "./Pages/Admin.jsx";
 
 
 
-import Products from "./pages/Products";
+import Products from "./pages/Products.jsx";
 
 function App() {
 

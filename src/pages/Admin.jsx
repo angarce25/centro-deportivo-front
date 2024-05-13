@@ -1,9 +1,8 @@
 import React from 'react'
-import PlayersTable from '../components/particles/admin/PlayersTable.jsx';
-import AddCategory from '../components/particles/admin/AddCategory.jsx'
-import NewUser from '../components/particles/admin/NewUser.jsx';
-import UsersTable from '../components/particles/admin/UsersTable.jsx';
-
+import PlayersTable from '../components/players/PlayersTable.jsx';
+import AddCategory from '../components/players/AddCategory.jsx'
+import NewUser from '../components/users/NewUser.jsx'
+import UsersTable from '../components/users/UsersTable.jsx'
 
 const AdminDash = () => {
   return (

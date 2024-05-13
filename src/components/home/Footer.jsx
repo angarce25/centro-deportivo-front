@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FbIcon, IgIcon, LnkdIcon, XIcon, GmailIcon } from "../../../assets/icons";
+import { FbIcon, IgIcon, LnkdIcon, XIcon, GmailIcon } from "../../assets/icons";
 
 const Footer = () => {
   return (

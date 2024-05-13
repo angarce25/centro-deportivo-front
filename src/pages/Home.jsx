@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import TermsAndConditionsModal from '../components/forms/TermsAndConditions'
-import Footer from '../components/particles/Footer/Page';
+import TermsAndConditionsModal from '../components/termsAndConditions/Terms'
+import Footer from '../components/home/Footer';
 
 
 const Home = () => {
