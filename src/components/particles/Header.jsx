@@ -15,8 +15,7 @@ const Header = () => {
         <Link to="/" className="text-white mx-10 hover:text-lime-700 text-lg">
         <img
               src="./escudo.png"
-              width="140"
-              height="80"
+              width="40"
               className="d-inline-block align-top"
               alt="Logo"
             />
