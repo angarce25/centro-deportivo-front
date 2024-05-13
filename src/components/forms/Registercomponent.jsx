@@ -141,7 +141,7 @@ export const Registercomponent = (props) => {
             <label htmlFor="observations" className="block mb-1 font-bold"></label>
             <textarea 
               {...register("observations")}
-              placeholder="Añade tus anotaciones aquí..."
+              placeholder="¿Cómo nos conociste?..."
               className="input-style w-full max-w-md"
               style={{ borderRadius: "5px", minHeight: "100px" }}
             />
