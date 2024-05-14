@@ -4,7 +4,6 @@ import { CiShop } from "react-icons/ci";
 import { GiClothes } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
 import { RiTeamLine } from "react-icons/ri"
-import imagen from '../../../public/escudo.png'
 
 function Sidebar() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -23,60 +22,54 @@ function Sidebar() {
                         <img className='w-20 h-30' src='../../../public/escudo.png' />
                     </div>
                 </div>
-                    <nav className="mt-10 flex justify-center hover:bg-yellow-d">
-                    <a
-                        className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
-                        href="/dashboard/products"
-                    > 
-                       <IoHomeOutline />
-                        <span className="mx-3">Home</span>
-                    </a>
-                </nav>
-                <nav className="mt-10 flex justify-center hover:bg-yellow-d">
-                    <a
-                        className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
-                        href="/dashboard/products"
-                    > 
-                      <CiShop />
-                        <span className="mx-3 flex justify-center">Tienda</span>
-                    </a>
-                </nav>
-                <nav className="mt-10 flex justify-center hover:bg-yellow-d">
-                    <a
-                        className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
-                        href="/dashboard/products"
-                    > 
-                        <GiClothes />
-                        <span className="mx-3">Productos</span>
-                    </a>
-                </nav>
-                <nav className="mt-10 flex justify-center hover:bg-yellow-d">
-                    <a
-                        className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
-                        href="/dashboard/teams"
-                    > 
-                       <RiTeamLine />
-                        <span className="mx-3">Equipos</span>
-                    </a>
-                </nav>
-                <nav className="mt-10 flex justify-center hover:bg-yellow-d">
-                    <a
-                        className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
-                        href="/dashboard/users"
-                    > 
-                      <LuUsers2 />
-                        <span className="mx-3">Usuarios</span>
-                    </a>
-                </nav>
-                <nav className="mt-10 flex justify-center">
-                    <a
-                        className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
-                        href="/"
-                    > 
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        <span className="mx-3">Cerrar sesión</span>
-                    </a>
-                </nav>
+
+                <a
+                    className="mt-10 flex justify-center hover:bg-yellow-d flex items-center py-2 text-gray-100 bg-gray-700 bg-opacity-25"
+                    href="/dashboard/products"
+                >
+                    <IoHomeOutline />
+                    <span className="mx-3">Home</span>
+                </a>
+
+                <a
+                    className="mt-10 flex justify-center hover:bg-yellow-d flex items-center py-2 text-gray-100 bg-gray-700 bg-opacity-25"
+                    href="/dashboard/products"
+                >
+                    <CiShop />
+                    <span className="mx-3 flex justify-center">Tienda</span>
+                </a>
+
+                <a
+                    className="mt-10 flex justify-center hover:bg-yellow-d flex items-center py-2 text-gray-100 bg-gray-700 bg-opacity-25"
+                    href="/dashboard/products"
+                >
+                    <GiClothes />
+                    <span className="mx-3">Productos</span>
+                </a>
+
+                <a
+                    className="mt-10 flex justify-center hover:bg-yellow-d flex items-center py-2 text-gray-100 bg-gray-700 bg-opacity-25"
+                    href="/dashboard/teams"
+                >
+                    <RiTeamLine />
+                    <span className="mx-3">Equipos</span>
+                </a>
+
+                <a
+                    className="mt-10 flex justify-center hover:bg-yellow-d flex items-center py-2 text-gray-100 bg-gray-700 bg-opacity-25"
+                    href="/dashboard/users"
+                >
+                    <LuUsers2 />
+                    <span className="mx-3">Usuarios</span>
+                </a>
+
+                <a
+                    className="mt-10 flex justify-center flex items-center py-4 text-gray-100 bg-gray-700 bg-opacity-25"
+                    href="/"
+                >
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span className="mx-3">Cerrar sesión</span>
+                </a>
             </div>
         </>
     );
