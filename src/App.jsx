@@ -13,6 +13,8 @@ import Products from "./pages/Products.jsx";
 import UserP from "./pages/UsersT.jsx";
 import PlayersP from "./pages/PlayersT.jsx";
 import ProductsP from "./pages/ProductsT.jsx";
+import Loading from "./pages/resources/Loading.jsx";
+import NotFound from "./pages/resources/NotFound.jsx";
 
 function App() {
 
@@ -23,6 +25,8 @@ function App() {
       <Route path="/dashboard/users" element={<UserP />} />
       <Route path="/dashboard/products" element={<ProductsP />} />
       <Route path="/dashboard/teams" element={<PlayersP />} />
+      <Route path="/loading" element={<Loading />} />
+      <Route path="/NotFound" element={<NotFound />} />
       </Routes>
         <Header />
 
