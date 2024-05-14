@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import LogoutButton from "../buttons/ButtonLogout";
 
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -14,7 +15,7 @@ const Header = () => {
 
         <Link to="/" className="text-white mx-10 hover:text-lime-700 text-lg">
           <img
-            src="./escudo.png"
+            src="../../../public/escudo.png"
             width="40"
             className="d-inline-block align-top"
             alt="Logo"

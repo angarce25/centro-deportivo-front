@@ -4,6 +4,7 @@ import { CiShop } from "react-icons/ci";
 import { GiClothes } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
 import { RiTeamLine } from "react-icons/ri"
+import imagen from '../../../public/escudo.png'
 
 function Sidebar() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -19,7 +20,7 @@ function Sidebar() {
             >
                 <div className="flex items-center justify-center mt-8">
                     <div className="flex items-center">
-                        <img className='w-20 h-30' src='./escudo.png' />
+                        <img className='w-20 h-30' src='../../../public/escudo.png' />
                     </div>
                 </div>
                     <nav className="mt-10 flex justify-center hover:bg-yellow-d">
