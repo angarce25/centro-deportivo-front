@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm, Controller } from 'react-hook-form';
+import TermsAndConditionsModal from '../termsAndConditions/Terms'
 
 export const Registercomponent = (props) => {
   const { control, handleSubmit, formState: { errors }, register } = useForm();
@@ -9,6 +10,14 @@ export const Registercomponent = (props) => {
   const [file, setFile] = useState(null); // Estado para almacenar el archivo seleccionado
   const [termsAccepted, setTermsAccepted] = useState(false); // Estado para almacenar si los términos han sido aceptados
   const navigate = useNavigate();
+   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   const onChange = (value) => {
     // Si el valor del reCAPTCHA es válido, establecer el estado isRecaptchaVerified en true
@@ -168,9 +177,10 @@ export const Registercomponent = (props) => {
               onChange={handleTermsChange}
               className="mr-2"
             />
-            <label htmlFor="terms" className="text-sm">
-              He leído y acepto los términos y condiciones.
-            </label>
+            {/* <label htmlFor="terms" className="text-sm"> */}
+            <button onClick={openModal}>Términos y condiciones</button>
+      <TermsAndConditionsModal isOpen={modalIsOpen} onClose={closeModal} />
+            {/* </label> */}
           </div>
           <div className="recaptcha flex flex-col items-center"> 
             <ReCAPTCHA
