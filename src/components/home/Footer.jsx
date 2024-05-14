@@ -39,7 +39,7 @@ const Footer = () => {
     </div>
   
       {/* -_- -----------  OJO enlaces POR CONFIRMAR ----------- -_- */}
-      <div className="text-center">
+      {/* <div className="text-center">
         <div>
           <Link
             to="/"
@@ -55,9 +55,9 @@ const Footer = () => {
           >
             ¿Link 2?
           </Link>
-        </div>
+        </div> */}
       </div>
-    </div>
+    {/* </div> */}
 
   </footer>
   
