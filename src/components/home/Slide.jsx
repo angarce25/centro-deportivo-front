@@ -8,19 +8,19 @@ const ImageList = [
   {
     id: 1,
     img: Img1,
-    title: "Bienvenido al Centro Deportivo Ciudad de Los Ángeles",
+    title: "Bienvenido al Club Deportivo Ciudad de Los Ángeles",
     description: "Hazte socio y disfruta de todos los benecificios",
   },
   {
     id: 2,
     img: Img2,
-    title: "Bienvenido al Centro Deportivo Ciudad de Los Ángeles",
+    title: "Bienvenido al Club Deportivo Ciudad de Los Ángeles",
     description: "Conoce quienes son nuestro patrocinadores",
   },
   {
     id: 3,
     img: Img3,
-    title: "Bienvenido al Centro Deportivo Ciudad de Los Ángeles",
+    title: "Bienvenido al Club Deportivo Ciudad de Los Ángeles",
     description: "El fútbol base fomenta el compañerismo",
   }
 
