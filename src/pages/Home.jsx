@@ -1,6 +1,7 @@
 import React from 'react'
 import ImgAboutus from '../assets/home/imgabout.png'
 import Slide from '../components/home/Slide'
+import Header from '../components/home/Header'
 import Footer from '../components/home/Footer'
 
 
@@ -8,6 +9,7 @@ const Home = () => {
  
   return (
     <div className='home'>
+      <Header/>
       <Slide/>
       {/* about us section */}
       <div className='min-h[550px] flex justify-center items-center py-12 

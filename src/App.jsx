@@ -4,7 +4,6 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import Home from "./pages/Home.jsx";
-import Header from "./components/Home/Header.jsx";
 import AdminDash from "./Pages/Admin.jsx";
 
 
@@ -16,7 +15,7 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Header />
+        
 
         <Routes>
           <Route path="/" element={<Home />} />
