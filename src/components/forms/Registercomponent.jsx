@@ -5,16 +5,8 @@ import { useForm, Controller } from 'react-hook-form';
 import TermsAndConditionsModal from '../termsAndConditions/Terms';
 import { registerRequest } from '../../context/auth';
 
-export const Registercomponent = () => {
-  const { control, handleSubmit, formState: { errors }, register } = useForm({
-    defaultValues: {
-      name: '',
-      lastname: '',
-      email: '',
-      password: '',
-      mobile: ''
-    }
-  });
+const Registercomponent = ({ onFormSwitch }) => {
+  const { control, handleSubmit, formState: { errors } } = useForm();
   const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const navigate = useNavigate();
@@ -28,25 +20,24 @@ export const Registercomponent = () => {
   const handleTermsChange = () => setTermsAccepted(!termsAccepted);
 
   const onSubmit = async (data) => {
+    console.log("Datos enviados al formulario:", data);
+  
     if (!isRecaptchaVerified) {
       alert("Por favor, verifica que no eres un robot.");
       return;
     }
-
+  
     if (!termsAccepted) {
       alert("Debes aceptar los términos y condiciones.");
       return;
     }
-
-    data.timestamp = Date.now();  // Añadir el timestamp a los datos
-    data.honeypot = "";  // Añadir el campo honeypot a los datos
-
+  
     try {
       const response = await registerRequest(data);
-
+  
       if (response.status === 200) {
-        alert("Registrado con éxito");
-        navigate("/");
+        alert("Registro exitoso");
+        navigate("/login");
       } else {
         alert(response.data.message || "Error en el registro");
       }
@@ -57,14 +48,10 @@ export const Registercomponent = () => {
   };
 
   return (
-    <div className="bg-gray-200 min-h-screen flex items-center justify-center mt-8 mb-8">
+    <div className="bg-gray-200 min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md" style={{ backgroundColor: "#F2F2F2" }}>
         <h2 className="text-3xl font-semibold text-center mb-6">Regístrate</h2>
-        <form className="space-y-4" onSubmit={handleSubmit(async (values) => {
-          console.log(values);
-          const res = await registerRequest(values)
-          console.log(res)
-        })}>
+        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col items-center">
             <Controller
               control={control}
@@ -132,6 +119,13 @@ export const Registercomponent = () => {
             <button className="button-register bg-custom-blue hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded" type="submit">Aceptar</button>
           </div>
         </form>
+        <button 
+          className="link-btn mt-4 text-center font-bold text-yellow-400 hover:text-yellow-500" 
+          onClick={() => onFormSwitch("Logincomponent")} 
+          style={{ color: "#142740", display: "block", margin: "0 auto" }}
+        >
+          <small>¿Ya tienes una cuenta? Inicia sesión aquí</small>
+        </button>
       </div>
     </div>
   );

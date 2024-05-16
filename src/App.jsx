@@ -19,18 +19,14 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-      <Routes>
-      <Route path="/dashboard/users" element={<UserP />} />
-      <Route path="/dashboard/products" element={<ProductsP />} />
-      <Route path="/dashboard/teams" element={<PlayersP />} />
-      </Routes>
-        <Header />
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/dashboard/users" element={<UserP />} />
+          <Route path="/dashboard/products" element={<ProductsP />} />
+          <Route path="/dashboard/teams" element={<PlayersP />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
