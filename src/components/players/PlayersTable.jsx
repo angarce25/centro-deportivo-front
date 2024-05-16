@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PlayersChart() {
+function PlayersTable() {
     return (
         <div className="mt-8">
             <h4 className="text-gray-600">Jugadores</h4>
@@ -37,4 +37,4 @@ function PlayersChart() {
     );
 }
 
-export default PlayersChart;
+export default PlayersTable;
