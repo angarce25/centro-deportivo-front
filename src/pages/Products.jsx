@@ -1,4 +1,4 @@
-import { Card0, Card1, Card2, Card3 } from "../components/products/ProductsCard"; // Importa el componente Cards
+import { ProductsCard } from "../components/products/ProductsCard"; // Importa el componente Cards
 
 const Products = () => {
   return (
@@ -9,17 +9,8 @@ const Products = () => {
         </h2>
       </div>
       <div className="flex flex-row items-center justify-center">
-        <div className="m-4 ">
-          <Card0 />
-        </div>
         <div className="">
-          <Card1 />
-        </div>
-        <div className="m-4">
-          <Card2 />
-        </div>
-        <div className="m-4">
-          <Card3 />
+          <ProductsCard />
         </div>
       </div>
     </>

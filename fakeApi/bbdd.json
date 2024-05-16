@@ -1,0 +1,65 @@
+{
+  "Products": [
+    {
+      "_id": "6639e2408d544b5fb9fa9df3",
+      "name": "Zapatillas Deportivas",
+      "decription": "Zapatillas deportivas para correr",
+      "cost": 30,
+      "price": 50,
+      "category": "Calzado Deportivo",
+      "stock": 80,
+      "image": "https://deportesbernal.es//wp-content/uploads/2024/01/gorra-amarilla-cadiz-cf-2-600x600.jpg"
+    },
+    {
+      "_id": "6639e2408d544b5fb9fa9df4",
+      "name": "Camiseta Nike",
+      "decription": "Camiseta de la selección Nike",
+      "cost": 25,
+      "price": 40,
+      "category": "Ropa Deportiva",
+      "stock": 100,
+      "image": "https://res.cloudinary.com/dtppkikkr/image/upload/v1715765308/CDCA/CamisetaO_g0kgt1.png"
+    },
+    {
+      "_id": "6639e2408d544b5fb9fa9df5",
+      "name": "Bufanda Real Betis",
+      "decription": "Bufanda oficial del Real Betis",
+      "cost": 15,
+      "price": 30,
+      "category": "Accesorios",
+      "stock": 50,
+      "image": "https://res.cloudinary.com/dtppkikkr/image/upload/v1715765327/CDCA/image_18_hq6vvt.png"
+    },
+    {
+        "_id": "6639e2408d544b5fb9fa9df6",
+        "name": "Balón de Fútbol Adidas",
+        "decription": "Balón de fútbol oficial de Adidas",
+        "cost": 20,
+        "price": 35,
+        "category": "Equipamiento Deportivo",
+        "stock": 60,
+        "image": "https://www.adidas.com/us/dm5359_01_standard.jpg"
+      },
+      {
+        "_id":"6639e2408d544b5fb9fa9df7",
+        "name": "Gafas de Natación Speedo",
+        "decription": "Gafas de natación profesionales de la marca Speedo",
+        "cost": 15,
+        "price": 25,
+        "category": "Equipamiento de Natación",
+        "stock": 40,
+        "image": "https://www.speedo.com/on/demandware.static/-/Sites-speedo-eu-master/default/dw566c45f5/images/SS20_870250b4251_360_L_1.jpg"
+      },
+      {
+        "_id":"6639e2408d544b5fb9fa9df8",
+        "name": "Raqueta de Tenis Wilson",
+        "decription": "Raqueta de tenis profesional de la marca Wilson",
+        "cost": 40,
+        "price": 60,
+        "category": "Equipamiento de Tenis",
+        "stock": 20,
+        "image": "https://images-na.ssl-images-amazon.com/images/I/81Dq-L%2BumqL._AC_SL1500_.jpg"
+      }
+  ]
+}
+  
