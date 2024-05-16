@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
@@ -9,25 +8,31 @@ import Administratorr from "./pages/UsersT.jsx";
 
 import Products from "./pages/Products.jsx";
 import UserP from "./pages/UsersT.jsx";
-import PlayersP from "./pages/PlayersT.jsx";
+import PlayersP from "./pages/Players.jsx";
 import ProductsP from "./pages/ProductsT.jsx";
+import NewPlayer from "./pages/NewPlayer.jsx";
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/dashboard/users" element={<UserP />} />
-          <Route path="/dashboard/products" element={<ProductsP />} />
-          <Route path="/dashboard/teams" element={<PlayersP />} />
-        </Routes>
-
-        <Routes>
+      {/* Rutas Navbar */}
+      <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/products" element={<Products />} />
         </Routes>
+
+      {/* Rutas Sidebar protegidas */}
+        <Routes>
+          <Route path="/dashboard/users" element={<UserP />} />
+          <Route path="/dashboard/products" element={<ProductsP />} />
+          <Route path="/dashboard/players" element={<PlayersP />} />
+          <Route path="/dashboard/form-player" element={<NewPlayer />} />
+        </Routes>
+
+        
       </BrowserRouter>
     </AuthProvider>
   );
