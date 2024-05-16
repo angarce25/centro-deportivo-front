@@ -74,7 +74,7 @@ function Sidebar() {
                         className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
                         href="/"
                     > 
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <i className="fa-solid fa-arrow-right-from-bracket"></i>
                         <span className="mx-3">Cerrar sesión</span>
                     </a>
                 </nav>
