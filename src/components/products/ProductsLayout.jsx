@@ -1,10 +1,10 @@
 const ProductsLayout = ({ children }) => {
   return (
     <div
-      className="flex flex-col justify-center items-center mt-20 p-6
+      className="flex flex-col justify-center items-center mt-20 
       2xl:ml-24
-      xl:ml-12
-      lg:ml-12
+      xl:ml-0
+      lg:ml-0
       md:ml-4
       sm:px-16 px-6 "
     >

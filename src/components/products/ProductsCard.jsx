@@ -7,7 +7,7 @@ function ProductsCard({ product }) {
         height: "auto",
         filter: "drop-shadow(0px 4.42184px 7.23px rgba(0, 0, 0, 1))",
       }}
-      className="bg-gray-l cursor-pointer w-52 h-68 rounded-lg "
+      className="bg-gray-l cursor-pointer w-52 h-68 rounded-lg m-4 mb-4 "
     >
       <figure className="relative mb-4 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-black/30 rounded-lg text-white text-xs m-2 px-3 py-0.5 ">
