@@ -59,10 +59,10 @@ const Slide = () => {
               <div  className='flex flex-col justify-center
                 gap-4 pt-12 sm:pt-0 text-center sm:text-left
                 order-2 sm:order-1 relative z-10'>
-                  <h1 className='text-5xl sm:text-6xl
+                  <h2 className='text-5xl sm:text-6xl
                    lg:text-7xl font-bold'>
                     {data.title}
-                  </h1>
+                  </h2>
                   <p className='text-s'>
                   {data.description}
                   </p>

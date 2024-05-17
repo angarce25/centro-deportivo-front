@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "server": "json-server fakeApi/bbdd.json --port 5000"
+    "e2e": "cypress open"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
@@ -39,6 +39,7 @@
     "autoprefixer": "^10.4.16",
     "daisyui": "^4.11.1",
     "dotenv": "^16.4.5",
+    "cypress": "^13.9.0",
     "eslint": "^8.45.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
