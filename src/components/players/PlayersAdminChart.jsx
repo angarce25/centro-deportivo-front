@@ -6,18 +6,21 @@ function PlayersTable() {
     const [players, setPlayers] = useState([]);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        axios.get('MONGODB_URL')
-          .then(response => {
+    
+      useEffect(() => {
+        const apiUrl = import.meta.env.VITE_API_URL; 
+        const extraPath = '/players'; 
+        const fullUrl = apiUrl + extraPath; 
+        
+        axios
+        .get(fullUrl)
+        .then((response) => {
             setPlayers(response.data);
-          })
-          .catch(error => {
-            setError('Error al cargar los datos');
-            console.error('Error fetching data: ', error);
-          })
-      }, []); // El array vacío asegura que el efecto se ejecute solo una vez al montar el componente
-
-
+        })
+        .catch((error) => {
+        console.error("Error al obtener los productos:", error);
+        });
+        }, []);
   
   return (
     <section className="mt-8">
@@ -31,23 +34,30 @@ function PlayersTable() {
             <table className="min-w-full">
               <thead>
                 <tr>
-                  <th className="px-6 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                  <th className="px-6 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Categoría</th>
-                  <th className="px-6 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Equipo</th>
-                  <th className="px-6 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Primer Pago</th>
-                  <th className="px-6 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Segundo Pago</th>
-                  <th className="px-6 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Tercer Pago</th>
+                  <th className="px-4 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+                  <th className="px-4 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Apellidos</th>
+                  <th className="px-4 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                  <th className="px-4 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Teléfono</th>
+                  <th className="px-4 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">DNI</th>
+                  <th className="px-4 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Código Postal</th>
+                  <th className="px-4 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Alergias</th>
+                  <th className="px-4 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Lesiones</th>
+                  <th className="px-4 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Talla Camiseta</th>
+                  <th className="px-4 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Talla pantalón</th>  
+                  <th className="px-4 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Número calzado</th>  
                 </tr>
               </thead>
               <tbody>
                 {players.map(player => (
                   <tr key={player._id}>
                     <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">{player.name}</td>
-                    <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">{player.category}</td>
-                    <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">{player.team}</td>
-                    <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">{player.firstPayment}</td>
-                    <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">{player.secondPayment}</td>
-                    <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">{player.thirdPayment}</td>
+                    <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">{player.surname}</td>
+                    <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">{player.email}</td>
+                    <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">{player.phone}</td>
+                    <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">{player.dni}</td>
+                    <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">{player.postalcode}</td>
+                    <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">{player.allergies}</td>
+                    <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">{player.injuries}</td>
                   </tr>
                 ))}
               </tbody>
