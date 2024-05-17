@@ -10,7 +10,6 @@ import ProductOrder from "./pages/ProductOrder.jsx";
 import ProductsOrders from "./pages/ProductsOrders.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-<<<<<<< HEAD
 import { AuthProvider } from "./context/AuthContext.jsx";
 import Home from "./pages/Home.jsx";
 
@@ -22,8 +21,6 @@ import PlayersP from "./pages/PlayersT.jsx";
 import ProductsP from "./pages/ProductsT.jsx";
 import Loading from "./pages/resources/Loading.jsx";
 import NotFound from "./pages/resources/NotFound.jsx";
-=======
->>>>>>> 94fb3d4ba01398c3bcce907612fa732eff542097
 
 function App() {
   return (
