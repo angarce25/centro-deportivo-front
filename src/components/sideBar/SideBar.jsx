@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IoHomeOutline } from "react-icons/io5";
+/* import { IoHomeOutline } from "react-icons/io5"; */
 import { CiShop } from "react-icons/ci";
 import { GiClothes } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
@@ -23,15 +23,15 @@ function Sidebar() {
                         <img className='w-20 h-30' src='../../../public/escudo.png' />
                     </div>
                 </div>
-                    <nav className="mt-10 flex justify-center hover:bg-yellow-d">
+                    {/* <nav className="mt-10 flex justify-center hover:bg-yellow-d">
                     <a
                         className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
-                        href="/dashboard/products"
+                        href="/"
                     > 
                        <IoHomeOutline />
                         <span className="mx-3">Home</span>
                     </a>
-                </nav>
+                </nav> */}
                 <nav className="mt-10 flex justify-center hover:bg-yellow-d">
                     <a
                         className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"

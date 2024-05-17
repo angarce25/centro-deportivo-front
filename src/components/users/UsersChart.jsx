@@ -1,6 +1,4 @@
-import React from 'react';
-
-function UsersTable() {
+function UsersChart() {
     return (
         <div className="mt-8">
             <h2>Padres</h2>
@@ -61,4 +59,4 @@ function UsersTable() {
     );
 }
 
-export default UsersTable;
+export default UsersChart;

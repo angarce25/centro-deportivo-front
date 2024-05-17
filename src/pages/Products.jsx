@@ -4,6 +4,7 @@ import axios from "axios";
 import ProductsCard from "../components/products/ProductsCard";
 import ProductsLayout from "../components/products/ProductsLayout";
 import ProductsNav from "../components/products/ProductsNav";
+import Sidebar from "../components/sideBar/SideBar";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -22,6 +23,7 @@ function Products() {
 
   return (
     <>
+      <div className="flex "><Sidebar/>
       <ProductsNav />
       <ProductsLayout>
         <h2 className="text-xl font-medium mb-4">
@@ -42,6 +44,7 @@ function Products() {
           ))}
         </div>
       </ProductsLayout>
+      </div>
     </>
   );
 }

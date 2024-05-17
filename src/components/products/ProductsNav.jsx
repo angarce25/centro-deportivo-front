@@ -15,9 +15,6 @@ const ProductsNav = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/products">Productos</NavLink>
-        </li>
-        <li>
           <NavLink to="/equipacion-necesaria-jugador">
             Necesarios jugador
           </NavLink>
