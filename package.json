@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "json-server fakeApi/bbdd.json --port 5000"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
@@ -17,6 +18,7 @@
     "chart.js": "^4.4.2",
     "dompurify": "^3.1.0",
     "dotenv": "^16.4.5",
+    "json-server": "^1.0.0-alpha.23",
     "jwt-decode": "^4.0.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",

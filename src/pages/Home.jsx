@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 import React from 'react'
 import ImgAboutus from '../assets/home/imgabout.png'
 import Slide from '../components/home/Slide'
 import Footer from '../components/home/Footer'
 
+=======
+import ImgAboutus from "../assets/home/imgabout.png";
+import Header from "../components/home/Header.jsx";
+import Slide from "../components/home/Slide";
+import Footer from "../components/home/Footer";
+>>>>>>> 94fb3d4ba01398c3bcce907612fa732eff542097
 
 const Home = () => {
  

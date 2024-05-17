@@ -1,105 +1,55 @@
-const Card0 = () => {
+import PropTypes from "prop-types";
+function ProductsCard({ product }) {
   return (
-    <div className="bg-white cursor-pointer w-52 h-60 rounded-lg ">
-      <figure className="relative mb-1 w-full h-4/5">
-        <span className="absolute bottom-0 left-0 bg-black/30 rounded-lg text-white text-xs m-2 px-3 py-0.5">
-          Merchandaising
+    <div
+      style={{
+        maxWidth: "100%",
+        height: "auto",
+        filter: "drop-shadow(0px 4.42184px 7.23px rgba(0, 0, 0, 1))",
+      }}
+      className="bg-gray-l cursor-pointer w-52 h-68 rounded-lg "
+    >
+      <figure className="relative mb-4 w-full h-4/5">
+        <span className="absolute bottom-0 left-0 bg-black/30 rounded-lg text-white text-xs m-2 px-3 py-0.5 ">
+          {product.category}
         </span>
         <img
-          src={
-            "https://deportesbernal.es//wp-content/uploads/2024/01/gorra-amarilla-cadiz-cf-2-600x600.jpg"
-          }
-          alt="Camiseta oficial"
-          className="w-full h-full object-cover rounded-lg border-black border-2 "
+          src={product.image}
+          alt="camiseta oficial"
+          className="w-52 h-60 object-cover rounded-t-lg bg-gradient-to-br from-black via-gray-500 to-white-100"
         />
+        <div
+          style={{
+            maxWidth: "100%",
+            height: "auto",
+            filter: "drop-shadow(0px 1.42184px 1.23px rgba(0, 0, 0, 1))",
+          }}
+          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-md m-1"
+        >
+          {" "}
+          +{" "}
+        </div>
       </figure>
       <p className="flex justify-between ">
-        <span className="text-sm font-light m-2 px-1 py-0.5">
-          Gorra oficial
-        </span>
-        <span className="text-md font-semibold p-1 mb-1 mr-2 border-black rounded-lg text-black">
-          8 €
-        </span>
-      </p>
-    </div>
-  );
-};
-
-const Card1 = () => {
-  return (
-    <div className="bg-white cursor-pointer w-52 h-60 rounded-lg bg-gradient-to-br from-black via-gray-500 to-white-100">
-      <figure className="relative mb-1 w-full h-4/5">
-        <span className="absolute bottom-0 left-0 bg-black/30 rounded-lg text-white text-xs m-2 px-3 py-0.5">
-          Equipación
-        </span>
-        <img
-          src={
-            "https://tienda.rfaf.es/1443-home_default/camiseta-nike-selecci%C3%B3n-ii-hombre.jpg"
-          }
-          alt="Camiseta oficial"
-          className="w-full h-full object-cover rounded-lg "
-        />
-      </figure>
-      <p className="flex justify-between ">
-        <span className="text-sm text-[#F2E205] font-light m-2 px-1 py-0.5">
-          Camiseta oficial
+        <span className="text-sm text-black font-light m-2 px-1 py-0.5">
+          {product.name}
         </span>
         <span className="text-md font-semibold p-1 mb-1 mr-2 rounded-lg text-black">
-          21 €
+          {product.price} €
         </span>
       </p>
     </div>
   );
+}
+
+ProductsCard.propTypes = {
+  product: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+    // Añade más validaciones según la estructura de tu objeto product
+  }).isRequired,
 };
 
-const Card2 = () => {
-  return (
-    <div className="bg-white cursor-pointer w-52 h-60 rounded-lg border-black ">
-      <figure className="relative mb-1 w-full h-4/5">
-        <span className="absolute bottom-0 left-0 bg-black/30 rounded-lg text-white text-xs m-2 px-3 py-0.5">
-          Accesorios
-        </span>
-        <img
-          src={
-            "https://shop.realbetisbalompie.es/cdn/shop/files/u1nf03gj.png?crop=center&v=1715241409&width=960"
-          }
-          alt="Camiseta oficial"
-          className="w-full h-full object-cover rounded-lg"
-        />
-      </figure>
-      <p className="flex justify-between ">
-        <span className="text-sm font-light m-2 px-1 py-0.5">Bufanda</span>
-        <span className="text-md font-semibold p-1 mb-1 mr-2 bg-[#BF9D7E] border-black rounded-lg text-black">
-          10 €
-        </span>
-      </p>
-    </div>
-  );
-};
-
-const Card3 = () => {
-  return (
-    <div className="bg-white cursor-pointer w-52 h-60 rounded-lg border-black border-2">
-      <figure className="relative mb-1 w-full h-4/5">
-        <span className="absolute bottom-0 left-0 bg-black/30 rounded-lg text-white text-xs m-2 px-3 py-0.5">
-          Protección
-        </span>
-        <img
-          src={
-            "https://tienda.granadacf.es/3139-large_default/parka-negra-adulto-adidas-23-24.jpg"
-          }
-          alt="Camiseta oficial"
-          className="w-full h-full object-cover rounded-lg"
-        />
-      </figure>
-      <p className="flex justify-between ">
-        <span className="text-sm font-light m-2 px-1 py-0.5">Abrigo</span>
-        <span className="text-md font-semibold p-1 mb-1 mr-2 bg-[#EAF205] border-black rounded-lg text-white">
-          10 €
-        </span>
-      </p>
-    </div>
-  );
-};
-
-export { Card0, Card1, Card2, Card3 };
+export default ProductsCard;
