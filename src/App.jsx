@@ -4,8 +4,7 @@ import { AuthProvider } from "./context/AuthContext.jsx";
 import Home from "./pages/Home.jsx";
 import UserP from "./pages/UsersT.jsx";
 import ProductsP from "./pages/ProductsT.jsx";
-import PlayersP from "./pages/PlayersT.jsx";
-
+import PlayersP from "./pages/Players.jsx";
 import Products from "./pages/Products.jsx";
 import ProductOrder from "./pages/ProductOrder.jsx";
 import ProductsOrders from "./pages/ProductsOrders.jsx";
