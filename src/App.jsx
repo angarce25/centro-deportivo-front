@@ -28,7 +28,8 @@ function App() {
         <Routes>
           <Route path="/dashboard/users" element={<UserP />} />
           <Route path="/dashboard/products" element={<ProductsP />} />
-          <Route path="/dashboard/players" element={<PlayersP />} />
+          <Route path="/dashboard/my-players" element={<PlayersP/>} /> {/*Pagina jugadores user */}
+          <Route path="/dashboard/players" element={<PlayersP />} /> {/*Pagina jugadores admin */}
           <Route path="/dashboard/form-player" element={<NewPlayer />} />
         </Routes>
 
