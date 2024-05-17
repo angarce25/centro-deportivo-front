@@ -1,4 +1,3 @@
-import React from "react";
 import ImgAboutus from "../assets/home/imgabout.png";
 import Header from "../components/home/Header.jsx";
 import Slide from "../components/home/Slide";
