@@ -1,22 +1,29 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginRequest } from '../../context/auth';
 
-const Logincomponent = (props) => {
+const Logincomponent = ({ onFormSwitch }) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email);
 
-    // Después de la autenticación exitosa, redirige a la página de inicio
-    navigate("/");
-  }
+    try {
+      const response = await loginRequest({ email, password: pass });
 
-  const switchToRegister = () => {
-    navigate("/register");
-  }
+      if (response.status === 200) {
+        alert("Inicio de sesión exitoso");
+        navigate("/dashboard/users");
+      } else {
+        alert(response.data.message || "Error en el inicio de sesión");
+      }
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      alert("Error en inicio de sesión");
+    }
+  };
 
   return (
     <div className="bg-gray-200 min-h-screen flex items-center justify-center">
@@ -24,7 +31,7 @@ const Logincomponent = (props) => {
         <h2 className="text-3xl font-semibold text-center mb-6">Iniciar sesión</h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="flex flex-col items-center">
-            <label htmlFor="email" className="block mb-1 text-center font-bold"></label>
+            <label htmlFor="email" className="block mb-1 text-center font-bold">Correo electrónico</label>
             <input 
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
@@ -39,7 +46,7 @@ const Logincomponent = (props) => {
             />
           </div>
           <div className="flex flex-col items-center">
-            <label htmlFor="password" className="block mb-1 text-center font-bold"></label>
+            <label htmlFor="password" className="block mb-1 text-center font-bold">Contraseña</label>
             <input 
               value={pass} 
               onChange={(e) => setPass(e.target.value)} 
@@ -55,10 +62,22 @@ const Logincomponent = (props) => {
             />
           </div>
           <div className="flex justify-center">
-  <button className="button-login bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" style={{backgroundColor: "#142740"}}>Iniciar sesión</button>
-</div>
+            <button 
+              className="button-login bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+              type="submit" 
+              style={{ backgroundColor: "#142740" }}
+            >
+              Iniciar sesión
+            </button>
+          </div>
         </form>
-        <button className="link-btn mt-4 text-center font-bold text-yellow-400 hover:text-yellow-500" onClick={switchToRegister} style={{color: "#142740", display: "block", margin: "0 auto"}}><small>¿No tienes cuenta? Regístrate aquí</small></button>
+        <button 
+          className="link-btn mt-4 text-center font-bold text-yellow-400 hover:text-yellow-500" 
+          onClick={() => onFormSwitch("Registercomponent")} 
+          style={{ color: "#142740", display: "block", margin: "0 auto" }}
+        >
+          <small>¿No tienes cuenta? Regístrate aquí</small>
+        </button>
       </div>
     </div>
   );
