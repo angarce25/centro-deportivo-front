@@ -10,11 +10,14 @@ function Products() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // Utiliza Axios para hacer la solicitud
+    const apiUrl = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
+    const extraPath = '/products'; // Añade la parte adicional de la URL
+    const fullUrl = apiUrl + extraPath; // Combina la URL base con la parte adicional
+
     axios
-      .get("http://localhost:5000/Products")
+      .get(fullUrl)
       .then((response) => {
-        setProducts(response.data); // La respuesta de Axios ya contiene los datos en response.data
+        setProducts(response.data);
       })
       .catch((error) => {
         console.error("Error al obtener los productos:", error);
@@ -26,7 +29,7 @@ function Products() {
       <div className="flex "><Sidebar/>
       <ProductsNav />
       <ProductsLayout>
-        <h2 className="text-xl font-medium mb-4">
+        <h2 className="text-xl font-medium mb-2 ">
           Productos necesarios y disponibles del CDCA
         </h2>
 
