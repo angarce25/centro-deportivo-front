@@ -4,7 +4,7 @@ import Register from "./pages/Register.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import Home from "./pages/Home.jsx";
 
-import Administratorr from "./pages/UsersT.jsx";
+// import Administratorr from "./pages/UsersT.jsx";
 
 import Products from "./pages/Products.jsx";
 import UserP from "./pages/UsersT.jsx";

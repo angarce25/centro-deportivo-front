@@ -4,7 +4,7 @@ import { CiShop } from "react-icons/ci";
 import { GiClothes } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
 import { RiTeamLine } from "react-icons/ri"
-import imagen from '../../../public/escudo.png'
+// import imagen from '../../../public/escudo.png'
 
 function Sidebar() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
