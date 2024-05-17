@@ -2,8 +2,8 @@
   "Products": [
     {
       "_id": "6639e2408d544b5fb9fa9df4",
-      "name": "Camiseta oficial CDCA",
-      "decription": "Camiseta de la selección Joma imprescindibles para los partidos de fútbol de la ciudad de Los Angeles",
+      "name": "Camiseta CDCA",
+      "decription": "Camiseta oficial del Club Deportivo de Ciudad de Los Ángeles, imprescindibles para los partidos de fútbol de la ciudad de Los Angeles",
       "cost": 12,
       "price": 25,
       "category": "Ropa Deportiva",
@@ -42,7 +42,7 @@
     },
     {
       "_id": "6639e2408d544b5fb9fa9e06",
-      "name": "Camiseta de Entrenamiento",
+      "name": " Entrenamiento",
       "description": "Camiseta de entrenamiento transpirable, comoda y deportiva para dar lo máximo en los entrenamientos",
       "cost": 25,
       "price": 12,
@@ -83,7 +83,7 @@
       },
       {
         "_id": "6639e2408d544b5fb9fa9e03",
-        "name": "Medias Joma",
+        "name": "Medias",
         "description": "Medias deportivas Joma, ajuste ajustable y comodas para los partidos",
         "cost": 12,
         "price": 7,
@@ -93,7 +93,7 @@
       },
       {
         "_id": "6639e2408d544b5fb9fa9df4",
-        "name": "Camiseta Arquero CDCA",
+        "name": "Camiseta Arquero",
         "decription": "Camiseta imprescindiente para los partidos de fútbol de la ciudad de Los Angeles",
         "cost": 25,
         "price": 21,
@@ -103,7 +103,7 @@
       },
       {
         "_id": "6639e2408d544b5fb9fa9e04",
-        "name": "Carsonas Arquero CDCA",
+        "name": "Carsonas CDCA",
         "description": "Carsonas imprescindiente para los partidos de fútbol de la ciudad de Los Angeles ",
         "cost": 70,
         "price": 9,

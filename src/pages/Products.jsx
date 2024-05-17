@@ -3,6 +3,7 @@ import axios from "axios";
 
 import ProductsCard from "../components/products/ProductsCard";
 import ProductsLayout from "../components/products/ProductsLayout";
+import ProductsNav from "../components/products/ProductsNav";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -21,16 +22,18 @@ function Products() {
 
   return (
     <>
+      <ProductsNav />
       <ProductsLayout>
         <h2 className="text-xl font-medium mb-4">
-          Productos disponibles del Club
+          Productos necesarios y disponibles del CDCA
         </h2>
 
         <div
-          className="2xl:grid 2xl:gap-4 2xl:grid-cols-5
-                     lg:grid lg:gap-4 lg:grid-cols-4 
-                     md:grid md:gap-4 md:grid-cols-3
-                     sm:grid sm:gap-4 sm:grid-cols-2  w-full max-w-screen-lg"
+          className="2xl:grid 2xl:grid-cols-5 2xl:w-full 2xl:max-w-screen-2xl
+                     xl:grid xl:grid-cols-4 xl:w-full xl:max-w-screen-lg
+                     lg:grid lg:grid-cols-4 lg:w-full lg:max-w-screen-lg
+                     md:grid md:grid-cols-3 md:w-full md:max-w-screen-md
+                     sm:grid sm:grid-cols-2 sm:w-full sm:justify-center"
         >
           {products.map((product) => (
             <div key={product._id} className="">
