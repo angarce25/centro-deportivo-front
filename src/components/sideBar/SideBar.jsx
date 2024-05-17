@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { IoHomeOutline } from "react-icons/io5";
 import { CiShop } from "react-icons/ci";
 import { GiClothes } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
 import { RiTeamLine } from "react-icons/ri"
-import imagen from '../../../public/escudo.png'
+// import imagen from '../../../public/escudo.png'
 
 function Sidebar() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -50,13 +50,23 @@ function Sidebar() {
                         <span className="mx-3">Productos</span>
                     </a>
                 </nav>
+                
                 <nav className="mt-10 flex justify-center hover:bg-yellow-d">
                     <a
                         className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
-                        href="/dashboard/teams"
+                        href="/dashboard/my-players"
                     > 
                        <RiTeamLine />
-                        <span className="mx-3">Equipos</span>
+                        <span className="mx-3">Jugadores(U)</span>
+                    </a>
+                </nav>
+                <nav className="mt-10 flex justify-center hover:bg-yellow-d">
+                    <a
+                        className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
+                        href="/dashboard/players"
+                    > 
+                       <RiTeamLine />
+                        <span className="mx-3">Jugadores(A)</span>
                     </a>
                 </nav>
                 <nav className="mt-10 flex justify-center hover:bg-yellow-d">
@@ -65,7 +75,7 @@ function Sidebar() {
                         href="/dashboard/users"
                     > 
                       <LuUsers2 />
-                        <span className="mx-3">Usuarios</span>
+                        <span className="mx-3">Usuarios(A)</span>
                     </a>
                 </nav>
                 <nav className="mt-10 flex justify-center">
@@ -73,7 +83,7 @@ function Sidebar() {
                         className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
                         href="/"
                     > 
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <i className="fa-solid fa-arrow-right-from-bracket"></i>
                         <span className="mx-3">Cerrar sesión</span>
                     </a>
                 </nav>
