@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ModalInfoEquipment from "./ModalInfoEquipment";
-import { useState } from "react";
-import { useRef } from 'react';
+import { useState, useRef } from "react";
+import Modal from "react-modal";
   
 
 export default function FormNewPlayer() {
@@ -229,6 +229,11 @@ export default function FormNewPlayer() {
                 <option value="37">37</option>
                 <option value="38">38</option>
                 <option value="39">39</option>
+              </select>
+              <select className="select select-bordered w-full max-w-xs">
+                <option disabled selected>Who shot first?</option>
+                <option>Han Solo</option>
+                <option>Greedo</option>
               </select>
             </div>
           </div>
