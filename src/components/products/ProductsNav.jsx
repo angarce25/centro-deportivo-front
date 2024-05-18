@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ProductContext";
+import { TfiShoppingCartFull } from "react-icons/tfi";
 
 const ProductsNav = () => {
   const context = useContext(ShoppingCartContext);
@@ -32,7 +33,7 @@ const ProductsNav = () => {
         <li>
           <NavLink to="/ProductsOrders">Mis pedidos</NavLink>
         </li>
-        <li>🛒 {context.count}</li>
+        <li className="flex items-center gap-1"><TfiShoppingCartFull /> {context.count}</li>
       </ul>
     </nav>
   );
