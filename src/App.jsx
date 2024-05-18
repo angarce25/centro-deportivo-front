@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.jsx";
+import { ShoppingCartProvider } from "./context/ProductContext.jsx";
 /* import { ProductsProvider } from "./context/ProductsContext.jsx"; */
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
@@ -20,7 +21,7 @@ import ProductsOrders from "./pages/ProductsOrders.jsx";
 function App() {
   return (
     <AuthProvider>
-      {/* <ProductsProvider> */} {/* Aquí agregamos el ProductsProvider */}
+      <ShoppingCartProvider>
       <BrowserRouter>
       
         {/* RUTAS NAVBAR */}
@@ -33,18 +34,22 @@ function App() {
         {/* RUTAS SIDEBAR PROTEGIDAS */}
         <Routes>
           <Route path="/dashboard/users" element={<UserP />} />
-          <Route path="/dashboard/products" element={<Products />} />
+          
           {/*Pagina jugadores user */}
           <Route path="/dashboard/my-players" element={<PlayersUser />} />{" "}
           {/*Pagina jugadores admin */}
           <Route path="/dashboard/players" element={<PlayersAdmin />} />{" "}
           <Route path="/dashboard/form-player" element={<NewPlayer />} />
+          
+          <Route path="/dashboard/products" element={<Products />} />
           <Route path="/dashboard/product-order" element={<ProductOrder />} />
           <Route path="/dashboard/products-orders"element={<ProductsOrders />}/>
+          
+
           <Route path="/dashboard/teams" element={<PlayersUser />} />
         </Routes>
       </BrowserRouter>
-      {/* </ProductsProvider> */}
+      </ShoppingCartProvider>
     </AuthProvider>
   );
 }
