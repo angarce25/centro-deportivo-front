@@ -4,7 +4,7 @@ import { CgCloseR } from "react-icons/cg";
 import "./style.css"
 const ProductsDetail = () => {
   const context = useContext(ShoppingCartContext)
-  console.log('PRODUCT TO SHOW:', context.productToShow)
+  
 
 
   return (

@@ -9,6 +9,14 @@ function ProductsCard( data ) {
     context.setProductToShow(productDetail)
   }
 
+  const addProductsToCart = (event, productData) => {
+    event.stopPropagation()
+    context.setCount(context.count + 1)
+    context.setCartProducts([...context.cartProducts, productData])
+    context.openCheckSideMenu()
+    context.closeProductDetail()
+  }
+
   return (
     <div
       style={{
@@ -35,10 +43,9 @@ function ProductsCard( data ) {
             filter: "drop-shadow(0px 1.42184px 1.23px rgba(0, 0, 0, 1))",
           }}
           className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 rounded-md m-1 text-sm"
-          onClick={() => context.setCount(context.count + 1) }
+          onClick={(event) => addProductsToCart(event, data.data)}
         >
-          
-          <GoPlus />
+          <GoPlus className="text-black w-6 h-6"> </GoPlus>
         </div>
       </figure>
       <p className="flex justify-between ">

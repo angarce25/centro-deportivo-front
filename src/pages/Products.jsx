@@ -6,6 +6,7 @@ import ProductsLayout from "../components/products/ProductsLayout";
 import ProductsNav from "../components/products/ProductsNav";
 import Sidebar from "../components/sideBar/SideBar";
 import ProductsDetail from "../components/productsDetail/ProductsDetail";
+import CheckSideMenu from "../components/checkSideMenu/CheckSideMenu";
 
 function Products() {
   const [items, setItems] = useState(null);
@@ -51,6 +52,7 @@ function Products() {
           }
         </div>
         <ProductsDetail />
+        <CheckSideMenu />
       </ProductsLayout>
       </div>
     </>
