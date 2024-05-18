@@ -1,6 +1,6 @@
 import { CgCloseR } from "react-icons/cg";
 const OrderCard = props => {
-    const { name, price, imageUrl  } = props	
+    const {_id, name, price, imageUrl, handleDelete  } = props	
   return (
     <div 
     className="flex justify-between items-center mb-3">
@@ -13,7 +13,7 @@ const OrderCard = props => {
       </div>
       <div className="flex items-center gap-2">
         <p className="text-md font-medium">{price}</p>
-        <CgCloseR className="text-2lg cursor-pointer"></CgCloseR>
+        <CgCloseR onClick={() => handleDelete(_id)} className="text-2lg cursor-pointer"></CgCloseR>
       </div>
     </div>
   )
