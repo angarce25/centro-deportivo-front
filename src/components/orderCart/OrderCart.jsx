@@ -1,5 +1,5 @@
 import { CgCloseR } from "react-icons/cg";
-const OrderCard = props => {
+const OrderCart = props => {
     const {_id, name, price, imageUrl, handleDelete  } = props	
   return (
     <div 
@@ -19,4 +19,4 @@ const OrderCard = props => {
   )
 }
 
-export default OrderCard
+export default OrderCart

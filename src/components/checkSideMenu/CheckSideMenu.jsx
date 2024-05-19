@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { CgCloseR } from "react-icons/cg";
 import { ShoppingCartContext } from "../../context/ProductContext";
-import OrderCard from "../../components/orderCard/OrderCard";
+import OrderCard from "../orderCart/OrderCart";
 import { totalPrice } from "../../Utils";
 import "./style.css"
 const CheckSideMenu = () => {
