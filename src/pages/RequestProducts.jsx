@@ -1,4 +1,3 @@
-import React from 'react';
 import Sidebar from '../components/sideBar/SideBar.jsx';
 
 const ProductsP = () => {

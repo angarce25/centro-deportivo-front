@@ -1,29 +1,55 @@
-import { Card0, Card1, Card2, Card3 } from "../components/products/ProductsCard"; // Importa el componente Cards
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const Products = () => {
+import ProductsCard from "../components/products/ProductsCard";
+import ProductsLayout from "../components/products/ProductsLayout";
+import ProductsNav from "../components/products/ProductsNav";
+import Sidebar from "../components/sideBar/SideBar";
+
+function Products() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const apiUrl = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
+    const extraPath = '/products'; // Añade la parte adicional de la URL
+    const fullUrl = apiUrl + extraPath; // Combina la URL base con la parte adicional
+
+    axios
+      .get(fullUrl)
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al obtener los productos:", error);
+      });
+  }, []);
+
   return (
     <>
-      <div className="flex items-center justify-center relative w-full ">
-        <h2 className="text-xl font-medium mb-4">
-          Productos disponibles del Club
+      <div className="flex "><Sidebar/>
+      <ProductsNav />
+      <ProductsLayout>
+        <h2 className="text-xl font-medium mb-2 ">
+          Productos necesarios y disponibles del CDCA
         </h2>
-      </div>
-      <div className="flex flex-row items-center justify-center">
-        <div className="m-4 ">
-          <Card0 />
+
+        <div
+          className="2xl:grid 2xl:grid-cols-5 2xl:w-full 2xl:max-w-screen-2xl
+                     xl:grid xl:grid-cols-4 xl:w-full xl:max-w-screen-lg
+                     lg:grid lg:grid-cols-4 lg:w-full lg:max-w-screen-lg
+                     md:grid md:grid-cols-3 md:w-full md:max-w-screen-md
+                     sm:grid sm:grid-cols-2 sm:w-full sm:justify-center"
+        >
+          {products.map((product) => (
+            <div key={product._id} className="">
+              <ProductsCard product={product} />
+            </div>
+          ))}
         </div>
-        <div className="">
-          <Card1 />
-        </div>
-        <div className="m-4">
-          <Card2 />
-        </div>
-        <div className="m-4">
-          <Card3 />
-        </div>
+      </ProductsLayout>
       </div>
     </>
   );
-};
+}
 
 export default Products;

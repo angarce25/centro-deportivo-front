@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { IoHomeOutline } from "react-icons/io5";
+import { useState } from 'react';
+/* import { IoHomeOutline } from "react-icons/io5"; */
 import { CiShop } from "react-icons/ci";
 import { GiClothes } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
 import { RiTeamLine } from "react-icons/ri"
-import imagen from '../../../public/escudo.png'
+// import imagen from '../../../public/escudo.png'
 
 function Sidebar() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -20,25 +20,34 @@ function Sidebar() {
             >
                 <div className="flex items-center justify-center mt-8">
                     <div className="flex items-center">
-                        <img className='w-20 h-30' src='../../../public/escudo.png' />
+                        <img className='w-20 h-30' src='../../../escudo.png' />
                     </div>
                 </div>
-                    <nav className="mt-10 flex justify-center hover:bg-yellow-d">
+                    {/* <nav className="mt-10 flex justify-center hover:bg-yellow-d">
                     <a
                         className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
-                        href="/dashboard/products"
+                        href="/"
                     > 
                        <IoHomeOutline />
                         <span className="mx-3">Home</span>
                     </a>
-                </nav>
-                <nav className="mt-10 flex justify-center hover:bg-yellow-d">
+                </nav> */}
+                {/* <nav className="mt-10 flex justify-center hover:bg-yellow-d">
                     <a
                         className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
                         href="/dashboard/products"
                     > 
                       <CiShop />
                         <span className="mx-3 flex justify-center">Tienda</span>
+                    </a>
+                </nav> */}
+                 <nav className="mt-10 flex justify-center hover:bg-yellow-d">
+                    <a
+                        className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
+                        href="/dashboard/users"
+                    > 
+                      <LuUsers2 />
+                        <span className="mx-3">Usuarios(A)</span>
                     </a>
                 </nav>
                 <nav className="mt-10 flex justify-center hover:bg-yellow-d">
@@ -50,30 +59,32 @@ function Sidebar() {
                         <span className="mx-3">Productos</span>
                     </a>
                 </nav>
+                
                 <nav className="mt-10 flex justify-center hover:bg-yellow-d">
                     <a
                         className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
-                        href="/dashboard/teams"
+                        href="/dashboard/my-players"
                     > 
                        <RiTeamLine />
-                        <span className="mx-3">Equipos</span>
+                        <span className="mx-3">Jugadores(U)</span>
                     </a>
                 </nav>
                 <nav className="mt-10 flex justify-center hover:bg-yellow-d">
                     <a
                         className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
-                        href="/dashboard/users"
+                        href="/dashboard/players"
                     > 
-                      <LuUsers2 />
-                        <span className="mx-3">Usuarios</span>
+                       <RiTeamLine />
+                        <span className="mx-3">Jugadores(A)</span>
                     </a>
                 </nav>
+               
                 <nav className="mt-10 flex justify-center">
                     <a
                         className="flex items-center py-2 mt-4 text-gray-100 hover:bg-yellow-400 bg-gray-700 bg-opacity-25"
                         href="/"
                     > 
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <i className="fa-solid fa-arrow-right-from-bracket"></i>
                         <span className="mx-3">Cerrar sesión</span>
                     </a>
                 </nav>
