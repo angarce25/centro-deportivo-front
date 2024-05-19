@@ -20,7 +20,7 @@ function Sidebar() {
             >
                 <div className="flex items-center justify-center mt-8">
                     <div className="flex items-center">
-                        <img className='w-20 h-30' src='../../../public/escudo.png' />
+                        <img className='w-20 h-30' src='../../../escudo.png' />
                     </div>
                 </div>
                     {/* <nav className="mt-10 flex justify-center hover:bg-yellow-d">
