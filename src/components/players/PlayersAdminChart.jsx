@@ -58,6 +58,9 @@ function PlayersTable() {
                 {/* <td>{player.dni}</td> */}
                 <td>{player.allergies}</td>
                 <td>{player.injuryOrIllness}</td>
+                <td>{player.shirtSize}</td>
+                <td>{player.pantsSize}</td>
+                <td>{player.shoeSize}</td>
               </tr>
             ))}
           </tbody>
