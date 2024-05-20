@@ -56,9 +56,9 @@ function App() {
           
 
           <Route path="/dashboard/teams" element={<PlayersUser />} />
-
-                    <Route path="/testing" element={<TermsAndConditionsModal isOpen={true} onClose={false} />} />
-         
+   {/* -_- Ruta de pruebas para cnstruccion de componentes front */}
+          <Route path="/testing" element={<TermsAndConditionsModal isOpen={true} onClose={false} />} />
+        {/* -_- Final de ruta de pruebas para cnstruccion de componentes front */}
         </Routes>
       </BrowserRouter>
       </ShoppingCartProvider>
