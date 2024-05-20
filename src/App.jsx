@@ -18,6 +18,10 @@ import ProductsOrders from "./pages/ProductsOrders.jsx";
 
 
 
+// -_- Imports para Rutas de prueba -_-
+import TermsAndConditionsModal from "./components/termsAndConditions/Terms.jsx";
+// -_- Final de imports rutas de prueba -_-
+
 function App() {
   return (
     <AuthProvider>
@@ -29,9 +33,15 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-        
+          <Route path="/products" element={<Products />} />
+          <Route path="/dashboard/users" element={<UserP />} />
+          <Route path="/dashboard/products" element={<ProductsP />} />
+          <Route path="/dashboard/teams" element={<PlayersP />} />
 
-        {/* RUTAS SIDEBAR PROTEGIDAS */}        
+
+
+      {/* Rutas Sidebar protegidas */}
+
           <Route path="/dashboard/users" element={<UserP />} />
           
           {/*Pagina jugadores user */}
@@ -46,6 +56,9 @@ function App() {
           
 
           <Route path="/dashboard/teams" element={<PlayersUser />} />
+
+                    <Route path="/testing" element={<TermsAndConditionsModal isOpen={true} onClose={false} />} />
+         
         </Routes>
       </BrowserRouter>
       </ShoppingCartProvider>
