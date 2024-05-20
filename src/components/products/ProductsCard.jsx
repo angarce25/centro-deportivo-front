@@ -1,6 +1,6 @@
 const Card0 = () => {
   return (
-    <div className="bg-white cursor-pointer w-52 h-60 rounded-lg ">
+    <div className="bg-white cursor-pointer w-52 h-60 rounded-lg " data-testid="card0">
       <figure className="relative mb-1 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-black/30 rounded-lg text-white text-xs m-2 px-3 py-0.5">
           Merchandaising
@@ -27,7 +27,7 @@ const Card0 = () => {
 
 const Card1 = () => {
   return (
-    <div className="bg-white cursor-pointer w-52 h-60 rounded-lg bg-gradient-to-br from-black via-gray-500 to-white-100">
+    <div className="bg-white cursor-pointer w-52 h-60 rounded-lg bg-gradient-to-br from-black via-gray-500 to-white-100" data-testid="card1">
       <figure className="relative mb-1 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-black/30 rounded-lg text-white text-xs m-2 px-3 py-0.5">
           Equipación
@@ -54,7 +54,7 @@ const Card1 = () => {
 
 const Card2 = () => {
   return (
-    <div className="bg-white cursor-pointer w-52 h-60 rounded-lg border-black ">
+    <div className="bg-white cursor-pointer w-52 h-60 rounded-lg border-black " data-testid="card2">
       <figure className="relative mb-1 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-black/30 rounded-lg text-white text-xs m-2 px-3 py-0.5">
           Accesorios
@@ -79,7 +79,7 @@ const Card2 = () => {
 
 const Card3 = () => {
   return (
-    <div className="bg-white cursor-pointer w-52 h-60 rounded-lg border-black border-2">
+    <div className="bg-white cursor-pointer w-52 h-60 rounded-lg border-black border-2"data-testid="card3">
       <figure className="relative mb-1 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-black/30 rounded-lg text-white text-xs m-2 px-3 py-0.5">
           Protección

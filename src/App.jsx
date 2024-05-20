@@ -12,6 +12,10 @@ import PlayersP from "./pages/Players.jsx";
 import ProductsP from "./pages/ProductsT.jsx";
 import NewPlayer from "./pages/NewPlayer.jsx";
 
+// -_- Imports para Rutas de prueba -_-
+import TermsAndConditionsModal from "./components/termsAndConditions/Terms.jsx";
+// -_- Final de imports rutas de prueba -_-
+
 function App() {
   return (
     <AuthProvider>
@@ -25,15 +29,19 @@ function App() {
           <Route path="/dashboard/users" element={<UserP />} />
           <Route path="/dashboard/products" element={<ProductsP />} />
           <Route path="/dashboard/teams" element={<PlayersP />} />
-        </Routes>
+
+
 
       {/* Rutas Sidebar protegidas */}
-        <Routes>
+
           <Route path="/dashboard/users" element={<UserP />} />
           <Route path="/dashboard/products" element={<ProductsP />} />
           <Route path="/dashboard/my-players" element={<PlayersP/>} /> {/*Pagina jugadores user */}
           <Route path="/dashboard/players" element={<PlayersP />} /> {/*Pagina jugadores admin */}
           <Route path="/dashboard/form-player" element={<NewPlayer />} />
+
+                    <Route path="/testing" element={<TermsAndConditionsModal isOpen={true} onClose={false} />} />
+         
         </Routes>
 
         
