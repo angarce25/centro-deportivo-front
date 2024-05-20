@@ -12,6 +12,7 @@ const UserP = () => {
     }, 1000);
   }, []);
 
+  //estetica del espinner
   const color = "#123abc"; // Color del spinner
   const override = {
     display: "block",
@@ -19,6 +20,7 @@ const UserP = () => {
     borderColor: "red",
   };
 
+  //primero se ejecuta el loading y posteriormente se renderiza el resto del componente
   return (
     <>
       {loading && (
