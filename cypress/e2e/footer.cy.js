@@ -31,7 +31,7 @@ describe('Footer Component', () => {
           });
   
         // Gmail link
-        cy.get('a[href="mailto:ejemplo@gmail.com"]').within(() => {
+        cy.get('a[href="mailto:cdciudaddelosangeles@hotmail.com"]').within(() => {
           cy.get('svg').should('exist'); // Assuming GmailIcon is an SVG
         });
       });
