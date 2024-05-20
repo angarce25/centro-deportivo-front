@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import {Link} from "react-router-dom";
 import { CgCloseR } from "react-icons/cg";
 import { ShoppingCartContext } from "../../context/ProductContext";
 import OrderCard from "../orderCart/OrderCart";
@@ -64,8 +65,10 @@ const CheckSideMenu = () => {
             <span className="font-light">Total:</span>
             <span className="font-semibold ">{totalPrice(context.cartProducts)}€</span>
             </p>
+            <Link to = "/dashboard/product-order">
             <button className="w-full bg-black text-yellow-d border-2 border-yellow-d hover:bg-yellow-d hover:text-black hover:border-black py-2 rounded-lg mt-4" 
             onClick={() => handleCheckout()}>Solicitar Pedido</button>
+            </Link>
         </div>
           
             
