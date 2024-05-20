@@ -4,7 +4,7 @@ import { CiShop } from "react-icons/ci";
 import { GiClothes } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
 import { RiTeamLine } from "react-icons/ri";
-import { IoIosArrowForward } from "react-icons/io"; // Importa el icono del triángulo apuntando a la derecha
+import { IoIosArrowForward } from "react-icons/io"; // importa el icono del triángulo apuntando a la derecha
 import imagen from "../../../public/escudo.png";
 
 function Sidebar() {
@@ -12,7 +12,7 @@ function Sidebar() {
 
   return (
     <>
-      {/* Botón de menú para abrir/cerrar el sidebar */}
+      {/* botón de menú para abrir/cerrar el sidebar */}
       <button
         className="p-2 text-gray-700 lg:hidden"
         onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -20,7 +20,7 @@ function Sidebar() {
         <IoIosArrowForward size={24} />
       </button>
 
-      {/* Overlay oscuro */}
+      {/* overlay oscuro */}
       <div
         className={`${
           sidebarOpen ? "block" : "hidden"
@@ -28,7 +28,7 @@ function Sidebar() {
         onClick={() => setSidebarOpen(false)}
       ></div>
 
-      {/* Sidebar */}
+      {/* sidebar */}
       <div
         className={`${
           sidebarOpen ? "translate-x-0 ease-out" : "-translate-x-full ease-in"
