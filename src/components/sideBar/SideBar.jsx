@@ -4,7 +4,7 @@ import { CiShop } from "react-icons/ci";
 import { GiClothes } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
 import { RiTeamLine } from "react-icons/ri";
-import { IoIosMenu } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io"; // Importa el icono del triángulo apuntando a la derecha
 import imagen from "../../../public/escudo.png";
 
 function Sidebar() {
@@ -17,7 +17,7 @@ function Sidebar() {
         className="p-2 text-gray-700 lg:hidden"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
-        <IoIosMenu size={24} />
+        <IoIosArrowForward size={24} />
       </button>
 
       {/* Overlay oscuro */}
