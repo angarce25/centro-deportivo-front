@@ -12,23 +12,29 @@ import UserP from "./pages/UsersT.jsx";
 import PlayersP from "./pages/PlayersT.jsx";
 import ProductsP from "./pages/ProductsT.jsx";
 
+import { SpinnerProvider } from "./context/LoadingContext.jsx";
+
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/dashboard/users" element={<UserP />} />
-          <Route path="/dashboard/products" element={<ProductsP />} />
-          <Route path="/dashboard/teams" element={<PlayersP />} />
-        </Routes>
+      <SpinnerProvider>
+        <BrowserRouter>
+      
+          <Routes>
+            <Route path="/dashboard/users" element={<UserP />} />
+            <Route path="/dashboard/products" element={<ProductsP />} />
+            <Route path="/dashboard/teams" element={<PlayersP />} />
+          </Routes>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/products" element={<Products />} />
-        </Routes>
-      </BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/products" element={<Products />} />
+          </Routes>
+       
+        </BrowserRouter>
+      </SpinnerProvider>
     </AuthProvider>
   );
 }
