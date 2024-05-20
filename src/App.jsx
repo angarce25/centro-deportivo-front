@@ -28,10 +28,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-        </Routes>
+        
 
-        {/* RUTAS SIDEBAR PROTEGIDAS */}
-        <Routes>
+        {/* RUTAS SIDEBAR PROTEGIDAS */}        
           <Route path="/dashboard/users" element={<UserP />} />
           <Route path="/dashboard/products" element={<Products />} />
           {/*Pagina jugadores user */}

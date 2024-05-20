@@ -1,22 +1,21 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import ModalInfoEquipment from "./ModalInfoEquipment";
 import { useState, useRef } from "react";
 import Modal from "react-modal";
   
 
+
 export default function FormNewPlayer() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const openModal = () => {
+  const openModal = () => {    
     setModalIsOpen(true);
-  };  
+  };
 
-  const closeModal = () => {
+  const closeModal = () => {    
     setModalIsOpen(false);
   };
 
-  const linkRef = useRef(null);
-  
   return (
     <section className="ml-20">
       <div className="p-8 flex flex-col lg:flex-row">
@@ -36,7 +35,7 @@ export default function FormNewPlayer() {
                   Nombre
                 </label>
                 <input
-                  className="border border-gray-l rounded px-3 py-2 w-full mr-4"
+                  className="input input-bordered w-full max-w-xs"
                   type="text"
                   id="nombre"
                   name="nombre"
@@ -50,7 +49,7 @@ export default function FormNewPlayer() {
                   Apellidos
                 </label>
                 <input
-                  className="border border-gray-l rounded px-3 py-2 w-full"
+                  className="input input-bordered w-full max-w-xs"
                   type="text"
                   id="apellidos"
                   name="apellidos"
@@ -66,7 +65,7 @@ export default function FormNewPlayer() {
                   Email
                 </label>
                 <input
-                  className="border border-gray-l rounded px-3 py-2 w-full"
+                  className="input input-bordered w-full max-w-xs"
                   type="text"
                   id="email"
                   name="email"
@@ -80,7 +79,7 @@ export default function FormNewPlayer() {
                   Teléfono
                 </label>
                 <input
-                  className="border border-gray-l rounded px-3 py-2 w-full"
+                  className="input input-bordered w-full max-w-xs"
                   type="number"
                   id="telefono"
                   name="telefono"
@@ -93,7 +92,7 @@ export default function FormNewPlayer() {
                   DNI
                 </label>
                 <input
-                  className="border border-gray-l rounded px-3 py-2 w-full"
+                  className="input input-bordered w-full max-w-xs"
                   type="text"
                   id="dni"
                   name="dni"
@@ -107,7 +106,7 @@ export default function FormNewPlayer() {
                   Código Postal
                 </label>
                 <input
-                  className="border border-gray-l rounded px-3 py-2 w-full"
+                  className="input input-bordered w-full max-w-xs"
                   type="text"
                   id="codigopostal"
                   name="codigopostal"
@@ -123,7 +122,7 @@ export default function FormNewPlayer() {
                   Alergias
                 </label>
                 <textarea
-                  className="border border-gray-l rounded px-3 py-2 w-full"
+                  className="input input-bordered w-full max-w-xs"
                   id="alergias"
                   name="alergias"
                 />
@@ -136,7 +135,7 @@ export default function FormNewPlayer() {
                   Lesión o enfermedad
                 </label>
                 <textarea
-                  className="border border-gray-l rounded px-3 py-2 w-full"
+                  className="input input-bordered w-full max-w-xs"
                   id="enfermedad"
                   name="enfermedad"
                 />
@@ -152,7 +151,7 @@ export default function FormNewPlayer() {
             <h2 className="text-2xl font-bold mb-3">
               Datos equipamiento deportivo
             </h2>
-            <Link ref={linkRef} to="#" onClick={openModal} className="flex hover:underline">
+            <button type="button" onClick={openModal} className="flex hover:underline">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -170,8 +169,13 @@ export default function FormNewPlayer() {
               <h4 className="mb-3 ml-1">
                 ¿Para qué necesito aportar esta información?
               </h4>
-            </Link>
-            <ModalInfoEquipment modalIsOpen={modalIsOpen} onClose={closeModal} linkRef={linkRef} />
+            </button>  
+
+            <ModalInfoEquipment
+              modalIsOpen={modalIsOpen}
+              onClose={closeModal}
+            />          
+
             <div className="flex mb-4">
               <div className="w-full lg:w-1/2 mr-4 lg:mr-0">
                 <label
@@ -180,16 +184,14 @@ export default function FormNewPlayer() {
                 >
                   Talla de ropa (camiseta)
                 </label>
-                <select
-                  className="border border-gray-l rounded px-3 py-2 w-full"
-                  id="tallaCamiseta"
-                  name="tallaCamiseta"
-                >
-                  <option value="">Selecciona una talla</option>
-                  <option value="S">S</option>
-                  <option value="M">M</option>
-                  <option value="L">L</option>
-                  <option value="XL">XL</option>
+                <select className="select select-bordered w-full max-w-xs">
+                  <option defaultValue="Selecciona una talla">
+                    Selecciona una talla
+                  </option>
+                  <option>S</option>
+                  <option>M</option>
+                  <option>L</option>
+                  <option>XL</option>
                 </select>
               </div>
               <div className="w-full lg:w-1/2 ml-4">
@@ -199,16 +201,14 @@ export default function FormNewPlayer() {
                 >
                   Talla de ropa (pantalón)
                 </label>
-                <select
-                  className="border border-gray-l rounded px-3 py-2 w-full"
-                  id="tallaPantalon"
-                  name="tallaPantalon"
-                >
-                  <option value="">Selecciona una talla</option>
-                  <option value="28">34</option>
-                  <option value="30">36</option>
-                  <option value="32">38</option>
-                  <option value="34">40</option>
+                <select className="select select-bordered w-full max-w-xs">
+                  <option defaultValue="Selecciona una talla">
+                    Selecciona una talla
+                  </option>
+                  <option>34</option>
+                  <option>35</option>
+                  <option>36</option>
+                  <option>37</option>
                 </select>
               </div>
             </div>
@@ -219,21 +219,15 @@ export default function FormNewPlayer() {
               >
                 Número de calzado
               </label>
-              <select
-                className="border border-gray-l rounded px-3 py-2 w-full"
-                id="numeroCalzado"
-                name="numeroCalzado"
-              >
-                <option value="">Selecciona un número</option>
-                <option value="36">36</option>
-                <option value="37">37</option>
-                <option value="38">38</option>
-                <option value="39">39</option>
-              </select>
+
               <select className="select select-bordered w-full max-w-xs">
-                <option disabled selected>Who shot first?</option>
-                <option>Han Solo</option>
-                <option>Greedo</option>
+                <option defaultValue="Selecciona una talla">
+                  Selecciona un número
+                </option>
+                <option>36</option>
+                <option>37</option>
+                <option>38</option>
+                <option>39</option>
               </select>
             </div>
           </div>
@@ -248,8 +242,6 @@ export default function FormNewPlayer() {
           Añadir jugador
         </button>
       </div>
-
-      
     </section>
   );
 }
