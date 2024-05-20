@@ -1,7 +1,7 @@
 import ProductsLayout from "../components/products/ProductsLayout";
 
 const ProductOrder = () => {
-  return <ProductsLayout>My Product Order</ProductsLayout>;
+  return <ProductsLayout>Mi pedido</ProductsLayout>;
 };
 
 export default ProductOrder;

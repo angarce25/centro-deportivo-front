@@ -1,34 +1,51 @@
-/* // En ProductsContext.jsx
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
-import axios from "axios";
+export const ShoppingCartContext = createContext();
 
-const ProductsContext = createContext();
+export const ShoppingCartProvider = ({ children }) => {
 
-export const ProductsProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+  // SHOPPING CART · COUNT
+  const [count, setCount] = useState(0);
 
-  const fetchProducts = async () => {
-    try {
-      // Realiza la solicitud GET a la URL del servidor JSON
-      const response = await axios.get("http://localhost:5000/Products");
-      console.log(response.data);
-      // Establece los datos de los productos en el estado
-      setProducts(response.data.products);
-    } catch (error) {
-      console.error("Error al obtener los productos:", error);
-    }
-  };
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  // PRODUCT DETAIL · OPEN/CLOSE
+  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
+  const openProductDetail = () => setIsProductDetailOpen(true);
+  const closeProductDetail = () => setIsProductDetailOpen(false);
+
+  // CHECK SIDE MENU · OPEN/CLOSE
+  const [isCheckSideMenuOpen, setIsCheckSideMenuOpen] = useState(false);
+  const openCheckSideMenu = () => setIsCheckSideMenuOpen(true);
+  const closeCheckSideMenu = () => setIsCheckSideMenuOpen(false);
+
+// PRODUCT DETAIL · SHOW PRODUCT
+  const [productToShow, setProductToShow] = useState({});
+
+// SHOPPING CART · ADD PRODUCT TO CART
+  const [cartProducts, setCartProducts] = useState([]);
+
+// SHOPPING CART · ORDER
+const [order, setOrder] = useState([]);
 
   return (
-    <ProductsContext.Provider value={{ products }}>
-      {children}
-    </ProductsContext.Provider>
-  );
+    <ShoppingCartContext.Provider value={{ 
+      count, 
+      setCount,
+      openProductDetail,
+      closeProductDetail,
+      isProductDetailOpen,
+      productToShow,
+      setProductToShow,
+      cartProducts,
+      setCartProducts,
+      isCheckSideMenuOpen,
+      openCheckSideMenu,
+      closeCheckSideMenu,
+      order,
+      setOrder
+    }}>
+     {children}
+    </ShoppingCartContext.Provider>
+  )
 };
 
-export default ProductsContext; */

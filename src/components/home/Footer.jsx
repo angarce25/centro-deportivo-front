@@ -25,7 +25,7 @@ const Footer = () => {
     </a>
   </li>
   <li>
-    <a href="mailto:ejemplo@gmail.com">
+    <a href="mailto:cdciudaddelosangeles@hotmail.com">
       <GmailIcon className="text-yellow-500" />
     </a>
   </li>

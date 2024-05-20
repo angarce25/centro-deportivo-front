@@ -3,9 +3,9 @@ import Sidebar from '../components/sideBar/SideBar'
 
 export default function NewPlayer() {
   return (
-    <main className="flex">
+    <div className="flex">
     <Sidebar/>
     <FormNewPlayer/>    
-  </main>
+  </div>
   )
 }

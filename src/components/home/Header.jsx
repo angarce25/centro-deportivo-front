@@ -13,7 +13,7 @@ const Header = () => {
     <header className="bg-black flex items-center justify-between xl:justify-start w-full py-4 px-8 lg:px-4 xl:px-8 h-auto xl:h-[15vh] z-50">
       <nav className={`xl:flex flex-col xl:flex-row m-auto justify-between w-100 xl:items-center ${isOpen ? 'block' : 'hidden'}`}>
 
-        <Link to="/" className="text-white mx-10 hover:text-lime-700 text-lg">
+        <Link to="/" className="text-white mx-10 hover:text-yellow-d text-lg">
           <img
             src="escudo.svg"
             width="40"
@@ -21,10 +21,10 @@ const Header = () => {
             alt="Logo"
           />
         </Link>
-        <Link to="/register" className="text-white mx-10 hover:text-lime-700 text-lg">
+        <Link to="/register" className="text-white mx-10 hover:text-yellow-d text-lg">
           Registrarse
         </Link>
-        <Link to="/login" className="text-white mx-10 hover:text-lime-700 text-lg">
+        <Link to="/login" className="text-white mx-10 hover:text-yellow-d text-lg">
           Iniciar sesión
         </Link>
         {/* <Link to="/contact" className="text-white mx-10 hover:text-lime-700 text-lg">

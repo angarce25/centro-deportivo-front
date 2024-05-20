@@ -5,9 +5,11 @@ import ProductsCard from "../components/products/ProductsCard";
 import ProductsLayout from "../components/products/ProductsLayout";
 import ProductsNav from "../components/products/ProductsNav";
 import Sidebar from "../components/sideBar/SideBar";
+import ProductsDetail from "../components/productsDetail/ProductsDetail";
+import CheckSideMenu from "../components/checkSideMenu/CheckSideMenu";
 
 function Products() {
-  const [products, setProducts] = useState([]);
+  const [items, setItems] = useState(null);
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
@@ -15,13 +17,14 @@ function Products() {
     const fullUrl = apiUrl + extraPath; // Combina la URL base con la parte adicional
 
     axios
-      .get(fullUrl)
-      .then((response) => {
-        setProducts(response.data);
-      })
-      .catch((error) => {
-        console.error("Error al obtener los productos:", error);
-      });
+  .get(fullUrl)
+  .then(response => {
+    return response.data;
+  })
+  .then(data => setItems(data))
+  .catch((error) => {
+    console.error("Error al obtener los productos:", error);
+  });
   }, []);
 
   return (
@@ -40,12 +43,16 @@ function Products() {
                      md:grid md:grid-cols-3 md:w-full md:max-w-screen-md
                      sm:grid sm:grid-cols-2 sm:w-full sm:justify-center"
         >
-          {products.map((product) => (
-            <div key={product._id} className="">
-              <ProductsCard product={product} />
+          {
+          items?.map((item) => (
+            <div key={item._id} >
+              <ProductsCard data={item} />
             </div>
-          ))}
+          ))
+          }
         </div>
+        <ProductsDetail />
+        <CheckSideMenu />
       </ProductsLayout>
       </div>
     </>

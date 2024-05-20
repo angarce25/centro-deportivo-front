@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.jsx";
+import { ShoppingCartProvider } from "./context/ProductContext.jsx";
 /* import { ProductsProvider } from "./context/ProductsContext.jsx"; */
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
@@ -17,10 +18,14 @@ import ProductsOrders from "./pages/ProductsOrders.jsx";
 
 
 
+// -_- Imports para Rutas de prueba -_-
+import TermsAndConditionsModal from "./components/termsAndConditions/Terms.jsx";
+// -_- Final de imports rutas de prueba -_-
+
 function App() {
   return (
     <AuthProvider>
-      {/* <ProductsProvider> */} {/* Aquí agregamos el ProductsProvider */}
+      <ShoppingCartProvider>
       <BrowserRouter>
       
         {/* RUTAS NAVBAR */}
@@ -29,21 +34,34 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         
+         
+          {/* <Route path="/dashboard/products" element={<ProductsP />} /> */}
+          {/* <Route path="/dashboard/teams" element={<PlayersP />} /> */}
 
-        {/* RUTAS SIDEBAR PROTEGIDAS */}        
+
+
+      {/* Rutas Sidebar protegidas */}
+
           <Route path="/dashboard/users" element={<UserP />} />
-          <Route path="/dashboard/products" element={<Products />} />
+          
           {/*Pagina jugadores user */}
           <Route path="/dashboard/my-players" element={<PlayersUser />} />{" "}
           {/*Pagina jugadores admin */}
           <Route path="/dashboard/players" element={<PlayersAdmin />} />{" "}
           <Route path="/dashboard/form-player" element={<NewPlayer />} />
+          
+          <Route path="/dashboard/products" element={<Products />} />
           <Route path="/dashboard/product-order" element={<ProductOrder />} />
           <Route path="/dashboard/products-orders"element={<ProductsOrders />}/>
+          
+
           <Route path="/dashboard/teams" element={<PlayersUser />} />
+   {/* -_- Ruta de pruebas para cnstruccion de componentes front */}
+          <Route path="/testing" element={<TermsAndConditionsModal isOpen={true} onClose={false} />} />
+        {/* -_- Final de ruta de pruebas para cnstruccion de componentes front */}
         </Routes>
       </BrowserRouter>
-      {/* </ProductsProvider> */}
+      </ShoppingCartProvider>
     </AuthProvider>
   );
 }
