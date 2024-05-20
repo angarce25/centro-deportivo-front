@@ -12,7 +12,7 @@ import UserP from "./pages/UsersT.jsx";
 import PlayersP from "./pages/PlayersT.jsx";
 import ProductsP from "./pages/ProductsT.jsx";
 
-import { SpinnerProvider } from "./context/LoadingContext.jsx";
+import { SpinnerProvider } from "./context/LoadingContext.jsx"; //el componente loading spinner 
 
 function App() {
   return (
