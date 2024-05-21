@@ -15,7 +15,7 @@ const Logincomponent = ({ onFormSwitch }) => {
 
       if (response.status === 200) {
         alert("Inicio de sesión exitoso");
-        navigate("/dashboard/users");
+        navigate("/dashboard/teams");
       } else {
         alert(response.data.message || "Error en el inicio de sesión");
       }
