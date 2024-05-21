@@ -14,7 +14,7 @@ import Products from "./pages/Products.jsx";
 /* import ProductsP from "./pages/ProductsT.jsx"; */
 import ProductOrder from "./pages/ProductOrder.jsx";
 import ProductsOrders from "./pages/ProductsOrders.jsx";
-//import { PlayerProvider } from "./context/PlayerContext.jsx";
+import { PlayerProvider } from "./context/PlayerContext.jsx";
 
 
 
@@ -22,7 +22,7 @@ function App() {
   return (
     <AuthProvider>
       {/* <ProductsProvider> */} {/* Aquí agregamos el ProductsProvider */}
-      {/* <PlayerProvider>  */}
+       <PlayerProvider> 
       <BrowserRouter>
       
         {/* RUTAS NAVBAR */}
@@ -45,7 +45,7 @@ function App() {
           <Route path="/dashboard/teams" element={<PlayersUser />} />
         </Routes>
       </BrowserRouter>
-       {/* </PlayerProvider>  */}
+        </PlayerProvider> 
       {/* </ProductsProvider> */}
     </AuthProvider>
   );

@@ -57,10 +57,10 @@ function PlayersTable() {
                 <td>{player.postalcode}</td>
                 {/* <td>{player.dni}</td> */}
                 <td>{player.allergies}</td>
-                <td>{player.injuryOrIllness}</td>
-                <td>{player.shirtSize}</td>
-                <td>{player.pantsSize}</td>
-                <td>{player.shoeSize}</td>
+                <td>{player.injury_illness}</td>
+                <td>{player.shirt_size}</td>
+                <td>{player.pants_size}</td>
+                <td>{player.shoe_size}</td>
               </tr>
             ))}
           </tbody>
