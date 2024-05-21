@@ -16,15 +16,18 @@ import Products from "./pages/Products.jsx";
 import ProductOrder from "./pages/ProductOrder.jsx";
 import ProductsOrders from "./pages/ProductsOrders.jsx";
 
+import { SpinnerProvider } from "./context/LoadingContext.jsx"; //el componente loading spinner
 
 
-// -_- Imports para Rutas de prueba -_-
+
+// -- Imports para Rutas de prueba --
 import TermsAndConditionsModal from "./components/termsAndConditions/Terms.jsx";
-// -_- Final de imports rutas de prueba -_-
+// -- Final de imports rutas de prueba --
 
 function App() {
   return (
     <AuthProvider>
+      <SpinnerProvider>
       <ShoppingCartProvider>
       <BrowserRouter>
       
@@ -62,8 +65,9 @@ function App() {
         </Routes>
       </BrowserRouter>
       </ShoppingCartProvider>
+      </SpinnerProvider>
     </AuthProvider>
   );
 }
 
-export default App;
+export default App;

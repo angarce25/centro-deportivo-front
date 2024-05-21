@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Registercomponent from "../components/forms/Registercomponent";
-import Header from "../components/Home/Header";
+import Logincomponent from "../components/forms/Logincomponent"; // Asegúrate de importar el componente Logincomponent
+import { useSpinner, Spinner } from "../context/LoadingContext";
 
 const Register = () => {
   const [currentForm, setCurrentForm] = useState("RegisterComponent");
+  const { loading, setLoading } = useSpinner();
+
+  useEffect(() => {
+    setLoading(true); // Activa el spinner
+    setTimeout(() => {
+      setLoading(false); // Desactiva el spinner después de cierto tiempo (simulando carga)
+    }, 1000);
+  }, [setLoading]);
 
   const toggleForm = (formName) => {
     setCurrentForm(formName);
@@ -11,15 +20,18 @@ const Register = () => {
 
   return (
     <div className="App">
-      <header/>
-      {currentForm === "RegisterComponent" ? (
-        <Registercomponent onFormSwitch={toggleForm} />
+      <header />
+      {loading ? (
+        <Spinner /> // Muestra el spinner mientras loading es true
       ) : (
-        <Logincomponent onFormSwitch={toggleForm} />
+        currentForm === "RegisterComponent" ? (
+          <Registercomponent onFormSwitch={toggleForm} />
+        ) : (
+          <Logincomponent onFormSwitch={toggleForm} />
+        )
       )}
     </div>
   );
 };
 
 export default Register;
-

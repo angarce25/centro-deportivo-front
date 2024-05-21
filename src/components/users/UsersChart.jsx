@@ -6,7 +6,7 @@ function UsersChart() {
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL; 
-    const extraPath = '/auth/user'; 
+    const extraPath = '/user'; 
     const fullUrl = apiUrl + extraPath; 
 
     axios
@@ -57,8 +57,4 @@ function UsersChart() {
   );
 }
 
-export default UsersChart;
-
-
-
-     
+export default UsersChart;
