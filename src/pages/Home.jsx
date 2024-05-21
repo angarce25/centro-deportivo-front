@@ -57,7 +57,7 @@ const Home = () => {
                   transmitiendo sus magníficos velores y su amor por este
                   deporte.
                 </p>
-                <p className="mt-2 mb-2">
+                <p className="mt-2 mb-4">
                   Lo mas importante del club son nuestros niños, niñas,
                   adolescentes y adultos que sienten el club un lugar en el que
                   se sienten felices, plenos de alegría y encuentran diversión,
