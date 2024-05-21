@@ -1,8 +1,6 @@
 import { useState } from "react";
 import ModalInfoEquipment from "./ModalInfoEquipment";
-import { useState, useRef } from "react";
-import Modal from "react-modal";
-  
+ 
 
 
 export default function FormNewPlayer() {
