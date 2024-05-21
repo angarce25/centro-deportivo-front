@@ -34,7 +34,7 @@ const Footer = () => {
   
       {/* Texto de copyright */}
       <div className="hidden sm:block text-white text-lg mx-auto mb-4 sm:mb-0">
-      <span >&copy; COPYRIGHT 2024</span>
+      <span >&copy; COPYRIGHT 2024 </span>
       <span>Aviso Legal | Política de Privacidad</span>
     </div>
   

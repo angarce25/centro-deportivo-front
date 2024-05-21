@@ -22,7 +22,7 @@ const Home = () => {
               <img
                 src={ImgAboutus}
                 alt=""
-                className="max-w-[400px] h-[350px] w-full mx-auto drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)] object-cover"
+                className="max-w-[400px] h-[350px] w-full mx-auto drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)] object-cover rounded-md"
               />
             </div>
 
@@ -50,14 +50,14 @@ const Home = () => {
                   Comunidaad de Madrid y solucionar ese hambre de fútbol de
                   todos nuestros vecinos y vecinas.
                 </p>
-                <p className="mt-1">
+                <p className="mt-2">
                   Así comenzó nuestra historia, un grupo de amigos jugando
                   futbol, comprometidos con el barrio y su gente, apoyados por
                   los comercios para sacar adelante el equipo económicamente,
                   transmitiendo sus magníficos velores y su amor por este
                   deporte.
                 </p>
-                <p className="mt-1 mb-1">
+                <p className="mt-2 mb-2">
                   Lo mas importante del club son nuestros niños, niñas,
                   adolescentes y adultos que sienten el club un lugar en el que
                   se sienten felices, plenos de alegría y encuentran diversión,
