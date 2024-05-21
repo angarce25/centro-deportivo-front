@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   return (
-    <div className="App">
+    <div>
       <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
       {!loading && (
         <>

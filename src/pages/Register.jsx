@@ -19,7 +19,7 @@ const Register = () => {
   };
 
   return (
-    <div className="App">
+    <div>
       <header />
       {loading ? (
         <Spinner /> // Muestra el spinner mientras loading es true
