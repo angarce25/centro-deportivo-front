@@ -29,7 +29,7 @@ function Products() {
 
   return (
     <>
-      <div className="flex "><Sidebar/>
+      <div className="flex fixed "><Sidebar/>
       <ProductsNav />
       <ProductsLayout>
         <h2 className="text-xl font-medium mb-2 ">
