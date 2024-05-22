@@ -68,7 +68,7 @@ const Registercomponent = ({ onFormSwitch }) => {
               control={control}
               name="name"
               rules={{ required: "Campo obligatorio", maxLength: 80, pattern: /^[a-zA-ZáéíóúÁÉÍÓÚ\s]+$/ }}
-              render={({ field }) => <input {...field} type="text" placeholder="Nombre" className="input-style w-full max-w-md" />}
+              render={({ field }) => <input {...field} type="text" placeholder="Nombre" className="input-style w-full max-w-md border-r-2" />}
             />
             {errors.name && <span className="text-red-500">{errors.name.message}</span>}
           </div>
