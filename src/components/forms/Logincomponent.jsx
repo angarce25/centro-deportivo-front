@@ -1,30 +1,38 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginRequest } from '../../context/auth';
+import { loginRequest } from '../../context/auth'; // Asegúrate de importar correctamente loginRequest
+import Cookies from 'js-cookie'; // Importa la librería js-cookie
 
 const Logincomponent = ({ onFormSwitch }) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const navigate = useNavigate();
 
+  const handleCookie = (token) => {
+    // Almacena la cookie en el navegador
+    Cookies.set('token', token, { expires: 1 }); // Ajusta la duración de la cookie según sea necesario
+    console.log('Token para la cookie:', token);
+    console.log('Cookie establecida:', Cookies.get('token'));
+};
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await loginRequest({ email, password: pass });
+      handleCookie(response.token); // Llama a la función handleCookie con el token de respuesta
 
-      if (response.status === 200) {
+      if (response.rol_id !== 'admin') {
         alert("Inicio de sesión exitoso");
         navigate("/dashboard/teams");
       } else {
-        alert(response.data.message || "Error en el inicio de sesión");
+        alert("No tienes permiso para acceder a esta área");
       }
     } catch (error) {
-      console.error("Error al iniciar sesión:", error);
+      console.error("Error al iniciar sesión:", error.message);
       alert("Error en inicio de sesión");
     }
   };
-
   return (
     <div className="bg-gray-200 min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md" style={{ backgroundColor: "#F2F2F2" }}>
