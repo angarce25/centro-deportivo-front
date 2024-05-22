@@ -1,33 +1,24 @@
 import { Link } from "react-router-dom";
-import { usePlayers } from "../../context/PlayerContext";
-//import axios from 'axios';
-import { useEffect } from "react";
-
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 function PlayersUserChart() {
-    const {getMyPlayers, myPlayers} = usePlayers()
-    
-  //const [myPlayers, setMyPlayers] = useState ([]);
-  
-     useEffect(() => {
-      getMyPlayers()
-     }, [])
-    //   const apiUrl = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
-    //   const extraPath = '/myplayers'; // Añade la parte adicional de la URL
-    //   const fullUrl = apiUrl + extraPath; // Combina la URL base con la parte adicional
+  const [myPlayers, setMyPlayers] = useState([]);
 
-    //   axios.get(fullUrl).then((response) => {
-    //     setMyPlayers(response.data);
-    //     console.log(response.data)
-    //     //nombre del usuario creador
-    //     // response.data.forEach(player => {
-    //     //   console.log(`Jugador: ${player.name}, Creado por: ${player.parent_id.name} ${player.parent_id.lastname}`);
-    //     // });
-    //   })
-    //     .catch((error) => {
-    //       console.error("Error al obtener tus jugadores:", error);
-    //     });
-    // }, []);
+  useEffect(() => {
+    const apiUrl = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
+    const extraPath = '/myplayers'; // Añade la parte adicional de la URL
+    const fullUrl = apiUrl + extraPath; // Combina la URL base con la parte adicional
+
+    axios.get(fullUrl, { withCredentials: true })
+      .then((response) => {
+        setMyPlayers(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al obtener tus jugadores:", error);
+      });
+  }, []);
+
 
   return (
     <div className="mt-8">
@@ -68,13 +59,13 @@ function PlayersUserChart() {
               </thead>
               <tbody>
                 {myPlayers.map ((player) =>(
-                  <tr key={player._id}>
-                  <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <tr key={player._id}>
+                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                     {player.name}
-                  </td>
-                  <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 ">
+                      </td>
+                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 ">
                     {player.lastname}
-                  </td>
+                      </td>
                   {/* <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 ">
                     {player.team}
                   </td> */}
@@ -89,8 +80,8 @@ function PlayersUserChart() {
                   </td>
                   <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 ">
                     {player.status ? "Activo" :"Inactivo"}
-                  </td> 
-                </tr>
+                  </td>
+                  </tr>
                 ))}
                 
                 {/* Agregar más filas según sea necesario */}

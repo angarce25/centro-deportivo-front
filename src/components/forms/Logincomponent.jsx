@@ -23,7 +23,7 @@ const Logincomponent = ({ onFormSwitch }) => {
       handleCookie(response.token); // Llama a la función handleCookie con el token de respuesta
 
       alert("Inicio de sesión exitoso");
-      navigate("/dashboard/teams");
+      navigate("/dashboard/my-players");
     } catch (error) {
       console.error("Error al iniciar sesión:", error.message);
       alert("Error en inicio de sesión");

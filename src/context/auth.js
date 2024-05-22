@@ -89,5 +89,5 @@ export const loginRequest = async (user) => {
 
   //Peticiones CRUD  desde la sesión de usuario
 export const getMyPlayersReq = () => axios.get(`${API}/myplayers`)
-export const createPlayersReq = (player) => axios.post('/dashboard/form-player', player)
+export const createPlayersReq = (player) => axios.post(`${API}/form-players`, player)
 
