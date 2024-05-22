@@ -13,7 +13,7 @@ const Logincomponent = ({ onFormSwitch }) => {
     Cookies.set('token', token, { expires: 1 }); // Ajusta la duración de la cookie según sea necesario
     console.log('Token para la cookie:', token);
     console.log('Cookie establecida:', Cookies.get('token'));
-};
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,12 +22,8 @@ const Logincomponent = ({ onFormSwitch }) => {
       const response = await loginRequest({ email, password: pass });
       handleCookie(response.token); // Llama a la función handleCookie con el token de respuesta
 
-      if (response.rol_id !== 'admin') {
-        alert("Inicio de sesión exitoso");
-        navigate("/dashboard/teams");
-      } else {
-        alert("No tienes permiso para acceder a esta área");
-      }
+      alert("Inicio de sesión exitoso");
+      navigate("/dashboard/teams");
     } catch (error) {
       console.error("Error al iniciar sesión:", error.message);
       alert("Error en inicio de sesión");
@@ -91,4 +87,4 @@ const Logincomponent = ({ onFormSwitch }) => {
   );
 }
 
-export default Logincomponent;
+export default Logincomponent;
