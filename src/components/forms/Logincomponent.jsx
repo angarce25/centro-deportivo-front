@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginRequest } from '../../context/auth';
+import { loginRequest } from '../../api/auth';
+import Cookies from 'js-cookie';
+
 
 const Logincomponent = ({ onFormSwitch }) => {
   const [email, setEmail] = useState('');
@@ -15,7 +17,7 @@ const Logincomponent = ({ onFormSwitch }) => {
 
       if (response.status === 200) {
         alert("Inicio de sesión exitoso");
-        navigate("/dashboard/users");
+        // navigate("/dashboard/users");
       } else {
         alert(response.data.message || "Error en el inicio de sesión");
       }

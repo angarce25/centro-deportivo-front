@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { getMyPlayersReq, createPlayersReq} from './auth.js'
+import { getMyPlayersReq, createPlayersReq} from '../api/auth.js'
 import axios from 'axios';
 
 const PlayerContext = createContext();

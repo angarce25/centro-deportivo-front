@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm, Controller } from 'react-hook-form';
 import TermsAndConditionsModal from '../termsAndConditions/Terms';
-import { registerRequest } from '../../context/auth';
+import { registerRequest } from '../../api/auth';
 
 const Registercomponent = ({ onFormSwitch }) => {
   const { control, handleSubmit, formState: { errors } } = useForm();
