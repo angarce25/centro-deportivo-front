@@ -15,6 +15,7 @@ import Products from "./pages/Products.jsx";
 /* import ProductsP from "./pages/ProductsT.jsx"; */
 import ProductOrder from "./pages/ProductOrder.jsx";
 import ProductsOrders from "./pages/ProductsOrders.jsx";
+import { PlayerProvider } from "./context/PlayerContext.jsx";
 
 import { SpinnerProvider } from "./context/LoadingContext.jsx"; //el componente loading spinner
 
@@ -29,6 +30,7 @@ function App() {
     <AuthProvider>
       <SpinnerProvider>
       <ShoppingCartProvider>
+       <PlayerProvider> 
       <BrowserRouter>
       
         {/* RUTAS NAVBAR */}
@@ -64,6 +66,7 @@ function App() {
         {/* -_- Final de ruta de pruebas para cnstruccion de componentes front */}
         </Routes>
       </BrowserRouter>
+        </PlayerProvider> 
       </ShoppingCartProvider>
       </SpinnerProvider>
     </AuthProvider>
