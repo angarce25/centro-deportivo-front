@@ -12,18 +12,18 @@ Este proyecto tiene como objetivo desarrollar el frontend para el sitio web del 
 
 ### Lenguajes de Programación
 
-<a href="#"><img src="https://raw.githubusercontent.com/danielcranney/profileme-dev/3fc3595593bc992e6febba6580d6c9571f5e625f/public/icons/skills/html5-colored.svg" alt="HTML"></a>
+<a href="#"><img src="https://raw.githubusercontent.com/danielcranney/profileme-dev/3fc3595593bc992e6febba6580d6c9571f5e625f/public/icons/skills/html5-colored.svg" alt="HTML"  width="40" height="40" style="max-width: 100%;" ></a>
 
-<a href="#"><img src="https://raw.githubusercontent.com/danielcranney/profileme-dev/3fc3595593bc992e6febba6580d6c9571f5e625f/public/icons/skills/css3-colored.svg" alt="CSS"></a>
+<a href="#"><img src="https://raw.githubusercontent.com/danielcranney/profileme-dev/3fc3595593bc992e6febba6580d6c9571f5e625f/public/icons/skills/css3-colored.svg" alt="CSS"  width="40" height="40" style="max-width: 100%;"></a>
 
-<a href="#"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white&labelColor=101010" alt="JavaScript"></a>
+<a href="#"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white&labelColor=101010" alt="JavaScript"  width="40" height="40" style="max-width: 100%;"></a>
 
 ### Frameworks y Librerías
 
 <a href="#" rel="nofollow"> <img src="https://github.com/danielcranney/profileme-dev/blob/main/public/icons/skills/vite-colored.svg" alt="vite" width="40" height="40" style="max-width: 100%;"> Vite </a>
-<a href="#"><img src="https://raw.githubusercontent.com/danielcranney/profileme-dev/3fc3595593bc992e6febba6580d6c9571f5e625f/public/icons/skills/react-colored.svg" alt="react">React</a>
+<a href="#"><img src="https://raw.githubusercontent.com/danielcranney/profileme-dev/3fc3595593bc992e6febba6580d6c9571f5e625f/public/icons/skills/react-colored.svg" alt="react"  width="40" height="40" style="max-width: 100%;">React</a>
 
-<a href="#"><img src="https://raw.githubusercontent.com/danielcranney/profileme-dev/3fc3595593bc992e6febba6580d6c9571f5e625f/public/icons/skills/tailwindcss-colored.svg" alt="tailwind">Tailwind</a>
+<a href="#"><img src="https://raw.githubusercontent.com/danielcranney/profileme-dev/3fc3595593bc992e6febba6580d6c9571f5e625f/public/icons/skills/tailwindcss-colored.svg" alt="tailwind"  width="40" height="40" style="max-width: 100%;">Tailwind</a>
 
 ### Bases de Datos
 
