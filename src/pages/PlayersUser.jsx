@@ -2,9 +2,11 @@ import PlayersUsersChart from '../components/players/PlayersUsersChart.jsx';
 import Sidebar from '../components/sideBar/SideBar.jsx';
 import { useSpinner, Spinner } from "../context/LoadingContext";
 import { React, useEffect } from "react";
+import { usePlayers } from '../context/PlayerContext.jsx';
 
 const PlayersUser = () => {
    const { loading, setLoading } = useSpinner();
+ 
 
    useEffect(() => {
      setLoading(true); // Activa el spinner
