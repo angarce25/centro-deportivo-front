@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import LogoutButton from "../buttons/ButtonLogout";
+// import LogoutButton from "../buttons/ButtonLogout";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +39,7 @@ const Header = () => {
         >
           Iniciar sesión
         </Link>
-        <LogoutButton className="mx-10 my-2 xl:my-0" />
+        {/* <LogoutButton className="mx-10 my-2 xl:my-0" /> */}
       </nav>
       <button
         onClick={toggleMenu}
