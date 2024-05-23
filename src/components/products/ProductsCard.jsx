@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ProductContext";
 import { GoPlus } from "react-icons/go";
+
 function ProductsCard( data ) {
   const context = useContext(ShoppingCartContext)
 
@@ -18,6 +19,8 @@ function ProductsCard( data ) {
   }
 
   return (
+
+   
     <div
       style={{
         maxWidth: "100%",
@@ -57,6 +60,7 @@ function ProductsCard( data ) {
         </span>
       </p>
     </div>
+
   );
 }
 

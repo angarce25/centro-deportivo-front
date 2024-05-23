@@ -21,7 +21,7 @@ const ProductsNav = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/merchandaising">Merchandaising</NavLink>
+          <NavLink to="/merchandising">Merchandaising</NavLink>
         </li>
       </ul>
       <ul className="flex items-center gap-3">

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import LogoutButton from "../buttons/ButtonLogout";
+// import LogoutButton from "../buttons/ButtonLogout";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,6 +28,12 @@ const Header = () => {
           />
         </Link>
         <Link
+          to="/merchandising"
+          className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
+        >
+          Merchandising
+        </Link>
+        <Link
           to="/register"
           className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
         >
@@ -39,7 +45,7 @@ const Header = () => {
         >
           Iniciar sesión
         </Link>
-        <LogoutButton className="mx-10 my-2 xl:my-0" />
+        {/* <LogoutButton className="mx-10 my-2 xl:my-0" /> */}
       </nav>
       <button
         onClick={toggleMenu}
