@@ -6,7 +6,7 @@ import TermsAndConditionsModal from '../termsAndConditions/Terms';
 import { registerRequest } from '../../context/auth';
 
 const Registercomponent = ({ onFormSwitch }) => {
-  const { control, handleSubmit, formState: { errors } } = useForm();
+  const { control, handleSubmit, formState: { errors }, setError } = useForm();
   const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const navigate = useNavigate();
@@ -47,6 +47,17 @@ const Registercomponent = ({ onFormSwitch }) => {
     }
   };
 
+  const passwordValidation = {
+    required: "Campo obligatorio",
+    minLength: { value: 6, message: "La contraseña debe tener al menos 6 caracteres" },
+    validate: {
+      hasLowercase: (value) => /[a-z]/.test(value) || "Debe contener al menos una letra minúscula",
+      hasUppercase: (value) => /[A-Z]/.test(value) || "Debe contener al menos una letra mayúscula",
+      hasNumber: (value) => /\d/.test(value) || "Debe contener al menos un número",
+      hasSpecialChar: (value) => /[@$!%?&]/.test(value) || "Debe contener al menos un carácter especial (@$!%?&)"
+    }
+  };
+
   return (
     <div className="bg-gray-200 min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md" style={{ backgroundColor: "#F2F2F2" }}>
@@ -83,10 +94,17 @@ const Registercomponent = ({ onFormSwitch }) => {
             <Controller
               control={control}
               name="password"
-              rules={{ required: "Campo obligatorio", minLength: 6, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/ }}
+              rules={passwordValidation}
               render={({ field }) => <input {...field} type="password" placeholder="Contraseña" className="input-style w-full max-w-md" />}
             />
-            {errors.password && <span className="text-red-500">{errors.password.message}</span>}
+            {errors.password && (
+              <div className="text-red-500">
+                {errors.password.message}
+                {errors.password.type === "validate" && Object.values(errors.password.validate).map((error, index) => (
+                  <div key={index}>{error}</div>
+                ))}
+              </div>
+            )}
           </div>
           <div className="flex flex-col items-center">
             <Controller

@@ -1,9 +1,7 @@
-import React from 'react';
-
-function UsersTable() {
+function ProductOrder() {
     return (
         <div className="mt-8">
-            <h2>Padres</h2>
+            <h2>Mi pedido</h2>
             <div className="flex flex-col mt-6">
                 <div className="-my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                     <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
@@ -61,4 +59,4 @@ function UsersTable() {
     );
 }
 
-export default UsersTable;
+export default ProductOrder;

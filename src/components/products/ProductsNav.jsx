@@ -1,22 +1,15 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { ShoppingCartContext } from "../../context/ProductContext";
+import { TfiShoppingCartFull } from "react-icons/tfi";
 
 const ProductsNav = () => {
-  let activeStyle = "underline";
+  const context = useContext(ShoppingCartContext);
+  
   return (
-    <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
+    <nav className="flex flex-row justify-center items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
       <ul className="flex items-center gap-3">
-        <img src="../../public/escudo.png" alt="Escudo CDCA" className="w-10" />
-        <li className="font-semibold text-lg">
-          <NavLink
-            to="/"
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            CDCA
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/products">Productos</NavLink>
-        </li>
+        
         <li>
           <NavLink to="/equipacion-necesaria-jugador">
             Necesarios jugador
@@ -40,7 +33,7 @@ const ProductsNav = () => {
         <li>
           <NavLink to="/ProductsOrders">Mis pedidos</NavLink>
         </li>
-        <li>👓 0</li>
+        <li className="flex items-center gap-1"><TfiShoppingCartFull /> {context.count}</li>
       </ul>
     </nav>
   );
