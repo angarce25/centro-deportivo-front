@@ -1,4 +1,3 @@
-// import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -8,10 +7,14 @@ function PlayersTable() {
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL;
+    const token = localStorage.getItem('token');
 
     axios;
     axios
-      .get(`${apiUrl}/players`)
+      .get(`${apiUrl}/players`, {
+        headers: {
+          Authorization: `Bearer ${token}` // Incluye el token en la cabecera
+      }})
       .then((response) => {
         setPlayers(response.data);
       })
@@ -35,10 +38,10 @@ function PlayersTable() {
               <th></th>
               <th>Nombre</th>
               <th>Apellidos</th>
-              {/* <th>Email</th>
-              <th>Teléfono</th> */}
+              <th>Email</th>
+              <th>Teléfono</th>
               <th>Código postal</th>
-              {/* <th>DNI</th> */}
+              <th>DNI</th>
               <th>Alergias</th>
               <th>Lesiones</th>
               <th>Talla camiseta</th>
@@ -52,10 +55,10 @@ function PlayersTable() {
                 <th></th>
                 <th>{player.name}</th>
                 <td>{player.lastname}</td>
-                {/* <td>{player.email}</td>
-                <td>{player.phone}</td> */}
-                <td>{player.postalcode}</td>
-                {/* <td>{player.dni}</td> */}
+                <td>{player.email}</td>
+                <td>{player.phone}</td>
+                <td>{player.post_code}</td>
+                <td>{player.dni}</td>
                 <td>{player.allergies}</td>
                 <td>{player.injury_illness}</td>
                 <td>{player.shirt_size}</td>

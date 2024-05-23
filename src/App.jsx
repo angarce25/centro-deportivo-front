@@ -44,9 +44,7 @@ function App() {
           {/* <Route path="/dashboard/teams" element={<PlayersP />} /> */}
 
 
-
       {/* Rutas Sidebar protegidas */}
-
           <Route path="/dashboard/users" element={<UserP />} />
           
           {/*Pagina jugadores user */}
