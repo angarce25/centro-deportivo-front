@@ -45,15 +45,15 @@ function Sidebar() {
             <span className="mx-3">Home</span>
           </a>
         </nav>
-          {/* <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
+          <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
             <a
             className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
-            href="/dashboard/products"
+            href="/dashboard/users"
           >
             <CiShop style={{ fontSize: "25px", fontWeight: "bold" }} />
-            <span className="mx-3 flex justify-center">Tienda</span>
+            <span className="mx-3 flex justify-center">Usuarios</span>
           </a>
-        </nav> */}
+        </nav>
         <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
           <a
             className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"

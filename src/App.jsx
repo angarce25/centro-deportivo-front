@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext.jsx";
+//import { AuthProvider } from "./context/AuthContext.jsx";
 import { ShoppingCartProvider } from "./context/ProductContext.jsx";
 /* import { ProductsProvider } from "./context/ProductsContext.jsx"; */
 import Home from "./pages/Home.jsx";
@@ -27,7 +27,7 @@ import TermsAndConditionsModal from "./components/termsAndConditions/Terms.jsx";
 
 function App() {
   return (
-    <AuthProvider>
+    //<AuthProvider>
       <SpinnerProvider>
       <ShoppingCartProvider>
        <PlayerProvider> 
@@ -69,8 +69,8 @@ function App() {
         </PlayerProvider> 
       </ShoppingCartProvider>
       </SpinnerProvider>
-    </AuthProvider>
+    //</AuthProvider>
   );
 }
 
-export default App;
+export default App;

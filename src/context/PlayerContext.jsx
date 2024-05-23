@@ -1,6 +1,5 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import { getMyPlayersReq, createPlayersReq} from './auth.js'
-import axios from 'axios';
 
 const PlayerContext = createContext();
 
@@ -18,7 +17,8 @@ export function PlayerProvider({ children }) {
     const getMyPlayers = async () =>{
         try{
             const res = await getMyPlayersReq ();
-            setMyPlayers(res.data)
+            setMyPlayers(res.data) 
+
         }catch(error){
             console.error(error);
         }   
