@@ -1,4 +1,3 @@
-import React from "react";
 import Img2 from "../../assets/slide/sponsors.png";
 import Img1 from "../../assets/slide/team.png";
 import Img3 from "../../assets/slide/aftermatch.png";
@@ -78,13 +77,12 @@ const Slide = () => {
                   </h2>
                   <p className="text-sm ml-6">{data.description}</p>
                   <div>
-                    <button
-                      className="bg-yellow-500 hover:bg-yellow-600 
-                       duration-200 text-black py-2 px-4
-                       rounded-full ml-6"
-                    >
-                      Únete a nosotros
-                    </button>
+                  <button
+                    className="bg-yellow-l hover:bg-yellow-d duration-200 text-black py-2 px-4 font-bold rounded-full ml-6 shadow-md"
+                  >
+                    Únete a nosotros
+                  </button>
+
                   </div>
                 </div>
                 <div className="order-1 sm:order-2">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Registercomponent from "../components/forms/Registercomponent";
 import Logincomponent from "../components/forms/Logincomponent"; // Asegúrate de importar el componente Logincomponent
 import { useSpinner, Spinner } from "../context/LoadingContext";
+import Header from "../components/home/Header";
 
 const Register = () => {
   const [currentForm, setCurrentForm] = useState("RegisterComponent");
@@ -20,7 +21,7 @@ const Register = () => {
 
   return (
     <div>
-      <header />
+      <Header/>
       {loading ? (
         <Spinner /> // Muestra el spinner mientras loading es true
       ) : (
