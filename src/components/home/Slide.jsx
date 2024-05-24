@@ -55,7 +55,7 @@ const Slide = () => {
       {/* background section */}
       <div
         className="h-[700px] w-[700px] bg-gray/40
-        absolute -top-1/2 right-0 rounded-3xl rotate-45 -z-[0]"
+        absolute -top-1/2 right-0 rounded-3xl rotate-45 z-[0]"
       ></div>
       {/* slider section */}
       <div className="container pb-8 sm:pb-0">
