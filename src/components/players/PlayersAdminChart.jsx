@@ -1,30 +1,19 @@
 import { useState, useEffect } from "react";
-// import axios from "axios";
-import fetchPlayers from './PlayersFetch.jsx';
+import axios from "axios";
+// import fetchPlayers from './PlayersFetch.jsx';
 
 function PlayersTable() {
   const [players, setPlayers] = useState([]);
   const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   const apiUrl = import.meta.env.VITE_API_URL;
-
-  //   axios;
-  //   axios
-  //     .get(`${apiUrl}/players`)
-  //     .then((response) => {
-  //       setPlayers(response.data);
-  //     })
-  //     .catch((error) => {
-  //       setError("Error al obtener los jugadores");
-  //       console.error("Error al obtener los jugadores:", error);
-  //     });
-  // }, []);
-
   useEffect(() => {
-    fetchPlayers()
-      .then((data) => {
-        setPlayers(data);
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const extraPath = '/players';
+    const fullUrl = apiUrl + extraPath
+
+     axios.get(fullUrl, {withCredentials: true})
+      .then((response) => {
+        setPlayers(response.data);
       })
       .catch((error) => {
         setError("Error al obtener los jugadores");
@@ -32,7 +21,7 @@ function PlayersTable() {
       });
   }, []);
 
-  return (
+   return (
     <section className="mt-8">
       <div className="overflow-x-auto">
         <div className="flex items-center justify-between">
@@ -65,7 +54,7 @@ function PlayersTable() {
                 <td>{player.lastname}</td>
                 <td>{player.email}</td>
                 <td>{player.phone}</td>
-                <td>{player.postcode}</td>
+                <td>{player.post_code}</td>
                 <td>{player.dni}</td>
                 <td>{player.allergies}</td>
                 <td>{player.injury_illness}</td>
@@ -83,16 +72,3 @@ function PlayersTable() {
 
 export default PlayersTable;
 
-// async function fetchPlayers() {
-//   const response = await fetch('/api/players', {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     credentials: 'include' // Esto asegura que las cookies se envíen con la solicitud
-//   });
-  
-//   const data = await response.json();
-//   return data
-// }
-// export default fetchPlayers;
