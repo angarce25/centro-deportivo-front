@@ -1,11 +1,3 @@
-// import axios from 'axios';
-
-// const API = 'http://localhost:3000/api';
-
-// export const registerRequest = user => axios.post(`${API}/register`, user);
-
-// export const loginRequest = user => axios.post(`${API}/login`, user);
-
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -65,8 +57,8 @@ export const loginRequest = async (user) => {
       console.log('Token recibido:', token); 
       
       if (token) {
-       // Almacena el token en las cookies del navegador
-       document.cookie = `token=${token};`;
+      // Almacena el token en las cookies del navegador
+      Cookies.set('token', token);
       console.log('Cookie establecida:', document.cookie);
       }
       
