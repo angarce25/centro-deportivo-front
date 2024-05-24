@@ -79,8 +79,8 @@ const Slide = () => {
                   <p className="text-sm ml-6">{data.description}</p>
                   <div>
                     <button
-                      className="bg-yellow-500 hover:bg-yellow-600 
-                       duration-200 text-black py-2 px-4
+                      className="bg-yellow-l hover:bg-yellow-d
+                       duration-200 text-black py-2 px-4 font-bold
                        rounded-full ml-6"
                     >
                       Únete a nosotros

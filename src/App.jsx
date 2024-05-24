@@ -10,7 +10,7 @@ import NewPlayer from "./pages/NewPlayer.jsx";
 import Products from "./pages/Products.jsx";
 import ProductOrder from "./pages/ProductOrder.jsx";
 import ProductsOrders from "./pages/ProductsOrders.jsx";
-import Merchandising from "./components/merchandising/Merchandising.jsx";
+import Merchandising from "./pages/Merchandising.jsx";
 import { PlayerProvider } from "./context/PlayerContext.jsx";
 import { SpinnerProvider } from "./context/LoadingContext.jsx"; //el componente loading spinner
 

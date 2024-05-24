@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useSpinner, Spinner } from "../../context/LoadingContext";
-import ProductsLayout from "../products/ProductsLayout";
-import ProductsCard from "../products/ProductsCard";
-import Header from "../home/Header";
-import Footer from "../home/Footer";
+import { useSpinner, Spinner } from "../context/LoadingContext";
+import ProductsLayout from "../components/products/ProductsLayout";
+import ProductsCard from "../components/products/ProductsCard";
+import Header from "../components/home/Header";
+import Footer from "../components/home/Footer";
 // import ProductsNav from "../products/ProductsNav";
-import ProductsDetail from "../productsDetail/ProductsDetail";
-import CheckSideMenu from "../checkSideMenu/CheckSideMenu";
+import ProductsDetail from "../components/productsDetail/ProductsDetail";
+import CheckSideMenu from "../components/checkSideMenu/CheckSideMenu";
 
 function Merchandising() {
   const [items, setItems] = useState([]);
