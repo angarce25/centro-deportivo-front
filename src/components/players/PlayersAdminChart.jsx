@@ -25,7 +25,7 @@ function PlayersTable() {
     <section className="mt-8">
       <div className="overflow-x-auto">
         <div className="flex items-center justify-between">
-          <h4 className="text-gray-600 font-bold">Listado de Jugadores</h4>
+          <h4 className="text-gray-600 font-bold mb-10">Listado de Jugadores</h4>
         </div>
         {error && <p>{error}</p>}
 
@@ -50,7 +50,7 @@ function PlayersTable() {
             {players.map((player) => (
               <tr key={player._id}>
                 <th></th>
-                <th>{player.name}</th>
+                <th className="font-medium">{player.name}</th>
                 <td>{player.lastname}</td>
                 <td>{player.email}</td>
                 <td>{player.phone}</td>

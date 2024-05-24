@@ -21,9 +21,11 @@ function PlayersUserChart() {
 
 
   return (
-    <div className="mt-8">
+    <section className="mt-8">
+      <div className="overflow-x-auto">
       <div className="flex items-center justify-between">
-        <h4 className="text-gray-600 font-bold">Listado de Jugadores</h4>
+          <h4 className="text-gray-600 font-bold mb-10">Listado de Jugadores</h4>
+        </div>
         <Link to="/dashboard/form-player">
           <button className="text-black font-bold py-2 px-4 rounded bg-yellow-d hover:bg-yellow-l">
             Añadir jugador
@@ -36,9 +38,9 @@ function PlayersUserChart() {
           <div className="align-middle inline-block min-w-full 
           shadow overflow-hidden sm:rounded-lg 
           border-b border-gray-200">
-            <table className="min-w-full">
+            <table className="table table-zebra">
               <thead>
-                <tr>
+                <tr className="text-gray-800 text-sm">
                   <th className = "px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
                   <th className = "px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Apellido</th>
                   <th className = "px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Talla Camisa</th>
@@ -90,7 +92,7 @@ function PlayersUserChart() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
