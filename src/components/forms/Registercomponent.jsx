@@ -60,7 +60,7 @@ const Registercomponent = ({ onFormSwitch }) => {
 
   return (
     <div className="bg-gray-200 min-h-screen flex items-center justify-center">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-md" style={{ backgroundColor: "#F2F2F2" }}>
+      <div className="bg-white p-8 rounded shadow-md w-full max-w-md mb-12" style={{ backgroundColor: "#F2F2F2" }}>
         <h2 className="text-3xl font-semibold text-center mb-6">Regístrate</h2>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col items-center">
@@ -68,7 +68,7 @@ const Registercomponent = ({ onFormSwitch }) => {
               control={control}
               name="name"
               rules={{ required: "Campo obligatorio", maxLength: 80, pattern: /^[a-zA-ZáéíóúÁÉÍÓÚ\s]+$/ }}
-              render={({ field }) => <input {...field} type="text" placeholder="Nombre" className="input-style w-full max-w-md" />}
+              render={({ field }) => <input {...field} type="text" placeholder="Nombre" className="input-style w-full max-w-md border-r-2" />}
             />
             {errors.name && <span className="text-red-500">{errors.name.message}</span>}
           </div>
