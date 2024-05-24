@@ -1,29 +1,20 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-//import { AuthProvider } from "./context/AuthContext.jsx";
 import { ShoppingCartProvider } from "./context/ProductContext.jsx";
-/* import { ProductsProvider } from "./context/ProductsContext.jsx"; */
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-// import Administratorr from "./pages/UsersT.jsx";
-
 import UserP from "./pages/Users.jsx";
 import PlayersUser from "./pages/PlayersUser.jsx";
 import PlayersAdmin from "./pages/PlayersAdmin.jsx";
 import NewPlayer from "./pages/NewPlayer.jsx";
 import Products from "./pages/Products.jsx";
-/* import ProductsP from "./pages/ProductsT.jsx"; */
 import ProductOrder from "./pages/ProductOrder.jsx";
 import ProductsOrders from "./pages/ProductsOrders.jsx";
+import Merchandising from "./components/merchandising/Merchandising.jsx";
 import { PlayerProvider } from "./context/PlayerContext.jsx";
-
 import { SpinnerProvider } from "./context/LoadingContext.jsx"; //el componente loading spinner
 
 
-
-// -- Imports para Rutas de prueba --
-import TermsAndConditionsModal from "./components/termsAndConditions/Terms.jsx";
-// -- Final de imports rutas de prueba --
 
 function App() {
   return (
@@ -39,6 +30,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         
+          <Route path="/merchandising" element={<Merchandising />} />
          
           {/* <Route path="/dashboard/products" element={<ProductsP />} /> */}
           {/* <Route path="/dashboard/teams" element={<PlayersP />} /> */}
@@ -62,7 +54,7 @@ function App() {
 
           <Route path="/dashboard/teams" element={<PlayersUser />} />
    {/* -_- Ruta de pruebas para cnstruccion de componentes front */}
-          <Route path="/testing" element={<TermsAndConditionsModal isOpen={true} onClose={false} />} />
+          <Route path="/testing" element={<Merchandising />} />
         {/* -_- Final de ruta de pruebas para cnstruccion de componentes front */}
         </Routes>
       </BrowserRouter>
