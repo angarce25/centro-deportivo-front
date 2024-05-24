@@ -1,33 +1,37 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginRequest } from '../../context/auth';
+import { loginRequest } from '../../context/auth'; // Asegúrate de importar correctamente loginRequest
+import Cookies from 'js-cookie'; // Importa la librería js-cookie
 
 const Logincomponent = ({ onFormSwitch }) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const navigate = useNavigate();
 
+  const handleCookie = (token) => {
+    // Almacena la cookie en el navegador
+    Cookies.set('token', token, { expires: 1 }); // Ajusta la duración de la cookie según sea necesario
+    console.log('Token para la cookie:', token);
+    console.log('Cookie establecida:', Cookies.get('token'));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await loginRequest({ email, password: pass });
+      handleCookie(response.token); // Llama a la función handleCookie con el token de respuesta
 
-      if (response.status === 200) {
-        alert("Inicio de sesión exitoso");
-        navigate("/dashboard/users");
-      } else {
-        alert(response.data.message || "Error en el inicio de sesión");
-      }
+      alert("Inicio de sesión exitoso");
+      navigate("/dashboard/my-players");
     } catch (error) {
-      console.error("Error al iniciar sesión:", error);
+      console.error("Error al iniciar sesión:", error.message);
       alert("Error en inicio de sesión");
     }
   };
-
   return (
     <div className="bg-gray-200 min-h-screen flex items-center justify-center">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-md" style={{ backgroundColor: "#F2F2F2" }}>
+      <div className="bg-white p-8 rounded shadow-md w-full max-w-md mb-12" style={{ backgroundColor: "#F2F2F2" }}>
         <h2 className="text-3xl font-semibold text-center mb-6">Iniciar sesión</h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="flex flex-col items-center">
@@ -83,4 +87,4 @@ const Logincomponent = ({ onFormSwitch }) => {
   );
 }
 
-export default Logincomponent;
+export default Logincomponent;

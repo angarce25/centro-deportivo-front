@@ -11,6 +11,9 @@ export default {
       colors: {
         'yellow-d': '#f2e205',
         'yellow-l': '#eaf205',
+        'yellow-dark': '#BAB12F',
+        'yellow-2': '#f2e205',
+        'purple': '#653AA5',
         'beige': '#bf9d7e',
         'gray': '#736b62',
         'gray-l': '#f2f2f2',
