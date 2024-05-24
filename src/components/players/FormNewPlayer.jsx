@@ -1,9 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
+import axios from "axios";
 import ModalInfoEquipment from "./ModalInfoEquipment";
-
+import { useForm } from "react-hook-form";
+import { usePlayers } from "../../context/PlayerContext"
+import { SiTruenas } from "react-icons/si";
 
 export default function FormNewPlayer() {
+  const { register, handleSubmit } = useForm();
+  const {createPlayer, setCreatePlayer} = usePlayers()
+  useEffect(() => {
+    const apiUrl = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
+    const extraPath = '/newplayer'; // Añade la parte adicional de la URL
+    const fullUrl = apiUrl + extraPath; // Combina la URL base con la parte adicional
+
+    axios.post(fullUrl, { withCredentials: true })
+      .then((response) => {
+        setCreatePlayer(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al obtener tus jugadores:", error);
+      });
+  }, []);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  
+  const onSubmit = handleSubmit((data) => {
+    createPlayer(data);
+  }); 
 
   const openModal = () => {    
     setModalIsOpen(true);
@@ -17,7 +40,8 @@ export default function FormNewPlayer() {
     <section className="ml-20">
       <div className="p-8 flex flex-col lg:flex-row">
         {/* Columna izquierda */}
-        <form className="flex-1 mb-8 lg:mb-0 lg:mr-4">
+        <form className="flex-1 mb-8 lg:mb-0 lg:mr-4"
+        onSubmit={onSubmit}>
           {/* Datos personales */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-4">
@@ -34,8 +58,10 @@ export default function FormNewPlayer() {
                 <input
                   className="input input-bordered w-full max-w-xs"
                   type="text"
-                  id="nombre"
-                  name="nombre"
+                  {...register("name", {required: true})}
+                  autoFocus
+                  // id="nombre"
+                  // name="nombre"
                 />
               </div>
               <div className="w-full lg:w-1/2 ml-4">
@@ -48,8 +74,9 @@ export default function FormNewPlayer() {
                 <input
                   className="input input-bordered w-full max-w-xs"
                   type="text"
-                  id="apellidos"
-                  name="apellidos"
+                  {...register("lastname", {required: true})}
+                  // id="apellidos"
+                  // name="apellidos"
                 />
               </div>
             </div>
@@ -64,8 +91,9 @@ export default function FormNewPlayer() {
                 <input
                   className="input input-bordered w-full max-w-xs"
                   type="text"
-                  id="email"
-                  name="email"
+                  {...register("email", {required: true})}
+                  // id="email"
+                  // name="email"
                 />
               </div>
               <div className="w-full lg:w-1/2 ml-4">
@@ -78,8 +106,9 @@ export default function FormNewPlayer() {
                 <input
                   className="input input-bordered w-full max-w-xs"
                   type="number"
-                  id="telefono"
-                  name="telefono"
+                  {...register("phone", {required: true})}
+                  // id="telefono"
+                  // name="telefono"
                 />
               </div>
             </div>
@@ -91,8 +120,9 @@ export default function FormNewPlayer() {
                 <input
                   className="input input-bordered w-full max-w-xs"
                   type="text"
-                  id="dni"
-                  name="dni"
+                  {...register("dni", {required: true})}
+                  // id="dni"
+                  // name="dni"
                 />
               </div>
               <div className="w-full lg:w-1/2 ml-4">
@@ -105,8 +135,9 @@ export default function FormNewPlayer() {
                 <input
                   className="input input-bordered w-full max-w-xs"
                   type="text"
-                  id="codigopostal"
-                  name="codigopostal"
+                  {...register("post_code")}
+                  // id="codigopostal"
+                  // name="codigopostal"
                 />
               </div>
             </div>
@@ -120,19 +151,22 @@ export default function FormNewPlayer() {
                 </label>
                 <textarea
                   className="input input-bordered w-full max-w-xs"
-                  id="alergias"
-                  name="alergias"
+                  {...register("allergies")}
+                  // id="alergias"
+                  // name="alergias"
                 />
               </div>
               <div className="w-full lg:w-1/2 ml-4">
                 <label
                   className="block text-gray font-bold mb-2"
                   htmlFor="enfermedad"
+                  
                 >
                   Lesión o enfermedad
                 </label>
                 <textarea
                   className="input input-bordered w-full max-w-xs"
+                  {...register("injuries_illness")}
                   id="enfermedad"
                   name="enfermedad"
                 />
@@ -142,7 +176,8 @@ export default function FormNewPlayer() {
         </form>
 
         {/* Columna derecha */}
-        <form className="flex-1 ml-20">
+        <form className="flex-1 ml-20"
+        onSubmit={onSubmit}>
           {/* Datos equipamiento deportivo */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-3">
