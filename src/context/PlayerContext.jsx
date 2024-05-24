@@ -24,8 +24,7 @@ export function PlayerProvider({ children }) {
         }   
     };
     
-
-
+    
     const createPlayer = async (player) => {
         const res = await createPlayersReq (player)
         console.log(res)

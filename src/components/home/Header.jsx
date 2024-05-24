@@ -28,10 +28,16 @@ const Header = () => {
           />
         </Link>
         <Link
+          to="/merchandising"
+          className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
+        >
+          Visita nuestra Tienda
+        </Link>
+        <Link
           to="/register"
           className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
         >
-          Registrarse
+          Registro
         </Link>
         <Link
           to="/login"
