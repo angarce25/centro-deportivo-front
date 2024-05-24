@@ -7,20 +7,16 @@ function PlayersTable() {
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL;
-    const token = localStorage.getItem('token');
 
-    axios;
     axios
-      .get(`${apiUrl}/players`, {
-        headers: {
-          Authorization: `Bearer ${token}` // Incluye el token en la cabecera
-      }})
+      .get(`${apiUrl}/players`)
       .then((response) => {
+        console.log("Datos recibidos:", response.data); // Verifica los datos recibidos en la consola
         setPlayers(response.data);
       })
       .catch((error) => {
         setError("Error al obtener los jugadores");
-        console.error("Error al obtener los jugadores:", error);
+        console.error("Error al obtener los jugadores:", error); // Imprime cualquier error en la consola
       });
   }, []);
 
@@ -38,10 +34,10 @@ function PlayersTable() {
               <th></th>
               <th>Nombre</th>
               <th>Apellidos</th>
-              <th>Email</th>
-              <th>Teléfono</th>
+              {/* <th>Email</th>
+              <th>Teléfono</th> */}
               <th>Código postal</th>
-              <th>DNI</th>
+              {/* <th>DNI</th> */}
               <th>Alergias</th>
               <th>Lesiones</th>
               <th>Talla camiseta</th>
@@ -55,10 +51,10 @@ function PlayersTable() {
                 <th></th>
                 <th>{player.name}</th>
                 <td>{player.lastname}</td>
-                <td>{player.email}</td>
-                <td>{player.phone}</td>
-                <td>{player.post_code}</td>
-                <td>{player.dni}</td>
+                {/* <td>{player.email}</td>
+                <td>{player.phone}</td> */}
+                <td>{player.postalcode}</td>
+                {/* <td>{player.dni}</td> */}
                 <td>{player.allergies}</td>
                 <td>{player.injury_illness}</td>
                 <td>{player.shirt_size}</td>
