@@ -2,32 +2,31 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ProductContext";
 import { GoPlus } from "react-icons/go";
 
-function ProductsCard( data ) {
-  const context = useContext(ShoppingCartContext)
+function ProductsCard(data) {
+  const context = useContext(ShoppingCartContext);
 
-  const showProduct  =  (productDetail)  => {
-    context.openProductDetail()
-    context.setProductToShow(productDetail)
-  }
+  const showProduct = (productDetail) => {
+    context.openProductDetail();
+    context.setProductToShow(productDetail);
+  };
 
   const addProductsToCart = (event, productData) => {
-    event.stopPropagation()
-    context.setCount(context.count + 1)
-    context.setCartProducts([...context.cartProducts, productData])
-    context.openCheckSideMenu()
-    context.closeProductDetail()
-  }
+    event.stopPropagation();
+    context.setCount(context.count + 1);
+    context.setCartProducts([...context.cartProducts, productData]);
+    context.openCheckSideMenu();
+    context.closeProductDetail();
+  };
 
   return (
-
-   
-    <div
+    <section
       style={{
         maxWidth: "100%",
         height: "auto",
-        filter: "drop-shadow(0px 4.42184px 7.23px rgba(0, 0, 0, 1))",
+        filter: "drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3))",
+        
       }}
-      className="bg-gray-l cursor-pointer w-52 h-68 rounded-lg m-4 mb-4 "
+      className="bg-gray-l cursor-pointer w-52 h-68 rounded-lg m-6 mb-4 "
       onClick={() => showProduct(data.data)}
     >
       <figure className="relative mb-4 w-full h-4/5">
@@ -59,11 +58,8 @@ function ProductsCard( data ) {
           {data.data.price} €
         </span>
       </p>
-    </div>
-
+    </section>
   );
 }
-
-
 
 export default ProductsCard;

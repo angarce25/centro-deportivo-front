@@ -1,6 +1,6 @@
-// import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+// import fetchPlayers from './PlayersFetch.jsx';
 
 function PlayersTable() {
   const [players, setPlayers] = useState([]);
@@ -8,10 +8,10 @@ function PlayersTable() {
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL;
+    const extraPath = '/players';
+    const fullUrl = apiUrl + extraPath
 
-    axios;
-    axios
-      .get(`${apiUrl}/players`)
+     axios.get(fullUrl, {withCredentials: true})
       .then((response) => {
         setPlayers(response.data);
       })
@@ -21,13 +21,13 @@ function PlayersTable() {
       });
   }, []);
 
-  return (
+   return (
     <section className="mt-8">
       <div className="overflow-x-auto">
         <div className="flex items-center justify-between">
-          <h4 className="text-gray-600 font-bold">Listado de Jugadores</h4>
+          <h4 className="text-gray-600 font-bold mb-10">Listado de Jugadores</h4>
         </div>
-        {error && <p>Ocurrió un error al obtener los jugadores.</p>}
+        {error && <p>{error}</p>}
 
         <table className="table table-zebra">
           <thead>
@@ -35,10 +35,10 @@ function PlayersTable() {
               <th></th>
               <th>Nombre</th>
               <th>Apellidos</th>
-              {/* <th>Email</th>
-              <th>Teléfono</th> */}
+              <th>Email</th>
+              <th>Teléfono</th>
               <th>Código postal</th>
-              {/* <th>DNI</th> */}
+              <th>DNI</th>
               <th>Alergias</th>
               <th>Lesiones</th>
               <th>Talla camiseta</th>
@@ -50,12 +50,12 @@ function PlayersTable() {
             {players.map((player) => (
               <tr key={player._id}>
                 <th></th>
-                <th>{player.name}</th>
+                <th className="font-medium">{player.name}</th>
                 <td>{player.lastname}</td>
-                {/* <td>{player.email}</td>
-                <td>{player.phone}</td> */}
-                <td>{player.postalcode}</td>
-                {/* <td>{player.dni}</td> */}
+                <td>{player.email}</td>
+                <td>{player.phone}</td>
+                <td>{player.post_code}</td>
+                <td>{player.dni}</td>
                 <td>{player.allergies}</td>
                 <td>{player.injury_illness}</td>
                 <td>{player.shirt_size}</td>
@@ -71,3 +71,4 @@ function PlayersTable() {
 }
 
 export default PlayersTable;
+
