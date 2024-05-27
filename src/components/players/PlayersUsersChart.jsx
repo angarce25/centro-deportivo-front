@@ -49,7 +49,7 @@ function PlayersUserChart() {
       <div className="overflow-x-auto">
         <div className="flex items-center justify-between">
           <h4 className="text-gray-600 font-bold mb-10">
-            Listado de Jugadores y Pagos
+            Mis Jugadores
           </h4>
         </div>
         <Link to="/dashboard/form-player">

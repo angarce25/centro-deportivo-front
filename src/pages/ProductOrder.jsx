@@ -1,6 +1,7 @@
 import SideBar from "../components/sideBar/SideBar";
-import { useSearchParams } from "react-router-dom";
-
+import OrdersUsersChart from "../components/orders/OrdersUsersChart";
+import { Spinner, useSpinner } from '../context/LoadingContext';
+import { useEffect } from 'react';
 function ProductOrder () {
   const [searchParams] = useSearchParams();
 
@@ -31,7 +32,6 @@ function ProductOrder () {
       </div>
     </section>
   </div>
-  )
-}
-
+);
+};
 export default ProductOrder;
