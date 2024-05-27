@@ -73,12 +73,12 @@ const Logincomponent = ({ onFormSwitch }) => {
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
               type="email" 
-              placeholder="Correo electrónico"  
+              placeholder="maria@gmail.com"  
               id="email" 
               autoComplete="off"
               name="email" 
               required 
-              className="input-style w-full max-w-md"  
+              className="input w-full max-w-xs"  
               style={{ borderRadius: "5px" }} 
             />
           </div>
@@ -88,13 +88,13 @@ const Logincomponent = ({ onFormSwitch }) => {
               value={pass} 
               onChange={(e) => setPass(e.target.value)} 
               type="password" 
-              placeholder="Contraseña" 
+              placeholder="******" 
               autoComplete="off"
               id="password" 
               name="password" 
               minLength="6" 
               required
-              className="input-style w-full max-w-md mb-3"  
+              className="input w-full max-w-xs"  
               style={{ borderRadius: "5px" }} 
             />
           </div>
