@@ -1,7 +1,21 @@
-import ProductsLayout from "../components/products/ProductsLayout";
 
-const ProductOrder = () => {
-  return <ProductsLayout>Mi pedido</ProductsLayout>;
-};
+import SideBar from "../components/sideBar/SideBar";
+
+function ProductOrder () {
+
+
+  return (    
+  <div className="flex ">
+     <SideBar />
+       
+ 
+  
+  
+    
+  
+    
+  </div>
+  )
+}
 
 export default ProductOrder;
