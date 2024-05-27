@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { loginRequest } from '../../context/auth'; // Asegúrate de importar correctamente loginRequest
-import Cookies from 'js-cookie'; // Importa la librería js-cookie
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const API = 'http://localhost:3000/api';
 
 const Logincomponent = ({ onFormSwitch }) => {
   const [email, setEmail] = useState('');
@@ -10,7 +12,7 @@ const Logincomponent = ({ onFormSwitch }) => {
 
   const handleCookie = (token) => {
     // Almacena la cookie en el navegador
-    Cookies.set('token', token, { expires: 1 }); // Ajusta la duración de la cookie según sea necesario
+    Cookies.set('token', token, { expires: 1 }); 
     console.log('Token para la cookie:', token);
     console.log('Cookie establecida:', Cookies.get('token'));
   };
@@ -19,14 +21,40 @@ const Logincomponent = ({ onFormSwitch }) => {
     e.preventDefault();
 
     try {
-      const response = await loginRequest({ email, password: pass });
-      handleCookie(response.token); // Llama a la función handleCookie con el token de respuesta
+      const response = await axios.post(`${API}/login`, { email, password: pass });
 
-      alert("Inicio de sesión exitoso");
-      navigate("/dashboard/my-players");
+      // Verifica si la respuesta contiene un token en los datos de la respuesta
+      const token = response.data.token; 
+      const rol_id = response.data.rol_id; 
+
+      console.log('Token recibido:', token);
+      console.log('Role recibido:', rol_id); 
+      console.log('Respuesta del servidor:', response.data);
+      
+      if (token) {
+        handleCookie(token); // Llama a la función handleCookie para almacenar el token en la cookie
+      }
+
+      // Redirige según el rol del usuario
+      if (rol_id === 'user') {
+        navigate('/dashboard/my-players');
+      } else {
+        navigate('/dashboard/users');
+      }
     } catch (error) {
-      console.error("Error al iniciar sesión:", error.message);
-      alert("Error en inicio de sesión");
+      if (error.response) {
+        // Error de respuesta del servidor
+        console.error("Error al iniciar sesión:", error.response.data.message || 'Error en el inicio de sesión');
+        alert("Error en inicio de sesión");
+      } else if (error.request) {
+        // Error de solicitud
+        console.error("Error al iniciar sesión:", 'No se pudo conectar con el servidor');
+        alert("Error en inicio de sesión");
+      } else {
+        // Otros errores
+        console.error("Error al iniciar sesión:", 'Error al procesar la solicitud de inicio de sesión');
+        alert("Error en inicio de sesión");
+      }
     }
   };
   return (

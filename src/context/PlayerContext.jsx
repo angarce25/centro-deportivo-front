@@ -28,32 +28,8 @@ export function PlayerProvider({ children }) {
     const createPlayer = async (player) => {
         const res = await createPlayersReq (player)
         console.log(res)
-    }
-     
+    }     
 
-    // useEffect(() => {
-    //     const fetchPlayers = async () => {
-    //         const apiUrl = import.meta.env.VITE_API_URL;
-    //         const extraPath = '/my-players';
-    //         const fullUrl = apiUrl + extraPath;
-
-    //         try {
-    //             const response = await axios.get(fullUrl, {
-    //                 withCredentials: true // Asegúrate de que las cookies se envíen con la solicitud
-    //             });
-    //             setMyPlayers(response.data);
-                
-    //             // Loguear el nombre del usuario creador
-    //             response.data.forEach(player => {
-    //                 console.log(`Jugador: ${player.name}, Creado por: ${player.parent_id?.name} ${player.parent_id?.lastname}`);
-    //             });
-    //         } catch (error) {
-    //             console.error("Error al obtener tus jugadores:", error);
-    //         }
-    //     };
-
-    //     fetchPlayers();
-    // }, []);
 
     return (
         <PlayerContext.Provider 
