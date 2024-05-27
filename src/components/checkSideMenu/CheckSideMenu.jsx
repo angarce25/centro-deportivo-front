@@ -14,8 +14,10 @@ const CheckSideMenu = () => {
   }
   
   const handleCheckout = () => {
+    const date = new Date();
+    
     const orderToAdd = {
-      date: Date.now(),
+      date: date.toLocaleDateString(),
       products: context.cartProducts,
       totalProducts: context.cartProducts.length,
       totalPrice: totalPrice(context.cartProducts)
@@ -67,7 +69,7 @@ const CheckSideMenu = () => {
             </p>
             <Link to = "/dashboard/product-order">
             <button className="w-full bg-black text-yellow-d border-2 border-yellow-d hover:bg-yellow-d hover:text-black hover:border-black py-2 rounded-lg mt-4" 
-            onClick={() => handleCheckout()}>Solicitar Pedido</button>
+            onClick={() => handleCheckout()}>Mi Pedido</button>
             </Link>
         </div>
           

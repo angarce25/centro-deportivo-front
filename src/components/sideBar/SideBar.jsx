@@ -5,7 +5,7 @@ import { GiClothes } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
 import { RiTeamLine } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io"; // Importa el icono del triángulo apuntando a la derecha
-import imagen from '../../../public/escudo.png';
+import imagen from '../../assets/icons/escudo.png';
 
 function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
