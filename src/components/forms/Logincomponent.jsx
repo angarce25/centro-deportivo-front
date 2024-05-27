@@ -2,6 +2,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const API = 'http://localhost:3000/api';
 
@@ -45,18 +47,21 @@ const Logincomponent = ({ onFormSwitch }) => {
       if (error.response) {
         // Error de respuesta del servidor
         console.error("Error al iniciar sesión:", error.response.data.message || 'Error en el inicio de sesión');
-        alert("Error en inicio de sesión");
+        toast.error("Error en inicio de sesión");
       } else if (error.request) {
         // Error de solicitud
         console.error("Error al iniciar sesión:", 'No se pudo conectar con el servidor');
-        alert("Error en inicio de sesión");
+        toast.error("Error en inicio de sesión");
       } else {
         // Otros errores
         console.error("Error al iniciar sesión:", 'Error al procesar la solicitud de inicio de sesión');
-        alert("Error en inicio de sesión");
+        toast.error("Error en inicio de sesión");
       }
     }
   };
+
+
+
   return (
     <div className="bg-gray-200 min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md mb-12" style={{ backgroundColor: "#F2F2F2" }}>
@@ -115,4 +120,4 @@ const Logincomponent = ({ onFormSwitch }) => {
   );
 }
 
-export default Logincomponent;
+export default Logincomponent;

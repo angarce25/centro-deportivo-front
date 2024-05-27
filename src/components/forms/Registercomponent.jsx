@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm, Controller } from 'react-hook-form';
 import TermsAndConditionsModal from '../termsAndConditions/Terms';
 import { registerRequest } from '../../context/auth';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Registercomponent = ({ onFormSwitch }) => {
   const { control, handleSubmit, formState: { errors }, setError } = useForm();
@@ -23,12 +25,12 @@ const Registercomponent = ({ onFormSwitch }) => {
     console.log("Datos enviados al formulario:", data);
   
     if (!isRecaptchaVerified) {
-      alert("Por favor, verifica que no eres un robot.");
+      toast.error("Por favor, verifica que no eres un robot.");
       return;
     }
   
     if (!termsAccepted) {
-      alert("Debes aceptar los términos y condiciones.");
+      toast.error("Debes aceptar los términos y condiciones.");
       return;
     }
   
@@ -36,14 +38,14 @@ const Registercomponent = ({ onFormSwitch }) => {
       const response = await registerRequest(data);
   
       if (response.status === 200) {
-        alert("Registro exitoso");
+        toast.success("Registro exitoso");
         navigate("/login");
       } else {
-        alert(response.data.message || "Error en el registro");
+        toast.error(response.data.message || "Error en el registro");
       }
     } catch (error) {
       console.error("Error en el registro:", error);
-      alert("Error en el registro");
+      toast.error("Error en el registro");
     }
   };
 

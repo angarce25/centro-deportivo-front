@@ -13,13 +13,15 @@ import ProductsOrders from "./pages/ProductsOrders.jsx";
 import Merchandising from "./pages/Merchandising.jsx";
 import { PlayerProvider } from "./context/PlayerContext.jsx";
 import { SpinnerProvider } from "./context/LoadingContext.jsx"; //el componente loading spinner
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
   return (
     //<AuthProvider>
       <SpinnerProvider>
+      <ToastContainer />
       <ShoppingCartProvider>
        <PlayerProvider> 
       <BrowserRouter>
