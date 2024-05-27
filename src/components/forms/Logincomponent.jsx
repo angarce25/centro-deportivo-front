@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from '../../context/auth'; // Asegúrate de importar correctamente loginRequest
 import Cookies from 'js-cookie'; // Importa la librería js-cookie
@@ -7,6 +7,8 @@ const Logincomponent = ({ onFormSwitch }) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const navigate = useNavigate();
+
+
 
   const handleCookie = (token) => {
     // Almacena la cookie en el navegador
@@ -19,11 +21,11 @@ const Logincomponent = ({ onFormSwitch }) => {
     e.preventDefault();
 
     try {
-      const response = await loginRequest({ email, password: pass });
+      const response = await loginRequest({ email, password: pass }, navigate);
       handleCookie(response.token); // Llama a la función handleCookie con el token de respuesta
 
       alert("Inicio de sesión exitoso");
-      navigate("/dashboard/my-players");
+     
     } catch (error) {
       console.error("Error al iniciar sesión:", error.message);
       alert("Error en inicio de sesión");
