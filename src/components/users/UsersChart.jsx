@@ -10,7 +10,7 @@ function UsersChart() {
     const fullUrl = apiUrl + extraPath; 
 
     axios
-      .get(fullUrl)
+      .get(fullUrl, { withCredentials: true }) // Asegura que las cookies se envíen con la solicitud
       .then((response) => {
         setUsers(response.data);
       })
@@ -20,7 +20,6 @@ function UsersChart() {
   }, []);
 
   return (
-    
     <div className="mt-8">
       <h2>Padres</h2>
       <div className="flex flex-col mt-6">
@@ -29,20 +28,20 @@ function UsersChart() {
             <table className="min-w-full">
               <thead>
                 <tr>
-                <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                    <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Hijos</th>
-                                    <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">DNI</th>
-                                    <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Correo Electrónico</th>
-                                    <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Número de Teléfono</th>
+                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Hijos</th>
+                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">DNI</th>
+                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Correo Electrónico</th>
+                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Número de Teléfono</th>
                 </tr>
               </thead>
               <tbody className="bg-gray-100">
                 {users.map((user) => (
                   <tr key={user._id}>
                     <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-50">{user.name}</td>
-                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-50">{user.status}</td>
-                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-50">{user.children}</td>
+                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-50">{user.status ? "Activo" : "Inactivo"}</td>
+                    <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-50">{Array.isArray(user.children) ? user.children.join(', ') : user.children}</td>
                     <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-50">{user.dni}</td>
                     <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-50">{user.email}</td>
                     <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-50">{user.mobile}</td>
@@ -57,4 +56,4 @@ function UsersChart() {
   );
 }
 
-export default UsersChart;
+export default UsersChart;
