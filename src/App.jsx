@@ -16,6 +16,8 @@ import { SpinnerProvider } from "./context/LoadingContext.jsx"; //el componente 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MyOrders from "./pages/MyOrders.jsx";
+import TeamInfo from "./pages/TeamInfo.jsx";
+
 
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
         {/* RUTAS NAVBAR */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/info" element={<TeamInfo />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         
