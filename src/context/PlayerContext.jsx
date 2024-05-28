@@ -26,10 +26,15 @@ export function PlayerProvider({ children }) {
     
     
     const createPlayer = async (player) => {
-        const res = await createPlayersReq (player)
-        console.log(res)
-    }
-     
+        try {
+            console.log("Creating player:", player); // Log para verificar los datos del jugador
+            const res = await createPlayersReq(player);
+            console.log("Player created:", res.data); // Log para verificar la respuesta de la API
+            setMyPlayers(prevPlayers => [...prevPlayers, res.data]);
+        } catch (error) {
+            console.error("Error al crear el jugador:", error);
+        }
+    };
 
     // useEffect(() => {
     //     const fetchPlayers = async () => {
