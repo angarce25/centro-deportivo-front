@@ -24,7 +24,7 @@ const Home = () => {
               <img
                 src={ImgAboutus}
                 alt=""
-                className="max-w-[600px] h-[450px] w-full mx-auto drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)] object-cover rounded-lg"
+                className="max-w-[600px] h-[480px] w-full mx-auto drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)] object-cover rounded-lg"
               />
             </div>
 
@@ -32,7 +32,7 @@ const Home = () => {
             <div className="flex flex-col justify-center gap-6 sm:pt-0 mb-5">
               <h1
                 data-aos="fade-up"
-                className="text-3xl sm:text-4xl font-bold mt-12 ml-10"
+                className="text-3xl sm:text-4xl font-bold mt-12 ml-14"
               >
                 ¿Quienes somos?
               </h1>
@@ -40,34 +40,35 @@ const Home = () => {
                 data-aos="fade-up"
                 className="etxt-sm text.grey tracking-wide leading-5"
               >
-                <p className="mt-1 ml-10 mr-10 text-justify">
-                  El barrio Madrileño de la Ciudad de los Ángeles tiene una gran
-                  tradicón futbolística. Existían dos grandes equipos el CD.
-                  Ciudad los Ángeles y la AD. Rayo los Ángeles. Diversos motivos
-                  hicieron que ambos clubes desaparecieran y para que los chicos
-                  de nuestro barrio no se quedasen sin la posibilidad de
-                  practicar su deporte preferido en Marzo de 2003 nació el Club
-                  Deportivo Ciudad de los Ángeles, con el objetivo de que
-                  nuestro barrio siga representando en los mejores Campos de la
-                  Comunidaad de Madrid y solucionar ese hambre de fútbol de
-                  todos nuestros vecinos y vecinas.
+                <p className="mt-2 ml-12 mr-12 text-justify">
+                  Así se escribió el comienzo de nuestra historia, con un grupo
+                  de amigos que se reunían para jugar al fútbol, unidos por su
+                  compromiso con el barrio y su comunidad. Con el respaldo de
+                  los comercios locales, lograron sostener económicamente al
+                  equipo, transmitiendo sus magníficos valores y su profundo
+                  amor por este deporte.
                 </p>
-                <p className="mt-2 ml-10 mr-10 text-justify">
-                  Así comenzó nuestra historia, un grupo de amigos jugando
-                  futbol, comprometidos con el barrio y su gente, apoyados por
-                  los comercios para sacar adelante el equipo económicamente,
-                  transmitiendo sus magníficos velores y su amor por este
-                  deporte.
+                <p className="mt-5 ml-12 mr-12 text-justify">
+                  Sin embargo, lo más destacado de nuestro club son nuestros
+                  niños, niñas, adolescentes y adultos, quienes lo consideran un
+                  lugar donde encuentran verdadera felicidad. Para ellos, el
+                  club es mucho más que un campo de juego; es un espacio donde
+                  experimentan alegría, donde encuentran diversión, amistad y
+                  amor por sus compañeros y compañeras. Este crecimiento
+                  constante no ha hecho más que fortalecer los lazos que nos
+                  unen como comunidad, reafirmando nuestro compromiso con el
+                  desarrollo integral de nuestros jugadores y jugadoras. Cada
+                  día, nos esforzamos por mejorar y ofrecer nuevas oportunidades
+                  para que todos los miembros del club puedan alcanzar su máximo
+                  potencial en el deporte que amamos.
                 </p>
-                <p className="mt-2 mb-9 ml-10 mr-10 text-justify">
-                  Lo mas importante del club son nuestros niños, niñas,
-                  adolescentes y adultos que sienten el club un lugar en el que
-                  se sienten felices, plenos de alegría y encuentran diversión,
-                  amistad y aamor por sus compañeros y compañeras. Actualmente
-                  el club está en su mejor momento, lo que empezó siendo un
-                  equipo de amigos, ahora se ha convertido en un club deportivo
-                  que celebra entrenamientos todos los días de la semana y juega
-                  sus partidos durante el fin de semana de manera interrrumpida.
+                <p className="mt-5 mb-9 ml-12 mr-12 text-justify">
+                  Este crecimiento constante no ha hecho más que fortalecer los
+                  lazos que nos unen como comunidad, reafirmando nuestro
+                  compromiso con el desarrollo integral de nuestros jugadores y
+                  jugadoras. Cada día, nos esforzamos por mejorar y ofrecer
+                  nuevas oportunidades para que todos los miembros del club
+                  puedan alcanzar su máximo potencial en el deporte que amamos.
                 </p>
               </div>
             </div>
@@ -76,7 +77,7 @@ const Home = () => {
             <div className="flex flex-col justify-center gap-6 sm:pt-0 m-0">
               <h1
                 data-aos="fade-up"
-                className="text-3xl sm:text-4xl font-bold mt-2 ml-10"
+                className="text-3xl sm:text-4xl font-bold mt-2 ml-14"
               >
                 Historia del Club
               </h1>
@@ -84,7 +85,7 @@ const Home = () => {
                 data-aos="fade-up"
                 className="etxt-sm text.grey tracking-wide leading-5"
               >
-                <p className="mt-0 ml-10 mr-10 text-justify">
+                <p className="mt-0 ml-12 mr-12 text-justify">
                   El barrio Madrileño de la Ciudad de los Ángeles tiene una gran
                   tradición futbolística. Existían dos grandes equipos el CD.
                   Ciudad los Ángeles y la AD. Rayo los Ángeles. Diversos motivos
@@ -96,19 +97,19 @@ const Home = () => {
                   Comunidad de Madrid y solucionar ese hambre de fútbol de todos
                   nuestros vecinos y vecinas.
                 </p>
-                <p className="mt-5 ml-10 mr-10 text-justify">
+                <p className="mt-5 ml-12 mr-12 text-justify">
                   En Marzo de 2003 con una enorme ilusión de un grupo de amigos
                   del barrio de la Ciudad de los Ángeles (distrito Villaverde),
                   decidieron crear y creer en este maravilloso proyecto.
                 </p>
-                <p className="mt-5 ml-10 mr-10 text-justify">
+                <p className="mt-5 ml-12 mr-12 text-justify">
                   Así comenzó nuestra historia, un grupo de amigos jugando al
                   fútbol, comprometidos con el barrio y su gente, apoyados por
                   los comercios para sacar adelante el equipo económicamente,
                   transmitiendo sus magníficos valores y su amor por este
                   deporte.
                 </p>
-                <p className="mt-5 mb-5 ml-10 mr-10 text-justify">
+                <p className="mt-5 mb-5 ml-12 mr-12 text-justify">
                   Ahora se cumplen 21 años desde que todo empezó y estamos
                   orgullos de ver que seguimos adelante, que tenemos equipos en
                   todas las categorías y que los chic@s del barrio pueden
@@ -122,7 +123,7 @@ const Home = () => {
               <img
                 src={HistoriaClub}
                 alt=""
-                className="max-w-[600px] h-[450px] w-full mx-auto shadow-xl object-cover rounded-lg"
+                className="max-w-[600px] h-[480px] w-full mx-auto shadow-xl object-cover rounded-lg"
               />
             </div>
           </div>
