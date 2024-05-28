@@ -13,6 +13,9 @@ import ProductsOrders from "./pages/ProductsOrders.jsx";
 import Merchandising from "./pages/Merchandising.jsx";
 import { PlayerProvider } from "./context/PlayerContext.jsx";
 import { SpinnerProvider } from "./context/LoadingContext.jsx"; //el componente loading spinner
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import TeamInfo from "./pages/TeamInfo.jsx";
 
 
 
@@ -20,6 +23,7 @@ function App() {
   return (
     //<AuthProvider>
       <SpinnerProvider>
+      <ToastContainer />
       <ShoppingCartProvider>
        <PlayerProvider> 
       <BrowserRouter>
@@ -27,6 +31,7 @@ function App() {
         {/* RUTAS NAVBAR */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/info" element={<TeamInfo />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         

@@ -5,7 +5,7 @@ import { GiClothes } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
 import { RiTeamLine } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io"; // Importa el icono del triángulo apuntando a la derecha
-import imagen from '../../../public/escudo.png';
+import imagen from '../../assets/icons/escudo.png';
 
 function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -79,6 +79,15 @@ function Sidebar() {
           >
             <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
             <span className="mx-3 items-center justify-center">Jugadores (A)</span>
+          </a>
+        </nav>
+        <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
+          <a
+            className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+            href="/dashboard/product-order"
+          >
+            <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
+            <span className="mx-3 items-center justify-center">Mis pedidos (U)</span>
           </a>
         </nav>
         <nav className="mt-7 justify-center flex items-center hover:bg-custom-blue hover:text-white transition duration-500">
