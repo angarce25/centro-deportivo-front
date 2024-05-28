@@ -17,7 +17,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MyOrders from "./pages/MyOrders.jsx";
 import TeamInfo from "./pages/TeamInfo.jsx";
-
+import { PrivateRoute, AdminPrivateRoute } from "./context/PrivateRoutes.jsx";
 
 
 function App() {
@@ -40,15 +40,15 @@ function App() {
          
           {/* <Route path="/dashboard/products" element={<ProductsP />} /> */}
           {/* <Route path="/dashboard/teams" element={<PlayersP />} /> */}
-
-
-
+          {/* <Route path="/*" element={<NotFound />} /> */}
       {/* Rutas Sidebar protegidas */}
 
           <Route path="/dashboard/users" element={<UserP />} />
           
           {/*Pagina jugadores user */}
-          <Route path="/dashboard/my-players" element={<PlayersUser />} />{" "}
+          {/* <Route element={<PrivateRoute isAllowed={false} />}> */}
+            <Route path="/dashboard/my-players" element={<PlayersUser />} />{" "}
+          {/* </Route> */}
           {/*Pagina jugadores admin */}
           <Route path="/dashboard/players" element={<PlayersAdmin />} />{" "}
           <Route path="/dashboard/form-player" element={<NewPlayer />} />
