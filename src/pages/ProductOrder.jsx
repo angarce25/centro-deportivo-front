@@ -1,4 +1,3 @@
-import OrdersUsersChart from "../components/orders/OrdersUsersChart";
 import Sidebar from "../components/sideBar/SideBar";
 import { Spinner, useSpinner } from '../context/LoadingContext';
 import { useEffect } from 'react';
@@ -22,7 +21,7 @@ function ProductOrder () {
       <section style={{ display: "flex" }}>
         <Sidebar style={{ flex: "0 0 auto" }} />
         <div style={{ marginLeft: "20px" }}>
-          <OrdersUsersChart />
+          
         </div>
       </section>
     )}

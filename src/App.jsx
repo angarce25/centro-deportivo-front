@@ -15,6 +15,7 @@ import { PlayerProvider } from "./context/PlayerContext.jsx";
 import { SpinnerProvider } from "./context/LoadingContext.jsx"; //el componente loading spinner
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MyOrders from "./pages/MyOrders.jsx";
 import TeamInfo from "./pages/TeamInfo.jsx";
 
 
@@ -55,6 +56,7 @@ function App() {
           <Route path="/dashboard/products" element={<Products />} />
           <Route path="/dashboard/product-order" element={<ProductOrder />} />
           <Route path="/dashboard/products-orders"element={<ProductsOrders />}/>
+          <Route path="/dashboard/myorders"element={<MyOrders />}/>
           
 
           <Route path="/dashboard/teams" element={<PlayersUser />} />
