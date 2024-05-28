@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import {Link} from "react-router-dom";
 import { CgCloseR } from "react-icons/cg";
 import { ShoppingCartContext } from "../../context/ProductContext";
 import OrderCard from "../orderCart/OrderCart";
