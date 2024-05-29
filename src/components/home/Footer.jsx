@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md"; // Importa el ícono MdEmail de react-icons
+import "../../../styles/styles.css";
 
 const Footer = () => {
   return (
@@ -15,7 +16,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaFacebook size={30} color="white" />
+              <FaFacebook size={30} color="white" className="icon-footer" />
             </a>
           </li>
           <li>
@@ -24,7 +25,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaInstagram size={30} color="white" />
+              <FaInstagram size={30} color="white" className="icon-footer" />
             </a>
           </li>
           <li>
@@ -33,12 +34,12 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaLinkedin size={30} color="white" />
+              <FaLinkedin size={30} color="white" className="icon-footer" />
             </a>
           </li>
           <li>
             <a href="mailto:cdciudaddelosangeles@hotmail.com">
-              <MdEmail size={35} color="white" />{" "}
+              <MdEmail size={35} color="white" className="icon-footer" />{" "}
               {/* Usa MdEmail de react-icons */}
             </a>
           </li>

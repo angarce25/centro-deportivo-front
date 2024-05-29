@@ -1,0 +1,7 @@
+.icon-footer {
+  transition: transform 0.3s ease-in-out; /* Transición suave */
+}
+
+.icon-footer:hover {
+  transform: translateY(-8px); /* Mover hacia arriba 5px */
+}
