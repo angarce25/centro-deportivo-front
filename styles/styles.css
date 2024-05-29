@@ -1,0 +1,7 @@
+/*ESTILOS DE LOS ICONOS DEL FOOTER*/
+.icon-footer {
+  transition: transform 0.3s ease-in-out; 
+}
+.icon-footer:hover {
+  transform: translateY(-8px);
+}
