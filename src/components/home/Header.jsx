@@ -34,6 +34,12 @@ const Header = () => {
           Visita nuestra Tienda
         </Link>
         <Link
+          to="/info"
+          className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
+        >
+          Nuestros equipos
+        </Link>
+        <Link
           to="/register"
           className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
         >

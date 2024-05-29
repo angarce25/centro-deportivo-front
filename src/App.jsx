@@ -29,7 +29,7 @@ function App() {
       <SpinnerProvider>
       <ToastContainer />
       <ShoppingCartProvider>
-       <PlayerProvider> 
+      <PlayerProvider> 
       <BrowserRouter>
       
         {/* RUTAS NAVBAR */}
@@ -69,7 +69,7 @@ function App() {
         {/* -_- Final de ruta de pruebas para cnstruccion de componentes front */}
         </Routes>
       </BrowserRouter>
-        </PlayerProvider> 
+      </PlayerProvider> 
       </ShoppingCartProvider>
       </SpinnerProvider>
     //</AuthProvider>
