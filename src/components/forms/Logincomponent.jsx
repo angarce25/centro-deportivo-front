@@ -56,7 +56,13 @@ const Logincomponent = ({ onFormSwitch }) => {
     } catch (error) {
       if (error.response) {
         console.error("Error al iniciar sesión:", error.response.data.message || 'Error en el inicio de sesión');
-        toast.error("Error en inicio de sesión");
+
+        // Verificar si el error es debido a demasiados intentos
+        if (error.response.status === 429) {
+          toast.error("Demasiados intentos de inicio de sesión. Por favor, inténtelo de nuevo más tarde.");
+        } else {
+          toast.error("Error en inicio de sesión");
+        }
       } else if (error.request) {
         console.error("Error al iniciar sesión:", 'No se pudo conectar con el servidor');
         toast.error("Error en inicio de sesión");
