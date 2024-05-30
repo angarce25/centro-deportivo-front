@@ -58,6 +58,26 @@ function ProductsCard(data) {
           {data.data.price} €
         </span>
       </p>
+      <div className="flex justify-center mb-0">
+        {data.data.sizes.map((size, index) => (
+          <div
+            key={index}
+            className={`mx-1 px-1 py-1 rounded-md text-xs font-medium`}
+          >
+            <input
+              type="checkbox"
+              name="size"
+              value={size}
+              checked={context.checkedSizes[size]}
+              onChange={(event) => {
+                context.setCheckedSizes({ ...context.checkedSizes, [event.target.value]: event.target.checked });
+              }}
+            />
+            {size}
+          </div>
+        ))}
+      </div>
+      
     </section>
   );
 }
