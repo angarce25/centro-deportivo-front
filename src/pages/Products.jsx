@@ -35,18 +35,19 @@ function Products() {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex fixed">
         <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
         {!loading && (
           <>
             <Sidebar />
             <ProductsLayout>
-            <ProductsNav />
-              <h2 className="text-xl font-medium mb-2">
+              <h2 className="text-xl font-medium mb-2 ">
                 Productos necesarios y disponibles del CDCA
               </h2>
+            <ProductsNav />
               <div
-                className="2xl:grid 2xl:grid-cols-5 2xl:w-full 2xl:max-w-screen-2xl
+                className=" overflow-y-scroll w-full h-screen   
+                2xl:grid 2xl:grid-cols-5 2xl:w-full 2xl:max-w-screen-2xl
                            xl:grid xl:grid-cols-4 xl:w-full xl:max-w-screen-lg
                            lg:grid lg:grid-cols-4 lg:w-full lg:max-w-screen-lg
                            md:grid md:grid-cols-3 md:w-full md:max-w-screen-md

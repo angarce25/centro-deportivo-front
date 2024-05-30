@@ -28,7 +28,8 @@ export const ShoppingCartProvider = ({ children }) => {
 const [order, setOrder] = useState([]);
 
 // CHECKBOXES · STATE
-const [checkedSizes, setCheckedSizes] = useState({});
+const [checkedSizes, setCheckedSizes] = useState(false);
+
 
   return (
     <ShoppingCartContext.Provider value={{ 

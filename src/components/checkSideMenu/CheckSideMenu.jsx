@@ -44,7 +44,7 @@ const CheckSideMenu = () => {
   return (
     <aside   
     className= {`${context.isCheckSideMenuOpen ? "flex" : "hidden" }
-    check-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white   `}
+    check-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white  w-1/4 h-5/6`}
     style={{
         maxWidth: "100%",
         height: "auto",
@@ -60,7 +60,7 @@ const CheckSideMenu = () => {
               </CgCloseR>
               </div>
           </div>
-          <div className="px-6 py-4 overflow-y-auto flex-1">
+          <div className="px-6 py-4 overflow-y-scroll h-56">
           {
             context.cartProducts.map(product => (
               product._id && (
@@ -70,6 +70,7 @@ const CheckSideMenu = () => {
                     name={product.name} 
                     price={product.price} 
                     imageUrl={product.image}
+                    sizes={product.sizes}
                     handleDelete={handleDelete} 
                 />
             )
@@ -83,7 +84,7 @@ const CheckSideMenu = () => {
             </p>
             
             <button
-            className="button-register bg-yellow-l hover:bg-yellow-d text-black font-semibold py-2 px-4 rounded"
+            className="w-full bg-yellow-l hover:bg-yellow-d text-black font-semibold py-2 px-4 rounded"
             onClick={() => handleCheckout()}            
           >
             Solicitar Pedido
