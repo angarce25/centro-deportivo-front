@@ -53,17 +53,17 @@ function OrdersUsersChart() {
                                     <thead>
                                         <tr className="text-gray-800 text-sm">
                                             <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                ID
+                                                Id del Pedido
                                             </th>
                                             <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                Documento
+                                                Documento de Pago
                                             </th>
                                             
                                             <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                Resumen
+                                                Observaciones del Pedido
                                             </th>
                                             <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                Estado
+                                                Estado del Pedido
                                             </th>
                                             <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                                 Fecha
