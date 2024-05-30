@@ -112,7 +112,7 @@ function PlayersUserChart() {
                       {player.lastname}
                     </td>
                     <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
-                      {player.age}
+                      {player.age} años
                     </td>
                     <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                       {player.shirt_size}
