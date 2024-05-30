@@ -44,8 +44,8 @@ function App() {
           {/* <Route path="/dashboard/products" element={<ProductsP />} /> */}
           {/* <Route path="/dashboard/teams" element={<PlayersP />} /> */}
           {/* <Route path="/*" element={<NotFound />} /> */}
+      
       {/* Rutas Sidebar protegidas */}
-
           <Route path="/dashboard/users" element={<UserP />} />
           
           {/*Pagina jugadores user */}
@@ -57,7 +57,7 @@ function App() {
           <Route path="/dashboard/form-player" element={<NewPlayer />} />
           
           <Route path="/dashboard/products" element={<Products />} />
-          <Route path="/dashboard/product-order" element={<ProductOrder />} />
+          <Route path="/dashboard/add-order" element={<ProductOrder />} />
           <Route path="/dashboard/products-orders"element={<ProductsOrders />}/>
           <Route path="/dashboard/myorders"element={<MyOrders />}/>
           <Route path="/dashboard/orders"element={<OrdersAdmin />}/>

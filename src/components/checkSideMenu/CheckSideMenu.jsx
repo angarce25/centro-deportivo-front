@@ -6,13 +6,13 @@ import { totalPrice } from "../../Utils";
 import "./style.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ProductOrder from "../../pages/ProductOrder";
+
 
 const CheckSideMenu = () => {
   const context = useContext(ShoppingCartContext);
   const navigate = useNavigate();
 
-  const [orderToAdd, setOrderToAdd] = useState({});
+  const [orderToAdd] = useState({});
 
   const handleDelete = (_id) => {
     const filteredProducts = context.cartProducts.filter(
@@ -26,7 +26,7 @@ const CheckSideMenu = () => {
     const totalProducts = context.cartProducts.length;
     const totalPrice = context.cartProducts.reduce((acc, product) => acc + product.price, 0);
   
-    navigate(`/dashboard/product-order?date=${date.toLocaleDateString()}&totalProducts=${totalProducts}&totalPrice=${totalPrice.toFixed(2)}&products=${JSON.stringify(context.cartProducts)}`);
+    navigate(`/dashboard/add-order?date=${date.toLocaleDateString()}&totalProducts=${totalProducts}&totalPrice=${totalPrice.toFixed(2)}&products=${JSON.stringify(context.cartProducts)}`);
   };
 
 
@@ -40,11 +40,11 @@ const CheckSideMenu = () => {
 
     // context.setOrder([...context.order, orderToAdd]);
     // context.setCartProducts([]);
-    // navigate(`/dashboard/product-order`);
+    // navigate(`/dashboard/add-order`);
 
     if (orderToAdd.date && orderToAdd.totalProducts && orderToAdd.totalPrice) {
       navigate(
-        `/dashboard/product-order?date=${orderToAdd.date}&totalProducts=${orderToAdd.totalProducts}&totalPrice=${orderToAdd.totalPrice}`
+        `/dashboard/add-order?date=${orderToAdd.date}&totalProducts=${orderToAdd.totalProducts}&totalPrice=${orderToAdd.totalPrice}`
       );
     }
   
