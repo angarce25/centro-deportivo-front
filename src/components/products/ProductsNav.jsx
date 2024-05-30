@@ -7,7 +7,7 @@ const ProductsNav = () => {
   const context = useContext(ShoppingCartContext);
   
   return (
-    <nav className="flex flex-row justify-center items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
+    <nav className="flex flex-row justify-around items-center fixed top-0 w-full py-5 px-8 text-sm font-light">
       <ul className="flex items-center gap-3">
         
         <li>

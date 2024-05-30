@@ -40,8 +40,8 @@ function Products() {
         {!loading && (
           <>
             <Sidebar />
-            <ProductsNav />
             <ProductsLayout>
+            <ProductsNav />
               <h2 className="text-xl font-medium mb-2">
                 Productos necesarios y disponibles del CDCA
               </h2>
