@@ -53,6 +53,8 @@ export default function FormNewPlayer() {
                 <label className="block text-gray font-bold mb-2" htmlFor="apellidos">Apellidos</label>
                 <input className="input input-bordered w-full max-w-xs" type="text" {...register("lastname", {required: true})} />
               </div>
+            </div>
+            <div className="flex mb-4">
               <div className="w-full lg:w-1/2 ml-4">
                 <label className="block text-gray font-bold mb-2" htmlFor="fecha de nacimiento">Fecha de Nacimiento</label>
                 <input className="input input-bordered w-full max-w-xs" type="date" {...register("birthdate", {required: true})} />
