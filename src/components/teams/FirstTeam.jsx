@@ -33,8 +33,7 @@ function FirstTeam() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <div className="relative w-full h-screen">
-        <img src={imgabout} alt="Equipo" className="object-cover w-full h-full" />
+      <div className="relative w-full">
         <div className="absolute bottom-0 left-0 w-full text-center text-yellow-d bg-black bg-opacity-50 py-2">
           <h1 className="text-5xl font-bold">1,2,3 Ciudad!</h1>
         </div>

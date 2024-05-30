@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTimes, FaPen } from "react-icons/fa";
 import { MdEmail } from "react-icons/md"; // Importa el ícono MdEmail de react-icons
-import "../../../styles/styles.css";
+import "../../../styles/hero-slider.css";
 
 const Footer = () => {
   return (
@@ -12,7 +12,7 @@ const Footer = () => {
         <ul className="flex items-center gap-3 mb-4 sm:mb-0">
           <li>
             <a
-              href="https://www.facebook.com/"
+              href="https://www.facebook.com/123Ciudad/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -21,7 +21,7 @@ const Footer = () => {
           </li>
           <li>
             <a
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/cd_ciudad/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -30,15 +30,24 @@ const Footer = () => {
           </li>
           <li>
             <a
-              href="https://www.linkedin.com/"
+              href="https://x.com/123Ciudad"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaLinkedin size={30} color="white" className="icon-footer" />
+              <FaTimes size={30} color="white" className="icon-footer" />
             </a>
           </li>
           <li>
-            <a href="mailto:cdciudaddelosangeles@hotmail.com">
+            <a
+              href="https://cdciudadlosangeles.blogspot.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaPen size={25} color="white" className="icon-footer" />
+            </a>
+          </li>
+          <li>
+            <a href="mailto:hola_ciudad@hotmail.com">
               <MdEmail size={35} color="white" className="icon-footer" />{" "}
               {/* Usa MdEmail de react-icons */}
             </a>
