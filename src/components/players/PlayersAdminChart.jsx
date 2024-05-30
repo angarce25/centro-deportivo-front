@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-// import fetchPlayers from './PlayersFetch.jsx';
+import AssignTeamModal from "./ChooseTeam.jsx";
 
 function PlayersTable() {
   const [players, setPlayers] = useState([]);
   const [error, setError] = useState(null);
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL;
     const extraPath = '/players';
-    const fullUrl = apiUrl + extraPath
+    const fullUrl = apiUrl + extraPath;
 
-     axios.get(fullUrl, {withCredentials: true})
+    axios.get(fullUrl, { withCredentials: true })
       .then((response) => {
         setPlayers(response.data);
       })
@@ -21,7 +23,31 @@ function PlayersTable() {
       });
   }, []);
 
-   return (
+  const handleOpenModal = (player) => {
+    setSelectedPlayer(player);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedPlayer(null);
+    setIsModalOpen(false);
+  };
+
+  const handleSaveTeam = async (playerId, teamId) => {
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await axios.post(`${apiUrl}/player/assign-team`, { playerId, teamId });
+
+      const updatedPlayers = players.map(player =>
+        player._id === playerId ? { ...player, team: { _id: teamId, name: response.data.teamName } } : player
+      );
+      setPlayers(updatedPlayers);
+    } catch (error) {
+      console.error("Error al asignar el equipo:", error);
+    }
+  };
+
+  return (
     <section className="mt-8">
       <div className="overflow-x-auto">
         <div className="flex items-center justify-between">
@@ -35,6 +61,7 @@ function PlayersTable() {
               <th></th>
               <th>Nombre</th>
               <th>Apellidos</th>
+              <th>Equipo</th>
               <th>Email</th>
               <th>Teléfono</th>
               <th>Código postal</th>
@@ -50,8 +77,19 @@ function PlayersTable() {
             {players.map((player) => (
               <tr key={player._id}>
                 <th></th>
-                <th className="font-medium">{player.name}</th>
+                <td className="font-medium">{player.name}</td>
                 <td>{player.lastname}</td>
+                <td>
+                  {player.team ? player.team.name : 'Pendiente'}
+                  <button 
+                    onClick={() => handleOpenModal(player)}
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    <svg className="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8h16M4 16h16"/>
+                    </svg>
+                  </button>
+                </td>
                 <td>{player.email}</td>
                 <td>{player.phone}</td>
                 <td>{player.post_code}</td>
@@ -66,9 +104,15 @@ function PlayersTable() {
           </tbody>
         </table>
       </div>
+
+      <AssignTeamModal 
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        player={selectedPlayer}
+        onSave={handleSaveTeam}
+      />
     </section>
   );
 }
 
 export default PlayersTable;
-
