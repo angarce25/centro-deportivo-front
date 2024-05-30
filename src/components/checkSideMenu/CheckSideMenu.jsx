@@ -84,7 +84,7 @@ const CheckSideMenu = () => {
         )}
       </div>
       <div className="px-6 py-4">
-        <p className="flex justify-between items-center">
+        <p className="flex justify-between items-center mb-3">
           <span className="font-light">Total:</span>
           <span className="font-semibold ">
             {totalPrice(context.cartProducts)}€
