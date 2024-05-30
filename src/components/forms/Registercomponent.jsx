@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm, Controller } from 'react-hook-form';
 import TermsAndConditionsModal from '../termsAndConditions/Terms';
 import { registerRequest } from '../../context/auth';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Registercomponent = ({ onFormSwitch }) => {
   const { control, handleSubmit, formState: { errors }, setError } = useForm();
@@ -23,12 +25,12 @@ const Registercomponent = ({ onFormSwitch }) => {
     console.log("Datos enviados al formulario:", data);
   
     if (!isRecaptchaVerified) {
-      alert("Por favor, verifica que no eres un robot.");
+      toast.error("Por favor, verifica que no eres un robot.");
       return;
     }
   
     if (!termsAccepted) {
-      alert("Debes aceptar los términos y condiciones.");
+      toast.error("Debes aceptar los términos y condiciones.");
       return;
     }
   
@@ -36,14 +38,14 @@ const Registercomponent = ({ onFormSwitch }) => {
       const response = await registerRequest(data);
   
       if (response.status === 200) {
-        alert("Registro exitoso");
+        toast.success("Registro exitoso");
         navigate("/login");
       } else {
-        alert(response.data.message || "Error en el registro");
+        toast.error(response.data.message || "Error en el registro");
       }
     } catch (error) {
       console.error("Error en el registro:", error);
-      alert("Error en el registro");
+      toast.error("Error en el registro");
     }
   };
 
@@ -68,7 +70,8 @@ const Registercomponent = ({ onFormSwitch }) => {
               control={control}
               name="name"
               rules={{ required: "Campo obligatorio", maxLength: 80, pattern: /^[a-zA-ZáéíóúÁÉÍÓÚ\s]+$/ }}
-              render={({ field }) => <input {...field} type="text" placeholder="Nombre" className="input-style w-full max-w-md border-r-2" />}
+              render={({ field }) => 
+              <input {...field} type="text" placeholder="Nombre" className="input w-full max-w-xs" />}
             />
             {errors.name && <span className="text-red-500">{errors.name.message}</span>}
           </div>
@@ -77,7 +80,8 @@ const Registercomponent = ({ onFormSwitch }) => {
               control={control}
               name="lastname"
               rules={{ required: "Campo obligatorio", maxLength: 80, pattern: /^[a-zA-ZáéíóúÁÉÍÓÚ\s]+$/ }}
-              render={({ field }) => <input {...field} type="text" placeholder="Apellido" className="input-style w-full max-w-md" />}
+              render={({ field }) => 
+              <input {...field} type="text" placeholder="Apellido" className="input w-full max-w-xs" />}
             />
             {errors.lastname && <span className="text-red-500">{errors.lastname.message}</span>}
           </div>
@@ -86,7 +90,8 @@ const Registercomponent = ({ onFormSwitch }) => {
               control={control}
               name="email"
               rules={{ required: "Campo obligatorio", pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }}
-              render={({ field }) => <input {...field} type="email" placeholder="E-mail" className="input-style w-full max-w-md" />}
+              render={({ field }) => 
+              <input {...field} type="email" placeholder="E-mail" className="input w-full max-w-xs" />}
             />
             {errors.email && <span className="text-red-500">{errors.email.message}</span>}
           </div>
@@ -95,7 +100,8 @@ const Registercomponent = ({ onFormSwitch }) => {
               control={control}
               name="password"
               rules={passwordValidation}
-              render={({ field }) => <input {...field} type="password" placeholder="Contraseña" className="input-style w-full max-w-md" />}
+              render={({ field }) => 
+              <input {...field} type="password" placeholder="Contraseña" className="input w-full max-w-xs" />}
             />
             {errors.password && (
               <div className="text-red-500">
@@ -111,7 +117,8 @@ const Registercomponent = ({ onFormSwitch }) => {
               control={control}
               name="mobile"
               rules={{ required: "Campo obligatorio", minLength: 9, maxLength: 9, pattern: /^[0-9]+$/ }}
-              render={({ field }) => <input {...field} type="tel" placeholder="Teléfono" className="input-style w-full max-w-md" />}
+              render={({ field }) => 
+              <input {...field} type="tel" placeholder="Teléfono" className="input w-full max-w-xs" />}
             />
             {errors.mobile && <span className="text-red-500">{errors.mobile.message}</span>}
           </div>
@@ -124,7 +131,10 @@ const Registercomponent = ({ onFormSwitch }) => {
               onChange={handleTermsChange}
               className="mr-2"
             />
-            <button type="button" onClick={openModal}>Términos y condiciones</button>
+            <button 
+            type="button" 
+            className="text-sm text-gray-500 hover:text-gray-700 underline"
+            onClick={openModal}>Términos y condiciones</button>
             <TermsAndConditionsModal isOpen={modalIsOpen} onClose={closeModal} />
           </div>
           <div className="recaptcha flex flex-col items-center"> 
@@ -134,7 +144,7 @@ const Registercomponent = ({ onFormSwitch }) => {
             />
           </div>
           <div className="flex justify-center">
-            <button className="button-register bg-custom-blue hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded" type="submit">Aceptar</button>
+            <button className="button-register bg-yellow-l hover:bg-yellow-d text-black font-semibold py-2 px-4 rounded" type="submit">Aceptar</button>
           </div>
         </form>
         <button 
@@ -142,7 +152,7 @@ const Registercomponent = ({ onFormSwitch }) => {
           onClick={() => onFormSwitch("Logincomponent")} 
           style={{ color: "#142740", display: "block", margin: "0 auto" }}
         >
-          <small>¿Ya tienes una cuenta? Inicia sesión aquí</small>
+          <small className="hover:text-gray">¿Ya tienes una cuenta? Inicia sesión aquí</small>
         </button>
       </div>
     </div>

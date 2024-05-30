@@ -13,6 +13,13 @@ import ProductsOrders from "./pages/ProductsOrders.jsx";
 import Merchandising from "./pages/Merchandising.jsx";
 import { PlayerProvider } from "./context/PlayerContext.jsx";
 import { SpinnerProvider } from "./context/LoadingContext.jsx"; //el componente loading spinner
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import MyOrders from "./pages/MyOrders.jsx";
+import TeamInfo from "./pages/TeamInfo.jsx";
+import { PrivateRoute, AdminPrivateRoute } from "./context/PrivateRoutes.jsx";
+import OrdersUsersChart from "./components/orders/OrdersUsersChart.jsx";
+import OrdersAdmin from "./pages/OrdersAdmin.jsx";
 
 
 
@@ -20,13 +27,15 @@ function App() {
   return (
     //<AuthProvider>
       <SpinnerProvider>
+      <ToastContainer />
       <ShoppingCartProvider>
-       <PlayerProvider> 
+      <PlayerProvider> 
       <BrowserRouter>
       
         {/* RUTAS NAVBAR */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/info" element={<TeamInfo />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         
@@ -34,15 +43,15 @@ function App() {
          
           {/* <Route path="/dashboard/products" element={<ProductsP />} /> */}
           {/* <Route path="/dashboard/teams" element={<PlayersP />} /> */}
-
-
-
+          {/* <Route path="/*" element={<NotFound />} /> */}
       {/* Rutas Sidebar protegidas */}
 
           <Route path="/dashboard/users" element={<UserP />} />
           
           {/*Pagina jugadores user */}
-          <Route path="/dashboard/my-players" element={<PlayersUser />} />{" "}
+          {/* <Route element={<PrivateRoute isAllowed={false} />}> */}
+            <Route path="/dashboard/my-players" element={<PlayersUser />} />{" "}
+          {/* </Route> */}
           {/*Pagina jugadores admin */}
           <Route path="/dashboard/players" element={<PlayersAdmin />} />{" "}
           <Route path="/dashboard/form-player" element={<NewPlayer />} />
@@ -50,6 +59,8 @@ function App() {
           <Route path="/dashboard/products" element={<Products />} />
           <Route path="/dashboard/product-order" element={<ProductOrder />} />
           <Route path="/dashboard/products-orders"element={<ProductsOrders />}/>
+          <Route path="/dashboard/myorders"element={<MyOrders />}/>
+          <Route path="/dashboard/orders"element={<OrdersAdmin />}/>
           
 
           <Route path="/dashboard/teams" element={<PlayersUser />} />
@@ -58,7 +69,7 @@ function App() {
         {/* -_- Final de ruta de pruebas para cnstruccion de componentes front */}
         </Routes>
       </BrowserRouter>
-        </PlayerProvider> 
+      </PlayerProvider> 
       </ShoppingCartProvider>
       </SpinnerProvider>
     //</AuthProvider>

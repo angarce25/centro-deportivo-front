@@ -14,9 +14,9 @@ export default function FormNewPlayer() {
   
   const onSubmit = handleSubmit(async (data) => {
     try {
-      const apiUrl = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
-      const extraPath = '/newplayer'; // Añade la parte adicional de la URL
-      const fullUrl = apiUrl + extraPath; // Combina la URL base con la parte adicional
+      const apiUrl = import.meta.env.VITE_API_URL; 
+      const extraPath = '/newplayer'; 
+      const fullUrl = apiUrl + extraPath; 
      
       console.log(fullUrl)
       const response = await axios.post(fullUrl, data, { withCredentials: true });

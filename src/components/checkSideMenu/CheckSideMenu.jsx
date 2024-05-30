@@ -1,29 +1,44 @@
 import { useContext } from "react";
-import {Link} from "react-router-dom";
 import { CgCloseR } from "react-icons/cg";
 import { ShoppingCartContext } from "../../context/ProductContext";
 import OrderCard from "../orderCart/OrderCart";
 import { totalPrice } from "../../Utils";
 import "./style.css"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 const CheckSideMenu = () => {
-  const context = useContext(ShoppingCartContext)
-  
+  const context = useContext(ShoppingCartContext);
+  const navigate = useNavigate();
+
+  const [orderToAdd, setOrderToAdd] = useState({});
+
   const handleDelete = (_id) => {
-    const filteredProducts = context.cartProducts.filter(product => product._id !== _id)
-    context.setCartProducts(filteredProducts)
-  }
-  
+    const filteredProducts = context.cartProducts.filter((product) => product._id !== _id);
+    context.setCartProducts(filteredProducts);
+  };
+
   const handleCheckout = () => {
+    const date = new Date();
+    
     const orderToAdd = {
-      date: Date.now(),
+      date: date.toLocaleDateString(),
       products: context.cartProducts,
       totalProducts: context.cartProducts.length,
       totalPrice: totalPrice(context.cartProducts)
-    }
+    };
+    setOrderToAdd(orderToAdd);
 
-    context.setOrder([...context.order, orderToAdd])
-    context.setCartProducts([])
-  }
+    // context.setOrder([...context.order, orderToAdd]);
+    // context.setCartProducts([]);
+    // navigate(`/dashboard/product-order`);
+
+    if (orderToAdd.date && orderToAdd.totalProducts && orderToAdd.totalPrice) {
+      navigate(`/dashboard/product-order?date=${orderToAdd.date}&totalProducts=${orderToAdd.totalProducts}&totalPrice=${orderToAdd.totalPrice}`);
+    }
+  };
+
+  
 
 
   return (
@@ -48,8 +63,8 @@ const CheckSideMenu = () => {
           <div className="px-6 py-4 overflow-y-auto flex-1">
           {
             context.cartProducts.map(product => (
-                <OrderCard 
-                
+              product._id && (
+                <OrderCard                 
                     key={product._id}
                     _id={product._id}
                     name={product.name} 
@@ -57,18 +72,23 @@ const CheckSideMenu = () => {
                     imageUrl={product.image}
                     handleDelete={handleDelete} 
                 />
-            ))
-         }
+            )
+          ))}
           </div>
         <div className="px-6 py-4">
+          
             <p className="flex justify-between items-center">
             <span className="font-light">Total:</span>
             <span className="font-semibold ">{totalPrice(context.cartProducts)}€</span>
             </p>
-            <Link to = "/dashboard/product-order">
-            <button className="w-full bg-black text-yellow-d border-2 border-yellow-d hover:bg-yellow-d hover:text-black hover:border-black py-2 rounded-lg mt-4" 
-            onClick={() => handleCheckout()}>Solicitar Pedido</button>
-            </Link>
+            
+            <button
+            className="button-register bg-yellow-l hover:bg-yellow-d text-black font-semibold py-2 px-4 rounded"
+            onClick={() => handleCheckout()}            
+          >
+            Solicitar Pedido
+          </button>
+            
         </div>
           
             

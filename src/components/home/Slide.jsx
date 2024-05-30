@@ -1,5 +1,5 @@
 import Img2 from "../../assets/slide/sponsors.png";
-import Img1 from "../../assets/slide/team.png";
+import Img1 from "../../assets/slide/Victoria.png";
 import Img3 from "../../assets/slide/aftermatch.png";
 import Slider from "react-slick";
 
@@ -90,9 +90,9 @@ const Slide = () => {
                     <img
                       src={data.img}
                       alt={data.title}
-                      className="w-[300px] h-[300px] sm:h-[450px] 
+                      className="w-[600px] h-[600px]  
                      sm:w-[450px] sm:scale-125 lg:scale-120
-                     object-contain mx-auto rounded-lg"
+                     object-contain mx-auto rounded-md"
                     />
                   </div>
                 </div>
@@ -106,3 +106,16 @@ const Slide = () => {
 };
 
 export default Slide;
+
+/*
+<div className="relative z-10">
+                    <img
+                      src={data.img}
+                      alt={data.title}
+                      className="w-[600px] h-[600px]  
+                     sm:w-[450px] sm:scale-125 lg:scale-120
+                     object-contain mx-auto rounded-md"
+                    />
+                  </div>
+
+*/
