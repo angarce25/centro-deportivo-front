@@ -1,6 +1,7 @@
 import SideBar from "../components/sideBar/SideBar";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 function ProductOrder() {
   const [searchParams] = useSearchParams(); //obtiene parametros de la URL
@@ -38,10 +39,12 @@ function ProductOrder() {
 
     // Crear un objeto de pedido
       const API = import.meta.env.VITE_API_URL;
-      const extraPath = "/add-order";
+      const extraPath = "/orders/add-order";
       const fullUrl = API + extraPath;
-      const token = localStorage.getItem('token');
-      const response = await fetch(fullUrl, {
+      const token = Cookies.get('token');
+      
+      const response = await fetch(fullUrl, 
+        {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,9 +53,10 @@ function ProductOrder() {
         body: JSON.stringify({
           product_ids: products.map(product => product._id),
           summary,
-          status,          
+          status,
           document
-        })
+        }),
+        credentials: 'include' 
       });
 
       if (!response.ok) {
@@ -61,7 +65,7 @@ function ProductOrder() {
 
       const data = await response.json();
       console.log('Pedido creado:', data);
-      //console.log('Token:',token)
+      console.log('Token:',token)
       
     } catch (error) {
       setError('Error al crear el pedido. Por favor, inténtalo de nuevo más tarde.');
