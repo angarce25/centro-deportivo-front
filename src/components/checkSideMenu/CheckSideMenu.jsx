@@ -27,20 +27,7 @@ const CheckSideMenu = () => {
     const totalPrice = context.cartProducts.reduce((acc, product) => acc + product.price, 0);
   
     navigate(`/dashboard/add-order?date=${date.toLocaleDateString()}&totalProducts=${totalProducts}&totalPrice=${totalPrice.toFixed(2)}&products=${JSON.stringify(context.cartProducts)}`);
-  };
-
-
-    // const orderToAdd = {
-    //   date: date.toLocaleDateString(),
-    //   products: context.cartProducts,
-    //   totalProducts: context.cartProducts.length,
-    //   totalPrice: totalPrice(context.cartProducts),
-    // };
-    // setOrderToAdd(orderToAdd);
-
-    // context.setOrder([...context.order, orderToAdd]);
-    // context.setCartProducts([]);
-    // navigate(`/dashboard/add-order`);
+  };    
 
     if (orderToAdd.date && orderToAdd.totalProducts && orderToAdd.totalPrice) {
       navigate(

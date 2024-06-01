@@ -8,9 +8,9 @@ import { toast } from 'react-toastify';
 
 function ProductOrder() {
   const [searchParams] = useSearchParams();
-  const date = searchParams.get("date") || '';
-  const totalProducts = searchParams.get("totalProducts");
-  const totalPrice = searchParams.get("totalPrice");
+  const date = new Date(searchParams.get("date")).toLocaleDateString();
+  const totalProducts = parseInt(searchParams.get("totalProducts"));
+  const totalPrice = parseInt(searchParams.get("totalPrice"));
   const products = JSON.parse(searchParams.get("products"));
   const [summary, setSummary] = useState('');
   const [status] = useState('pendiente');
@@ -35,6 +35,9 @@ function ProductOrder() {
       const fullUrl = API + extraPath;
       const token = Cookies.get('token');
       
+      
+
+
       const response = await fetch(fullUrl, {
         method: 'POST',
         headers: {
