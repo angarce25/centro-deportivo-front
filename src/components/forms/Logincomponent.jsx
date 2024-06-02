@@ -1,6 +1,7 @@
+import React, { useState } from "react";
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { useState } from 'react';
+import DOMPurify from 'dompurify';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,31 +14,32 @@ const Logincomponent = ({ onFormSwitch }) => {
   const navigate = useNavigate();
 
   const handleCookie = (token) => {
-    // Almacena la cookie en el navegador
-    Cookies.set('token', token, { expires: 1 }); 
+    Cookies.set('token', token, { expires: 1 });
     console.log('Token para la cookie:', token);
     console.log('Cookie establecida:', Cookies.get('token'));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const sanitizedEmail = DOMPurify.sanitize(email);
+    const sanitizedPass = DOMPurify.sanitize(pass);
+    console.log('Email sanitizado:', sanitizedEmail);
+    console.log('Contraseña sanitizada:', sanitizedPass);
     try {
-      const response = await axios.post(`${API}/login`, { email, password: pass });
+      const response = await axios.post(`${API}/login`, { email: sanitizedEmail, password: sanitizedPass });
 
-      // Verifica si la respuesta contiene un token en los datos de la respuesta
-      const token = response.data.token; 
-      const rol_id = response.data.rol_id; 
+      const token = response.data.token;
+      const rol_id = response.data.rol_id;
 
       console.log('Token recibido:', token);
-      console.log('Role recibido:', rol_id); 
+      console.log('Role recibido:', rol_id);
       console.log('Respuesta del servidor:', response.data);
-      
+
       if (token) {
-        handleCookie(token); // Llama a la función handleCookie para almacenar el token en la cookie
+        handleCookie(token);
       }
 
-      // Redirige según el rol del usuario
+      console.log('Redirigiendo según el rol del usuario:', rol_id);
       if (rol_id === 'user') {
         navigate('/dashboard/my-players');
       } else {
@@ -45,15 +47,12 @@ const Logincomponent = ({ onFormSwitch }) => {
       }
     } catch (error) {
       if (error.response) {
-        // Error de respuesta del servidor
         console.error("Error al iniciar sesión:", error.response.data.message || 'Error en el inicio de sesión');
         toast.error("Error en inicio de sesión");
       } else if (error.request) {
-        // Error de solicitud
         console.error("Error al iniciar sesión:", 'No se pudo conectar con el servidor');
         toast.error("Error en inicio de sesión");
       } else {
-        // Otros errores
         console.error("Error al iniciar sesión:", 'Error al procesar la solicitud de inicio de sesión');
         toast.error("Error en inicio de sesión");
       }
