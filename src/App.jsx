@@ -20,6 +20,7 @@ import TeamInfo from "./pages/TeamInfo.jsx";
 import { PrivateRoute, AdminPrivateRoute } from "./context/PrivateRoutes.jsx";
 import OrdersUsersChart from "./components/orders/OrdersUsersChart.jsx";
 import OrdersAdmin from "./pages/OrdersAdmin.jsx";
+import Suscriptions from "./components/players/SuscriptionsAdmin.jsx";
 
 
 
@@ -61,6 +62,8 @@ function App() {
           <Route path="/dashboard/products-orders"element={<ProductsOrders />}/>
           <Route path="/dashboard/myorders"element={<MyOrders />}/>
           <Route path="/dashboard/orders"element={<OrdersAdmin />}/>
+          <Route path="/dashboard/suscriptions"element={<Suscriptions />}/>
+
           
 
           <Route path="/dashboard/teams" element={<PlayersUser />} />

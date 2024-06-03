@@ -5,6 +5,7 @@ import { GiClothes } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
 import { RiTeamLine } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
+import { MdAttachMoney } from "react-icons/md";
 import imagen from '../../assets/icons/escudo.png';
 import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
@@ -92,6 +93,15 @@ function Sidebar() {
         <a
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
           href="/dashboard/orders"
+        >
+          <MdAttachMoney style={{ fontSize: "25px", fontWeight: "bold" }} />
+          <span className="mx-3 items-center justify-center">Pago de suscpciones</span>
+        </a>
+      </nav>
+      <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
+        <a
+          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          href="/dashboard/suscriptions"
         >
           <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
           <span className="mx-3 items-center justify-center">Pedidos</span>

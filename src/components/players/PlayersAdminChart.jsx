@@ -50,7 +50,7 @@ function PlayersTable() {
   return (
     <section className="mt-8">
       <div className="overflow-x-auto">
-        <div className="flex items-center justify-between">
+        <div className="flex shadow items-center justify-between">
           <h4 className="text-gray-600 font-bold mb-10">Listado de Jugadores</h4>
         </div>
         {error && <p>{error}</p>}
@@ -60,7 +60,6 @@ function PlayersTable() {
             <tr className="text-gray-800 text-sm">
               <th></th>
               <th>Nombre</th>
-              <th>Apellidos</th>
               <th>Equipo</th>
               <th>Email</th>
               <th>Teléfono</th>
@@ -68,17 +67,13 @@ function PlayersTable() {
               <th>DNI</th>
               <th>Alergias</th>
               <th>Lesiones</th>
-              <th>Talla camiseta</th>
-              <th>Talla pantalón</th>
-              <th>Nº calzado</th>
             </tr>
           </thead>
           <tbody>
             {players.map((player) => (
               <tr key={player._id}>
-                <th></th>
-                <td className="font-medium">{player.name}</td>
-                <td>{player.lastname}</td>
+                <td className="font-medium">{player.name}{player.lastname}</td>
+                <td></td>
                 <td>
                   {player.team ? player.team.name : 'Pendiente'}
                   <button 
@@ -96,9 +91,6 @@ function PlayersTable() {
                 <td>{player.dni}</td>
                 <td>{player.allergies}</td>
                 <td>{player.injury_illness}</td>
-                <td>{player.shirt_size}</td>
-                <td>{player.pants_size}</td>
-                <td>{player.shoe_size}</td>
               </tr>
             ))}
           </tbody>
