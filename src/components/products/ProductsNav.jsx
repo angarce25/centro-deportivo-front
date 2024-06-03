@@ -12,13 +12,16 @@ const ProductsNav = () => {
         
         <li>
           <NavLink to="/equipacion-necesaria-jugador">
-            Necesarios jugador
+            Pack Ini jugador
           </NavLink>
         </li>
         <li>
           <NavLink to="/equipacion-necesaria-arquero">
-            Necesarios arquero
+           Pack Ini arquero
           </NavLink>
+        </li>
+        <li>
+          <NavLink to="/merchandising">Extra</NavLink>
         </li>
         <li>
           <NavLink to="/merchandising">Merchandaising</NavLink>
