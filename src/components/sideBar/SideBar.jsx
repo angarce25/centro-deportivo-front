@@ -9,7 +9,7 @@ import { MdAttachMoney } from "react-icons/md";
 import imagen from '../../assets/icons/escudo.png';
 import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -17,6 +17,7 @@ function Sidebar() {
   const [userName, setUserName] = useState("");
   const [welcomeShown, setWelcomeShown] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate(); // Hook to navigate programmatically
 
   useEffect(() => {
     const adminStatus = Cookies.get('isAdmin') === 'true';
@@ -36,6 +37,13 @@ function Sidebar() {
       }
     }
   }, [welcomeShown, location.pathname]);
+
+  const handleLogout = () => {
+    Cookies.remove('token'); // Replace 'token' with the actual name of your authentication token cookie
+    Cookies.remove('isAdmin'); // Remove the admin status cookie if needed
+    Cookies.remove('name'); // Remove the user name cookie if needed
+    navigate('/'); // Redirect to the home page
+  };
 
   const renderUserLinks = () => (
     <>
@@ -95,7 +103,7 @@ function Sidebar() {
           href="/dashboard/orders"
         >
           <MdAttachMoney style={{ fontSize: "25px", fontWeight: "bold" }} />
-          <span className="mx-3 items-center justify-center">Pago de suscpciones</span>
+          <span className="mx-3 items-center justify-center">Pago de suscripciones</span>
         </a>
       </nav>
       <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
@@ -135,10 +143,10 @@ function Sidebar() {
         {isAdmin ? renderAdminLinks() : renderUserLinks()}
 
         <nav className="mt-7 justify-center flex items-center hover:bg-custom-blue hover:text-white transition duration-500">
-          <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/">
+          <button className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" onClick={handleLogout}>
             <i className="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
             <span className="mx-3">Cerrar sesión</span>
-          </a>
+          </button>
         </nav>
       </div>
     </>
