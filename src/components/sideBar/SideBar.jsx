@@ -94,7 +94,7 @@ function Sidebar() {
           href="/dashboard/orders"
         >
           <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
-          <span className="mx-3 items-center justify-center">Mis pedidos</span>
+          <span className="mx-3 items-center justify-center">Pedidos</span>
         </a>
       </nav>
     </>

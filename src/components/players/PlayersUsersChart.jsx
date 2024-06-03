@@ -9,7 +9,7 @@ function PlayersUserChart() {
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
     const extraPath = "/myplayers"; // Añade la parte adicional de la URL
-    const paymentsExtraPath = "/payments"; // Segundo extra path para recoger status de pagos
+    const paymentsExtraPath = "/payments/my-status"; // Segundo extra path para recoger status de pagos
     const fullUrl = apiUrl + extraPath; // Combina la URL base con la parte adicional
     const paymentsFullUrl = apiUrl + paymentsExtraPath;
 
@@ -73,6 +73,9 @@ function PlayersUserChart() {
                     Apellido
                   </th>
                   <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Edad
+                  </th>
+                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Talla Camisa
                   </th>
                   <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -107,6 +110,9 @@ function PlayersUserChart() {
                     </td>
                     <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                       {player.lastname}
+                    </td>
+                    <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                      {player.age} años
                     </td>
                     <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                       {player.shirt_size}
