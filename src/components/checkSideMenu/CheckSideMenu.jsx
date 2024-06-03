@@ -37,6 +37,7 @@ const CheckSideMenu = () => {
       navigate(`/dashboard/product-order?date=${orderToAdd.date}&totalProducts=${orderToAdd.totalProducts}&totalPrice=${orderToAdd.totalPrice}`);
     }
   };
+  
 
   
 
@@ -70,7 +71,7 @@ const CheckSideMenu = () => {
                     name={product.name} 
                     price={product.price} 
                     imageUrl={product.image}
-                    sizes={product.sizes}
+                    sizes={product.size}
                     handleDelete={handleDelete} 
                 />
             )

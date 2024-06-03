@@ -27,14 +27,6 @@ export const ShoppingCartProvider = ({ children }) => {
 // SHOPPING CART · ORDER
 const [order, setOrder] = useState([]);
 
-const addProductsToCart = (event, productData) => {
-  event.stopPropagation();
-  const selectedSize = Object.keys(checkedSizes).find((size) => checkedSizes[size]);
-  console.log(`Selected size: ${selectedSize}`);
-  setCartProducts([...cartProducts, { ...productData, size: selectedSize }]);
-  openCheckSideMenu();
-  closeProductDetail();
-};
 
  // SELECTED SIZE · STATE
  const [checkedSizes, setCheckedSizes] = useState(
@@ -54,29 +46,27 @@ const addProductsToCart = (event, productData) => {
   };
 
 
-  return (
-    <ShoppingCartContext.Provider value={{ 
-      count, 
-      setCount,
-      openProductDetail,
-      closeProductDetail,
-      isProductDetailOpen,
-      productToShow,
-      setProductToShow,
-      cartProducts,
-      setCartProducts,
-      addProductsToCart,
-      isCheckSideMenuOpen,
-      openCheckSideMenu,
-      closeCheckSideMenu,
-      order,
-      setOrder,
-      checkedSizes,
+ return (
+   <ShoppingCartContext.Provider value={{ 
+     count, 
+     setCount,
+     openProductDetail,
+     closeProductDetail,
+     isProductDetailOpen,
+     productToShow,
+     setProductToShow,
+     cartProducts,
+     setCartProducts,
+     isCheckSideMenuOpen,
+     openCheckSideMenu,
+     closeCheckSideMenu,
+     order,
+     setOrder,
+     checkedSizes,
       setCheckedSizes,
       handleCheckboxChange
-    }}>
+   }}>
      {children}
-    </ShoppingCartContext.Provider>
-  )
+   </ShoppingCartContext.Provider>
+ );
 };
-

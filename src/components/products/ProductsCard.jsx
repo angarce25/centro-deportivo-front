@@ -15,8 +15,10 @@ function ProductsCard(data) {
     event.stopPropagation();
     context.setCount(context.count + 1);
     context.setCartProducts([...context.cartProducts, productData]);
+    
     context.openCheckSideMenu();
     context.closeProductDetail();
+    
     
   };
   
@@ -72,16 +74,16 @@ function ProductsCard(data) {
           {data.data.name}
         </span>
         <span className="text-md font-semibold p-1 mb-1 mr-2 rounded-lg text-black">
-          {data.data.price}€
+          {data.data.price}
         </span>
       </p>
       <div className="flex justify-center mb-0">
   {data.data.sizes.map((size, index) => (
     <button
       key={index}
-      className={`m-1 mx-1 px-1 py-1 rounded-md text-xs border font-medium cursor-pointer ${selectedSize === size ? 'bg-yellow-d text-black' : 'bg-gray-200 text-gray-800'}`}
+      className={`m-1 mx-1 px-1 py-1 rounded-md text-xs border font-medium cursor-pointer ${selectedSize === size ? 'bg-yellow-d text-black' : 'bg-gray-l text-gray-d'}`}
       onClick={(event) => handleSizeSelection(size, event)}
-      
+      onClickCapture={(event) => setSelectedSize(size, event)}
     >
       {size}
     </button>
@@ -94,3 +96,4 @@ function ProductsCard(data) {
 }
 
 export default ProductsCard;
+
