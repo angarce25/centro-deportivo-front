@@ -89,6 +89,29 @@ function OrdersChart() {
         }
     };
 
+    //Aquí agrego laa función de cambio de estado de pedidos
+    const handleStatusChange = async (orderId, newStatus) => {
+        try {
+            const API = import.meta.env.VITE_API_URL;
+            const extraPath = `/orders/${orderId}/status`;
+            const fullUrl = `${API}${extraPath}`;
+            console.log('Updating order status:', { orderId, newStatus, fullUrl });
+
+            const response = await axios.put(fullUrl, { status: newStatus }, { withCredentials: true });
+            setOrders((prevOrders) => 
+                prevOrders.map((order) => 
+                    order._id === orderId ? { ...order, status: newStatus } : order
+                )
+            );
+            alert('Status Order UPDATED');
+        } catch (error) {
+            console.error('Error Status Order NOT updated', error);
+            alert('Status Order NOT updated');
+        }
+    };
+
+
+
    
     return (
         <section className="mt-8 flex justify-center">
@@ -144,9 +167,20 @@ function OrdersChart() {
                                                 <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
                                                     {order.summary} {/* Mostrar el resumen de la orden */}
                                                 </td>
+                                                {/* Status Orders */}
                                                 <td className={`px-4 py-4 whitespace-no-wrap border-b border-black text-center ${getStatusColor(order.status)}`}>
-                                                    {order.status} {/* Mostrar el estado de la orden */}
+                                                    <select
+                                                        className="bg-transparent"
+                                                        value={order.status}
+                                                        onChange={(e) => handleStatusChange(order._id, e.target.value)}
+                                                    >
+                                                        <option value="pendiente">Pendiente</option>
+                                                        <option value="completado">Completado</option>
+                                                        <option value="enviado">Enviado</option>
+                                                        <option value="cancelado">Cancelado</option>
+                                                    </select>
                                                 </td>
+                                                {/* Aquí termina Status Orders */}
                                                 <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
                                                     {order.createdAt ? format(new Date(order.createdAt), 'dd/MM/yyyy HH:mm') : 'Fecha no disponible'} {/* Formatear la fecha de creación */}
                                                 </td>
