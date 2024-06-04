@@ -29,21 +29,19 @@ const [order, setOrder] = useState([]);
 
 
  // SELECTED SIZE · STATE
- const [checkedSizes, setCheckedSizes] = useState(
-  []);
+ const [checkedSizes, setCheckedSizes] = useState([]);
   
-  const handleCheckboxChange = (size, checked) => {
-    setCheckedSizes((prevCheckedSizes) => {
-      const updatedCheckedSizes = { ...prevCheckedSizes };
-      Object.keys(updatedCheckedSizes).forEach((key) => {
-        updatedCheckedSizes[key] = false;
-      });
-      
-      updatedCheckedSizes[{size}] = checked;
-      console.log(`Updated checked sizes: ${JSON.stringify(updatedCheckedSizes)}`);
-      return updatedCheckedSizes;
-    });
+  const handleCheckSize = (size) => {
+    console.log(`Selected size: ${size}`);
+      setCheckedSizes(size)
+      console.log(`Updated checked sizes: ${checkedSizes}`);
+     return checkedSizes
   };
+
+  //FILTER PRODUCTS BY CATEGORY
+  const [filters, setFilters] = useState({category: "all"});
+
+
 
 
  return (
@@ -64,7 +62,10 @@ const [order, setOrder] = useState([]);
      setOrder,
      checkedSizes,
       setCheckedSizes,
-      handleCheckboxChange
+      handleCheckSize,
+      filters,
+      setFilters
+
    }}>
      {children}
    </ShoppingCartContext.Provider>

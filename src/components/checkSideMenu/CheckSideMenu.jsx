@@ -7,6 +7,7 @@ import "./style.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const CheckSideMenu = () => {
   const context = useContext(ShoppingCartContext);
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const CheckSideMenu = () => {
     context.setCartProducts(filteredProducts);
   };
 
+ 
   const handleCheckout = () => {
     const date = new Date();
     
@@ -71,7 +73,7 @@ const CheckSideMenu = () => {
                     name={product.name} 
                     price={product.price} 
                     imageUrl={product.image}
-                    sizes={product.size}
+                    sizes={product.sizes}
                     handleDelete={handleDelete} 
                 />
             )

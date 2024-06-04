@@ -28,7 +28,7 @@ function ProductsCard(data) {
     event.stopPropagation();
     // Actualiza el tamaño seleccionado
     console.log( "Size seleccionado:", selectedSize);
-    context.handleSizeSelection(size);
+    context.handleCheckSize(selectedSize);
   };
 
     useEffect(() => {
@@ -74,7 +74,7 @@ function ProductsCard(data) {
           {data.data.name}
         </span>
         <span className="text-md font-semibold p-1 mb-1 mr-2 rounded-lg text-black">
-          {data.data.price}
+          {data.data.price}€
         </span>
       </p>
       <div className="flex justify-center mb-0">
