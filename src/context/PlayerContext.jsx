@@ -36,7 +36,6 @@ export function PlayerProvider({ children }) {
         }
     };
 
-  
     return (
         <PlayerContext.Provider 
         value={{
