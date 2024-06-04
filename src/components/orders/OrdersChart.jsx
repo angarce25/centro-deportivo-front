@@ -93,11 +93,12 @@ function OrdersChart() {
     const handleStatusChange = async (orderId, newStatus) => {
         try {
             const API = import.meta.env.VITE_API_URL;
-            const extraPath = `/orders/${orderId}/status`;
-            const fullUrl = `${API}${extraPath}`;
+            const extraPath = `/orders/order/${orderId}/status`;
+            const fullUrl = API + extraPath;
             console.log('Updating order status:', { orderId, newStatus, fullUrl });
 
             const response = await axios.put(fullUrl, { status: newStatus }, { withCredentials: true });
+            console.log(response)
             setOrders((prevOrders) => 
                 prevOrders.map((order) => 
                     order._id === orderId ? { ...order, status: newStatus } : order
