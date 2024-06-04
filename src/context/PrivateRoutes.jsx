@@ -1,15 +1,11 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import Cookies from 'js-cookie';
 
 const getTokenFromCookies = () => {
-  const match = document.cookie.match(new RegExp("(^| )token=([^;]+)"));
-  if (match) {
-    return match[2];
-  }
-  return null;
+  return Cookies.get('token');
 };
-
 const decodeToken = (token) => {
   try {
     return jwtDecode(token);
@@ -21,7 +17,7 @@ const decodeToken = (token) => {
 
 export const PrivateRoute = ({ redirectPath = "/login" }) => {
   const token = getTokenFromCookies();
-
+console.log('GET TOKEN USER EN PRIVATE ROUTE: ', token)
   if (!token) {
     return <Navigate to={redirectPath} replace />;
   }
@@ -30,15 +26,17 @@ export const PrivateRoute = ({ redirectPath = "/login" }) => {
 };
 
 export const AdminPrivateRoute = ({ redirectPath = "/login" }) => {
-  const token = getTokenFromCookies();
+  const token = getTokenFromCookies('token');
+  const isAdmin = Cookies.get('isAdmin');
 
+  console.log('GET TOKEN ADMIN EN PRIVATE ROUTE: ', token)
+console.log('ROL DE ADMIN EN PRIVATE ROUTE: ', isAdmin)
   if (!token) {
     return <Navigate to={redirectPath} replace />;
   }
 
-  const decodedToken = decodeToken(token);
 
-  if (!decodedToken || decodedToken.role !== "admin") {
+  if (isAdmin !== true ) {
     return <Navigate to={redirectPath} replace />;
   }
 
