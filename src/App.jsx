@@ -46,9 +46,11 @@ function App() {
                 <Route path="/dashboard/myorders" element={<MyOrders />} />
                 <Route path="/dashboard/form-player" element={<NewPlayer />} />
                 <Route path="/dashboard/products" element={<Products />} />
+                <Route path="/dashboard/add-order" element={<ProductOrder />} />
                 <Route
                   path="/dashboard/product-order"
                   element={<ProductOrder />}
+                  
                 />
               </Route>
               {/* Final de las Rutas protegidas para el usuario */}
