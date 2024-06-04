@@ -2,7 +2,7 @@ import { useState } from "react";
 import SideBar from "../components/sideBar/SideBar";
 import NewOrderCard from "../components/orderCart/NewOrderCard";
 import { useSearchParams } from "react-router-dom";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { toast } from 'react-toastify';
 
 
@@ -33,17 +33,17 @@ function ProductOrder() {
       const API = import.meta.env.VITE_API_URL;
       const extraPath = "/orders/add-order";
       const fullUrl = API + extraPath;
-      const token = Cookies.get('token');
+      // const token = Cookies.get('token');
       
       
 
 
       const response = await fetch(fullUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
+        // headers: {
+        //   'Content-Type': 'application/json',
+        //   'Authorization': `Bearer ${token}`
+        // },
         body: JSON.stringify({
           product_ids: products.map(product => product._id),
           summary,
@@ -75,12 +75,12 @@ function ProductOrder() {
         totalProducts={totalProducts}
         totalPrice={totalPrice}
         products={products}
-        handleConfirmOrder={handleConfirmOrder}
         summary={summary}
         setSummary={setSummary}
         document={document}
         setDocument={setDocument}
         error={error}
+        //handleConfirmOrder={handleConfirmOrder}
       />
     </div>
   );
