@@ -42,7 +42,7 @@ function ProductsCard(data) {
       style={{
         maxWidth: "100%",
         height: "auto",
-        filter: "drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.3))",
+        filter: "drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.2))",
         
       }}
       className="bg-gray-l cursor-pointer w-52 h-68 rounded-lg m-6 mb-4 "

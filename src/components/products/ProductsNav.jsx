@@ -46,12 +46,12 @@ const ProductsNav = () => {
       <ul className="flex items-center gap-3">
         <li>Example@gmail.com</li>
 
-        <li>
+        {/* <li>
           <NavLink to="/ProductOrder">Mi pedido</NavLink>
         </li>
         <li>
           <NavLink to="/ProductsOrders">Mis pedidos</NavLink>
-        </li>
+        </li> */}
         <li className="flex items-center gap-1"><TfiShoppingCartFull /> {context.count}</li>
       </ul>
     </nav>

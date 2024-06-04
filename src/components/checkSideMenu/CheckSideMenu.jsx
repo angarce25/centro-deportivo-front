@@ -3,42 +3,40 @@ import { CgCloseR } from "react-icons/cg";
 import { ShoppingCartContext } from "../../context/ProductContext";
 import OrderCard from "../orderCart/OrderCart";
 import { totalPrice } from "../../Utils";
-import "./style.css"
+import "./style.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 
 
 const CheckSideMenu = () => {
   const context = useContext(ShoppingCartContext);
   const navigate = useNavigate();
 
-  const [orderToAdd, setOrderToAdd] = useState({});
+  const [orderToAdd] = useState({});
 
   const handleDelete = (_id) => {
-    const filteredProducts = context.cartProducts.filter((product) => product._id !== _id);
+    const filteredProducts = context.cartProducts.filter(
+      (product) => product._id !== _id
+    );
     context.setCartProducts(filteredProducts);
   };
 
  
   const handleCheckout = () => {
     const date = new Date();
-    
-    const orderToAdd = {
-      date: date.toLocaleDateString(),
-      products: context.cartProducts,
-      totalProducts: context.cartProducts.length,
-      totalPrice: totalPrice(context.cartProducts)
-    };
-    setOrderToAdd(orderToAdd);
-
-    // context.setOrder([...context.order, orderToAdd]);
-    // context.setCartProducts([]);
-    // navigate(`/dashboard/product-order`);
+    const totalProducts = context.cartProducts.length;
+    const totalPrice = context.cartProducts.reduce((acc, product) => acc + product.price, 0);
+  
+    navigate(`/dashboard/add-order?date=${date.toLocaleDateString()}&totalProducts=${totalProducts}&totalPrice=${totalPrice.toFixed(2)}&products=${JSON.stringify(context.cartProducts)}`);
+  };    
 
     if (orderToAdd.date && orderToAdd.totalProducts && orderToAdd.totalPrice) {
-      navigate(`/dashboard/product-order?date=${orderToAdd.date}&totalProducts=${orderToAdd.totalProducts}&totalPrice=${orderToAdd.totalPrice}`);
+      navigate(
+        `/dashboard/add-order?date=${orderToAdd.date}&totalProducts=${orderToAdd.totalProducts}&totalPrice=${orderToAdd.totalPrice}`
+      );
     }
-  };
+  
   
 
   
@@ -97,7 +95,7 @@ const CheckSideMenu = () => {
           
             
     </aside>
-  )
-}
+  );
+};
 
-export default CheckSideMenu
+export default CheckSideMenu;

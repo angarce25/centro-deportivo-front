@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 
 export const ShoppingCartContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const ShoppingCartProvider = ({ children }) => {
 
   // SHOPPING CART · COUNT

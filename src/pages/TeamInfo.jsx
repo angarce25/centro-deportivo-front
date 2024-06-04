@@ -9,9 +9,9 @@ function TeamInfo() {
   return (
     <div>
       <Header />
-        <HeroSlider />
-        <FirstTeam />
-        <SeniorB />
+      <HeroSlider />
+      <FirstTeam />
+      <SeniorB />
       <Footer />
     </div>
   );

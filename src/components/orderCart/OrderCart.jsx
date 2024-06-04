@@ -3,9 +3,11 @@ import {ShoppingCartContext} from "../../context/ProductContext";
 import { useContext } from "react";
 
 const OrderCart = props => {
+    // eslint-disable-next-line react/prop-types
     const {_id, name, price, imageUrl, handleDelete,  } = props	
 
     const context = useContext(ShoppingCartContext);
+    
 
   return (
     <div 
