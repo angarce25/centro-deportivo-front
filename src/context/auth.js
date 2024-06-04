@@ -34,4 +34,5 @@ export const registerRequest = user => axios.post(`${API}/register`, user);
 export const getMyPlayersReq = () => axios.get(`${API}/my-players`)
 export const createPlayersReq = (player) => axios.post(`${API}/newplayer`, player)
 
-// export const getMyOrdersReq = ()=> axios.get(`${API}/myorders`)
+export const getMyOrdersReq = ()=> axios.get(`${API}/myorders`)
+
