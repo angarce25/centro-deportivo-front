@@ -104,15 +104,10 @@ function OrdersChart() {
                     order._id === orderId ? { ...order, status: newStatus } : order
                 )
             );
-            alert('Status Order UPDATED');
         } catch (error) {
             console.error('Error Status Order NOT updated', error);
-            alert('Status Order NOT updated');
         }
     };
-
-
-
    
     return (
         <section className="mt-8 flex justify-center">
