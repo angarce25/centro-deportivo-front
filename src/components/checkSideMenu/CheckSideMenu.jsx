@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
+
 const CheckSideMenu = () => {
   const context = useContext(ShoppingCartContext);
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const CheckSideMenu = () => {
     context.setCartProducts(filteredProducts);
   };
 
+ 
   const handleCheckout = () => {
     const date = new Date();
     const totalProducts = context.cartProducts.length;
@@ -35,56 +37,63 @@ const CheckSideMenu = () => {
       );
     }
   
+  
+
+  
+
 
   return (
-    <aside
-      className={`${context.isCheckSideMenuOpen ? "flex" : "hidden"}
-    check-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white   `}
-      style={{
+    <aside   
+    className= {`${context.isCheckSideMenuOpen ? "flex" : "hidden" }
+    check-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white  w-1/4 h-5/6`}
+    style={{
         maxWidth: "100%",
         height: "auto",
         filter: "drop-shadow(0px 4.42184px 7.23px rgba(0, 0, 0, 1))",
-      }}
-    >
-      <div className="flex justify-between items-center p-6">
-        <h2 className="text-xl font-medium ">Mi pedido</h2>
-        <div>
-          <CgCloseR
-            className="text-2xl cursor-pointer"
-            onClick={() => context.closeCheckSideMenu()}
-          ></CgCloseR>
-        </div>
-      </div>
-      <div className="px-6 py-4 overflow-y-auto flex-1">
-        {context.cartProducts.map(
-          (product) =>
-            product._id && (
-              <OrderCard
-                key={product._id}
-                _id={product._id}
-                name={product.name}
-                price={product.price}
-                imageUrl={product.image}
-                handleDelete={handleDelete}
-              />
+      }}>
+        
+          <div className="flex justify-between items-center p-6">
+            <h2 className="text-xl font-medium ">Mi pedido</h2>
+            <div>
+              <CgCloseR 
+              className="text-2xl cursor-pointer"
+              onClick={() => context.closeCheckSideMenu()}>
+              </CgCloseR>
+              </div>
+          </div>
+          <div className="px-6 py-4 overflow-y-scroll h-56">
+          {
+            context.cartProducts.map(product => (
+              product._id && (
+                <OrderCard                 
+                    key={product._id}
+                    _id={product._id}
+                    name={product.name} 
+                    price={product.price} 
+                    imageUrl={product.image}
+                    sizes={product.sizes}
+                    handleDelete={handleDelete} 
+                />
             )
-        )}
-      </div>
-      <div className="px-6 py-4">
-        <p className="flex justify-between items-center mb-3">
-          <span className="font-light">Total:</span>
-          <span className="font-semibold ">
-            {totalPrice(context.cartProducts)}€
-          </span>
-        </p>
-
-        <button
-          className="button-register bg-yellow-l hover:bg-yellow-d text-black font-semibold py-2 px-4 rounded"
-          onClick={() => handleCheckout()}
-        >
-          Solicitar Pedido
-        </button>
-      </div>
+          ))}
+          </div>
+        <div className="px-6 py-4">
+          
+            <p className="flex justify-between items-center">
+            <span className="font-light">Total:</span>
+            <span className="font-semibold ">{totalPrice(context.cartProducts)}€</span>
+            </p>
+            
+            <button
+            className="w-full bg-yellow-l hover:bg-yellow-d text-black font-semibold py-2 px-4 rounded"
+            onClick={() => handleCheckout()}            
+          >
+            Solicitar Pedido
+          </button>
+            
+        </div>
+          
+            
     </aside>
   );
 };

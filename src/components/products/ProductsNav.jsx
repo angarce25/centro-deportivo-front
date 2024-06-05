@@ -1,42 +1,61 @@
-// import { useContext } from "react";
-// import { NavLink } from "react-router-dom";
-// import { ShoppingCartContext } from "../../context/ProductContext";
-// import { TfiShoppingCartFull } from "react-icons/tfi";
+import { useContext } from "react";
+import { NavLink } from "react-router-dom";
+import { ShoppingCartContext } from "../../context/ProductContext";
+import { TfiShoppingCartFull } from "react-icons/tfi";
 
-// const ProductsNav = () => {
-//   const context = useContext(ShoppingCartContext);
+
+
+
+const ProductsNav = () => {
+  const context = useContext(ShoppingCartContext);
+
+
+/* const filterProducts = (products) => {
+    return products.filters(product =>{
+      return (
+        filters.category === 'all' ||
+        product.category === filters.category
+      )
+    })
+  };
+
+  const filteredProducts = filterProducts(context.products); */
   
-//   return (
-//     <nav className="flex flex-row justify-center items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
-//       <ul className="flex items-center gap-3">
+  
+  return (
+    <nav className="flex flex-row justify-around items-center fixed top-0 w-full py-5 px-8 text-sm font-light">
+      <ul className="flex items-center gap-3">
         
-//         <li>
-//           <NavLink to="/equipacion-necesaria-jugador">
-//             Necesarios jugador
-//           </NavLink>
-//         </li>
-//         <li>
-//           <NavLink to="/equipacion-necesaria-arquero">
-//             Necesarios arquero
-//           </NavLink>
-//         </li>
-//         <li>
-//           <NavLink to="/merchandising">Merchandaising</NavLink>
-//         </li>
-//       </ul>
-//       <ul className="flex items-center gap-3">
-//         <li>Example@gmail.com</li>
+        <li>
+          <NavLink to="/equipacion-necesaria-jugador">
+            Pack Ini jugador
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/equipacion-necesaria-arquero">
+           Pack Ini arquero
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/merchandising">Extra</NavLink>
+        </li>
+        <li>
+          <NavLink to="/merchandising">Merchandaising</NavLink>
+        </li>
+      </ul>
+      <ul className="flex items-center gap-3">
+        <li>Example@gmail.com</li>
 
-//         <li>
-//           <NavLink to="/ProductOrder">Mi pedido</NavLink>
-//         </li>
-//         <li>
-//           <NavLink to="/ProductsOrders">Mis pedidos</NavLink>
-//         </li>
-//         <li className="flex items-center gap-1"><TfiShoppingCartFull /> {context.count}</li>
-//       </ul>
-//     </nav>
-//   );
-// };
+        {/* <li>
+          <NavLink to="/ProductOrder">Mi pedido</NavLink>
+        </li>
+        <li>
+          <NavLink to="/ProductsOrders">Mis pedidos</NavLink>
+        </li> */}
+        <li className="flex items-center gap-1"><TfiShoppingCartFull /> {context.count}</li>
+      </ul>
+    </nav>
+  );
+};
 
-// export default ProductsNav;
+export default ProductsNav;

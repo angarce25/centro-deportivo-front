@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 
 export const ShoppingCartContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const ShoppingCartProvider = ({ children }) => {
 
   // SHOPPING CART · COUNT
@@ -26,26 +27,48 @@ export const ShoppingCartProvider = ({ children }) => {
 
 // SHOPPING CART · ORDER
 const [order, setOrder] = useState([]);
-//console.log(order)
 
-  return (
-    <ShoppingCartContext.Provider value={{ 
-      count, 
-      setCount,
-      openProductDetail,
-      closeProductDetail,
-      isProductDetailOpen,
-      productToShow,
-      setProductToShow,
-      cartProducts,
-      setCartProducts,
-      isCheckSideMenuOpen,
-      openCheckSideMenu,
-      closeCheckSideMenu,
-      order,
-      setOrder
-    }}>
+
+ // SELECTED SIZE · STATE
+ const [checkedSizes, setCheckedSizes] = useState([]);
+  
+  const handleCheckSize = (size) => {
+    console.log(`Selected size: ${size}`);
+      setCheckedSizes(size)
+      console.log(`Updated checked sizes: ${checkedSizes}`);
+     return checkedSizes
+  };
+
+  //FILTER PRODUCTS BY CATEGORY
+  const [filters, setFilters] = useState({category: "all"});
+
+
+
+
+ return (
+   <ShoppingCartContext.Provider value={{ 
+     count, 
+     setCount,
+     openProductDetail,
+     closeProductDetail,
+     isProductDetailOpen,
+     productToShow,
+     setProductToShow,
+     cartProducts,
+     setCartProducts,
+     isCheckSideMenuOpen,
+     openCheckSideMenu,
+     closeCheckSideMenu,
+     order,
+     setOrder,
+     checkedSizes,
+      setCheckedSizes,
+      handleCheckSize,
+      filters,
+      setFilters
+
+   }}>
      {children}
-    </ShoppingCartContext.Provider>
-  )
+   </ShoppingCartContext.Provider>
+ );
 };
