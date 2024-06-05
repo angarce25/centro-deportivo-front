@@ -63,19 +63,22 @@ const CheckSideMenu = () => {
           </div>
           <div className="px-6 py-4 overflow-y-scroll h-56">
           {
-            context.cartProducts.map(product => (
-              product._id && (
+          context.cartProducts.map(product => (
+            product._id && (
+              <div key={product._id}>
                 <OrderCard                 
-                    key={product._id}
-                    _id={product._id}
-                    name={product.name} 
-                    price={product.price} 
-                    imageUrl={product.image}
-                    sizes={product.sizes}
-                    handleDelete={handleDelete} 
+                  _id={product._id}
+                  name={product.name} 
+                  price={product.price} 
+                  imageUrl={product.image}
+                  sizes={product.sizes}
+                  handleDelete={handleDelete} 
                 />
+                <p>Talla seleccionada: {product.selectedSize}</p>
+              </div>
             )
-          ))}
+          ))
+        }
           </div>
         <div className="px-6 py-4">
           

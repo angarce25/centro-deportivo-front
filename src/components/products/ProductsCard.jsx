@@ -13,8 +13,9 @@ function ProductsCard(data) {
 
   const addProductsToCart = (event, productData) => {
     event.stopPropagation();
+    const productWithSize = { ...productData, selectedSize: selectedSize || productData.sizes[0] };
     context.setCount(context.count + 1);
-    context.setCartProducts([...context.cartProducts, productData]);
+    context.setCartProducts([...context.cartProducts, productWithSize]);
     
     context.openCheckSideMenu();
     context.closeProductDetail();
@@ -27,8 +28,9 @@ function ProductsCard(data) {
   const handleSizeSelection = (size, event) => {
     event.stopPropagation();
     // Actualiza el tamaño seleccionado
-    console.log( "Size seleccionado:", selectedSize);
-    context.handleCheckSize(selectedSize);
+    // console.log( "Size seleccionado:", selectedSize);
+    // context.handleCheckSize(selectedSize);
+    setSelectedSize(size);
   };
 
     useEffect(() => {

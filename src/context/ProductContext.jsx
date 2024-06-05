@@ -24,6 +24,7 @@ export const ShoppingCartProvider = ({ children }) => {
 
 // SHOPPING CART · ADD PRODUCT TO CART
   const [cartProducts, setCartProducts] = useState([]);
+  const [selectedSizes, setSelectedSizes] = useState({});
 
 // SHOPPING CART · ORDER
 const [order, setOrder] = useState([]);
@@ -31,10 +32,15 @@ const [order, setOrder] = useState([]);
 
  // SELECTED SIZE · STATE
  const [checkedSizes, setCheckedSizes] = useState([]);
+
+ 
   
-  const handleCheckSize = (size) => {
+  const handleCheckSize = (productId, size) => {
     console.log(`Selected size: ${size}`);
-      setCheckedSizes(size)
+      setCheckedSizes({
+        ...selectedSizes,
+      [productId]: size
+      })
       console.log(`Updated checked sizes: ${checkedSizes}`);
      return checkedSizes
   };
@@ -56,6 +62,7 @@ const [order, setOrder] = useState([]);
      setProductToShow,
      cartProducts,
      setCartProducts,
+     selectedSizes,
      isCheckSideMenuOpen,
      openCheckSideMenu,
      closeCheckSideMenu,

@@ -28,7 +28,8 @@ const NewOrderCard = ({
     
       const formData = new FormData();
       
-      formData.append('product_ids', products.map(product => product._id));      
+      formData.append('product_ids', products.map(product => product._id));
+      formData.append('sizes', products.map(product => product.selectedSize));      
       formData.append('summary', summary);      
       formData.append('document', document);
       
@@ -85,6 +86,10 @@ const NewOrderCard = ({
                 <div className="flex-col">
                   <p className="text-sm font-semibold">ID producto:</p>
                   <p className="text-sm ">{product._id}</p>
+                </div>
+                <div className="flex-col">
+                  <p className="text-sm font-semibold">Talla:</p>
+                  <p className="text-sm ">{product.selectedSize}</p>
                 </div>
 
                 <div className="flex-col mt-3">
