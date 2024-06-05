@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Cookies from "js-cookie";
 import axios from 'axios';
 import { useState } from 'react';
@@ -26,14 +27,11 @@ const NewOrderCard = ({
 
     
       const formData = new FormData();
-      // console.log(`1: ${formData}`)
-      formData.append('product_ids', products.map(product => product._id));
-      // console.log(`2: ${formData}`)
-      // console.log(JSON.stringify(products.map(product => product._id)))
-      formData.append('summary', summary);
-      // console.log(summary)
+      
+      formData.append('product_ids', products.map(product => product._id));      
+      formData.append('summary', summary);      
       formData.append('document', document);
-      // console.log(document)
+      
 
       const token = Cookies.get('token');
 
@@ -53,7 +51,7 @@ const NewOrderCard = ({
       const response = await axios.post('http://localhost:3000/api/orders/add-order', formData, config);
          console.log(response);
 
-      if (response.status === 200) {        
+      if (response.status === 201) {        
         setOrderCreated(true);
         toast.success('Nuevo pedido creado con éxito');
       }     
@@ -152,7 +150,7 @@ const NewOrderCard = ({
           
         </div>
         </form>
-        {orderCreated && (
+        {/* {orderCreated && (
       <div className="toast toast-top toast-end">
         <div className="alert alert-success">
           <div>
@@ -160,7 +158,7 @@ const NewOrderCard = ({
           </div>
         </div>
       </div>
-    )}
+    )} */}
       </div>
     </section>
 );
@@ -171,8 +169,7 @@ NewOrderCard.propTypes = {
   date: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
   totalProducts: PropTypes.number,
   totalPrice: PropTypes.number,
-  products: PropTypes.string,
-  // handleConfirmOrder: PropTypes.func,
+  products: PropTypes.arrayOf(PropTypes.object),
   summary: PropTypes.string,
   setSummary: PropTypes.func,
   document: PropTypes.any,
