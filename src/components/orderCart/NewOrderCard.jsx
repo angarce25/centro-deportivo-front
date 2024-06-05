@@ -1,5 +1,9 @@
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Cookies from "js-cookie";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const NewOrderCard = ({
   date,
@@ -9,42 +13,59 @@ const NewOrderCard = ({
   summary,
   setSummary,
   document,
-  setDocument,    
+  setDocument,  
 }) => {
-  if (typeof totalProducts === "string") {
-    totalProducts = parseInt(totalProducts);
-  }
+  
+  const navigate = useNavigate();
 
-
-
-  const handleConfirmOrder = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       if (!document || !summary) {
-        // Mostrar notificación de error
-        toast.error('Error al crear el pedido');
+        toast.error('Error al crear el pedido: Faltan datos');
         return;
       }
-
+    
       const formData = new FormData();
-      formData.append('product_ids', JSON.stringify(products.map(product => product._id).join(',')));
-      formData.append('summary', summary);
-      formData.append('status', status);
+      
+      formData.append('product_ids', products.map(product => product._id));      
+      formData.append('summary', summary);      
       formData.append('document', document);
+      
 
-      const response = await fetch('/api/orders/add-order', {
-        method: 'POST',
-        body: formData
-      });
+      const token = Cookies.get('token');
 
-      if (!response.ok) {
-        throw new Error('Error al crear el pedido');
-      }
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      };
+      console.log(config);
+      
 
-      toast.success('Pedido creado correctamente');
+     
+
+      const response = await axios.post('http://localhost:3000/api/orders/add-order', formData, config);
+         //console.log(response);
+
+      if (response.status === 201) {        
+        toast.success('Nuevo pedido creado con éxito');
+        setTimeout(() => {
+          navigate('/dashboard/myorders'); // Redirigir después de crear el pedido
+        }, 2000);
+      }     
     } catch (error) {
-      toast.error('Error al crear el pedido. Por favor, inténtalo de nuevo más tarde.');
+      if (error.response && error.response.data === 'Demasiados intentos en poco tiempo, por favor inténtalo más tarde') {
+        toast.error('Demasiados intentos en poco tiempo, por favor inténtalo más tarde');
+      } else {
+        toast.error('Error al crear el pedido.');
+      }
     }
-  };
+  };  
+
+  
+   
   
   return (
     <section className="m-10 w-150 bg-base-100 shadow-l flex flex-col md:flex-row justify-between">
@@ -75,7 +96,7 @@ const NewOrderCard = ({
           </div>
         ))}
 
-        <form onSubmit={handleConfirmOrder} >
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="flex-col">
           <label htmlFor="summary" className="font-semibold">
             Breve descripción del pedido:
@@ -123,14 +144,15 @@ const NewOrderCard = ({
 
         <div className="mt-5 card-actions flex-1 col-span-full">
           <button
-            onClick={handleConfirmOrder}
+            // onClick={handleSubmit}
+            type='submit'
             className="button-register bg-yellow-l hover:bg-yellow-d text-black font-semibold py-2 px-4 rounded"
           >
             Confirmar pedido
           </button>
           
         </div>
-        </form>
+        </form>        
       </div>
     </section>
 );
@@ -141,8 +163,7 @@ NewOrderCard.propTypes = {
   date: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
   totalProducts: PropTypes.number,
   totalPrice: PropTypes.number,
-  products: PropTypes.array,
-  handleConfirmOrder: PropTypes.func,
+  products: PropTypes.arrayOf(PropTypes.object),
   summary: PropTypes.string,
   setSummary: PropTypes.func,
   document: PropTypes.any,
