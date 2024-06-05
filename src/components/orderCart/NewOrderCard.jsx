@@ -50,8 +50,11 @@ const NewOrderCard = ({
         toast.success('Nuevo pedido creado con éxito');
       }     
     } catch (error) {
-      toast.error('Error al crear el pedido.');
-      //console.log(error);
+      if (error.response && error.response.data === 'Demasiados intentos en poco tiempo, por favor inténtalo más tarde') {
+        toast.error('Demasiados intentos en poco tiempo, por favor inténtalo más tarde');
+      } else {
+        toast.error('Error al crear el pedido.');
+      }
     }
   };  
 
