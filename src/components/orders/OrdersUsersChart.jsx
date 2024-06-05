@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
 
@@ -77,7 +77,13 @@ function OrdersUsersChart() {
                                                     {order._id} {/* Mostrar el _id de la orden */}
                                                 </td>
                                                 <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                    {order.document} {/* Mostrar el documento*/}
+                                                {order.document && (
+                                                        <a
+                                                        className='text-blue-600 underline' 
+                                                        href={order.document.path} target="_blank" rel="noopener noreferrer">
+                                                            {order.document.originalname}
+                                                            </a>
+                                                    )}
                                                 </td>
                                                 <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                                                     {order.summary} {/* Mostrar el resumen de la orden */}
