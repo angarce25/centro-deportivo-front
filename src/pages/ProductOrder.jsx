@@ -1,36 +1,87 @@
+import { useState } from "react";
 import SideBar from "../components/sideBar/SideBar";
+import NewOrderCard from "../components/orderCart/NewOrderCard";
 import { useSearchParams } from "react-router-dom";
+import Cookies from "js-cookie";
+import { toast } from 'react-toastify';
+
 
 function ProductOrder() {
   const [searchParams] = useSearchParams();
+  const date = new Date(searchParams.get("date")).toLocaleDateString();
+  const totalProducts = parseInt(searchParams.get("totalProducts"));
+  const totalPrice = parseInt(searchParams.get("totalPrice"));
+  const products = JSON.parse(searchParams.get("products"));
+  const [summary, setSummary] = useState('');
+  const [status] = useState('pendiente');
+  const [document, setDocument] = useState('');
+  const [error, setError] = useState(null);
 
-  const date = searchParams.get("date");
-  const totalProducts = searchParams.get("totalProducts");
-  const totalPrice = searchParams.get("totalPrice");
+ 
+  
+  const handleConfirmOrder = async () => {
+    try {
+      
+      // Verificar si los campos document y summary están vacíos
+    if (!document || !summary) {
+      // Mostrar notificación de error
+      toast.error('Error al crear el pedido');
+      return;
+    }      
+
+      // Crear un objeto de pedido
+      const API = import.meta.env.VITE_API_URL;
+      const extraPath = "/orders/add-order";
+      const fullUrl = API + extraPath;
+      const token = Cookies.get('token');
+      
+      
+
+
+      const response = await fetch(fullUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          product_ids: products.map(product => product._id),
+          summary,
+          status,
+          document
+        }),
+        credentials: 'include'
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al crear el pedido');
+      }
+
+      //const data = await response.json();
+      
+      toast.success('Pedido creado correctamente');
+      
+
+    } catch (error) {
+      setError('Error al crear el pedido. Por favor, inténtalo de nuevo más tarde.');
+    }
+  };
 
   return (
     <div className="flex">
       <SideBar />
-      <section className="m-10 card w-150 bg-base-100 shadow-xl">
-        <div className="card-body">
-          <div className="m-10">
-            <h4 className="card-title mb-5">Resumen del Pedido</h4>
-            <p className="mb-3">Fecha pedido: {date}</p>
-            <p className="mb-3">Total de productos: {totalProducts}</p>
-            <p className="mb-3">Precio total: {totalPrice}€</p>
-            <input
-              type="file"
-              className="mt-5 mb-3 file-input file-input-bordered w-full max-w-xs"
-            />
-          </div>
-
-          <div className="m-10 card-actions justify-start">
-            <button className="button-register bg-yellow-l hover:bg-yellow-d text-black font-semibold py-2 px-4 rounded">
-              Confirmar pedido
-            </button>
-          </div>
-        </div>
-      </section>
+      <NewOrderCard
+        date={date}
+        totalProducts={totalProducts}
+        totalPrice={totalPrice}
+        products={products}
+        handleConfirmOrder={handleConfirmOrder}
+        summary={summary}
+        setSummary={setSummary}
+        document={document}
+        setDocument={setDocument}
+        error={error}
+      />
     </div>
   );
 }

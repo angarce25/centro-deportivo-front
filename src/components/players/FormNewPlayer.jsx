@@ -4,10 +4,11 @@ import ModalInfoEquipment from "./ModalInfoEquipment";
 import { useForm } from "react-hook-form";
 import { usePlayers } from "../../context/PlayerContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function FormNewPlayer() {
   const { register, handleSubmit } = useForm();
-  const { createPlayer} = usePlayers();
+  const { createPlayer } = usePlayers();
   const navigate = useNavigate();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -20,12 +21,16 @@ export default function FormNewPlayer() {
      
       console.log(fullUrl)
       const response = await axios.post(fullUrl, data, { withCredentials: true });
-      createPlayer(response.data); // Actualiza el contexto o estado con el nuevo jugador creado
-      alert("Jugador creado con éxito");
+      const player = response.data; 
+      createPlayer(response.data); // Actualiza el contexto del jugador creado
+      toast.success(`¡Jugador ${player.name} ${player.lastname} creado con éxito!`, {
+        toastStyle: {
+          marginTop: "12rem", 
+        }});
       navigate("/dashboard/my-players")
     } catch (error) {
       console.error("Error al crear el jugador:", error);
-      alert("Error al crear jugador");
+      toast.error("Error al crear jugador");
     }
   });
 
