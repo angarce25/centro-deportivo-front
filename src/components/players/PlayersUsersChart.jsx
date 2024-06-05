@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -63,9 +64,11 @@ function PlayersUserChart() {
       </div>
   
       <div className="flex flex-col mt-6">
-        <div className="-my-2 overflow-x-auto">
+        <div className="max-w-screen-xl mx-auto   overflow-x-auto overflow-y-auto max-h-[80vh] mb-8">
+          {" "}
+          {/* modificacion de la table  */}
           <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-            <table className="table table-zebra">
+            <table className="table table-zebra min-w-full">
               <thead>
                 <tr className="text-gray-800 text-sm">
                   <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -73,6 +76,9 @@ function PlayersUserChart() {
                   </th>
                   <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Apellido
+                  </th>
+                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Equipo
                   </th>
                   <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Edad
