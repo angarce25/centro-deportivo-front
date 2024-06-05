@@ -41,6 +41,12 @@ function Sidebar() {
       setWelcomeShown(true);
     }
   }, [welcomeShown, location.pathname, userName]);
+  const handleLogout = () => {
+    Cookies.remove('token'); // Replace 'token' with the actual name of your authentication token cookie
+    Cookies.remove('isAdmin'); // Remove the admin status cookie if needed
+    Cookies.remove('name'); // Remove the user name cookie if needed
+    navigate('/'); // Redirect to the home page
+  };
 
   const renderUserLinks = () => (
     <>
@@ -113,9 +119,11 @@ function Sidebar() {
         {isAdmin === 'admin' ? renderAdminLinks() : renderUserLinks()}
 
         <nav className="mt-7 justify-center flex items-center hover:bg-custom-blue hover:text-white transition duration-500">
-          <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/">
+        <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/">
+          <button className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" onClick={handleLogout}>
             <i className="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
             <span className="mx-3">Cerrar sesión</span>
+          </button>
           </a>
         </nav>
       </div>
