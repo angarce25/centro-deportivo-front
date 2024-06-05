@@ -26,7 +26,7 @@ export const ShoppingCartProvider = ({ children }) => {
 
 // SHOPPING CART · ORDER
 const [order, setOrder] = useState([]);
-console.log(order)
+//console.log(order)
 
   return (
     <ShoppingCartContext.Provider value={{ 

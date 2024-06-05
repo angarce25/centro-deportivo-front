@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from "js-cookie";
 import axios from 'axios';
-import { useState } from 'react';
+
 const NewOrderCard = ({
   date,
   totalProducts,
@@ -13,9 +13,7 @@ const NewOrderCard = ({
   setSummary,
   document,
   setDocument,  
-}) => {
- 
-  const [orderCreated, setOrderCreated] = useState(false);
+}) => {  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +22,6 @@ const NewOrderCard = ({
         toast.error('Error al crear el pedido: Faltan datos');
         return;
       }
-
     
       const formData = new FormData();
       
@@ -42,22 +39,19 @@ const NewOrderCard = ({
         }
       };
       console.log(config);
-      // for (const value of formData.values()) {
-      //   console.log(value);
-      // }
+      
 
      
 
       const response = await axios.post('http://localhost:3000/api/orders/add-order', formData, config);
-         console.log(response);
+         //console.log(response);
 
       if (response.status === 201) {        
-        setOrderCreated(true);
         toast.success('Nuevo pedido creado con éxito');
       }     
     } catch (error) {
       toast.error('Error al crear el pedido.');
-      console.log(error);
+      //console.log(error);
     }
   };  
 
@@ -149,16 +143,7 @@ const NewOrderCard = ({
           </button>
           
         </div>
-        </form>
-        {/* {orderCreated && (
-      <div className="toast toast-top toast-end">
-        <div className="alert alert-success">
-          <div>
-            <span>¡Pedido creado con éxito!</span>
-          </div>
-        </div>
-      </div>
-    )} */}
+        </form>        
       </div>
     </section>
 );
