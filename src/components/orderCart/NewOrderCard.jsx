@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from "js-cookie";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const NewOrderCard = ({
   date,
@@ -13,7 +14,9 @@ const NewOrderCard = ({
   setSummary,
   document,
   setDocument,  
-}) => {  
+}) => {
+  
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,6 +51,9 @@ const NewOrderCard = ({
 
       if (response.status === 201) {        
         toast.success('Nuevo pedido creado con éxito');
+        setTimeout(() => {
+          navigate('/dashboard/myorders'); // Redirigir después de crear el pedido
+        }, 2000);
       }     
     } catch (error) {
       if (error.response && error.response.data === 'Demasiados intentos en poco tiempo, por favor inténtalo más tarde') {
