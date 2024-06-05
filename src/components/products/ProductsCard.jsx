@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ShoppingCartContext } from "../../context/ProductContext";
 import { GoPlus } from "react-icons/go";
 
 function ProductsCard(data) {
   const context = useContext(ShoppingCartContext);
+  const [selectedSize, setSelectedSize] = useState(null);
 
   const showProduct = (productDetail) => {
     context.openProductDetail();
@@ -14,9 +15,27 @@ function ProductsCard(data) {
     event.stopPropagation();
     context.setCount(context.count + 1);
     context.setCartProducts([...context.cartProducts, productData]);
+    
     context.openCheckSideMenu();
     context.closeProductDetail();
+    
+    
   };
+  
+  
+
+  const handleSizeSelection = (size, event) => {
+    event.stopPropagation();
+    // Actualiza el tamaño seleccionado
+    console.log( "Size seleccionado:", selectedSize);
+    context.handleCheckSize(selectedSize);
+  };
+
+    useEffect(() => {
+      console.log("Size seleccionado:", setSelectedSize);
+    }, [selectedSize]);
+    
+    
 
   return (
     <section
@@ -55,11 +74,26 @@ function ProductsCard(data) {
           {data.data.name}
         </span>
         <span className="text-md font-semibold p-1 mb-1 mr-2 rounded-lg text-black">
-          {data.data.price} €
+          {data.data.price}€
         </span>
       </p>
+      <div className="flex justify-center mb-0">
+  {data.data.sizes.map((size, index) => (
+    <button
+      key={index}
+      className={`m-1 mx-1 px-1 py-1 rounded-md text-xs border font-medium cursor-pointer ${selectedSize === size ? 'bg-yellow-d text-black' : 'bg-gray-l text-gray-d'}`}
+      onClick={(event) => handleSizeSelection(size, event)}
+      onClickCapture={(event) => setSelectedSize(size, event)}
+    >
+      {size}
+    </button>
+  ))}
+</div>
+      
+      
     </section>
   );
 }
 
 export default ProductsCard;
+
