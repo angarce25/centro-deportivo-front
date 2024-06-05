@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import Cookies from "js-cookie";
 import axios from 'axios';
-
+import { useState } from 'react';
 const NewOrderCard = ({
   date,
   totalProducts,
@@ -14,6 +14,8 @@ const NewOrderCard = ({
   setDocument,  
 }) => {
  
+  const [orderCreated, setOrderCreated] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -22,22 +24,7 @@ const NewOrderCard = ({
         return;
       }
 
-    //   const formData = {
-    //     product_ids: products.map(product => product._id),
-    //     summary: summary,
-    //     document: document
-    // };
-    // console.log('Resumen pedido:', formData);
     
-    // const fd = new FormData();
-    // Object.keys(formData).forEach((key) => {
-    //     fd.append(key, formData[key]);
-    // });
-    
-    // for (const [key, value] of fd.entries()) {
-    //     console.dir(`${key}: ${value}`);
-    // }
-
       const formData = new FormData();
       // console.log(`1: ${formData}`)
       formData.append('product_ids', products.map(product => product._id));
@@ -61,13 +48,13 @@ const NewOrderCard = ({
       //   console.log(value);
       // }
 
+     
+
       const response = await axios.post('http://localhost:3000/api/orders/add-order', formData, config);
          console.log(response);
 
-      if (response.status === 200) {
-        // const { orderId } = response.data;
-        // console.log('Pedido creado con ID:', orderId);
-
+      if (response.status === 200) {        
+        setOrderCreated(true);
         toast.success('Nuevo pedido creado con éxito');
       }     
     } catch (error) {
@@ -76,6 +63,7 @@ const NewOrderCard = ({
     }
   };  
 
+  
    
   
   return (
@@ -164,6 +152,15 @@ const NewOrderCard = ({
           
         </div>
         </form>
+        {orderCreated && (
+      <div className="toast toast-top toast-end">
+        <div className="alert alert-success">
+          <div>
+            <span>¡Pedido creado con éxito!</span>
+          </div>
+        </div>
+      </div>
+    )}
       </div>
     </section>
 );
