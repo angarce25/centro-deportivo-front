@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 
 const getTokenFromCookies = () => {
   const match = document.cookie.match(new RegExp("(^| )token=([^;]+)"));
@@ -44,3 +44,6 @@ export const AdminPrivateRoute = ({ redirectPath = "/login" }) => {
 
   return <Outlet />;
 };
+
+
+

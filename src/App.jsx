@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ShoppingCartProvider } from "./context/ProductContext.jsx";
 import Home from "./pages/Home.jsx";
@@ -18,10 +19,7 @@ import MyOrders from "./pages/MyOrders.jsx";
 import TeamInfo from "./pages/TeamInfo.jsx";
 import { PrivateRoute, AdminPrivateRoute } from "./context/PrivateRoutes.jsx";
 import OrdersAdmin from "./pages/OrdersAdmin.jsx";
-import NotFound from "./components/notfound/NotFound.jsx"
-
-
-
+import NotFound from "./components/notfound/NotFound.jsx";
 
 function App() {
   return (
@@ -38,28 +36,22 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/merchandising" element={<Merchandising />} />
-
               <Route path="/*" element={<NotFound />} />
+
               {/* Rutas protegidas para el usuario */}
-              <Route element={<PrivateRoute isAllowed={false} />}>
-                <Route path="/dashboard/my-players" element={<PlayersUser />} />{" "}
+              <Route element={<PrivateRoute />}>
+                <Route path="/dashboard/my-players" element={<PlayersUser />} />
                 <Route path="/dashboard/myorders" element={<MyOrders />} />
                 <Route path="/dashboard/form-player" element={<NewPlayer />} />
                 <Route path="/dashboard/products" element={<Products />} />
-                <Route
-                  path="/dashboard/product-order"
-                  element={<ProductOrder />}
-                />
+                <Route path="/dashboard/product-order" element={<ProductOrder />} />
               </Route>
               {/* Final de las Rutas protegidas para el usuario */}
 
               {/* Rutas protegidas para el Administrador */}
-              <Route element={<AdminPrivateRoute isAllowed={false} />}>
+              <Route element={<AdminPrivateRoute />}>
                 <Route path="/dashboard/users" element={<UserP />} />
-                <Route
-                  path="/dashboard/players"
-                  element={<PlayersAdmin />}
-                />{" "}
+                <Route path="/dashboard/players" element={<PlayersAdmin />} />
                 <Route path="/dashboard/orders" element={<OrdersAdmin />} />
                 <Route path="/dashboard/teams" element={<PlayersUser />} />
               </Route>
