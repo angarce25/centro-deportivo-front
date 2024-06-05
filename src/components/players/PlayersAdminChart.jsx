@@ -72,7 +72,7 @@ function PlayersTable() {
           <tbody>
             {players.map((player) => (
               <tr key={player._id}>
-                <td className="font-medium">{player.name}{player.lastname}</td>
+                <td className="font-medium">{player.name} {player.lastname}</td>
                 <td></td>
                 <td>
                   {player.team ? player.team.name : 'Pendiente'}
