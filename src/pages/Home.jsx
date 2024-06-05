@@ -28,7 +28,7 @@ const Home = () => {
               >
                 ¿Quienes somos?
               </h1>
-              <hr class="border-t-4 border-yellow-300 mt-2 mb-3 ml-12" />
+              <hr className="border-t-4 border-yellow-300 mt-2 mb-3 ml-12" />
 
               <div
                 data-aos="fade-up"
