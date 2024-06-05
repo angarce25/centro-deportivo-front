@@ -25,53 +25,49 @@ const Logincomponent = ({ onFormSwitch }) => {
   
     try {
       const response = await axios.post(`${API}/login`, { email, password: pass });
+  console.log('RESPONSE.DATA EN LOGINCOMPONENT: ', response.data)
+  const { token, isAdmin, username: name } = response.data; 
   
-      const token = response.data.token; 
-      const isAdmin = response.data.isAdmin; 
-      const name = response.data.name;
-  
-      console.log('Token recibido:', token);
-      console.log('Role recibido:', isAdmin); 
-      console.log('Respuesta del servidor:', response.data);
-      console.log('Nombre recibido:', name);
-  
-      if (token) {
-        handleCookie(token, isAdmin, name); 
-  
-        // Mostrar notificación de bienvenida
-        toast.success(`¡Bienvenido, ${name}!`, {
-          toastStyle: {
-            marginTop: "12rem", 
-          },
-        });
-        // Redirigir según el rol del usuario después de 2 segundos
-        setTimeout(() => {
-          if (isAdmin) {
-            navigate('/dashboard/users');
-          } else {
-            navigate('/dashboard/my-players');
-          }
-        }, 2000);
-      }
-    } catch (error) {
-      if (error.response) {
-        console.error("Error al iniciar sesión:", error.response.data.message || 'Error en el inicio de sesión');
+  console.log('Token recibido:', token);
+  console.log('Role recibido:', isAdmin);
+  console.log('Nombre recibido:', name);
 
-        // Verificar si el error es debido a demasiados intentos
-        if (error.response.status === 429) {
-          toast.error("Demasiados intentos de inicio de sesión. Por favor, inténtelo de nuevo más tarde.");
-        } else {
-          toast.error("Error en inicio de sesión");
-        }
-      } else if (error.request) {
-        console.error("Error al iniciar sesión:", 'No se pudo conectar con el servidor');
-        toast.error("Error en inicio de sesión");
+  if (token) {
+    handleCookie(token, isAdmin, name);
+
+    // Mostrar notificación de bienvenida
+    toast.success(`¡Bienvenido, ${name}!`, {
+      toastStyle: {
+        marginTop: "12rem",
+      },
+    });
+
+    setTimeout(() => {
+      if (isAdmin) {
+        navigate('/dashboard/users');
       } else {
-        console.error("Error al iniciar sesión:", 'Error al procesar la solicitud de inicio de sesión');
-        toast.error("Error en inicio de sesión");
+        navigate('/dashboard/my-players');
       }
+    }, 2000);
+  }
+} catch (error) {
+  if (error.response) {
+    console.error("Error al iniciar sesión:", error.response.data.message || 'Error en el inicio de sesión');
+
+    if (error.response.status === 429) {
+      toast.error("Demasiados intentos de inicio de sesión. Por favor, inténtelo de nuevo más tarde.");
+    } else {
+      toast.error("Error en inicio de sesión");
     }
-  };
+  } else if (error.request) {
+    console.error("Error al iniciar sesión:", 'No se pudo conectar con el servidor');
+    toast.error("Error en inicio de sesión");
+  } else {
+    console.error("Error al iniciar sesión:", 'Error al procesar la solicitud de inicio de sesión');
+    toast.error("Error en inicio de sesión");
+  }
+}
+};
   
   return (
     <div className="bg-gray-200 min-h-screen flex items-center justify-center">
