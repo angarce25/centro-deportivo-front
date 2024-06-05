@@ -64,7 +64,7 @@ function Merchandising() {
       <Footer />
 
       {/* Call to Action Button */}
-      <button className="fixed bottom-5 right-5 bg-blue-500 text-white py-2 px-4 rounded shadow-lg transform hover:bg-blue-700 hover:-translate-y-1 transition duration-300">
+      <button className="fixed bottom-5 right-5 bg-custom-blue text-white py-2 px-4 rounded shadow-lg transform hover:bg-blue-700 hover:-translate-y-1 transition duration-300">
         <a href="mailto:cd@la.com" >
           ¿Interesado? Haga click aquí para más información
         </a>
