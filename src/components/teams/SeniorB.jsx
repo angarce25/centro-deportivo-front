@@ -6,7 +6,7 @@ function SeniorB() {
       <div className="bottom-0 left-0 w-full text-center text-yellow-d bg-black bg-opacity-50 py-2">
         <h1 className="text-5xl font-bold">UnosColoresUnaManeraDeSer</h1>
       </div>
-      <div className="border-b-8 border-yellow-d my-8"></div>
+      <div className="border-b-8 border-yellow-d mt-1"></div>
       <div className="max-w-6xl mx-auto p-6">
         <div className="mb-10">
           <h1 className="text-4xl font-bold mb-4">Senior B</h1>
@@ -20,9 +20,9 @@ function SeniorB() {
             <img src={SeniorBImage} alt="Senior B" className="w-full h-auto max-h-96 object-cover" />
           </div>
           <div className="w-1/5 ml-6 flex flex-col">
-            <h2 className="text-3xl text-yellow-d font-bold mb-2">Categoría:</h2>
+            <h2 className="text-3xl text-yellow-dark font-bold mb-2">Categoría:</h2>
             <p className="text-gray-700 text-lg">TERCERA REGIONAL</p>
-            <h2 className="text-3xl text-yellow-d font-bold mt-4 mb-2">Goleadores:</h2>
+            <h2 className="text-3xl text-yellow-dark font-bold mt-4 mb-2">Goleadores:</h2>
             <p className="text-gray-700 text-lg">- Jugador 1</p>
             <p className="text-gray-700 text-lg">- Jugador 2</p>
             <p className="text-gray-700 text-lg">- Jugador 3</p>
