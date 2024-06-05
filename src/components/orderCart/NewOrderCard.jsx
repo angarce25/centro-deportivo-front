@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
-
+import Cookies from "js-cookie";
+import axios from 'axios';
+import { useState } from 'react';
 const NewOrderCard = ({
   date,
   totalProducts,
@@ -9,42 +11,60 @@ const NewOrderCard = ({
   summary,
   setSummary,
   document,
-  setDocument,    
+  setDocument,  
 }) => {
-  if (typeof totalProducts === "string") {
-    totalProducts = parseInt(totalProducts);
-  }
+ 
+  const [orderCreated, setOrderCreated] = useState(false);
 
-
-
-  const handleConfirmOrder = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       if (!document || !summary) {
-        // Mostrar notificación de error
-        toast.error('Error al crear el pedido');
+        toast.error('Error al crear el pedido: Faltan datos');
         return;
       }
 
+    
       const formData = new FormData();
-      formData.append('product_ids', JSON.stringify(products.map(product => product._id).join(',')));
+      // console.log(`1: ${formData}`)
+      formData.append('product_ids', products.map(product => product._id));
+      // console.log(`2: ${formData}`)
+      // console.log(JSON.stringify(products.map(product => product._id)))
       formData.append('summary', summary);
-      formData.append('status', status);
+      // console.log(summary)
       formData.append('document', document);
+      // console.log(document)
 
-      const response = await fetch('/api/orders/add-order', {
-        method: 'POST',
-        body: formData
-      });
+      const token = Cookies.get('token');
 
-      if (!response.ok) {
-        throw new Error('Error al crear el pedido');
-      }
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      };
+      console.log(config);
+      // for (const value of formData.values()) {
+      //   console.log(value);
+      // }
 
-      toast.success('Pedido creado correctamente');
+     
+
+      const response = await axios.post('http://localhost:3000/api/orders/add-order', formData, config);
+         console.log(response);
+
+      if (response.status === 200) {        
+        setOrderCreated(true);
+        toast.success('Nuevo pedido creado con éxito');
+      }     
     } catch (error) {
-      toast.error('Error al crear el pedido. Por favor, inténtalo de nuevo más tarde.');
+      toast.error('Error al crear el pedido.');
+      console.log(error);
     }
-  };
+  };  
+
+  
+   
   
   return (
     <section className="m-10 w-150 bg-base-100 shadow-l flex flex-col md:flex-row justify-between">
@@ -75,7 +95,7 @@ const NewOrderCard = ({
           </div>
         ))}
 
-        <form onSubmit={handleConfirmOrder} >
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="flex-col">
           <label htmlFor="summary" className="font-semibold">
             Breve descripción del pedido:
@@ -123,7 +143,8 @@ const NewOrderCard = ({
 
         <div className="mt-5 card-actions flex-1 col-span-full">
           <button
-            onClick={handleConfirmOrder}
+            // onClick={handleSubmit}
+            type='submit'
             className="button-register bg-yellow-l hover:bg-yellow-d text-black font-semibold py-2 px-4 rounded"
           >
             Confirmar pedido
@@ -131,6 +152,15 @@ const NewOrderCard = ({
           
         </div>
         </form>
+        {orderCreated && (
+      <div className="toast toast-top toast-end">
+        <div className="alert alert-success">
+          <div>
+            <span>¡Pedido creado con éxito!</span>
+          </div>
+        </div>
+      </div>
+    )}
       </div>
     </section>
 );
@@ -141,8 +171,8 @@ NewOrderCard.propTypes = {
   date: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
   totalProducts: PropTypes.number,
   totalPrice: PropTypes.number,
-  products: PropTypes.array,
-  handleConfirmOrder: PropTypes.func,
+  products: PropTypes.string,
+  // handleConfirmOrder: PropTypes.func,
   summary: PropTypes.string,
   setSummary: PropTypes.func,
   document: PropTypes.any,

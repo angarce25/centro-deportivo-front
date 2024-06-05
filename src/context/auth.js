@@ -35,4 +35,3 @@ export const getMyPlayersReq = () => axios.get(`${API}/my-players`)
 export const createPlayersReq = (player) => axios.post(`${API}/newplayer`, player)
 
 export const getMyOrdersReq = ()=> axios.get(`${API}/myorders`)
-
