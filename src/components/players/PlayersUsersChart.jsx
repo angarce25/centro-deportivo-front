@@ -92,10 +92,6 @@ function PlayersUserChart() {
                   <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Estado
                   </th>
-<<<<<<< HEAD
-
-=======
->>>>>>> 45edf986659a4853a3d223729dcd08af46ca68c5
                   <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Primer Pago
                   </th>
