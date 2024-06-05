@@ -43,9 +43,9 @@ const Logincomponent = ({ onFormSwitch }) => {
     });
 
     setTimeout(() => {
-      if (isAdmin) {
+      if (isAdmin === 'admin') {
         navigate('/dashboard/users');
-      } else {
+      } else if (isAdmin === 'user'){
         navigate('/dashboard/my-players');
       }
     }, 2000);
