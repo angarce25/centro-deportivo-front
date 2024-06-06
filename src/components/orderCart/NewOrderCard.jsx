@@ -26,31 +26,39 @@ const NewOrderCard = ({
         return;
       }
     
+      // const formData = new FormData();
+      
+      // const newOrder = formData.append('product_ids', products.map(product => product._id));
+      // formData.append('sizes', products.map(product => product.selectedSize));      
+      // formData.append('summary', summary);      
+      // formData.append('document', document);
+      // console.log('Resumen pedido front:', newOrder)
+
       const formData = new FormData();
-      
-      formData.append('product_ids', products.map(product => product._id));
-      formData.append('sizes', products.map(product => product.selectedSize));      
-      formData.append('summary', summary);      
-      formData.append('document', document);
-      
+    
+    products.forEach(product => {
+      console.log(product.selectedSize)
+      formData.append('product_ids', product._id);
+      formData.append('selectedSize', product.selectedSize);
+    });    
+    
+    formData.append('summary', summary);      
+    formData.append('document', document);
 
       const token = Cookies.get('token');
-
+      //console.log(token)
       const config = {
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': token,
           'Content-Type': 'multipart/form-data'
         }
-      };
-      console.log(config);
-      
+      };         
 
-     
+      const response = await axios.post('http://localhost:3000/api/orders/add-order', formData, config);  
 
-      const response = await axios.post('http://localhost:3000/api/orders/add-order', formData, config);
-         //console.log(response);
-
+         
       if (response.status === 201) {        
+
         toast.success('Nuevo pedido creado con éxito');
         setTimeout(() => {
           navigate('/dashboard/myorders'); // Redirigir después de crear el pedido
@@ -63,9 +71,7 @@ const NewOrderCard = ({
         toast.error('Error al crear el pedido.');
       }
     }
-  };  
-
-  
+  };    
    
   
   return (
