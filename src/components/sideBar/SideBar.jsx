@@ -22,20 +22,24 @@ function Sidebar() {
 
       {/* Overlay oscuro */}
       <div
-        className={`${sidebarOpen ? 'block' : 'hidden'} fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden`}
+        className={`${
+          sidebarOpen ? "block" : "hidden"
+        } fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden`}
         onClick={() => setSidebarOpen(false)}
       ></div>
 
       {/* Sidebar */}
       <div
-        className={`${sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'} fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-l lg:translate-x-0 lg:static lg:inset-0 h-screen`}
+        className={`${
+          sidebarOpen ? "translate-x-0 ease-out" : "-translate-x-full ease-in"
+        } fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-l lg:translate-x-0 lg:static lg:inset-0 h-full`}
       >
         <div className="flex items-center justify-center mt-8">
           <div className="flex items-center">
-            <img className='w-20 h-30' src={imagen} alt="Escudo" />
+            <img className="w-20 h-30" src={imagen} alt="Escudo" />
           </div>
         </div>
-        
+
         <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
           <a
             className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
@@ -45,8 +49,8 @@ function Sidebar() {
             <span className="mx-3">Home</span>
           </a>
         </nav>
-          <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
-            <a
+        <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
+          <a
             className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
             href="/dashboard/users"
           >
@@ -78,7 +82,9 @@ function Sidebar() {
             href="/dashboard/players"
           >
             <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
-            <span className="mx-3 items-center justify-center">Jugadores (A)</span>
+            <span className="mx-3 items-center justify-center">
+              Jugadores (A)
+            </span>
           </a>
         </nav>
         <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
@@ -87,7 +93,9 @@ function Sidebar() {
             href="/dashboard/myorders"
           >
             <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
-            <span className="mx-3 items-center justify-center">Mis pedidos (U)</span>
+            <span className="mx-3 items-center justify-center">
+              Mis pedidos (U)
+            </span>
           </a>
         </nav>
         <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
@@ -96,10 +104,11 @@ function Sidebar() {
             href="/dashboard/orders"
           >
             <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
-            <span className="mx-3 items-center justify-center">Mis pedidos (A)</span>
+            <span className="mx-3 items-center justify-center">
+              Mis pedidos (A)
+            </span>
           </a>
         </nav>
-        
 
         <nav className="mt-7 justify-center flex items-center hover:bg-custom-blue hover:text-white transition duration-500">
           <a

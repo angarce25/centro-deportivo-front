@@ -11,7 +11,7 @@ function ProductOrder() {
   return (
     <div className="flex">
       <SideBar />
-      <section className="m-10 card w-150 bg-base-100 shadow-xl">
+      <section className="m-10 card w-150 bg-base-100 shadow-xl max-w-6xl mx-auto overflow-x-auto overflow-y-auto max-h-[80vh] mb-8">
         <div className="card-body">
           <div className="m-10">
             <h4 className="card-title mb-5">Resumen del Pedido</h4>

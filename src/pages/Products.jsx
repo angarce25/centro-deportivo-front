@@ -35,32 +35,34 @@ function Products() {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex min-h-screen h-screen overflow-hidden">
         <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
         {!loading && (
           <>
-            <Sidebar />
-            <ProductsNav />
-            <ProductsLayout>
-              <h2 className="text-xl font-medium mb-2">
-                Productos necesarios y disponibles del CDCA
-              </h2>
-              <div
-                className="2xl:grid 2xl:grid-cols-5 2xl:w-full 2xl:max-w-screen-2xl
-                           xl:grid xl:grid-cols-4 xl:w-full xl:max-w-screen-lg
-                           lg:grid lg:grid-cols-4 lg:w-full lg:max-w-screen-lg
-                           md:grid md:grid-cols-3 md:w-full md:max-w-screen-md
-                           sm:grid sm:grid-cols-2 sm:w-full sm:justify-center"
-              >
-                {items.map((item) => (
-                  <div key={item._id}>
-                    <ProductsCard data={item} />
-                  </div>
-                ))}
-              </div>
-              <ProductsDetail />
-              <CheckSideMenu />
-            </ProductsLayout>
+            <Sidebar className="h-screen" />
+            <div className="flex flex-col flex-grow overflow-auto">
+              <ProductsNav />
+              <ProductsLayout className="flex-grow">
+                <h2 className="text-xl font-medium mb-2">
+                  Productos necesarios y disponibles del CDCA
+                </h2>
+                <div
+                  className="2xl:grid 2xl:grid-cols-5 2xl:w-full 2xl:max-w-screen-2xl
+                         xl:grid xl:grid-cols-4 xl:w-full xl:max-w-screen-lg
+                         lg:grid lg:grid-cols-4 lg:w-full lg:max-w-screen-lg
+                         md:grid md:grid-cols-3 md:w-full md:max-w-screen-md
+                         sm:grid sm:grid-cols-2 sm:w-full sm:justify-center"
+                >
+                  {items.map((item) => (
+                    <div key={item._id}>
+                      <ProductsCard data={item} />
+                    </div>
+                  ))}
+                </div>
+                <ProductsDetail />
+                <CheckSideMenu />
+              </ProductsLayout>
+            </div>
           </>
         )}
       </div>
