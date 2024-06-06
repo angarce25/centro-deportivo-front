@@ -1,5 +1,6 @@
 import ImgAboutus from "../assets/home/imgabout.png";
-import HistoriaClub from "../assets/home/FotoHistoriaClub.jpg"
+import HistoriaClub from "../assets/home/FotoHistoriaClub.jpg";
+import BenjaminA from "../assets/slide/BENJAMINA.jpg"
 import Header from "../components/home/Header.jsx";
 import Slide from "../components/home/Slide";
 import Footer from "../components/home/Footer";
@@ -83,7 +84,10 @@ const Home = () => {
                 data-aos="fade-up"
                 className="etxt-sm text.grey tracking-wide leading-5"
               >
-                <p className="mt-2 mb-9 ml-12 mr-12 text-gray-700 text-lg text-justify">
+                <p
+                  className="mt-2 mb-5 ml-12 mr-12 text-gray-700 text-lg text-justify"
+                  style={{ textIndent: "2rem" }}
+                >
                   Ahora, 21 años después, estamos orgullosos de ver que seguimos
                   adelante, con equipos en todas las categorías, y que los
                   chicos y chicas del barrio pueden disfrutar del fútbol
@@ -108,6 +112,54 @@ const Home = () => {
                   los comercios para sacar adelante el equipo
                 </p>
               </div>
+            </div>
+            {/* futvol base */}
+            <div
+              data-aos="fade-up"
+              className="etxt-sm text.grey tracking-wide leading-5"
+            >
+              <h1 className="text-4xl font-bold mb-6 ml-12">Futbol Base</h1>
+
+              <hr class="border-t-4 border-yellow-300 mt-2 mb-10 ml-12" />
+              <p
+                className="mt-2 mb-5 ml-12 mr-12 text-gray-700 text-lg text-justify"
+                style={{ textIndent: "2rem" }}
+              >
+                El fútbol base, conocido también como fútbol juvenil o de
+                formación, es la etapa fundamental en la que se desarrollan las
+                habilidades y el talento de los jóvenes futbolistas. Este
+                proceso abarca desde las categorías infantiles hasta las
+                juveniles, generalmente de edades comprendidas entre los 6 y los
+                18 años.
+              </p>
+
+              <p className="mt-0 ml-12 mr-12 text-justify text-gray-700 text-lg mb-5">
+                El principal objetivo del fútbol base es formar jugadores en un
+                sentido amplio, no solo en términos de habilidades técnicas y
+                tácticas, sino también en aspectos físicos, psicológicos y
+                sociales. Algunos de los objetivos clave incluyen: <br />
+                <b>Desarrollo Técnico:</b> Enseñar y perfeccionar técnicas
+                básicas como el control del balón, el pase, el regate y el tiro.{" "}
+                <br />
+                <b>Comprensión Táctica:</b> Introducir conceptos de
+                posicionamiento, juego en equipo, y estrategias tanto defensivas
+                como ofensivas.
+                <br />
+                <b>Condición Física:</b> Mejorar la resistencia, la fuerza, la
+                velocidad y la coordinación.
+                <br />
+                <b>Desarrollo Mental:</b> Fomentar la disciplina, la
+                concentración, la toma de decisiones y la resiliencia. Valores y
+                Actitudes: Promover el respeto, el trabajo en equipo, la
+                deportividad y la pasión por el juego.
+              </p>
+            </div>
+            <div data-aos="zoom-in" className="lg:mt-10 md:mt-4 sm:mt-2">
+              <img
+                src={BenjaminA}
+                alt=""
+                className="max-w-[600px] h-[480px] w-full mx-auto drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)] object-cover rounded-lg"
+              />
             </div>
           </div>
         </div>
