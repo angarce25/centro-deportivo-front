@@ -35,7 +35,7 @@ function Products() {
 
   return (
     <>
-      <div className="flex fixed">
+      <div className="flex min-h-screen h-screen overflow-hidden">
         <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
         {!loading && (
           <>

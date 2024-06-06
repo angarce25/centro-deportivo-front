@@ -105,7 +105,7 @@ function Sidebar() {
       <div className={`${sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'} fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-l lg:translate-x-0 lg:static lg:inset-0 h-screen`}>
         <div className="flex items-center justify-center mt-8">
           <div className="flex items-center">
-            <img className='w-20 h-30' src={imagen} alt="Escudo" />
+            <img className="w-20 h-30" src={imagen} alt="Escudo" />
           </div>
         </div>
 
