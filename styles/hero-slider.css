@@ -12,81 +12,71 @@
 }
 
 .slider__item-01 {
-  background: linear-gradient(rgba(0, 10, 79, 0.5), rgba(0, 6, 48, 0.5)),
-    url("../src/assets/slide/ALEVINA.jpg");
-  background-position: center;
+  background: url("../src/assets/slide/ALEVINA.jpg");
+  background-position: center -60px;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .slider__item-02 {
-  background: linear-gradient(rgba(0, 10, 79, 0.5), rgba(0, 6, 48, 0.5)),
-    url("../src/assets/slide/ALEVINB.jpg");
-  background-position: center;
+  background: url("../src/assets/slide/ALEVINB.jpg");
+ background-position: center -60px;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .slider__item-03 {
-  background: linear-gradient(rgba(0, 10, 79, 0.5), rgba(0, 6, 48, 0.5)),
-    url("../src/assets/slide/BENJAMINA.jpg");
-  background-position: center;
+  background: url("../src/assets/slide/BENJAMINA.jpg");
+ background-position: center -60px;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .slider__item-04 {
-  background: linear-gradient(rgba(0, 10, 79, 0.5), rgba(0, 6, 48, 0.5)),
-    url("../src/assets/slide/CADETEA.jpg");
-  background-position: center;
+  background: url("../src/assets/slide/CADETEA.jpg");
+ background-position: center -60px;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .slider__item-05 {
-  background: linear-gradient(rgba(0, 10, 79, 0.5), rgba(0, 6, 48, 0.5)),
-    url("../src/assets/slide/CADETEB.jpg");
-  background-position: center;
+  background: url("../src/assets/slide/CADETEB.jpg");
+background-position: center -60px;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .slider__item-06 {
-  background: linear-gradient(rgba(0, 10, 79, 0.5), rgba(0, 6, 48, 0.5)),
-    url("../src/assets/slide/INFANTILA.jpg");
-  background-position: center;
+  background: url("../src/assets/slide/INFANTILA.jpg");
+ background-position: center -60px;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .slider__item-07 {
-  background: linear-gradient(rgba(0, 10, 79, 0.5), rgba(0, 6, 48, 0.5)),
-    url("../src/assets/slide/INFANTILB.jpg");
-  background-position: center;
+  background: url("../src/assets/slide/INFANTILB.jpg");
+ background-position: center -60px;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .slider__item-08 {
-  background: linear-gradient(rgba(0, 10, 79, 0.5), rgba(0, 6, 48, 0.5)),
-    url("../src/assets/slide/JUVENILA.jpg");
-  background-position: center;
+  background: url("../src/assets/slide/JUVENILA.jpg");
+ background-position: center -60px;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .slider__item-09 {
-  background: linear-gradient(rgba(0, 10, 79, 0.5), rgba(0, 6, 48, 0.5)),
-    url("../src/assets/slide/JUVENILB.jpg");
-  background-position: center;
+  background: url("../src/assets/slide/JUVENILB.jpg");
+  background-position: center -60px;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .slider__item-10 {
-  background: linear-gradient(rgba(0, 10, 79, 0.5), rgba(0, 6, 48, 0.5)),
-    url("../src/assets/slide/JUVENILC.jpg");
-  background-position: center;
+  background: url("../src/assets/slide/JUVENILC.jpg");
+background-position: center -60px;
   background-repeat: no-repeat;
   background-size: cover;
 }

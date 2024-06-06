@@ -9,69 +9,68 @@ import PlayersAdmin from "./pages/PlayersAdmin.jsx";
 import NewPlayer from "./pages/NewPlayer.jsx";
 import Products from "./pages/Products.jsx";
 import ProductOrder from "./pages/ProductOrder.jsx";
-import ProductsOrders from "./pages/ProductsOrders.jsx";
 import Merchandising from "./pages/Merchandising.jsx";
 import { PlayerProvider } from "./context/PlayerContext.jsx";
-import { SpinnerProvider } from "./context/LoadingContext.jsx"; //el componente loading spinner
+import { SpinnerProvider } from "./context/LoadingContext.jsx";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MyOrders from "./pages/MyOrders.jsx";
 import TeamInfo from "./pages/TeamInfo.jsx";
 import { PrivateRoute, AdminPrivateRoute } from "./context/PrivateRoutes.jsx";
-import OrdersUsersChart from "./components/orders/OrdersUsersChart.jsx";
 import OrdersAdmin from "./pages/OrdersAdmin.jsx";
+import NotFound from "./components/notfound/NotFound.jsx"
+
 
 
 
 function App() {
   return (
     //<AuthProvider>
-      <SpinnerProvider>
+    <SpinnerProvider>
       <ToastContainer />
       <ShoppingCartProvider>
-      <PlayerProvider> 
-      <BrowserRouter>
-      
-        {/* RUTAS NAVBAR */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/info" element={<TeamInfo />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        
-          <Route path="/merchandising" element={<Merchandising />} />
-         
-          {/* <Route path="/dashboard/products" element={<ProductsP />} /> */}
-          {/* <Route path="/dashboard/teams" element={<PlayersP />} /> */}
-          {/* <Route path="/*" element={<NotFound />} /> */}
-      {/* Rutas Sidebar protegidas */}
+        <PlayerProvider>
+          <BrowserRouter>
+            {/* RUTAS NAVBAR */}
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/info" element={<TeamInfo />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/merchandising" element={<Merchandising />} />
 
-          <Route path="/dashboard/users" element={<UserP />} />
-          
-          {/*Pagina jugadores user */}
-          {/* <Route element={<PrivateRoute isAllowed={false} />}> */}
-            <Route path="/dashboard/my-players" element={<PlayersUser />} />{" "}
-          {/* </Route> */}
-          {/*Pagina jugadores admin */}
-          <Route path="/dashboard/players" element={<PlayersAdmin />} />{" "}
-          <Route path="/dashboard/form-player" element={<NewPlayer />} />
-          
-          <Route path="/dashboard/products" element={<Products />} />
-          <Route path="/dashboard/product-order" element={<ProductOrder />} />
-          <Route path="/dashboard/products-orders"element={<ProductsOrders />}/>
-          <Route path="/dashboard/myorders"element={<MyOrders />}/>
-          <Route path="/dashboard/orders"element={<OrdersAdmin />}/>
-          
+              <Route path="/*" element={<NotFound />} />
+              {/* Rutas protegidas para el usuario */}
+              <Route element={<PrivateRoute isAllowed={false} />}>
+                <Route path="/dashboard/my-players" element={<PlayersUser />} />{" "}
+                <Route path="/dashboard/myorders" element={<MyOrders />} />
+                <Route path="/dashboard/form-player" element={<NewPlayer />} />
+                <Route path="/dashboard/products" element={<Products />} />
+                <Route path="/dashboard/add-order" element={<ProductOrder />} />
+                <Route
+                  path="/dashboard/product-order"
+                  element={<ProductOrder />}
+                  
+                />
+              </Route>
+              {/* Final de las Rutas protegidas para el usuario */}
 
-          <Route path="/dashboard/teams" element={<PlayersUser />} />
-   {/* -_- Ruta de pruebas para cnstruccion de componentes front */}
-          <Route path="/testing" element={<Merchandising />} />
-        {/* -_- Final de ruta de pruebas para cnstruccion de componentes front */}
-        </Routes>
-      </BrowserRouter>
-      </PlayerProvider> 
+              {/* Rutas protegidas para el Administrador */}
+              <Route element={<AdminPrivateRoute isAllowed={false} />}>
+                <Route path="/dashboard/users" element={<UserP />} />
+                <Route
+                  path="/dashboard/players"
+                  element={<PlayersAdmin />}
+                />{" "}
+                <Route path="/dashboard/orders" element={<OrdersAdmin />} />
+                <Route path="/dashboard/teams" element={<PlayersUser />} />
+              </Route>
+              {/* Fin Rutas protegidas para el Administrador */}
+            </Routes>
+          </BrowserRouter>
+        </PlayerProvider>
       </ShoppingCartProvider>
-      </SpinnerProvider>
+    </SpinnerProvider>
     //</AuthProvider>
   );
 }

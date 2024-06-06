@@ -1,45 +1,98 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
+const AssignTeamModal = ({ isOpen, onClose, player, onSave }) => {
+  const [teamId, setTeamId] = useState('');
+  const [teams, setTeams] = useState([]);
 
-const AddCategory = () => {
-    return (
-        <div className="mt-4">
-            <h4 className="text-gray-600">Añadir categoría (?)</h4>
+  useEffect(() => {
+    const fetchTeams = async () => {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const extraPath = '/player/teams';
+      const fullUrl = apiUrl + extraPath; // Ruta para obtener la lista de equipos
+      try {
+        const response = await axios.get(fullUrl, { withCredentials: true });
+        setTeams(response.data);
+      } catch (error) {
+        console.error("Error al obtener los equipos:", error);
+      }
+    };
 
-            <div className="mt-4">
-                <div className="max-w-sm w-full bg-white shadow-md rounded-md overflow-hidden">
-                    <form>
-                        <div className="flex justify-between items-center px-5 py-3 text-gray-700 border-b">
-                            <h3 className="text-sm">Add Category</h3>
-                            <button>
-                                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
-                                </svg>
-                            </button>
-                        </div>
-                        
-                        <div className="px-5 py-6 bg-gray-200 text-gray-700 border-b">
-                            <label className="text-xs">Name</label>
+    fetchTeams();
+  }, []);
 
-                            <div className="mt-2 relative rounded-md shadow-sm">
-                                <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-600">
-                                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
-                                    </svg>
-                                </span>
+  const handleSave = async (e) => {
+    e.preventDefault();
+    const apiUrl = import.meta.env.VITE_API_URL;
+      const extraPath = '/player/assign-team';
+      const fullUrl = apiUrl + extraPath;
 
-                                <input type="text" className="form-input w-full px-12 py-2 appearance-none rounded-md focus:border-indigo-600" />
-                            </div>
-                        </div>
+    try {
+      await axios.post(fullUrl, {
+        playerId: player._id,
+        teamId: teamId
+      }, { withCredentials: true });
 
-                        <div className="flex justify-between items-center px-5 py-3">
-                            <button className="px-3 py-1 text-gray-700 text-sm rounded-md bg-gray-200 hover:bg-gray-300 focus:outline-none">Cancel</button>
-                            <button className="px-4 py-2 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700">Save</button>
-                        </div>
-                    </form>
-                </div>
+      await onSave(player._id, teamId);
+      onClose();
+    } catch (error) {
+      console.error("Error al asignar el equipo:", error);
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+      <div className="bg-white rounded-md shadow-md overflow-hidden max-w-sm w-full">
+        <form onSubmit={handleSave}>
+          <div className="flex justify-between items-center px-5 py-3 text-gray-700 border-b">
+            <h3 className="text-sm">Asignar Equipo</h3>
+            <button type="button" onClick={onClose}>
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+          
+          <div className="px-5 py-6 bg-gray-200 text-gray-700 border-b">
+            <label className="text-xs">Equipo</label>
+            <div className="mt-2 relative rounded-md shadow-sm">
+              <select
+                className="form-select w-full px-3 py-2 appearance-none rounded-md focus:border-indigo-600"
+                value={teamId}
+                onChange={(e) => setTeamId(e.target.value)}
+                aria-label="Team"
+              >
+                <option value="">Selecciona un equipo</option>
+                {teams.map((team) => (
+                  <option key={team._id} value={team._id}>
+                    {team.name}
+                  </option>
+                ))}
+              </select>
             </div>
-        </div>
-    );
-}
+          </div>
 
-export default AddCategory;
+          <div className="flex justify-between items-center px-5 py-3">
+            <button 
+              type="button" 
+              className="px-3 py-1 text-gray-700 text-sm rounded-md bg-gray-200 hover:bg-gray-300 focus:outline-none"
+              onClick={onClose}
+            >
+              Cancelar
+            </button>
+            <button 
+              type="submit" 
+              className="px-4 py-2 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+            >
+              Guardar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default AssignTeamModal;

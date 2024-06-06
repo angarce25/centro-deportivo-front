@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
 
@@ -53,17 +53,17 @@ function OrdersUsersChart() {
                                     <thead>
                                         <tr className="text-gray-800 text-sm">
                                             <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                ID
+                                                Id del Pedido
                                             </th>
                                             <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                Documento
+                                                Documento de Pago
                                             </th>
                                             
                                             <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                Resumen
+                                                Observaciones del Pedido
                                             </th>
                                             <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                                Estado
+                                                Estado del Pedido
                                             </th>
                                             <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                                 Fecha
@@ -77,7 +77,13 @@ function OrdersUsersChart() {
                                                     {order._id} {/* Mostrar el _id de la orden */}
                                                 </td>
                                                 <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                    {order.document} {/* Mostrar el documento*/}
+                                                {order.document && (
+                                                        <a
+                                                        className='text-blue-600 underline' 
+                                                        href={order.document.path} target="_blank" rel="noopener noreferrer">
+                                                            {order.document.originalname}
+                                                            </a>
+                                                    )}
                                                 </td>
                                                 <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                                                     {order.summary} {/* Mostrar el resumen de la orden */}

@@ -5,63 +5,70 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const API = 'http://localhost:3000/api';
+const API = import.meta.env.VITE_API_URL;
 
 const Logincomponent = ({ onFormSwitch }) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const navigate = useNavigate();
 
-  const handleCookie = (token) => {
-    // Almacena la cookie en el navegador
+  const handleCookie = (token, isAdmin) => {
+    // Almacena el token y el rol en las cookies
     Cookies.set('token', token, { expires: 1 }); 
+    Cookies.set('isAdmin', isAdmin, { expires: 1 });
     console.log('Token para la cookie:', token);
     console.log('Cookie establecida:', Cookies.get('token'));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await axios.post(`${API}/login`, { email, password: pass });
+  console.log('RESPONSE.DATA EN LOGINCOMPONENT: ', response.data)
+  const { token, isAdmin, username: name } = response.data; 
+  
+  console.log('Token recibido:', token);
+  console.log('Role recibido:', isAdmin);
+  console.log('Nombre recibido:', name);
 
-      // Verifica si la respuesta contiene un token en los datos de la respuesta
-      const token = response.data.token; 
-      const rol_id = response.data.rol_id; 
+  if (token) {
+    handleCookie(token, isAdmin, name);
 
-      console.log('Token recibido:', token);
-      console.log('Role recibido:', rol_id); 
-      console.log('Respuesta del servidor:', response.data);
-      
-      if (token) {
-        handleCookie(token); // Llama a la función handleCookie para almacenar el token en la cookie
-      }
+    // Mostrar notificación de bienvenida
+    toast.success(`¡Bienvenido, ${name}!`, {
+      toastStyle: {
+        marginTop: "12rem",
+      },
+    });
 
-      // Redirige según el rol del usuario
-      if (rol_id === 'user') {
-        navigate('/dashboard/my-players');
-      } else {
+    setTimeout(() => {
+      if (isAdmin === 'admin') {
         navigate('/dashboard/users');
+      } else if (isAdmin === 'user'){
+        navigate('/dashboard/my-players');
       }
-    } catch (error) {
-      if (error.response) {
-        // Error de respuesta del servidor
-        console.error("Error al iniciar sesión:", error.response.data.message || 'Error en el inicio de sesión');
-        toast.error("Error en inicio de sesión");
-      } else if (error.request) {
-        // Error de solicitud
-        console.error("Error al iniciar sesión:", 'No se pudo conectar con el servidor');
-        toast.error("Error en inicio de sesión");
-      } else {
-        // Otros errores
-        console.error("Error al iniciar sesión:", 'Error al procesar la solicitud de inicio de sesión');
-        toast.error("Error en inicio de sesión");
-      }
+    }, 2000);
+  }
+} catch (error) {
+  if (error.response) {
+    console.error("Error al iniciar sesión:", error.response.data.message || 'Error en el inicio de sesión');
+
+    if (error.response.status === 429) {
+      toast.error("Demasiados intentos de inicio de sesión. Por favor, inténtelo de nuevo más tarde.");
+    } else {
+      toast.error("Error en inicio de sesión");
     }
-  };
-
-
-
+  } else if (error.request) {
+    console.error("Error al iniciar sesión:", 'No se pudo conectar con el servidor');
+    toast.error("Error en inicio de sesión");
+  } else {
+    console.error("Error al iniciar sesión:", 'Error al procesar la solicitud de inicio de sesión');
+    toast.error("Error en inicio de sesión");
+  }
+}
+};
+  
   return (
     <div className="bg-gray-200 min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md mb-12" style={{ backgroundColor: "#F2F2F2" }}>
