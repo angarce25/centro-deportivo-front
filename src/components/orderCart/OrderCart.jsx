@@ -18,7 +18,7 @@ const OrderCart = props => {
             className="w-full h-full rounded-lg object-cover bg-gradient-to-br from-black via-gray-500 to-white-100" src={imageUrl} alt={name} />
         </figure>
         <p className="text-sm font-light ">{name}</p>
-        <p className="text-sm font-light ">Talla:{context.checkedSizes}</p>
+        <p className="text-sm font-light ">Talla:{context.checkedSizes[_id]}</p>
     
           
        

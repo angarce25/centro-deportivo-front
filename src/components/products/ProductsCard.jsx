@@ -28,7 +28,7 @@ function ProductsCard(data) {
     event.stopPropagation();
     // Actualiza el tamaño seleccionado
     console.log( "Size seleccionado:", selectedSize);
-    context.handleCheckSize(selectedSize);
+    context.handleCheckSize(data.data._id, size);
   };
 
     useEffect(() => {

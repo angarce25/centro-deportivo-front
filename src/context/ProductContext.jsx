@@ -32,11 +32,11 @@ const [order, setOrder] = useState([]);
  // SELECTED SIZE · STATE
  const [checkedSizes, setCheckedSizes] = useState([]);
   
-  const handleCheckSize = (size) => {
+  const handleCheckSize = (productId, size) => {
     console.log(`Selected size: ${size}`);
-      setCheckedSizes(size)
-      console.log(`Updated checked sizes: ${checkedSizes}`);
-     return checkedSizes
+    setCheckedSizes((prevCheckedSizes) => {
+      return { ...prevCheckedSizes, [productId]: size };
+    });
   };
 
   //FILTER PRODUCTS BY CATEGORY
@@ -66,7 +66,7 @@ console.log(order)
       setCheckedSizes,
       handleCheckSize,
       filters,
-      setFilters
+      setFilters,
 
    }}>
      {children}
