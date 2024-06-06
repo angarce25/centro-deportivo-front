@@ -79,11 +79,11 @@ function ProductsCard(data) {
           {data.data.price}€
         </span>
       </p>
-      <div className="flex justify-center mb-0">
-  {data.data.sizes.map((size, index) => (
+      <div className="flex flex-wrap justify-center mb-0">
+        {data.data.sizes.map((size, index) => (
     <button
       key={index}
-      className={`m-1 mx-1 px-1 py-1 rounded-md text-xs border font-medium cursor-pointer ${selectedSize === size ? 'bg-yellow-d text-black' : 'bg-gray-l text-gray-d'}`}
+      className={` m-1 mx-1 px-1 py-1 rounded-md text-xs border font-medium cursor-pointer ${selectedSize === size ? 'bg-yellow-d text-black' : 'bg-gray-l text-gray-d'}`}
       onClick={(event) => handleSizeSelection(size, event)}
       onClickCapture={(event) => setSelectedSize(size, event)}
     >
