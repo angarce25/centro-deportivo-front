@@ -19,6 +19,7 @@ import TeamInfo from "./pages/TeamInfo.jsx";
 import { PrivateRoute, AdminPrivateRoute } from "./context/PrivateRoutes.jsx";
 import OrdersAdmin from "./pages/OrdersAdmin.jsx";
 import NotFound from "./components/notfound/NotFound.jsx"
+import AdminMemberships from "./pages/AdminMemberships.jsx";
 
 
 
@@ -38,8 +39,8 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/merchandising" element={<Merchandising />} />
-
               <Route path="/*" element={<NotFound />} />
+
               {/* Rutas protegidas para el usuario */}
               <Route element={<PrivateRoute isAllowed={false} />}>
                 <Route path="/dashboard/my-players" element={<PlayersUser />} />{" "}
@@ -64,8 +65,10 @@ function App() {
                 />{" "}
                 <Route path="/dashboard/orders" element={<OrdersAdmin />} />
                 <Route path="/dashboard/teams" element={<PlayersUser />} />
+                <Route path="/dashboard/memberships" element={<AdminMemberships />} />
               </Route>
-              {/* Fin Rutas protegidas para el Administrador */}
+              {/* Final de rutas protegidas para el Administrador */}
+
             </Routes>
           </BrowserRouter>
         </PlayerProvider>
