@@ -58,8 +58,8 @@ function PlayersTable() {
         <table className="table table-zebra">
           <thead>
             <tr className="text-gray-800 text-sm">
-              <th></th>
               <th>Nombre</th>
+              <th>Representante</th>
               <th>Equipo</th>
               <th>Email</th>
               <th>Teléfono</th>
@@ -73,7 +73,8 @@ function PlayersTable() {
             {players.map((player) => (
               <tr key={player._id}>
                 <td className="font-medium">{player.name} {player.lastname}</td>
-                <td></td>
+                {/* Cambiar por el nombre del representante                 */}
+                <td>{player.parent_id}</td>
                 <td>
                   {player.team ? player.team.name : 'Pendiente'}
                   <button 
@@ -84,7 +85,7 @@ function PlayersTable() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8h16M4 16h16"/>
                     </svg>
                   </button>
-                </td>
+                </td>                
                 <td>{player.email}</td>
                 <td>{player.phone}</td>
                 <td>{player.post_code}</td>

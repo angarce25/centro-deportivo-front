@@ -76,10 +76,7 @@ function PlayersUserChart() {
                   </th>
                   <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Apellido
-                  </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                    Equipo
-                  </th>
+                  </th>                  
                   <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Edad
                   </th>
@@ -119,32 +116,32 @@ function PlayersUserChart() {
                 ) : (
                   myPlayers.map((player) => (
                     <tr key={player._id}>
-                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
                         {player.name}
                       </td>
-                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
                         {player.lastname}
                       </td>
-                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
                         {player.age} años
                       </td>
-                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
                         {player.shirt_size}
                       </td>
-                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
                         {player.pants_size}
                       </td>
-                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
                         {player.shoe_size}
                       </td>
-                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                      <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
                         {player.status ? "Activo" : "Inactivo"}
                       </td>
                       {myPayments.length === 0 ? (<>
-                        <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">No hay pagos</td>
-                        <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">No hay pagos</td>
-                        <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">No hay pagos</td>
-                        <td className="tpx-4 py-4 whitespace-no-wrap border-b border-gray-200">No hay pagos</td>
+                        <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">No hay pagos</td>
+                        <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">No hay pagos</td>
+                        <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">No hay pagos</td>
+                        <td className="tpx-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">No hay pagos</td>
                         </>
                       ) : (
                         <>
