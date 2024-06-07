@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { ShoppingCartContext } from "../../context/ProductContext";
-import { GoPlus } from "react-icons/go";
+import { TfiShoppingCartFull } from "react-icons/tfi";
 
 function ProductsCard(data) {
   const context = useContext(ShoppingCartContext);
@@ -65,10 +65,10 @@ function ProductsCard(data) {
             height: "auto",
             filter: "drop-shadow(0px 1.42184px 1.23px rgba(0, 0, 0, 1))",
           }}
-          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 rounded-md m-1 text-sm"
+          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6  rounded-md m-2 "
           onClick={(event) => addProductsToCart(event, data.data)}
         >
-          <GoPlus className="text-black w-6 h-6"> </GoPlus>
+          <TfiShoppingCartFull className="text-black  w-4 h-6"> </TfiShoppingCartFull>
         </div>
       </figure>
       <p className="flex justify-between ">
@@ -79,11 +79,11 @@ function ProductsCard(data) {
           {data.data.price}€
         </span>
       </p>
-      <div className="flex justify-center mb-0">
-  {data.data.sizes.map((size, index) => (
+      <div className="flex flex-wrap justify-center mb-0">
+        {data.data.sizes.map((size, index) => (
     <button
       key={index}
-      className={`m-1 mx-1 px-1 py-1 rounded-md text-xs border font-medium cursor-pointer ${selectedSize === size ? 'bg-yellow-d text-black' : 'bg-gray-l text-gray-d'}`}
+      className={` m-1 mx-1 px-1 py-1 rounded-md text-xs border font-medium cursor-pointer ${selectedSize === size ? 'bg-yellow-d text-black' : 'bg-gray-l text-gray-d'}`}
       onClick={(event) => handleSizeSelection(size, event)}
       onClickCapture={(event) => setSelectedSize(size, event)}
     >

@@ -11,6 +11,7 @@ import { useSpinner, Spinner } from "../context/LoadingContext";
 
 function Products() {
   const [items, setItems] = useState([]);
+  const [category, setCategory] = useState("all");
   const { loading, setLoading } = useSpinner();
 
   useEffect(() => {
@@ -33,6 +34,8 @@ function Products() {
     fetchProducts();
   }, [setLoading]);
 
+  const filteredItems = category === "all" ? items : items.filter(item => item.category === category);
+
   return (
     <>
       <div className="flex min-h-screen h-screen overflow-hidden">
@@ -40,21 +43,20 @@ function Products() {
         {!loading && (
           <>
             <Sidebar />
-            {/* <ProductsNav /> */}
             <ProductsLayout>
               <h2 className="text-xl font-medium mb-2">
                 Echa un vistazo a nuestro equipamiento deportivo
               </h2>
-            <ProductsNav />
+              <ProductsNav setCategory={setCategory} />
               <div
-                className=" overflow-y-scroll w-full h-screen   
+                className="overflow-y-scroll w-full h-screen   
                 2xl:grid 2xl:grid-cols-5 2xl:w-full 2xl:max-w-screen-2xl
-                           xl:grid xl:grid-cols-4 xl:w-full xl:max-w-screen-lg
-                           lg:grid lg:grid-cols-4 lg:w-full lg:max-w-screen-lg
-                           md:grid md:grid-cols-3 md:w-full md:max-w-screen-md
-                           sm:grid sm:grid-cols-2 sm:w-full sm:justify-center"
+                xl:grid xl:grid-cols-4 xl:w-full xl:max-w-screen-lg
+                lg:grid lg:grid-cols-4 lg:w-full lg:max-w-screen-lg
+                md:grid md:grid-cols-3 md:w-full md:max-w-screen-md
+                sm:grid sm:grid-cols-2 sm:w-full sm:justify-center"
               >
-                {items.map((item) => (
+                {filteredItems.map((item) => (
                   <div key={item._id}>
                     <ProductsCard data={item} />
                   </div>
