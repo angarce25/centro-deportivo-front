@@ -1,0 +1,6 @@
+# Redirecciones
+[[redirects]]
+  # Redireccionar todas las rutas a index.html
+  from = "/*"
+  to = "/index.html"
+  status = 200
