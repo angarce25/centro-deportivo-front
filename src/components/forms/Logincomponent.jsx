@@ -24,7 +24,7 @@ const Logincomponent = ({ onFormSwitch }) => {
     e.preventDefault();
   
     try {
-      const response = await axios.post(`${API}/login`, { email, password: pass });
+      const response = await axios.post(`${API}/api/login`, { email, password: pass });
   console.log('RESPONSE.DATA EN LOGINCOMPONENT: ', response.data)
   const { token, isAdmin, username: name } = response.data; 
   

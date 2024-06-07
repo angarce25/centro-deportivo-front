@@ -1,20 +1,34 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
+import Cookies from 'js-cookie';
 
 function OrdersUsersChart() {
     const [orders, setOrders] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const API = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
-        const extraPath = "/orders/myorders"; // Añade la parte adicional de la URL
-        const fullUrl = API + extraPath; // Combina la URL base con la parte adicional
+        const API = import.meta.env.VITE_API_URL;
+        const extraPath = "/api/orders/myorders";
+        const fullUrl = API + extraPath;
 
         const fetchOrders = async () => {
             try {
-                const response = await axios.get(fullUrl, { withCredentials: true }); // Realiza la solicitud a tu API para obtener los pedidos del usuario
-                setOrders(response.data); // Actualiza el estado con los datos de los pedidos
+                const token = Cookies.get('token'); // Obtén el token de la cookie
+
+                if (!token) {
+                    setError('No se encontró token de autenticación. Por favor, inicia sesión.');
+                    return;
+                }
+
+                const response = await axios.get(fullUrl, {
+                    headers: {
+                        'Authorization': `Bearer ${token}` // Incluye el token en los encabezados
+                    },
+                    withCredentials: true
+                });
+
+                setOrders(response.data);
             } catch (error) {
                 if (error.response) {
                     if (error.response.status === 401) {

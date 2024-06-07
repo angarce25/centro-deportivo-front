@@ -1,9 +1,9 @@
 import axios from 'axios';
 // import Cookies from 'js-cookie';
 
-const API = 'http://localhost:3000/api';
+const API = 'https://centro-deportivo-back.onrender.com/api';
 
-export const registerRequest = user => axios.post(`${API}/register`, user);
+export const registerRequest = user => axios.post(`${API}/api/register`, user);
     
 // export const loginRequest = async (user, navigate) => {
 //     try {

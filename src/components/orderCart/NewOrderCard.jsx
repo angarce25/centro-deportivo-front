@@ -54,7 +54,7 @@ const NewOrderCard = ({
         }
       };         
 
-      const response = await axios.post('http://localhost:3000/api/orders/add-order', formData, config);  
+      const response = await axios.post('https://centro-deportivo-back.onrender.com/api/orders/add-order', formData, config);  
 
          
       if (response.status === 201) {        

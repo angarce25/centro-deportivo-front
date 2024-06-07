@@ -11,7 +11,7 @@ function OrdersChart() {
 
     useEffect(() => {
         const API = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
-        const extraPath = "/orders"; // Añade la parte adicional de la URL
+        const extraPath = "/api/orders"; // Añade la parte adicional de la URL
         const fullUrl = API + extraPath; // Combina la URL base con la parte adicional
 
         const fetchOrders = async () => {

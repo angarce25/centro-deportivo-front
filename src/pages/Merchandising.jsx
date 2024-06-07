@@ -18,7 +18,7 @@ function Merchandising() {
       setLoading(true);
       try {
         const apiUrl = import.meta.env.VITE_API_URL;
-        const extraPath = '/products';
+        const extraPath = '/api/products';
         const fullUrl = `${apiUrl}${extraPath}`;
         const response = await axios.get(fullUrl);
         setItems(response.data);

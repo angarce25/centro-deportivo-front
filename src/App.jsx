@@ -19,7 +19,7 @@ import TeamInfo from "./pages/TeamInfo.jsx";
 import { PrivateRoute, AdminPrivateRoute } from "./context/PrivateRoutes.jsx";
 import OrdersAdmin from "./pages/OrdersAdmin.jsx";
 import NotFound from "./components/notfound/NotFound.jsx"
-import AdminMemberships from "./pages/AdminMemberships.jsx";
+// import AdminMemberships from "./pages/AdminMemberships.jsx";
 
 
 
@@ -65,7 +65,7 @@ function App() {
                 />{" "}
                 <Route path="/dashboard/orders" element={<OrdersAdmin />} />
                 <Route path="/dashboard/teams" element={<PlayersUser />} />
-                <Route path="/dashboard/memberships" element={<AdminMemberships />} />
+                {/* <Route path="/dashboard/memberships" element={<AdminMemberships />} /> */}
               </Route>
               {/* Final de rutas protegidas para el Administrador */}
 

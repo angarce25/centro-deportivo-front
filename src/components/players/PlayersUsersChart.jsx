@@ -9,8 +9,8 @@ function PlayersUserChart() {
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
-    const extraPath = "/myplayers"; // Añade la parte adicional de la URL
-    const paymentsExtraPath = "/payments/my-status"; // Segundo extra path para recoger status de pagos
+    const extraPath = "/api/myplayers"; // Añade la parte adicional de la URL
+    const paymentsExtraPath = "/api/payments/my-status"; // Segundo extra path para recoger status de pagos
     const fullUrl = apiUrl + extraPath; // Combina la URL base con la parte adicional
     const paymentsFullUrl = apiUrl + paymentsExtraPath;
 

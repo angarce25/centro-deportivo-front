@@ -18,7 +18,7 @@ function Products() {
       setLoading(true); // Activa el spinner
       try {
         const apiUrl = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
-        const extraPath = '/products'; // Añade la parte adicional de la URL
+        const extraPath = '/api/products'; // Añade la parte adicional de la URL
         const fullUrl = apiUrl + extraPath; // Combina la URL base con la parte adicional
         
         const response = await axios.get(fullUrl);

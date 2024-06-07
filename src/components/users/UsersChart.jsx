@@ -6,7 +6,7 @@ function UsersChart() {
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL; 
-    const extraPath = '/user'; 
+    const extraPath = '/api/user'; 
     const fullUrl = apiUrl + extraPath; 
 
     axios

@@ -16,7 +16,7 @@ export default function FormNewPlayer() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       const apiUrl = import.meta.env.VITE_API_URL; 
-      const extraPath = '/newplayer'; 
+      const extraPath = '/api/newplayer'; 
       const fullUrl = apiUrl + extraPath; 
      
       console.log(fullUrl)

@@ -31,7 +31,7 @@ function ProductOrder() {
 
       // Crear un objeto de pedido
       const API = import.meta.env.VITE_API_URL;
-      const extraPath = "/orders/add-order";
+      const extraPath = "/api/orders/add-order";
       const fullUrl = API + extraPath;
       // const token = Cookies.get('token');
       

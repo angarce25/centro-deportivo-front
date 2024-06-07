@@ -8,7 +8,7 @@ const AssignTeamModal = ({ isOpen, onClose, player, onSave }) => {
   useEffect(() => {
     const fetchTeams = async () => {
       const apiUrl = import.meta.env.VITE_API_URL;
-      const extraPath = '/player/teams';
+      const extraPath = '/api/player/teams';
       const fullUrl = apiUrl + extraPath; // Ruta para obtener la lista de equipos
       try {
         const response = await axios.get(fullUrl, { withCredentials: true });

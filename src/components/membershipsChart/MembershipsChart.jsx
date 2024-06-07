@@ -15,8 +15,8 @@ function MembershipChart() {
 
   useEffect(() => {
     const API = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
-    const membersPath = "/user"; // Ruta para obtener los miembros
-    const paymentsPath = "/payments/status"; // Ruta para obtener los pagos
+    const membersPath = "/api/user"; // Ruta para obtener los miembros
+    const paymentsPath = "/api/payments/status"; // Ruta para obtener los pagos
     const fullMembersUrl = API + membersPath; // Combina la URL base con la ruta de miembros
     const fullPaymentsUrl = API + paymentsPath; // Combina la URL base con la ruta de pagos
 

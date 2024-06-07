@@ -10,7 +10,7 @@ function PlayersTable() {
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL;
-    const extraPath = '/players';
+    const extraPath = '/api/players';
     const fullUrl = apiUrl + extraPath;
 
     axios.get(fullUrl, { withCredentials: true })
