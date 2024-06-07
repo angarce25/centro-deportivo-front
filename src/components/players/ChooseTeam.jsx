@@ -24,7 +24,7 @@ const AssignTeamModal = ({ isOpen, onClose, player, onSave }) => {
   const handleSave = async (e) => {
     e.preventDefault();
     const apiUrl = import.meta.env.VITE_API_URL;
-      const extraPath = '/player/assign-team';
+      const extraPath = '/api/player/assign-team';
       const fullUrl = apiUrl + extraPath;
 
     try {

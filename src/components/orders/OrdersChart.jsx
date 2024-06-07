@@ -52,6 +52,9 @@ function OrdersChart() {
 
         fetchOrders();
     }, []);
+
+    const ordersPerPage = 10; // Ajusta esto según tus necesidades
+
     const sortedOrders = [...orders].sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
             return sortConfig.direction === 'ascending' ? -1 : 1;
@@ -105,18 +108,30 @@ function OrdersChart() {
         }
     };
 
-    //Aquí agrego laa función de cambio de estado de pedidos
+    // Aquí agrego la función de cambio de estado de pedidos
     const handleStatusChange = async (orderId, newStatus) => {
         try {
             const API = import.meta.env.VITE_API_URL;
-            const extraPath = `/orders/order/${orderId}/status`;
+            const extraPath = `/api/orders/order/${orderId}/status`;
             const fullUrl = API + extraPath;
             console.log('Updating order status:', { orderId, newStatus, fullUrl });
 
-            const response = await axios.put(fullUrl, { status: newStatus }, { withCredentials: true });
-            console.log(response)
-            setOrders((prevOrders) => 
-                prevOrders.map((order) => 
+            const token = Cookies.get('token'); // Obtener el token de la cookie
+
+            if (!token) {
+                setError('No se encontró token de autenticación. Por favor, inicia sesión.');
+                return;
+            }
+
+            const response = await axios.put(fullUrl, { status: newStatus }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                withCredentials: true
+            });
+
+            setOrders((prevOrders) =>
+                prevOrders.map((order) =>
                     order._id === orderId ? { ...order, status: newStatus } : order
                 )
             );
@@ -144,8 +159,8 @@ function OrdersChart() {
                                 <table className="table table-zebra min-w-full">
                                     <thead>
                                         <tr className="text-gray-800 text-sm">
-                                            <th onClick={() => requestSort('_id')} className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
-                                                Usuario<SortArrow direction={sortConfig.key === '_id' ? sortConfig.direction : null} />
+                                            <th onClick={() => requestSort('user_id')} className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
+                                                Usuario<SortArrow direction={sortConfig.key === 'user_id' ? sortConfig.direction : null} />
                                             </th>
                                             <th onClick={() => requestSort('_id')} className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                                                 Id del Pedido<SortArrow direction={sortConfig.key === '_id' ? sortConfig.direction : null} />
@@ -159,8 +174,7 @@ function OrdersChart() {
                                             <th onClick={() => requestSort('status')} className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                                                 Estado del Pedido <SortArrow direction={sortConfig.key === 'status' ? sortConfig.direction : null} />
                                             </th>
-                                            <th onClick={() => requestSort('createdAt')} className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking
--wider border-black cursor-pointer">
+                                            <th onClick={() => requestSort('createdAt')} className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                                                 Fecha <SortArrow direction={sortConfig.key === 'createdAt' ? sortConfig.direction : null} />
                                             </th>
                                         </tr>
@@ -169,7 +183,8 @@ function OrdersChart() {
                                         {currentOrders.map((order) => (
                                             <tr key={order._id} className="border-black">
                                                 <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                                                {order.user_id ? `${order.user_id.name} ${order.user_id.lastname}` : 'Nombre no disponible'}                                              </td>
+                                                    {order.user_id ? `${order.user_id.name} ${order.user_id.lastname}` : 'Nombre no disponible'}
+                                                </td>
                                                 <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
                                                     {order._id} {/* Mostrar el _id de la orden */}
                                                 </td>
