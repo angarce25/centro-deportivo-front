@@ -133,13 +133,13 @@ function MembershipChart() {
         <div className="max-w-4xl w-full">
           <div className="overflow-x-auto">
             <div className="flex items-center justify-between">
-              <h4 className="text-gray-600 font-bold mb-6">Membresías</h4>
+              <h4 className="text-gray-600 font-bold mb-6 underline">Membresías____  __  _</h4>
             </div>
           </div>
 
           {/* Tabla para pedidos */}
-          <div className="flex flex-col mt-6">
-            <div className="-my-2 overflow-x-auto">
+          <div className="flex flex-col mt-0">
+            <div className="max-w-screen-xl mx-auto overflow-x-auto max-h-[80vh] mb-1">
               <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
                 <table className="table table-zebra min-w-full">
                   <thead>
@@ -149,42 +149,78 @@ function MembershipChart() {
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Usuario
-                        <SortArrow direction={sortConfig.key === "_id" ? sortConfig.direction : null} />
+                        <SortArrow
+                          direction={
+                            sortConfig.key === "_id"
+                              ? sortConfig.direction
+                              : null
+                          }
+                        />
                       </th>
                       <th
                         onClick={() => requestSort("_id")}
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Id del pago
-                        <SortArrow direction={sortConfig.key === "_id" ? sortConfig.direction : null} />
+                        <SortArrow
+                          direction={
+                            sortConfig.key === "_id"
+                              ? sortConfig.direction
+                              : null
+                          }
+                        />
                       </th>
                       <th
                         onClick={() => requestSort("payment.document")}
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Documento de Pago
-                        <SortArrow direction={sortConfig.key === "payment.document" ? sortConfig.direction : null} />
+                        <SortArrow
+                          direction={
+                            sortConfig.key === "payment.document"
+                              ? sortConfig.direction
+                              : null
+                          }
+                        />
                       </th>
                       <th
                         onClick={() => requestSort("payment.summary")}
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Observaciones del Pago
-                        <SortArrow direction={sortConfig.key === "payment.summary" ? sortConfig.direction : null} />
+                        <SortArrow
+                          direction={
+                            sortConfig.key === "payment.summary"
+                              ? sortConfig.direction
+                              : null
+                          }
+                        />
                       </th>
                       <th
                         onClick={() => requestSort("payment.status")}
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Estado del Pago
-                        <SortArrow direction={sortConfig.key === "payment.status" ? sortConfig.direction : null} />
+                        <SortArrow
+                          direction={
+                            sortConfig.key === "payment.status"
+                              ? sortConfig.direction
+                              : null
+                          }
+                        />
                       </th>
                       <th
                         onClick={() => requestSort("createdAt")}
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Fecha
-                        <SortArrow direction={sortConfig.key === "createdAt" ? sortConfig.direction : null} />
+                        <SortArrow
+                          direction={
+                            sortConfig.key === "createdAt"
+                              ? sortConfig.direction
+                              : null
+                          }
+                        />
                       </th>
                     </tr>
                   </thead>
@@ -192,19 +228,39 @@ function MembershipChart() {
                     {currentMembers.map((member) => (
                       <tr key={member._id} className="border-black">
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                          {member.name ? `${member.name} ${member.lastname}` : "Nombre no disponible"}
+                          {member.name
+                            ? `${member.name} ${member.lastname}`
+                            : "Nombre no disponible"}
                         </td>
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
                           {member._id} {/* Mostrar el _id del miembro */}
                         </td>
-                        <td className={`px-4 py-4 whitespace-no-wrap border-b border-black text-center ${member.payment?.document ? "text-green-500" : "text-red-500"}`}>
-                          {member.payment?.document ? "Recibido" : "Pendiente"} {/* Mostrar el documento */}
+                        <td
+                          className={`px-4 py-4 whitespace-no-wrap border-b border-black text-center ${
+                            member.payment?.document
+                              ? "text-green-500"
+                              : "text-red-500"
+                          }`}
+                        >
+                          {member.payment?.document ? "Recibido" : "Pendiente"}{" "}
+                          {/* Mostrar el documento */}
                         </td>
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                          {member.payment?.summary || "No disponible"} {/* Mostrar el resumen del miembro */}
+                          {member.payment?.summary || "No disponible"}{" "}
+                          {/* Mostrar el resumen del miembro */}
                         </td>
-                        <td className={`px-4 py-4 whitespace-no-wrap border-b border-black text-center ${getStatusColor(member.payment?.status)}`}>
-                          <select className="bg-transparent" value={member.payment?.status || "pendiente"} onChange={(e) => handleStatusChange(member._id, e.target.value)}>
+                        <td
+                          className={`px-4 py-4 whitespace-no-wrap border-b border-black text-center ${getStatusColor(
+                            member.payment?.status
+                          )}`}
+                        >
+                          <select
+                            className="bg-transparent"
+                            value={member.payment?.status || "pendiente"}
+                            onChange={(e) =>
+                              handleStatusChange(member._id, e.target.value)
+                            }
+                          >
                             <option value="pendiente">Pendiente</option>
                             <option value="completado">Completado</option>
                             <option value="enviado">Enviado</option>
@@ -212,7 +268,13 @@ function MembershipChart() {
                           </select>
                         </td>
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                          {member.createdAt ? format(new Date(member.createdAt), "dd/MM/yyyy HH:mm") : "Fecha no disponible"} {/* Formatear la fecha de creación */}
+                          {member.createdAt
+                            ? format(
+                                new Date(member.createdAt),
+                                "dd/MM/yyyy HH:mm"
+                              )
+                            : "Fecha no disponible"}{" "}
+                          {/* Formatear la fecha de creación */}
                         </td>
                       </tr>
                     ))}
@@ -222,14 +284,21 @@ function MembershipChart() {
             </div>
 
             {/* Paginación */}
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-1 mb-1">
               <nav>
                 <ul className="flex list-none">
-                  {Array.from({ length: Math.ceil(memberships.length / MembersPerPage) }, (_, index) => (
-                    <li key={index} className="px-3 py-2 mx-1 cursor-pointer bg-white border rounded" onClick={() => paginate(index + 1)}>
-                      {index + 1}
-                    </li>
-                  ))}
+                  {Array.from(
+                    { length: Math.ceil(memberships.length / MembersPerPage) },
+                    (_, index) => (
+                      <li
+                        key={index}
+                        className="px-3 py-2 mx-1 cursor-pointer bg-white border rounded"
+                        onClick={() => paginate(index + 1)}
+                      >
+                        {index + 1}
+                      </li>
+                    )
+                  )}
                 </ul>
               </nav>
             </div>

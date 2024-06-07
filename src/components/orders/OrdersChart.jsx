@@ -110,7 +110,7 @@ function OrdersChart() {
     };
    
     return (
-      <section className="mt-8 flex justify-center">
+      <section className="mt-8 flex justify-center ml-10">
         {error ? (
           <div className="text-red-500 font-bold mb-4">{error}</div>
         ) : (
