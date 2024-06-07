@@ -1,21 +1,35 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 function UsersChart() {
   const [users, setUsers] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL; 
     const extraPath = '/api/user'; 
     const fullUrl = apiUrl + extraPath; 
 
+    const token = Cookies.get('token');
+    if (!token) {
+      setError('No se encontró token de autenticación. Por favor, inicia sesión.');
+      return;
+    }
+
     axios
-      .get(fullUrl, { withCredentials: true }) // Asegura que las cookies se envíen con la solicitud
+      .get(fullUrl, { 
+        withCredentials: true, // Asegura que las cookies se envíen con la solicitud
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then((response) => {
         setUsers(response.data);
       })
       .catch((error) => {
         console.error("Error al obtener los datos de usuarios:", error);
+        setError('Error al obtener los datos de usuarios.');
       });
   }, []);
 
