@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 import AssignTeamModal from "./ChooseTeam.jsx";
 
 function PlayersTable() {
@@ -13,14 +14,30 @@ function PlayersTable() {
     const extraPath = '/api/players';
     const fullUrl = apiUrl + extraPath;
 
-    axios.get(fullUrl, { withCredentials: true })
-      .then((response) => {
+    const fetchPlayers = async () => {
+      try {
+        const token = Cookies.get('token'); // Obtén el token de la cookie
+
+        if (!token) {
+          setError('No se encontró token de autenticación. Por favor, inicia sesión.');
+          return;
+        }
+
+        const response = await axios.get(fullUrl, {
+          headers: {
+            'Authorization': `Bearer ${token}` // Incluye el token en los encabezados
+          },
+          withCredentials: true
+        });
+
         setPlayers(response.data);
-      })
-      .catch((error) => {
-        setError("Error al obtener los jugadores");
+      } catch (error) {
         console.error("Error al obtener los jugadores:", error);
-      });
+        setError("Error al obtener los jugadores");
+      }
+    };
+
+    fetchPlayers();
   }, []);
 
   const handleOpenModal = (player) => {
@@ -36,7 +53,14 @@ function PlayersTable() {
   const handleSaveTeam = async (playerId, teamId) => {
     try {
       const apiUrl = import.meta.env.VITE_API_URL;
-      const response = await axios.post(`${apiUrl}/player/assign-team`, { playerId, teamId });
+      const token = Cookies.get('token'); // Obtén el token de la cookie
+
+      const response = await axios.post(`${apiUrl}/player/assign-team`, { playerId, teamId }, {
+        headers: {
+          'Authorization': `Bearer ${token}` // Incluye el token en los encabezados
+        },
+        withCredentials: true
+      });
 
       const updatedPlayers = players.map(player =>
         player._id === playerId ? { ...player, team: { _id: teamId, name: response.data.teamName } } : player
@@ -48,14 +72,14 @@ function PlayersTable() {
   };
 
   return (
-     <section className="mt-8">
-       <div className="overflow-x-auto max-w-6xl mx-auto overflow-y-auto max-h-[80vh] mb-8">
-         <div className="flex shadow items-center justify-between">
-           <h4 className="text-gray-600 font-bold mb-10">
-             Listado de Jugadores
-           </h4>
-         </div>
-         {error && <p>{error}</p>}
+    <section className="mt-8">
+      <div className="overflow-x-auto max-w-6xl mx-auto overflow-y-auto max-h-[80vh] mb-8">
+        <div className="flex shadow items-center justify-between">
+          <h4 className="text-gray-600 font-bold mb-10">
+            Listado de Jugadores
+          </h4>
+        </div>
+        {error && <p>{error}</p>}
 
         <table className="table table-zebra">
           <thead>
@@ -75,7 +99,7 @@ function PlayersTable() {
             {players.map((player) => (
               <tr key={player._id}>
                 <td className="font-medium">{player.name} {player.lastname}</td>
-                {/* Cambiar por el nombre del representante                 */}
+                {/* Cambiar por el nombre del representante */}
                 <td>{player.parent_id}</td>
                 <td>
                   {player.team ? player.team.name : 'Pendiente'}
