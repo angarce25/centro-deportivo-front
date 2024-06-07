@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Spinner, useSpinner } from '../context/LoadingContext';
-import MembershipChart from "../components/membershipsChart/membershipsChart";
+import AdminMembersChart from '../components/membershipsChart/AdminMembersChart';
 import Sidebar from "../components/sideBar/SideBar";
 
 
@@ -23,7 +23,7 @@ function AdminMemberships () {
       <section style={{ display: "flex" }}>
         <Sidebar style={{ flex: "0 0 auto" }} />
         <div style={{ marginLeft: "20px" }}>
-          <MembershipChart/>
+          <AdminMembersChart/>
         </div>
       </section>
     )}
