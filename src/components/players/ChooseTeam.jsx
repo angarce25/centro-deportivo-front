@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const AssignTeamModal = ({ isOpen, onClose, player, onSave }) => {
   const [teamId, setTeamId] = useState('');
@@ -10,8 +11,25 @@ const AssignTeamModal = ({ isOpen, onClose, player, onSave }) => {
       const apiUrl = import.meta.env.VITE_API_URL;
       const extraPath = '/api/player/teams';
       const fullUrl = apiUrl + extraPath; // Ruta para obtener la lista de equipos
+
       try {
-        const response = await axios.get(fullUrl, { withCredentials: true });
+        const token = Cookies.get('token'); // Obtener el token de la cookie
+
+        if (!token) {
+          console.error('No se encontró token de autenticación. Por favor, inicia sesión.');
+          return;
+        }
+
+        const instance = axios.create({
+          withCredentials: true
+        });
+
+        instance.interceptors.request.use(config => {
+          config.headers.Authorization = `Bearer ${token}`;
+          return config;
+        });
+
+        const response = await instance.get(fullUrl);
         setTeams(response.data);
       } catch (error) {
         console.error("Error al obtener los equipos:", error);
@@ -24,14 +42,26 @@ const AssignTeamModal = ({ isOpen, onClose, player, onSave }) => {
   const handleSave = async (e) => {
     e.preventDefault();
     const apiUrl = import.meta.env.VITE_API_URL;
-      const extraPath = '/api/player/assign-team';
-      const fullUrl = apiUrl + extraPath;
+    const extraPath = '/api/player/assign-team';
+    const fullUrl = apiUrl + extraPath;
 
     try {
-      await axios.post(fullUrl, {
+      const token = Cookies.get('token'); // Obtener el token de la cookie
+
+      if (!token) {
+        console.error('No se encontró token de autenticación. Por favor, inicia sesión.');
+        return;
+      }
+
+      const response = await axios.post(fullUrl, {
         playerId: player._id,
         teamId: teamId
-      }, { withCredentials: true });
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        withCredentials: true
+      });
 
       await onSave(player._id, teamId);
       onClose();

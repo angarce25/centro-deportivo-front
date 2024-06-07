@@ -55,7 +55,7 @@ function PlayersTable() {
       const apiUrl = import.meta.env.VITE_API_URL;
       const token = Cookies.get('token'); // Obtén el token de la cookie
 
-      const response = await axios.post(`${apiUrl}/player/assign-team`, { playerId, teamId }, {
+      const response = await axios.post(`${apiUrl}/api/player/assign-team`, { playerId, teamId }, {
         headers: {
           'Authorization': `Bearer ${token}` // Incluye el token en los encabezados
         },
