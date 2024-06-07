@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,6 +18,14 @@ const NewOrderCard = ({
 }) => {
   
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (!token) {
+      setError('No se encontró token de autenticación. Por favor, inicia sesión.');
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,40 +34,34 @@ const NewOrderCard = ({
         toast.error('Error al crear el pedido: Faltan datos');
         return;
       }
-    
-      // const formData = new FormData();
-      
-      // const newOrder = formData.append('product_ids', products.map(product => product._id));
-      // formData.append('sizes', products.map(product => product.selectedSize));      
-      // formData.append('summary', summary);      
-      // formData.append('document', document);
-      // console.log('Resumen pedido front:', newOrder)
 
-      const formData = new FormData();
-    
-    products.forEach(product => {
-      console.log(product.selectedSize)
-      formData.append('product_ids', product._id);
-      formData.append('selectedSize', product.selectedSize);
-    });    
-    
-    formData.append('summary', summary);      
-    formData.append('document', document);
+      const API = import.meta.env.VITE_API_URL;
+      const extraPath = "/api/orders/add-order";
+      const fullUrl = API + extraPath;
 
       const token = Cookies.get('token');
-      //console.log(token)
+      if (!token) {
+        setError('No se encontró token de autenticación. Por favor, inicia sesión.');
+        return;
+      }
+
+      const formData = new FormData();
+      products.forEach(product => {
+        formData.append('product_ids', product._id);
+        formData.append('selectedSize', product.selectedSize);
+      });    
+      formData.append('summary', summary);      
+      formData.append('document', document);
+
       const config = {
         headers: {
-          'Authorization': token,
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
         }
       };         
 
-      const response = await axios.post('https://centro-deportivo-back.onrender.com/api/orders/add-order', formData, config);  
-
-         
+      const response = await axios.post(fullUrl, formData, config);  
       if (response.status === 201) {        
-
         toast.success('Nuevo pedido creado con éxito');
         setTimeout(() => {
           navigate('/dashboard/myorders'); // Redirigir después de crear el pedido
@@ -108,66 +111,58 @@ const NewOrderCard = ({
         ))}
 
         <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className="flex-col">
-          <label htmlFor="summary" className="font-semibold">
-            Breve descripción del pedido:
-          </label>
-          <input
-            type="text"
-            id="summary"
-            name="summary"
-            placeholder="Ejemplo: Camiseta talla S"
-            required="required"
-            className="input input-bordered w-full max-w-xs mb-5"
-            value={summary}
-            onChange={(e) => setSummary(e.target.value)}
-          />
-          
-        </div>
-        
-        
+          <div className="flex-col">
+            <label htmlFor="summary" className="font-semibold">
+              Breve descripción del pedido:
+            </label>
+            <input
+              type="text"
+              id="summary"
+              name="summary"
+              placeholder="Ejemplo: Camiseta talla S"
+              required="required"
+              className="input input-bordered w-full max-w-xs mb-5"
+              value={summary}
+              onChange={(e) => setSummary(e.target.value)}
+            />
+          </div>
 
-        <div className="flex-col">
-          <label htmlFor="document" className="font-semibold">
-            Adjuntar factura del pago del material:
-          </label>
-          <input
-            type="file"
-            id="document"
-            name="document"
-            placeholder=""
-            required="required"
-            className="w-full max-w-xs"           
-            onChange={(e) => setDocument(e.target.files[0])}
-          />
-        </div>
-        <div className="flex justify-between items-end mt-10 col-span-full">
-          <div className="flex-col justify-between items-end  col-span-full">
-            
+          <div className="flex-col">
+            <label htmlFor="document" className="font-semibold">
+              Adjuntar factura del pago del material:
+            </label>
+            <input
+              type="file"
+              id="document"
+              name="document"
+              placeholder=""
+              required="required"
+              className="w-full max-w-xs"           
+              onChange={(e) => setDocument(e.target.files[0])}
+            />
+          </div>
+          <div className="flex justify-between items-end mt-10 col-span-full">
+            <div className="flex-col justify-between items-end  col-span-full">
               <p className="mb-1 font-semibold">Fecha pedido: {date}</p>
               <p className="mb-1 font-semibold">
                 Productos totales: {totalProducts}
               </p>
               <p className="font-semibold">Precio total: {totalPrice}€</p>
-            
+            </div>
           </div>
-        </div>
 
-        <div className="mt-5 card-actions flex-1 col-span-full">
-          <button
-            // onClick={handleSubmit}
-            type='submit'
-            className="button-register bg-yellow-l hover:bg-yellow-d text-black font-semibold py-2 px-4 rounded"
-          >
-            Confirmar pedido
-          </button>
-          
-        </div>
+          <div className="mt-5 card-actions flex-1 col-span-full">
+            <button
+              type='submit'
+              className="button-register bg-yellow-l hover:bg-yellow-d text-black font-semibold py-2 px-4 rounded"
+            >
+              Confirmar pedido
+            </button>
+          </div>
         </form>        
       </div>
     </section>
-);
-  
+  );
 }
 
 NewOrderCard.propTypes = {
@@ -181,6 +176,5 @@ NewOrderCard.propTypes = {
   setDocument: PropTypes.func,
   error: PropTypes.any,
 };
-  
 
 export default NewOrderCard;
