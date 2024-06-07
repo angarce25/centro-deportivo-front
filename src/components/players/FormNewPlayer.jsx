@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import ModalInfoEquipment from "./ModalInfoEquipment";
 import { useForm } from "react-hook-form";
 import { usePlayers } from "../../context/PlayerContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 export default function FormNewPlayer() {
   const { register, handleSubmit } = useForm();
@@ -12,7 +13,15 @@ export default function FormNewPlayer() {
   const navigate = useNavigate();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (!token) {
+      setError('No se encontró token de autenticación. Por favor, inicia sesión.');
+    }
+  }, []);
+
   const onSubmit = handleSubmit(async (data) => {
     try {
       const apiUrl = import.meta.env.VITE_API_URL; 
@@ -20,7 +29,19 @@ export default function FormNewPlayer() {
       const fullUrl = apiUrl + extraPath; 
      
       console.log(fullUrl)
-      const response = await axios.post(fullUrl, data, { withCredentials: true });
+      const token = Cookies.get('token');
+      if (!token) {
+        setError('No se encontró token de autenticación. Por favor, inicia sesión.');
+        return;
+      }
+
+      const response = await axios.post(fullUrl, data, { 
+        withCredentials: true,
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      
       const player = response.data; 
       createPlayer(response.data); // Actualiza el contexto del jugador creado
       toast.success(`¡Jugador ${player.name} ${player.lastname} creado con éxito!`, {
@@ -41,7 +62,6 @@ export default function FormNewPlayer() {
   const closeModal = () => {
     setModalIsOpen(false);
   };
-
   return (
     <section className="ml-20">
       <div className="p-8 flex flex-col lg:flex-row">
