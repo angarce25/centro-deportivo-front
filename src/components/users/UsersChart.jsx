@@ -21,7 +21,7 @@ function UsersChart() {
 
   return (
     <div className="mt-8">
-      <h2>Padres</h2>
+      <h2 className="underline font-bold">Padres____  __  _</h2>
       <div className="flex flex-col mt-6">
         <div className="max-w-screen-xl mx-auto overflow-x-auto  max-h-[80vh] mb-1 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
           <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
