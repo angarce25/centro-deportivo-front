@@ -2,48 +2,63 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Cookies from 'js-cookie';
 
 function PlayersUserChart() {
   const [myPlayers, setMyPlayers] = useState([]);
   const [myPayments, setMyPayments] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiUrl = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
-    const extraPath = "/api/myplayers"; // Añade la parte adicional de la URL
-    const paymentsExtraPath = "/api/payments/my-status"; // Segundo extra path para recoger status de pagos
-    const fullUrl = apiUrl + extraPath; // Combina la URL base con la parte adicional
-    const paymentsFullUrl = apiUrl + paymentsExtraPath;
+    const API = import.meta.env.VITE_API_URL;
+    const playersExtraPath = "/api/myplayers";
+    const paymentsExtraPath = "/api/payments/my-status";
+    const playersUrl = API + playersExtraPath;
+    const paymentsUrl = API + paymentsExtraPath;
 
-    axios
-      .get(fullUrl, { withCredentials: true })
-      .then((response) => {
-        setMyPlayers(response.data);
-        console.log("Players data:", response.data); // Verifica la estructura de myPlayers
-      })
-      .catch((error) => {
-        console.error("Error al obtener tus jugadores:", error);
-      });
-
-      axios
-      .get(paymentsFullUrl, { withCredentials: true })
-      .then((response) => {
-        if (response.data.message) {
-          setMyPayments([]); // o cualquier estado que indique que no hay pagos
-          console.log("No hay pagos");
-        } else {
-          setMyPayments(response.data);
-          console.log("Payments data:", response.data);
+    const fetchPlayers = async () => {
+      try {
+        const token = Cookies.get('token');
+        if (!token) {
+          setError('No se encontró token de autenticación. Por favor, inicia sesión.');
+          return;
         }
-      })
-      .catch((error) => {
-        console.error("Error al obtener los pagos:", error);
-      });
-    }, []);
+
+        const playersResponse = await axios.get(playersUrl, {
+          withCredentials: true,
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setMyPlayers(playersResponse.data);
+
+        const paymentsResponse = await axios.get(paymentsUrl, {
+          withCredentials: true,
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setMyPayments(paymentsResponse.data);
+      } catch (error) {
+        if (error.response) {
+          if (error.response.status === 401) {
+            setError('Acceso no autorizado. Por favor, inicia sesión.');
+          } else if (error.response.status === 403) {
+            setError('No tienes permiso para acceder a esta página.');
+          } else {
+            setError('Ocurrió un error al obtener los datos.');
+          }
+        } else {
+          setError('Error de conexión. Por favor, inténtalo de nuevo más tarde.');
+        }
+      }
+    };
+
+    fetchPlayers();
+  }, []);
 
   const getPaymentStatus = (playerId, paymentType) => {
-    const payment = myPayments.find(
-      (payment) => payment.players_id === playerId
-    );
+    const payment = myPayments.find(payment => payment.players_id === playerId);
     if (payment) {
       return payment[paymentType]?.status ? "Pagado" : "Pendiente";
     }
