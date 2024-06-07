@@ -57,13 +57,12 @@ function PlayersUserChart() {
   }, []);
 
   const getPaymentStatus = (playerId, paymentType) => {
-    const payment = myPayments.find(payment => payment.players_id === playerId);
+    const payment = Array.isArray(myPayments) ? myPayments.find(payment => payment.players_id === playerId) : null;
     if (payment) {
       return payment[paymentType]?.status ? "Pagado" : "Pendiente";
     }
     return "Pendiente";
   };
-
 
   return (
     <section className="mt-8">
