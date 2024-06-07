@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { format } from 'date-fns';
 import Cookies from 'js-cookie';
 
 function PlayersUserChart() {
@@ -64,6 +63,7 @@ function PlayersUserChart() {
     }
     return "Pendiente";
   };
+
 
   return (
     <section className="mt-8">

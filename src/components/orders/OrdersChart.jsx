@@ -1,23 +1,40 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useState, useEffect } from "react";
 import { format } from 'date-fns';
+import Cookies from 'js-cookie';
 
 function OrdersChart() {
     const [orders, setOrders] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [ordersPerPage] = useState(10);
     const [error, setError] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
     const [sortConfig, setSortConfig] = useState({ key: 'createdAt', direction: 'ascending' });
 
     useEffect(() => {
-        const API = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
-        const extraPath = "/api/orders"; // Añade la parte adicional de la URL
-        const fullUrl = API + extraPath; // Combina la URL base con la parte adicional
+        const API = import.meta.env.VITE_API_URL;
+        const extraPath = "/api/orders"; // Ruta para obtener las órdenes del administrador
+        const fullUrl = API + extraPath;
 
         const fetchOrders = async () => {
             try {
-                const response = await axios.get(fullUrl, { withCredentials: true }); // Realiza la solicitud a tu API para obtener los pedidos del usuario
-                setOrders(response.data); // Actualiza el estado con los datos de los pedidos
+                const token = Cookies.get('token'); // Obtener el token de la cookie
+
+                if (!token) {
+                    setError('No se encontró token de autenticación. Por favor, inicia sesión.');
+                    return;
+                }
+
+                const instance = axios.create({
+                    withCredentials: true
+                });
+
+                instance.interceptors.request.use(config => {
+                    config.headers.Authorization = `Bearer ${token}`;
+                    return config;
+                });
+
+                const response = await instance.get(fullUrl);
+
+                setOrders(response.data);
             } catch (error) {
                 if (error.response) {
                     if (error.response.status === 401) {
@@ -35,7 +52,6 @@ function OrdersChart() {
 
         fetchOrders();
     }, []);
-
     const sortedOrders = [...orders].sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
             return sortConfig.direction === 'ascending' ? -1 : 1;
@@ -108,7 +124,7 @@ function OrdersChart() {
             console.error('Error Status Order NOT updated', error);
         }
     };
-   
+
     return (
         <section className="mt-8 flex justify-center">
             {error ? (
