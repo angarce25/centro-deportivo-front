@@ -4,7 +4,11 @@ import { format } from "date-fns";
 
 function MembershipChart() {
   const [members, setMembers] = useState([]);
+
   const [payments, setPayments] = useState([]);
+
+  const [players, setPlayers] = useState([]); // Nuevo estado para almacenar los nombres de los jugadores asociados al player_id de pagos
+
   const [currentPage, setCurrentPage] = useState(1);
   const [MembersPerPage] = useState(10);
   const [error, setError] = useState(null);
@@ -17,8 +21,11 @@ function MembershipChart() {
     const API = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
     const membersPath = "/user"; // Ruta para obtener los miembros
     const paymentsPath = "/memberships/status"; // Ruta para obtener los pagos
+    const playersPath = "/players"; // Ruta para obtener los jugadores
+
     const fullMembersUrl = API + membersPath; // Combina la URL base con la ruta de miembros
     const fullPaymentsUrl = API + paymentsPath; // Combina la URL base con la ruta de pagos
+    const fullPlayersUrl = API + playersPath; // Combina la URL base con la ruta de jugadores
 
     const fetchMembersAndPayments = async () => {
       try {
@@ -29,6 +36,9 @@ function MembershipChart() {
           withCredentials: true,
         });
 
+        console.log("MEMBERS RESPONSE: ", membersResponse.data);
+        console.log("PAYMENTS RESPONSE: ", paymentsResponse.data);
+
         const members = membersResponse.data;
         const payments = paymentsResponse.data;
 
@@ -38,33 +48,62 @@ function MembershipChart() {
           )
           .map((member) => ({
             ...member,
-            payments: payments.find(
-              (payment) => payment.parent_id === member._id
+            payments: payments.filter((payment) =>
+              member.payments_id.includes(payment._id)
             ),
           }));
 
+        
+
+        console.log("MIEMBROS YA FILTRADOS X TENER PAGOS : ", combinedData);
+
+        setPayments(payments);
+        console.log("PAYMENTS: ", payments);
         setMembers(combinedData);
       } catch (error) {
         handleFetchError(error);
       }
     };
 
+    const fetchPlayers = async () => {
+      try {
+        // Realizar una solicitud para obtener los datos de los jugadores
+        const playersResponse = await axios.get(fullPlayersUrl, {
+          withCredentials: true,
+        });
+        const playersData = playersResponse.data;
+        console.log("PLAYERS: ", playersData);
+        setPlayers(playersData); // Guardar los datos de los jugadores en el estado
+      } catch (error) {
+        console.error("Error fetching players:", error);
+      }
+    };
+
+    const handleFetchError = (error) => {
+      if (error.response) {
+        if (error.response.status === 401) {
+          setError("Acceso no autorizado. Por favor, inicia sesión.");
+        } else if (error.response.status === 403) {
+          setError("No tienes permiso para acceder a esta página.");
+        } else {
+          setError("Ocurrió un error al obtener los datos.");
+        }
+      } else {
+        setError("Error de conexión. Por favor, inténtalo de nuevo más tarde.");
+      }
+    };
+  
+
+
+    
     fetchMembersAndPayments();
+    fetchPlayers();
   }, []);
 
-  const handleFetchError = (error) => {
-    if (error.response) {
-      if (error.response.status === 401) {
-        setError("Acceso no autorizado. Por favor, inicia sesión.");
-      } else if (error.response.status === 403) {
-        setError("No tienes permiso para acceder a esta página.");
-      } else {
-        setError("Ocurrió un error al obtener los datos.");
-      }
-    } else {
-      setError("Error de conexión. Por favor, inténtalo de nuevo más tarde.");
-    }
-  };
+
+
+  const indexOfLastMember = currentPage * MembersPerPage;
+  const indexOfFirstMember = indexOfLastMember - MembersPerPage;
 
   const sortedMembers = [...members].sort((a, b) => {
     if (a[sortConfig.key] < b[sortConfig.key]) {
@@ -75,10 +114,6 @@ function MembershipChart() {
     }
     return 0;
   });
-
-  // Obtener los pedidos actuales
-  const indexOfLastMember = currentPage * MembersPerPage;
-  const indexOfFirstMember = indexOfLastMember - MembersPerPage;
   const currentMembers = sortedMembers.slice(
     indexOfFirstMember,
     indexOfLastMember
@@ -99,12 +134,12 @@ function MembershipChart() {
   // Colores para cada estado
   const getStatusColor = (status) => {
     switch (status) {
+      case "none":
+        return "text-blue-500"; // Color azul para no recibido
       case "pendiente":
         return "text-yellow-500"; // Color amarillo para pendiente
       case "aceptado":
         return "text-green-500"; // Color verde para aceptado
-      case "none":
-        return "text-blue-500"; // Color azul para no recibido
       case "rechazado":
         return "text-red-500"; // Color rojo para rechazado
       default:
@@ -122,13 +157,53 @@ function MembershipChart() {
     }
   };
 
-  // Manejar cambio de estado
-  const handleStatusChange = (id, newStatus) => {
-    const updatedMemberships = members.map((member) =>
-      member._id === id ? { ...member, status: newStatus } : member
-    );
-    setMembers(updatedMemberships);
+  //  OJO FALTA IMPLEMENTAR Manejar cambio de estado y el anual?
+  const handleStatusChange = (paymentIndex, paymentType, newStatus) => {
+    // Obtener el ID del pago a actualizar
+    const paymentId = payments[paymentIndex]._id;
+  
+    // Obtener una copia actualizada de los miembros
+    const updatedMembers = [...members];
+  
+    // Actualizar el estado del miembro
+    updatedMembers.forEach((member) => {
+      const updatedPayments = member.payments.map((payment) => {
+        if (payment._id === paymentId && payment.type === paymentType) {
+          return {
+            ...payment,
+            status: newStatus,
+          };
+        } else {
+          return payment;
+        }
+      });
+      member.payments = updatedPayments;
+    });
+  
+    // Establecer el estado actualizado de los miembros
+    setMembers(updatedMembers);
+  
+    // Realizar la solicitud PUT al servidor para actualizar el estado del pago
+    const API = import.meta.env.VITE_MEMBERSHIP_STATUS_URL;
+    const fullStatusUrl = `${API}/${paymentId}`;
+  
+    // Crear el objeto de datos basado en el tipo de pago
+    const data = {};
+    data[paymentType] = { status: newStatus };
+  
+    axios
+      .put(fullStatusUrl, data, { withCredentials: true })
+      .then((response) => {
+        // Manejar la respuesta si es necesario
+        console.log("Estado actualizado con éxito:", response.data);
+      })
+      .catch((error) => {
+        // Manejar cualquier error en la solicitud
+        console.error("Error al actualizar el estado:", error);
+      });
   };
+  
+  
 
   return (
     <section className="mt-8 flex justify-center">
@@ -153,16 +228,15 @@ function MembershipChart() {
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                         onClick={() => requestSort("name")}
                       >
-                        Usuario <SortArrow direction={sortConfig.direction} />
+                        Representante{" "}
+                        <SortArrow direction={sortConfig.direction} />
                       </th>
                       <th
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                         onClick={() => requestSort("payments._id")}
                       >
-                        Id del pago{" "}
-                        <SortArrow direction={sortConfig.direction} />
+                        Jugador <SortArrow direction={sortConfig.direction} />
                       </th>
-                
                       <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                         Pago 1
                       </th>
@@ -180,69 +254,93 @@ function MembershipChart() {
                       </th>
                     </tr>
                   </thead>
-                  
+
                   <tbody>
-                    {currentMembers.map((member) => (
-                      <tr key={member._id} className="border-black">
+                    {payments.map((payment, index) => (
+                      <tr key={payment._id} className="border-black">
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                          {member.name
-                            ? `${member.name} ${member.lastname}`
+                          {members.find((member) =>
+                            member.membership_payments.includes(payment._id)
+                          )
+                            ? members
+                                .filter((member) =>
+                                  member.membership_payments.includes(
+                                    payment._id
+                                  )
+                                )
+                                .map(
+                                  (member) =>
+                                    `${member.name} ${member.lastname}`
+                                )
+                                .join(", ")
                             : "Nombre no disponible"}
                         </td>
+
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                        {member.payments?._id}
+                          {players.find(
+                            (player) => player._id === payment.players_id
+                          )?.name || "Nombre no disponible"}
                         </td>
-                         
                         {[
                           "first_payment",
                           "second_payment",
                           "third_payment",
                         ].map((paymentType) => (
                           <td
-                            className='px-4 py-4 whitespace-no-wrap border-b border-black text-center'
+                            className="px-4 py-4 whitespace-no-wrap border-b border-black text-center"
+                            key={`${payment._id}-${paymentType}`}
                           >
-                         <select
-  className={`bg-transparent ${getStatusColor(
-    member.membership_payments?.[0]?.[paymentType]?.status
-  )}`}
-  key={paymentType}
-  value={
-    member.membership_payments?.[0]?.[paymentType]?.status || "pendiente"
-  }
-  onChange={(e) =>
-    handleStatusChange(member._id, paymentType, e.target.value)
-  }
->
-  <option value="pendiente">Pendiente</option>
-  <option value="aceptado">Aceptado</option>
-  <option value="none">No recibido</option>
-  <option value="rechazado">Rechazado</option>
-</select>
-                            <button > 
-                               {/* onClick={() => handlePDFView(member._id, paymentType)} */}
-          Ver PDF
-        </button>
+                            <select
+                              className={`bg-transparent ${getStatusColor(
+                                members
+                                  .find(
+                                    (member) => member._id === payment.parent_id
+                                  )
+                                  ?.payments?.find(
+                                    (p) =>
+                                      p._id === payment._id &&
+                                      p.type === paymentType
+                                  )?.status || "none"
+                              )}`}
+                              // value={payment.status}
+                              onChange={(e) =>
+                                handleStatusChange(
+                                  index,
+                                  paymentType,
+                                  e.target.value
+                                )
+                              }
+                            >
+                              <option value="none">No recibido</option>
+                              <option value="pendiente">Pendiente</option>
+                              <option value="aceptado">Aceptado</option>
+
+                              <option value="rechazado">Rechazado</option>
+                            </select>
+                            <button>Ver PDF</button>
                           </td>
                         ))}
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                          <div
-                            className={
-                              member.membership_payments?.[0]?.annual_payment
-                                ?.status
-                                ? "text-green-500"
-                                : "text-red-500"
-                            }
-                          >
-                            {member.membership_payments?.[0]?.annual_payment
-                              ?.status
-                              ? "Pagado"
-                              : "No pagado"}
-                          </div>
+                        <select
+        className={`bg-transparent ${getStatusColor(
+          payment.annual_payment?.status || "none"
+        )}`}
+        value={payment.annual_payment?.status || "none"}
+        onChange={(e) =>
+          handleStatusChange(index, "annual_payment", e.target.value)
+        }
+      >
+                            <option value="none">No recibido</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="aceptado">Aceptado</option>
+                            <option value="rechazado">Rechazado</option>
+                          </select>
+                          <button>Ver PDF</button>
                         </td>
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                          {member.createdAt
+                          {payment.createdAt
                             ? format(
-                                new Date(member.createdAt),
+                                new Date(payment.createdAt),
                                 "dd/MM/yyyy HH:mm"
                               )
                             : "Fecha no disponible"}
@@ -250,12 +348,6 @@ function MembershipChart() {
                       </tr>
                     ))}
                   </tbody>
-
-
-
-
-
-            
                 </table>
               </div>
             </div>
