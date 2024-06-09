@@ -19,11 +19,13 @@ import TeamInfo from "./pages/TeamInfo.jsx";
 import { PrivateRoute, AdminPrivateRoute } from "./context/PrivateRoutes.jsx";
 import OrdersAdmin from "./pages/OrdersAdmin.jsx";
 import NotFound from "./components/notfound/NotFound.jsx"
-
+import OrdersUsersChart from "./components/orders/OrdersUsersChart.jsx";
 
 
 
 function App() {
+  
+  
   return (
     //<AuthProvider>
     <SpinnerProvider>

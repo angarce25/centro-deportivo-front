@@ -24,7 +24,7 @@ function Sidebar() {
       try {
         const decodedToken = jwtDecode(token);
         setIsAdmin(decodedToken.isAdmin === 'admin' ? 'admin' : 'user'); // Ajuste aquí para asegurarse de que 'admin' o 'user'
-        console.log('DECODED TOKEN EN SIDEBAR:', decodedToken)
+        // console.log('DECODED TOKEN EN SIDEBAR:', decodedToken)
         setUserName(decodedToken.username); // Assuming you store the username in the token
       } catch (error) {
         console.error("Error decoding token:", error);

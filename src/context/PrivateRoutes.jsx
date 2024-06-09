@@ -19,7 +19,7 @@ export const PrivateRoute = ({ redirectPath = "/login" }) => {
   const token = getTokenFromCookies();
   const isAdmin = Cookies.get('isAdmin');
 
-console.log('GET TOKEN USER EN PRIVATE ROUTE: ', token)
+// console.log('GET TOKEN USER EN PRIVATE ROUTE: ', token)
   if (!token) {
     return <Navigate to={redirectPath} replace />;
   }

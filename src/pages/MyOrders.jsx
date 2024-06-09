@@ -17,7 +17,7 @@ function MyOrders () {
 
   return (    
     <div>
-    <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
+    <Spinner /> 
     {!loading && (
       <section style={{ display: "flex" }}>
         <Sidebar style={{ flex: "0 0 auto" }} />
@@ -28,5 +28,5 @@ function MyOrders () {
     )}
   </div>
 );
-};
+}
 export default MyOrders;
