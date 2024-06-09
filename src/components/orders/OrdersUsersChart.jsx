@@ -11,14 +11,12 @@ function OrdersUsersChart() {
   const [isOpen, setIsOpen] = useState(false);
   const [currentOrder, setCurrentOrder] = useState(null);
 
-  const openModal = (order) => {
-    console.log("Abriendo modal");
+  const openModal = (order) => {    
     setCurrentOrder(order);
     setIsOpen(true);    
   };
 
-  const closeModal = () => {
-    console.log("Cerrando modal");
+  const closeModal = () => {    
     setIsOpen(false);
   };
 
@@ -156,15 +154,17 @@ function OrdersUsersChart() {
                     backgroundColor: "white" 
                   }}
                 >
-                  <p>Aquí tienes tu factura:</p>
+                  {/* <p>Aquí tienes tu factura:</p> */}
                   {currentOrder && currentOrder.document && (
-                    <iframe
-                      src={currentOrder.document.path}
-                      style={{ border: "none", width: "100%", height: "500px"}}
-                      width="100%"
-                      height="500"
-                      allowFullScreen
-                    />
+                    <object
+                    src={`/uploads/${currentOrder.document.filename}`}
+                    type={currentOrder.document.mimetype}
+                    width="100%"
+                    height="500"
+                  > <p className="z-index:1, text-black">{currentOrder.document.originalname}</p>
+                    <p>{currentOrder.document.path}</p>  
+                    <p>{currentOrder.document.filename}</p>                  
+                  </object>
                   )}
                   <button
                     type="button"
