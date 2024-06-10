@@ -143,7 +143,7 @@ export default function FormNewPlayer() {
             </div>
           </div>
           <div className="flex text-right">
-        <button className="text-white font-bold py-2 px-4 rounded bg-black hover:bg-gray" type="submit">
+        <button className="text-white font-bold py-2 px-4 rounded bg-custom-blue hover:bg-gray" type="submit">
           Añadir jugador
         </button>
         </div>

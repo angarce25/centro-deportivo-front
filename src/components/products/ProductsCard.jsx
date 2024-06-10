@@ -27,9 +27,11 @@ function ProductsCard({ data }) {
     setSelectedSize(event.target.value);
   };
 
-  useEffect(() => {
-    console.log("Size seleccionado:", selectedSize);
-  }, [selectedSize]);
+    useEffect(() => {
+      // console.log("Size seleccionado:", setSelectedSize);
+    }, [selectedSize]);
+    
+    
 
   return (
     <section

@@ -110,99 +110,190 @@ function OrdersChart() {
     };
    
     return (
-        <section className="mt-8 flex justify-center">
-            {error ? (
-                <div className="text-red-500 font-bold mb-4">{error}</div>
-            ) : (
-                <div className="max-w-4xl w-full">
-                    <div className="overflow-x-auto">
-                        <div className="flex items-center justify-between">
-                            <h4 className="text-gray-600 font-bold mb-6">Pedidos</h4>
-                        </div>
-                    </div>
+      <section className="mt-8 flex justify-center ml-10">
+        {error ? (
+          <div className="text-red-500 font-bold mb-4">{error}</div>
+        ) : (
+          <div className="max-w-4xl w-full">
+            <div className="overflow-x-auto">
+              <div className="flex items-center justify-between">
+                <h4 className="text-gray-600 font-bold mb-3 underline">
+                  Pedidos____  __  _
+                </h4>
+              </div>
+            </div>
 
-                    {/* Tabla para pedidos */}
-                    <div className="flex flex-col mt-6">
-                        <div className="-my-2 overflow-x-auto">
-                            <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-                                <table className="table table-zebra min-w-full">
-                                    <thead>
-                                        <tr className="text-gray-800 text-sm">
-                                            <th onClick={() => requestSort('_id')} className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
-                                                Usuario<SortArrow direction={sortConfig.key === '_id' ? sortConfig.direction : null} />
-                                            </th>
-                                            <th onClick={() => requestSort('_id')} className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
-                                                Id del Pedido<SortArrow direction={sortConfig.key === '_id' ? sortConfig.direction : null} />
-                                            </th>
-                                            <th onClick={() => requestSort('document')} className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
-                                                Documento de Pago <SortArrow direction={sortConfig.key === 'document' ? sortConfig.direction : null} />
-                                            </th>
-                                            <th onClick={() => requestSort('summary')} className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
-                                                Observaciones del Pedido <SortArrow direction={sortConfig.key === 'summary' ? sortConfig.direction : null} />
-                                            </th>
-                                            <th onClick={() => requestSort('status')} className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
-                                                Estado del Pedido <SortArrow direction={sortConfig.key === 'status' ? sortConfig.direction : null} />
-                                            </th>
-                                            <th onClick={() => requestSort('createdAt')} className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking
--wider border-black cursor-pointer">
-                                                Fecha <SortArrow direction={sortConfig.key === 'createdAt' ? sortConfig.direction : null} />
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {currentOrders.map((order) => (
-                                            <tr key={order._id} className="border-black">
-                                                <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                                                {order.user_id ? `${order.user_id.name} ${order.user_id.lastname}` : 'Nombre no disponible'}                                              </td>
-                                                <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                                                    {order._id} {/* Mostrar el _id de la orden */}
-                                                </td>
-                                                <td className={`px-4 py-4 whitespace-no-wrap border-b border-black text-center ${order.document ? 'text-green-500' : 'text-red-500'}`}>
-                                                    {order.document ? "Recibido" : "Pendiente"} {/* Mostrar el documento */}
-                                                </td>
-                                                <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                                                    {order.summary} {/* Mostrar el resumen de la orden */}
-                                                </td>
-                                                {/* Status Orders */}
-                                                <td className={`px-4 py-4 whitespace-no-wrap border-b border-black text-center ${getStatusColor(order.status)}`}>
-                                                    <select
-                                                        className="bg-transparent"
-                                                        value={order.status}
-                                                        onChange={(e) => handleStatusChange(order._id, e.target.value)}
-                                                    >
-                                                        <option value="pendiente">Pendiente</option>
-                                                        <option value="completado">Completado</option>
-                                                        <option value="enviado">Enviado</option>
-                                                        <option value="cancelado">Cancelado</option>
-                                                    </select>
-                                                </td>
-                                                {/* Aquí termina Status Orders */}
-                                                <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                                                    {order.createdAt ? format(new Date(order.createdAt), 'dd/MM/yyyy HH:mm') : 'Fecha no disponible'} {/* Formatear la fecha de creación */}
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        {/* Paginación */}
-                        <div className="flex justify-center mt-4">
-                            <nav>
-                                <ul className="flex list-none">
-                                    {Array.from({ length: Math.ceil(orders.length / ordersPerPage) }, (_, index) => (
-                                        <li key={index} className="px-3 py-2 mx-1 cursor-pointer bg-white border rounded" onClick={() => paginate(index + 1)}>
-                                            {index + 1}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+            {/* Tabla para pedidos */}
+            <div className="flex flex-col mt-0">
+              <div className="max-w-screen-xl mx-auto overflow-x-auto max-h-[80vh] mb-1">
+                <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200 ">
+                  <table className="table table-zebra min-w-full">
+                    {/* cambios por aqui */}
+                    <thead>
+                      <tr className="text-gray-800 text-sm">
+                        <th
+                          onClick={() => requestSort("_id")}
+                          className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        >
+                          Usuario
+                          <SortArrow
+                            direction={
+                              sortConfig.key === "_id"
+                                ? sortConfig.direction
+                                : null
+                            }
+                          />
+                        </th>
+                        <th
+                          onClick={() => requestSort("_id")}
+                          className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        >
+                          Id del Pedido
+                          <SortArrow
+                            direction={
+                              sortConfig.key === "_id"
+                                ? sortConfig.direction
+                                : null
+                            }
+                          />
+                        </th>
+                        <th
+                          onClick={() => requestSort("document")}
+                          className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        >
+                          Documento de Pago{" "}
+                          <SortArrow
+                            direction={
+                              sortConfig.key === "document"
+                                ? sortConfig.direction
+                                : null
+                            }
+                          />
+                        </th>
+                        <th
+                          onClick={() => requestSort("summary")}
+                          className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        >
+                          Observaciones del Pedido{" "}
+                          <SortArrow
+                            direction={
+                              sortConfig.key === "summary"
+                                ? sortConfig.direction
+                                : null
+                            }
+                          />
+                        </th>
+                        <th
+                          onClick={() => requestSort("status")}
+                          className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        >
+                          Estado del Pedido{" "}
+                          <SortArrow
+                            direction={
+                              sortConfig.key === "status"
+                                ? sortConfig.direction
+                                : null
+                            }
+                          />
+                        </th>
+                        <th
+                          onClick={() => requestSort("createdAt")}
+                          className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking
+-wider border-black cursor-pointer"
+                        >
+                          Fecha{" "}
+                          <SortArrow
+                            direction={
+                              sortConfig.key === "createdAt"
+                                ? sortConfig.direction
+                                : null
+                            }
+                          />
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {currentOrders.map((order) => (
+                        <tr key={order._id} className="border-black">
+                          <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                            {order.user_id
+                              ? `${order.user_id.name} ${order.user_id.lastname}`
+                              : "Nombre no disponible"}{" "}
+                          </td>
+                          <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                            {order._id} {/* Mostrar el _id de la orden */}
+                          </td>
+                          <td
+                            className={`px-4 py-4 whitespace-no-wrap border-b border-black text-center ${
+                              order.document ? "text-green-500" : "text-red-500"
+                            }`}
+                          >
+                            {order.document ? "Recibido" : "Pendiente"}{" "}
+                            {/* Mostrar el documento */}
+                          </td>
+                          <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                            {order.summary}{" "}
+                            {/* Mostrar el resumen de la orden */}
+                          </td>
+                          {/* Status Orders */}
+                          <td
+                            className={`px-4 py-4 whitespace-no-wrap border-b border-black text-center ${getStatusColor(
+                              order.status
+                            )}`}
+                          >
+                            <select
+                              className="bg-transparent"
+                              value={order.status}
+                              onChange={(e) =>
+                                handleStatusChange(order._id, e.target.value)
+                              }
+                            >
+                              <option value="pendiente">Pendiente</option>
+                              <option value="completado">Completado</option>
+                              <option value="enviado">Enviado</option>
+                              <option value="cancelado">Cancelado</option>
+                            </select>
+                          </td>
+                          {/* Aquí termina Status Orders */}
+                          <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                            {order.createdAt
+                              ? format(
+                                  new Date(order.createdAt),
+                                  "dd/MM/yyyy HH:mm"
+                                )
+                              : "Fecha no disponible"}{" "}
+                            {/* Formatear la fecha de creación */}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
-            )}
-        </section>
+              </div>
+
+              {/* Paginación */}
+              <div className="flex justify-center mt-4">
+                <nav>
+                  <ul className="flex list-none">
+                    {Array.from(
+                      { length: Math.ceil(orders.length / ordersPerPage) },
+                      (_, index) => (
+                        <li
+                          key={index}
+                          className="px-3 py-2 mx-1 cursor-pointer bg-white border rounded"
+                          onClick={() => paginate(index + 1)}
+                        >
+                          {index + 1}
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
     );
 }
 

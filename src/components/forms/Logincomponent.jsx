@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const API = import.meta.env.VITE_API_URL;
 
+// eslint-disable-next-line react/prop-types
 const Logincomponent = ({ onFormSwitch }) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
@@ -16,8 +17,8 @@ const Logincomponent = ({ onFormSwitch }) => {
     // Almacena el token y el rol en las cookies
     Cookies.set('token', token, { expires: 1 }); 
     Cookies.set('isAdmin', isAdmin, { expires: 1 });
-    console.log('Token para la cookie:', token);
-    console.log('Cookie establecida:', Cookies.get('token'));
+    // console.log('Token para la cookie:', token);
+    // console.log('Cookie establecida:', Cookies.get('token'));
   };
 
   const handleSubmit = async (e) => {
@@ -25,12 +26,12 @@ const Logincomponent = ({ onFormSwitch }) => {
   
     try {
       const response = await axios.post(`${API}/login`, { email, password: pass });
-  console.log('RESPONSE.DATA EN LOGINCOMPONENT: ', response.data)
+  // console.log('RESPONSE.DATA EN LOGINCOMPONENT: ', response.data)
   const { token, isAdmin, username: name } = response.data; 
   
-  console.log('Token recibido:', token);
-  console.log('Role recibido:', isAdmin);
-  console.log('Nombre recibido:', name);
+  // console.log('Token recibido:', token);
+  // console.log('Role recibido:', isAdmin);
+  // console.log('Nombre recibido:', name);
 
   if (token) {
     handleCookie(token, isAdmin, name);

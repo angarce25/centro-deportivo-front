@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { IoHomeOutline } from "react-icons/io5";
 import { CiShop } from "react-icons/ci";
 import { GiClothes } from "react-icons/gi";
+import { AiFillStar } from "react-icons/ai";
+import { FaCartArrowDown } from "react-icons/fa6";
+import { GiBabyfootPlayers } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
 import { RiTeamLine } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
@@ -10,6 +13,7 @@ import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
 import { useLocation } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -17,6 +21,7 @@ function Sidebar() {
   const [userName, setUserName] = useState("");
   const [welcomeShown, setWelcomeShown] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = Cookies.get('token');
@@ -24,7 +29,7 @@ function Sidebar() {
       try {
         const decodedToken = jwtDecode(token);
         setIsAdmin(decodedToken.isAdmin === 'admin' ? 'admin' : 'user'); // Ajuste aquí para asegurarse de que 'admin' o 'user'
-        console.log('DECODED TOKEN EN SIDEBAR:', decodedToken)
+        // console.log('DECODED TOKEN EN SIDEBAR:', decodedToken)
         setUserName(decodedToken.username); // Assuming you store the username in the token
       } catch (error) {
         console.error("Error decoding token:", error);
@@ -74,21 +79,39 @@ function Sidebar() {
   const renderAdminLinks = () => (
     <>
       <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
-        <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/dashboard/users">
-          <CiShop style={{ fontSize: "25px", fontWeight: "bold" }} />
+        <a
+          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          href="/dashboard/users"
+        >
+          <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
           <span className="mx-3 flex justify-center">Usuarios</span>
         </a>
       </nav>
       <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
-        <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/dashboard/players">
-          <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
+        <a
+          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          href="/dashboard/players"
+        >
+          <GiBabyfootPlayers style={{ fontSize: "32px", fontWeight: "bold" }} />
           <span className="mx-3 items-center justify-center">Jugadores</span>
         </a>
       </nav>
       <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
-        <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/dashboard/orders">
-          <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
+        <a
+          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          href="/dashboard/orders"
+        >
+          <FaCartArrowDown style={{ fontSize: "25px", fontWeight: "bold" }} />
           <span className="mx-3 items-center justify-center">Pedidos</span>
+        </a>
+      </nav>
+      <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
+        <a
+          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          href="/dashboard/memberships"
+        >
+          <AiFillStar style={{ fontSize: "25px", fontWeight: "bold" }} />
+          <span className="mx-3 items-center justify-center">Suscripción</span>
         </a>
       </nav>
     </>
