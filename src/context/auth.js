@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import Cookies from 'js-cookie';
 
-const API = 'https://centro-deportivo-back.onrender.com/api';
+const API = 'https://centro-deportivo-back.onrender.com';
 
 export const registerRequest = user => axios.post(`${API}/api/register`, user);
     
