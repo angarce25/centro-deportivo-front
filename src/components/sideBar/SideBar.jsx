@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { IoHomeOutline } from "react-icons/io5";
 import { CiShop } from "react-icons/ci";
 import { GiClothes } from "react-icons/gi";
-import { AiFillEdit } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
 import { FaCartArrowDown } from "react-icons/fa6";
 import { GiBabyfootPlayers } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
@@ -77,27 +77,39 @@ function Sidebar() {
   const renderAdminLinks = () => (
     <>
       <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
-        <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/dashboard/users">
+        <a
+          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          href="/dashboard/users"
+        >
           <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
           <span className="mx-3 flex justify-center">Usuarios</span>
         </a>
       </nav>
       <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
-        <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/dashboard/players">
+        <a
+          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          href="/dashboard/players"
+        >
           <GiBabyfootPlayers style={{ fontSize: "32px", fontWeight: "bold" }} />
           <span className="mx-3 items-center justify-center">Jugadores</span>
         </a>
       </nav>
       <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
-        <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/dashboard/orders">
+        <a
+          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          href="/dashboard/orders"
+        >
           <FaCartArrowDown style={{ fontSize: "25px", fontWeight: "bold" }} />
           <span className="mx-3 items-center justify-center">Pedidos</span>
         </a>
       </nav>
       <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
-        <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/dashboard/memberships">
-          <AiFillEdit style={{ fontSize: "25px", fontWeight: "bold" }} />
-          <span className="mx-3 items-center justify-center">Membresía</span>
+        <a
+          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          href="/dashboard/memberships"
+        >
+          <AiFillStar style={{ fontSize: "25px", fontWeight: "bold" }} />
+          <span className="mx-3 items-center justify-center">Suscripción</span>
         </a>
       </nav>
     </>
