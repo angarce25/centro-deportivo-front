@@ -19,19 +19,19 @@ function Products() {
       setLoading(true); // Activa el spinner
       try {
         const apiUrl = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
-        const extraPath = '/products'; // Añade la parte adicional de la URL
+        const extraPath = "/products"; // Añade la parte adicional de la URL
         const fullUrl = apiUrl + extraPath; // Combina la URL base con la parte adicional
-        
-        const response = await axios.get(fullUrl);
-        setItems(response.data);
+
+        const response = await axios.get(fullUrl); // Solicitud GET a la API
+        setItems(response.data); // Guarda los productos en el estado
       } catch (error) {
-        console.error("Error al obtener los productos:", error);
+        console.error("Error al obtener los productos:", error); // Manejo de errores
       } finally {
         setLoading(false); // Desactiva el spinner después de cargar los datos
       }
     };
 
-    fetchProducts();
+    fetchProducts(); // Llama a la función de obtención de productos al montar el componente
   }, [setLoading]);
 
   const filteredItems = category === "all" ? items : items.filter(item => item.category === category);
@@ -39,7 +39,7 @@ function Products() {
   return (
     <>
       <div className="flex min-h-screen h-screen overflow-hidden">
-        <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
+        <Spinner /> {/* Spinner mientras se cargan los productos */}
         {!loading && (
           <>
             <Sidebar />
@@ -58,12 +58,13 @@ function Products() {
               >
                 {filteredItems.map((item) => (
                   <div key={item._id}>
-                    <ProductsCard data={item} />
+                    <ProductsCard data={item} />{" "}
+                    {/* Componente de tarjeta de producto */}
                   </div>
                 ))}
               </div>
-              <ProductsDetail />
-              <CheckSideMenu />
+              <ProductsDetail /> {/* Componente de detalles del producto */}
+              <CheckSideMenu /> {/* Componente de menú lateral */}
             </ProductsLayout>
           </>
         )}

@@ -74,7 +74,7 @@ function PlayersTable() {
     <section className="mt-8">
       <div className="overflow-x-auto max-w-6xl mx-auto overflow-y-auto max-h-[80vh] mb-8">
         <div className="flex shadow items-center justify-between">
-          <h4 className="text-gray-600 font-bold mb-10">
+          <h4 className="text-gray-600 font-bold mb-10 underline">
             Listado de Jugadores
           </h4>
           <select onChange={handleTeamChange} value={selectedTeam} className="select select-bordered">
