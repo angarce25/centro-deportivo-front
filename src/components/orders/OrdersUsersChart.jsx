@@ -1,27 +1,32 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "date-fns";
-import Modal from "react-modal";
+// import Modal from "react-modal";
 
-Modal.setAppElement("#root");
+// Modal.setAppElement("#root");
 
 function OrdersUsersChart() {
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   const [currentOrder, setCurrentOrder] = useState(null);
 
-  const openModal = (order) => {    
-    setCurrentOrder(order);
-    setIsOpen(true);    
-  };
+  const urlDocument = `http://localhost:3000/uploads/` + currentOrder
+   
+console.log("URL DOCUMENT",urlDocument)
+console.log("CURRENT ORDER",currentOrder)
 
-  const closeModal = () => {    
-    setIsOpen(false);
-  };
+// const navigateTo = (order) => {    
+    
+      
+//   };
+
+  // const closeModal = () => {    
+  //   setIsOpen(false);
+  // };
+  const API = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    const API = import.meta.env.VITE_API_URL;
     const extraPath = "/orders/myorders";
     const fullUrl = API + extraPath;
 
@@ -96,7 +101,7 @@ function OrdersUsersChart() {
                           {order.document && (
                             <button
                               type="button"
-                              onClick={() => openModal(order)}
+                              onClick={() => {setCurrentOrder(order.document.filename), window.open(`${urlDocument}`, '_blank')} }
                               className="text-blue-600 underline"
                             >
                               {order.document.originalname}
@@ -124,7 +129,7 @@ function OrdersUsersChart() {
           </div>
 
           {/* Modal */}
-          <div id="modal-parent">
+          {/* <div id="modal-parent">
             {isOpen && (
               <Modal
               isOpen={isOpen}
@@ -153,11 +158,10 @@ function OrdersUsersChart() {
                     position: "relative",
                     backgroundColor: "white" 
                   }}
-                >
-                  {/* <p>Aquí tienes tu factura:</p> */}
+                >                  
                   {currentOrder && currentOrder.document && (
                     <object
-                    src={"/uploads/" + currentOrder.document.filename}
+                    src={`http://localhost:3000/api/orders/uploads/`  + currentOrder.document.filename}
                     type={currentOrder.document.mimetype}
                     width="100%"
                     height="500"
@@ -166,7 +170,8 @@ function OrdersUsersChart() {
                     <p>Mimetype:   {currentOrder.document.mimetype}</p>
                     <p>Destination:   {currentOrder.document.destination}</p>
                     <img
-                     src={"/uploads/" + currentOrder.document.filename}
+                     src={`http://localhost:3000/uploads` + currentOrder.document.filename}
+                     alt={`http://localhost:3000/uploads/` + currentOrder.document.filename}
                     >
                     </img>                   
                   </object>
@@ -181,7 +186,7 @@ function OrdersUsersChart() {
                 </div>
               </Modal>
             )}
-          </div>
+          </div> */}
         </div>
       )}
     </section>

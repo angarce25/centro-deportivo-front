@@ -1,7 +1,7 @@
 import Sidebar from "../components/sideBar/SideBar";
 import { Spinner, useSpinner } from '../context/LoadingContext';
 import { useEffect } from 'react';
-import OrdersUsersChart from "../components/orders/OrdersUsersChart";
+import OrdersUsersChart from "../components/orders/OrdersUsersChart.jsx";
 
 function MyOrders () {
   const { loading, setLoading } = useSpinner();
