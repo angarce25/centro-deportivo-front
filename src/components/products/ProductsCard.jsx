@@ -34,7 +34,7 @@ function ProductsCard(data) {
   };
 
     useEffect(() => {
-      console.log("Size seleccionado:", setSelectedSize);
+      // console.log("Size seleccionado:", setSelectedSize);
     }, [selectedSize]);
     
     

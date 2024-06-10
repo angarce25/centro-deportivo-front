@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-function PlayersUserChart() {
+function PlayersUsersChart() {
   const [myPlayers, setMyPlayers] = useState([]);
   const [myPayments, setMyPayments] = useState([]);
 
@@ -17,7 +17,7 @@ function PlayersUserChart() {
       .get(fullUrl, { withCredentials: true })
       .then((response) => {
         setMyPlayers(response.data);
-        console.log("Players data:", response.data); // Verifica la estructura de myPlayers
+        // console.log("Players data:", response.data); // Verifica la estructura de myPlayers
       })
       .catch((error) => {
         console.error("Error al obtener tus jugadores:", error);
@@ -28,10 +28,10 @@ function PlayersUserChart() {
       .then((response) => {
         if (response.data.message) {
           setMyPayments([]); // o cualquier estado que indique que no hay pagos
-          console.log("No hay pagos");
+          // console.log("No hay pagos");
         } else {
           setMyPayments(response.data);
-          console.log("Payments data:", response.data);
+          // console.log("Payments data:", response.data);
         }
       })
       .catch((error) => {
@@ -208,4 +208,4 @@ function PlayersUserChart() {
   );
 }  
 
-export default PlayersUserChart;
+export default PlayersUsersChart;

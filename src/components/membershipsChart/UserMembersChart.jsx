@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 function PlayersUserChart() {
   const [myPlayers, setMyPlayers] = useState([]);
   const [myPayments, setMyPayments] = useState([]);
+  
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
@@ -126,6 +127,7 @@ function PlayersUserChart() {
       const playerPayment = myPayments.find(payment => payment._id === player._id);
       // Mensaje de depuración para verificar el pago asociado al jugador actual
       console.log("Pago del jugador:", playerPayment);
+      console.log("My Payments:",myPayments)
     
       return (
         <tr key={player._id}>

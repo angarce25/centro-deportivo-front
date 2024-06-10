@@ -1,7 +1,7 @@
 import PlayersUsersChart from '../components/players/PlayersUsersChart.jsx';
 import Sidebar from '../components/sideBar/SideBar.jsx';
 import { useSpinner, Spinner } from "../context/LoadingContext";
-import { React, useEffect } from "react";
+import { useEffect } from "react";
 
 
 const PlayersUser = () => {
