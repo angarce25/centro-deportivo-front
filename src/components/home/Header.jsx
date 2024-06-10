@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import LogoutButton from "../buttons/ButtonLogout";
+import { useAuth } from '../../context/AuthContext'; // Asegúrate de ajustar la ruta a donde tengas AuthContext
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated } = useAuth(); // Obtener el estado de autenticación del contexto
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -39,18 +40,29 @@ const Header = () => {
         >
           Nuestros equipos
         </Link>
-        <Link
-          to="/register"
-          className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
-        >
-          Registro
-        </Link>
-        <Link
-          to="/login"
-          className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
-        >
-          Iniciar sesión
-        </Link>
+        {isAuthenticated ? (
+          <Link
+            to="/dashboard"
+            className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
+          >
+            Dashboard
+          </Link>
+        ) : (
+          <>
+            <Link
+              to="/register"
+              className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
+            >
+              Registro
+            </Link>
+            <Link
+              to="/login"
+              className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
+            >
+              Iniciar sesión
+            </Link>
+          </>
+        )}
         {/* <LogoutButton className="mx-10 my-2 xl:my-0" /> */}
       </nav>
       <button
