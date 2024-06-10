@@ -1,7 +1,7 @@
-// context/AuthContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import axios from 'axios';
+
+
 
 const AuthContext = createContext();
 
@@ -38,6 +38,7 @@ export const AuthProvider = ({ children }) => {
     Cookies.remove('token');
     Cookies.remove('isAdmin');
     Cookies.remove('username');
+    navigate('/');
   };
 
   return (

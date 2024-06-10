@@ -1,11 +1,10 @@
-// Header.jsx
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from '../../context/AuthContext'; // Asegúrate de ajustar la ruta a donde tengas AuthContext
+import { useAuth } from '../../context/AuthContext'; 
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated, userRole } = useAuth(); // Obtener el estado de autenticación y el rol del contexto
+  const { isAuthenticated, userRole, logout} = useAuth(); 
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -40,12 +39,20 @@ const Header = () => {
           Nuestros equipos
         </Link>
         {isAuthenticated ? (
+          <>
           <Link
             to={userRole === 'admin' ? '/dashboard/users' : '/dashboard/my-players'}
             className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
           >
            Dashboard
           </Link>
+          <button
+          onClick={logout}
+          className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
+        >
+          Cerrar sesión
+        </button>
+        </>
         ) : (
           <>
             <Link
@@ -62,7 +69,7 @@ const Header = () => {
             </Link>
           </>
         )}
-        {/* <LogoutButton className="mx-10 my-2 xl:my-0" /> */}
+        
       </nav>
       <button
         onClick={toggleMenu}
