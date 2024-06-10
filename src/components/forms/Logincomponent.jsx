@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const API = import.meta.env.VITE_API_URL;
 
+// eslint-disable-next-line react/prop-types
 const Logincomponent = ({ onFormSwitch }) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
