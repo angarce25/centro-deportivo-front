@@ -157,13 +157,18 @@ function OrdersUsersChart() {
                   {/* <p>Aquí tienes tu factura:</p> */}
                   {currentOrder && currentOrder.document && (
                     <object
-                    src={`/uploads/${currentOrder.document.filename}`}
+                    src={"/uploads/" + currentOrder.document.filename}
                     type={currentOrder.document.mimetype}
                     width="100%"
                     height="500"
-                  > <p className="z-index:1, text-black">{currentOrder.document.originalname}</p>
-                    <p>{currentOrder.document.path}</p>  
-                    <p>{currentOrder.document.filename}</p>                  
+                  > <p>Original name:   {currentOrder.document.originalname}</p>
+                    <p>Path:   {currentOrder.document.path}</p>  
+                    <p>Mimetype:   {currentOrder.document.mimetype}</p>
+                    <p>Destination:   {currentOrder.document.destination}</p>
+                    <img
+                     src={"/uploads/" + currentOrder.document.filename}
+                    >
+                    </img>                   
                   </object>
                   )}
                   <button
