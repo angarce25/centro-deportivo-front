@@ -1,10 +1,11 @@
+// Header.jsx
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from '../../context/AuthContext'; // Asegúrate de ajustar la ruta a donde tengas AuthContext
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated } = useAuth(); // Obtener el estado de autenticación del contexto
+  const { isAuthenticated, userRole } = useAuth(); // Obtener el estado de autenticación y el rol del contexto
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -13,9 +14,7 @@ const Header = () => {
   return (
     <header className="bg-black flex items-center justify-between xl:justify-start w-full py-4 px-8 lg:px-4 xl:px-8 h-auto xl:h-[15vh] z-50">
       <nav
-        className={`xl:flex ${
-          isOpen ? "flex flex-col items-center" : "hidden xl:flex"
-        } xl:flex-row m-auto justify-between w-full xl:w-auto xl:items-center`}
+        className={`xl:flex ${isOpen ? "flex flex-col items-center" : "hidden xl:flex"} xl:flex-row m-auto justify-between w-full xl:w-auto xl:items-center`}
       >
         <Link
           to="/"
@@ -42,10 +41,10 @@ const Header = () => {
         </Link>
         {isAuthenticated ? (
           <Link
-            to="/dashboard"
+            to={userRole === 'admin' ? '/dashboard/users' : '/dashboard/my-players'}
             className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
           >
-            Dashboard
+           Dashboard
           </Link>
         ) : (
           <>
