@@ -1,7 +1,7 @@
 import Sidebar from "../components/sideBar/SideBar";
 import { Spinner, useSpinner } from '../context/LoadingContext';
 import { useEffect } from 'react';
-import OrdersUsersChart from "../components/orders/OrdersUsersChart";
+import OrdersUsersChart from "../components/orders/OrdersUsersChart.jsx";
 
 function MyOrders () {
   const { loading, setLoading } = useSpinner();
@@ -17,7 +17,7 @@ function MyOrders () {
 
   return (    
     <div>
-    <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
+    <Spinner /> 
     {!loading && (
       <section style={{ display: "flex" }}>
         <Sidebar style={{ flex: "0 0 auto" }} />
@@ -28,5 +28,5 @@ function MyOrders () {
     )}
   </div>
 );
-};
+}
 export default MyOrders;
