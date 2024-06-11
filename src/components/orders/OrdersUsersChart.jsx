@@ -76,10 +76,7 @@ function OrdersUsersChart() {
                       </th>
                       <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Documento de Pago
-                      </th>
-                      <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Documento de Pago
-                      </th>
+                      </th>                      
 
                       <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Observaciones del Pedido
