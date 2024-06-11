@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import LogoutButton from "../buttons/ButtonLogout";
+import { useAuth } from '../../context/AuthContext'; 
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated, userRole, logout} = useAuth(); 
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -12,9 +13,7 @@ const Header = () => {
   return (
     <header className="bg-black flex items-center justify-between xl:justify-start w-full py-4 px-8 lg:px-4 xl:px-8 h-auto xl:h-[15vh] z-50">
       <nav
-        className={`xl:flex ${
-          isOpen ? "flex flex-col items-center" : "hidden xl:flex"
-        } xl:flex-row m-auto justify-between w-full xl:w-auto xl:items-center`}
+        className={`xl:flex ${isOpen ? "flex flex-col items-center" : "hidden xl:flex"} xl:flex-row m-auto justify-between w-full xl:w-auto xl:items-center`}
       >
         <Link
           to="/"
@@ -39,19 +38,38 @@ const Header = () => {
         >
           Nuestros equipos
         </Link>
-        <Link
-          to="/register"
+        {isAuthenticated ? (
+          <>
+          <Link
+            to={userRole === 'admin' ? '/dashboard/users' : '/dashboard/my-players'}
+            className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
+          >
+           Dashboard
+          </Link>
+          <button
+          onClick={logout}
           className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
         >
-          Registro
-        </Link>
-        <Link
-          to="/login"
-          className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
-        >
-          Iniciar sesión
-        </Link>
-        {/* <LogoutButton className="mx-10 my-2 xl:my-0" /> */}
+          Cerrar sesión
+        </button>
+        </>
+        ) : (
+          <>
+            <Link
+              to="/register"
+              className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
+            >
+              Registro
+            </Link>
+            <Link
+              to="/login"
+              className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
+            >
+              Iniciar sesión
+            </Link>
+          </>
+        )}
+        
       </nav>
       <button
         onClick={toggleMenu}

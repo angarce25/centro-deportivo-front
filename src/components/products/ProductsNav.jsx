@@ -35,7 +35,7 @@ const ProductsNav = ({ setCategory }) => {
         </li>
       </ul>
       <ul className="flex items-center gap-3">
-        <li>Example@gmail.com</li>
+        
         <li className="flex items-center gap-1"><TfiShoppingCartFull /> {context.count}</li>
       </ul>
     </nav>

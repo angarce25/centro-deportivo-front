@@ -12,6 +12,7 @@ import Products from "./pages/Products.jsx";
 import ProductOrder from "./pages/ProductOrder.jsx";
 import Merchandising from "./pages/Merchandising.jsx";
 import { PlayerProvider } from "./context/PlayerContext.jsx";
+import { AuthProvider } from "./context/AuthContext.jsx";
 import { SpinnerProvider } from "./context/LoadingContext.jsx";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -30,13 +31,14 @@ function App() {
   
   
   return (
-    //<AuthProvider>
+    <AuthProvider>
     <SpinnerProvider>
       <ToastContainer />
       <ShoppingCartProvider>
         <PlayerProvider>
           <BrowserRouter>
             {/* RUTAS NAVBAR */}
+            
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/info" element={<TeamInfo />} />
@@ -84,7 +86,7 @@ function App() {
         </PlayerProvider>
       </ShoppingCartProvider>
     </SpinnerProvider>
-    //</AuthProvider>
+    </AuthProvider>
   );
 }
 

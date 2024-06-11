@@ -1,4 +1,4 @@
-import PlayersUsersChart from '../components/players/PlayersUsersChart.jsx';
+import PlayersUserChart from '../components/players/PlayersUsersChart.jsx';
 import Sidebar from '../components/sideBar/SideBar.jsx';
 import { useSpinner, Spinner } from "../context/LoadingContext";
 import { useEffect } from "react";
@@ -22,7 +22,7 @@ const PlayersUser = () => {
         <section style={{ display: "flex" }}>
           <Sidebar style={{ flex: "0 0 auto" }} />
           <div style={{ marginLeft: "20px" }}>
-            <PlayersUsersChart />
+            <PlayersUserChart />
           </div>
         </section>
       )}
