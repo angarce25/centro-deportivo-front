@@ -11,6 +11,7 @@ function OrdersUsersChart() {
   const [currentOrder, setCurrentOrder] = useState(null);
 
   const urlDocument = `http://localhost:3000/uploads/` + currentOrder;
+  
 
   useEffect(() => {
     if (currentOrder) {
@@ -19,8 +20,9 @@ function OrdersUsersChart() {
     }
   }, [currentOrder]);
 
-  // console.log("URL DOCUMENT", urlDocument);
-  // console.log("CURRENT ORDER", currentOrder);
+  console.log("URL DOCUMENT", urlDocument);
+  console.log("CURRENT ORDER", currentOrder);
+  console.log("CURRENT ORDER", setCurrentOrder)
 
   const API = import.meta.env.VITE_API_URL;
 
@@ -76,11 +78,7 @@ function OrdersUsersChart() {
                       </th>
                       <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Documento de Pago
-                      </th>
-                      <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Documento de Pago
-                      </th>
-
+                      </th>                      
                       <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Observaciones del Pedido
                       </th>
@@ -105,16 +103,18 @@ function OrdersUsersChart() {
                               type="button"
                               onClick={() => {
                                 if (order.document.filename) {
-                                  setCurrentOrder(order.document.filename);
-                                  fetch(`${urlDocument}`)
-                                    .then((response) => response.blob())
-                                    .then((blob) => {
-                                      const url = URL.createObjectURL(blob);
-                                      const a = document.createElement("a");
-                                      a.href = url;
-                                      a.download = order.document.originalname;
-                                      a.click();
-                                    });
+                                  const documentUrl = `http://localhost:3000/uploads/${order.document.filename}`;
+                                  window.open(documentUrl, "_blank");
+                                  // fetch(`${urlDocument}`)
+                                  //   .then((response) => response.blob())
+                                  //   .then((blob) => {
+                                  //     const url = URL.createObjectURL(blob);
+                                  //     const a = document.createElement("a");
+                                  //     a.href = url;
+                                  //     a.download = order.document.originalname;
+                                  //     a.click();
+                                  //   });
+                                 
                                 }
                               }}
                               className="text-blue-600 underline"
@@ -143,65 +143,7 @@ function OrdersUsersChart() {
             </div>
           </div>
 
-          {/* Modal */}
-          {/* <div id="modal-parent">
-            {isOpen && (
-              <Modal
-              isOpen={isOpen}
-              onRequestClose={closeModal}
-              contentLabel="Modal"
-              style={{
-                overlay: {
-                  zIndex: 1,
-                },
-                content: {
-                  top: '50%',
-                  left: '50%',
-                  right: 'auto',
-                  bottom: 'auto',
-                  marginRight: '-50%',
-                  transform: 'translate(-50%, -50%)',
-                  width: '80%', 
-                  maxWidth: '800px', 
-                  backgroundColor: 'white',
-                },
-              }}
-            >
-                <div
-                  className="bg-white rounded "
-                  style={{
-                    position: "relative",
-                    backgroundColor: "white" 
-                  }}
-                >                  
-                  {currentOrder && currentOrder.document && (
-                    <object
-                    src={`http://localhost:3000/api/orders/uploads/`  + currentOrder.document.filename}
-                    type={currentOrder.document.mimetype}
-                    width="100%"
-                    height="500"
-                  > <p>Original name:   {currentOrder.document.originalname}</p>
-                    <p>Path:   {currentOrder.document.path}</p>  
-                    <p>Mimetype:   {currentOrder.document.mimetype}</p>
-                    <p>Destination:   {currentOrder.document.destination}</p>
-                    <img
-                     src={`http://localhost:3000/uploads` + currentOrder.document.filename}
-                     alt={`http://localhost:3000/uploads/` + currentOrder.document.filename}
-                    >
-                    </img>                   
-                  </object>
-                  )}
-                  <button
-                    type="button"
-                    onClick={closeModal}
-                    className="absolute top-0 right-0 p-2 text-gray-600 hover:text-gray-900"
-                  >
-                    ×
-                  </button>
-                </div>
-              </Modal>
-            )}
-          </div> */}
+          
         </div>
       )}
     </section>
