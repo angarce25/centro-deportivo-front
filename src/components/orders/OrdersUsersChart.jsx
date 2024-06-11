@@ -1,29 +1,27 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "date-fns";
-// import Modal from "react-modal";
 
-// Modal.setAppElement("#root");
+
+
 
 function OrdersUsersChart() {
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState(null);
-  // const [isOpen, setIsOpen] = useState(false);
   const [currentOrder, setCurrentOrder] = useState(null);
 
-  const urlDocument = `http://localhost:3000/uploads/` + currentOrder
-   
-console.log("URL DOCUMENT",urlDocument)
-console.log("CURRENT ORDER",currentOrder)
+  const urlDocument = `http://localhost:3000/uploads/` + currentOrder;
 
-// const navigateTo = (order) => {    
-    
-      
-//   };
+  useEffect(() => {
+    if (currentOrder) {
+      const urlDocument = `http://localhost:3000/uploads/${currentOrder}`;
+      console.log("URL DOCUMENT", urlDocument);
+    }
+  }, [currentOrder]);
 
-  // const closeModal = () => {    
-  //   setIsOpen(false);
-  // };
+  // console.log("URL DOCUMENT", urlDocument);
+  // console.log("CURRENT ORDER", currentOrder);
+
   const API = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
@@ -79,6 +77,9 @@ console.log("CURRENT ORDER",currentOrder)
                       <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Documento de Pago
                       </th>
+                      <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                        Documento de Pago
+                      </th>
 
                       <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Observaciones del Pedido
@@ -99,9 +100,23 @@ console.log("CURRENT ORDER",currentOrder)
                         </td>
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                           {order.document && (
+                            
                             <button
                               type="button"
-                              onClick={() => {setCurrentOrder(order.document.filename), window.open(`${urlDocument}`, '_blank')} }
+                              onClick={() => {
+                                if (order.document.filename) {
+                                  setCurrentOrder(order.document.filename);
+                                  fetch(`${urlDocument}`)
+                                    .then((response) => response.blob())
+                                    .then((blob) => {
+                                      const url = URL.createObjectURL(blob);
+                                      const a = document.createElement("a");
+                                      a.href = url;
+                                      a.download = order.document.originalname;
+                                      a.click();
+                                    });
+                                }
+                              }}
                               className="text-blue-600 underline"
                             >
                               {order.document.originalname}
