@@ -1,57 +1,41 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ProductContext";
 import { TfiShoppingCartFull } from "react-icons/tfi";
 
-
-
-
-const ProductsNav = () => {
+const ProductsNav = ({ setCategory }) => {
   const context = useContext(ShoppingCartContext);
 
-
-/* const filterProducts = (products) => {
-    return products.filters(product =>{
-      return (
-        filters.category === 'all' ||
-        product.category === filters.category
-      )
-    })
-  };
-
-  const filteredProducts = filterProducts(context.products); */
-  
-  
   return (
     <nav className="flex flex-row justify-around items-center fixed top-0 w-full py-5 px-8 text-sm font-light">
       <ul className="flex items-center gap-3">
-        
         <li>
-          <NavLink to="/equipacion-necesaria-jugador">
+          <button onClick={() => setCategory("Pack Ini Jugador")}>
             Pack Ini jugador
-          </NavLink>
+          </button>
         </li>
         <li>
-          <NavLink to="/equipacion-necesaria-arquero">
-           Pack Ini arquero
-          </NavLink>
+          <button onClick={() => setCategory("Pack Ini Arquero")}>
+            Pack Ini arquero
+          </button>
         </li>
         <li>
-          <NavLink to="/merchandising">Extra</NavLink>
+          <button onClick={() => setCategory("Extra")}>
+            Extra
+          </button>
         </li>
         <li>
-          <NavLink to="/merchandising">Merchandaising</NavLink>
+          <button onClick={() => setCategory("Merchandising")}>
+            Merchandising
+          </button>
+        </li>
+        <li>
+          <button onClick={() => setCategory("all")}>
+            Todos
+          </button>
         </li>
       </ul>
       <ul className="flex items-center gap-3">
-        <li>Example@gmail.com</li>
-
-        {/* <li>
-          <NavLink to="/ProductOrder">Mi pedido</NavLink>
-        </li>
-        <li>
-          <NavLink to="/ProductsOrders">Mis pedidos</NavLink>
-        </li> */}
+        
         <li className="flex items-center gap-1"><TfiShoppingCartFull /> {context.count}</li>
       </ul>
     </nav>

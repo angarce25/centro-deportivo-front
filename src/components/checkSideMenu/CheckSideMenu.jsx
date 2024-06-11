@@ -74,7 +74,7 @@ const CheckSideMenu = () => {
                   sizes={product.sizes}
                   handleDelete={handleDelete} 
                 />
-                <p>Talla seleccionada: {product.selectedSize}</p>
+                <p className="flex justify-between mb-1 text-sm items-center">Talla: {product.selectedSize}</p>
               </div>
             )
           ))

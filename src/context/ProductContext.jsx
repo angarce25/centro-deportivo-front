@@ -45,11 +45,7 @@ const [order, setOrder] = useState([]);
      return checkedSizes
   };
 
-  //FILTER PRODUCTS BY CATEGORY
-  const [filters, setFilters] = useState({category: "all"});
-
-
-
+ 
 
  return (
    <ShoppingCartContext.Provider value={{ 
@@ -70,9 +66,8 @@ const [order, setOrder] = useState([]);
      setOrder,
      checkedSizes,
       setCheckedSizes,
-      handleCheckSize,
-      filters,
-      setFilters
+      handleCheckSize
+      
 
    }}>
      {children}

@@ -2,6 +2,7 @@ import Img2 from "../../assets/slide/sponsors.png";
 import Img1 from "../../assets/slide/Victoria.png";
 import Img3 from "../../assets/slide/aftermatch.png";
 import Slider from "react-slick";
+import { useNavigate } from "react-router-dom";
 
 const ImageList = [
   {
@@ -25,6 +26,9 @@ const ImageList = [
 ];
 
 const Slide = () => {
+
+  const navigate = useNavigate();
+
   var settings = {
     dots: false,
     arrows: false,
@@ -77,12 +81,13 @@ const Slide = () => {
                   </h2>
                   <p className="text-sm ml-6">{data.description}</p>
                   <div>
-                    <button
-                      onClick={() => (window.location.href = "/register")}
-                      className="bg-yellow-l hover:bg-yellow-d duration-200 text-black py-2 px-4 font-bold rounded-full ml-6 shadow-md"
-                    >
-                      Únete a nosotros
-                    </button>
+                  <button
+                    onClick={() => navigate('/register')}                   
+                    className="bg-yellow-d hover:bg-yellow-l duration-200 text-black py-2 px-4 font-bold rounded-full ml-6 shadow-md"
+                  >                     
+                      Únete a nosotros                      
+                  </button>
+
                   </div>
                 </div>
                 <div className="order-1 sm:order-2">

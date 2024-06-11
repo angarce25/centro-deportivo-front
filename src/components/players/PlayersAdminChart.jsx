@@ -4,6 +4,8 @@ import AssignTeamModal from "./ChooseTeam.jsx";
 
 function PlayersTable() {
   const [players, setPlayers] = useState([]);
+  const [teams, setTeams] = useState([]);
+  const [selectedTeam, setSelectedTeam] = useState("");
   const [error, setError] = useState(null);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,6 +22,21 @@ function PlayersTable() {
       .catch((error) => {
         setError("Error al obtener los jugadores");
         console.error("Error al obtener los jugadores:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const extraPath = '/player/teams';
+    const fullUrl = apiUrl + extraPath;
+
+    axios.get(fullUrl, { withCredentials: true })
+      .then((response) => {
+        setTeams(response.data);
+      })
+      .catch((error) => {
+        setError("Error al obtener los equipos");
+        console.error("Error al obtener los equipos:", error);
       });
   }, []);
 
@@ -47,15 +64,29 @@ function PlayersTable() {
     }
   };
 
+  const handleTeamChange = (event) => {
+    setSelectedTeam(event.target.value);
+  };
+
+  const filteredPlayers = selectedTeam ? players.filter(player => player.team && player.team._id === selectedTeam) : players;
+
   return (
-     <section className="mt-8">
-       <div className="overflow-x-auto max-w-6xl mx-auto overflow-y-auto max-h-[80vh] mb-8">
-         <div className="flex shadow items-center justify-between">
-           <h4 className="text-gray-600 font-bold mb-10 underline">
-             Listado de Jugadores
-           </h4>
-         </div>
-         {error && <p>{error}</p>}
+    <section className="mt-8">
+      <div className="overflow-x-auto max-w-6xl mx-auto overflow-y-auto max-h-[80vh] mb-8">
+        <div className="flex shadow items-center justify-between">
+          <h4 className="text-gray-600 font-bold mb-10 underline">
+            Listado de Jugadores
+          </h4>
+          <select onChange={handleTeamChange} value={selectedTeam} className="select select-bordered">
+            <option value="">Todos los equipos</option>
+            {teams.map((team) => (
+              <option key={team._id} value={team._id}>
+                {team.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        {error && <p>{error}</p>}
 
         <table className="table table-zebra">
           <thead>
@@ -72,14 +103,14 @@ function PlayersTable() {
             </tr>
           </thead>
           <tbody>
-            {players.map((player) => (
+            {filteredPlayers.map((player) => (
               <tr key={player._id}>
                 <td className="font-medium">{player.name} {player.lastname}</td>
-                {/* Cambiar por el nombre del representante                 */}
+                {/* Cambiar por el nombre del representante */}
                 <td>{player.parent_id}</td>
                 <td>
                   {player.team ? player.team.name : 'Pendiente'}
-                  <button 
+                  <button
                     onClick={() => handleOpenModal(player)}
                     className="text-blue-500 hover:text-blue-700"
                   >
@@ -87,7 +118,7 @@ function PlayersTable() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8h16M4 16h16"/>
                     </svg>
                   </button>
-                </td>                
+                </td>
                 <td>{player.email}</td>
                 <td>{player.phone}</td>
                 <td>{player.post_code}</td>
@@ -100,7 +131,7 @@ function PlayersTable() {
         </table>
       </div>
 
-      <AssignTeamModal 
+      <AssignTeamModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         player={selectedPlayer}

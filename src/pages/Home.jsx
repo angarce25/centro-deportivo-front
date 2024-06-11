@@ -120,7 +120,7 @@ const Home = () => {
             >
               <h1 className="text-4xl font-bold mb-6 ml-12">Futbol Base</h1>
 
-              <hr class="border-t-4 border-yellow-300 mt-2 mb-10 ml-12" />
+              <hr className="border-t-4 border-yellow-300 mt-2 mb-10 ml-12" />
               <p
                 className="mt-2 mb-5 ml-12 mr-12 text-gray-700 text-lg text-justify"
                 style={{ textIndent: "2rem" }}

@@ -13,6 +13,7 @@ import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
 import { useLocation } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -20,6 +21,7 @@ function Sidebar() {
   const [userName, setUserName] = useState("");
   const [welcomeShown, setWelcomeShown] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = Cookies.get('token');
@@ -27,7 +29,7 @@ function Sidebar() {
       try {
         const decodedToken = jwtDecode(token);
         setIsAdmin(decodedToken.isAdmin === 'admin' ? 'admin' : 'user'); // Ajuste aquí para asegurarse de que 'admin' o 'user'
-        console.log('DECODED TOKEN EN SIDEBAR:', decodedToken)
+        // console.log('DECODED TOKEN EN SIDEBAR:', decodedToken)
         setUserName(decodedToken.username); // Assuming you store the username in the token
       } catch (error) {
         console.error("Error decoding token:", error);

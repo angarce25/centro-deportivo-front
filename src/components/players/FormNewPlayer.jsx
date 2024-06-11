@@ -114,20 +114,28 @@ export default function FormNewPlayer() {
                 <label className="block text-gray font-bold mb-2" htmlFor="tallaCamiseta">Talla de ropa (camiseta)</label>
                 <select className="select select-bordered w-full max-w-xs" {...register("shirt_size", { required: true })}>
                   <option value="">Selecciona una talla</option>
+                  <option value="3XS">3XS</option>
+                  <option value="2XS">2XS</option>
+                  <option value="XS">XS</option>
                   <option value="S">S</option>
                   <option value="M">M</option>
                   <option value="L">L</option>
                   <option value="XL">XL</option>
+                  <option value="XL">XXL</option>
                 </select>
               </div>
               <div className="w-full lg:w-1/2 ml-4">
                 <label className="block text-gray font-bold mb-2" htmlFor="tallaPantalon">Talla de ropa (pantalón)</label>
                 <select className="select select-bordered w-full max-w-xs" {...register("pants_size", { required: true })}>
                   <option value="">Selecciona una talla</option>
-                  <option value="34">34</option>
-                  <option value="35">35</option>
-                  <option value="36">36</option>
-                  <option value="37">37</option>
+                  <option value="3XS">3XS</option>
+                  <option value="2XS">2XS</option>
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                  <option value="XL">XXL</option>
                 </select>
               </div>
             </div>
@@ -135,15 +143,19 @@ export default function FormNewPlayer() {
               <label className="block text-gray font-bold mb-2" htmlFor="numeroCalzado">Número de calzado</label>
               <select className="select select-bordered w-full max-w-xs" {...register("shoe_size", { required: true })}>
                 <option value="">Selecciona un número</option>
+                <option value="35">35</option>
                 <option value="36">36</option>
                 <option value="37">37</option>
                 <option value="38">38</option>
                 <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
               </select>
             </div>
           </div>
           <div className="flex text-right">
-        <button className="text-white font-bold py-2 px-4 rounded bg-black hover:bg-gray" type="submit">
+        <button className="text-white font-bold py-2 px-4 rounded bg-custom-blue hover:bg-gray" type="submit">
           Añadir jugador
         </button>
         </div>
