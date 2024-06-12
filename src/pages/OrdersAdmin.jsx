@@ -15,18 +15,18 @@ function OrdersAdmin () {
   }, [setLoading]);
 
 
-  return (    
+  return (
     <div>
-    <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
-    {!loading && (
-      <section style={{ display: "flex" }}>
-        <Sidebar style={{ flex: "0 0 auto" }} />
-        <div style={{ marginLeft: "20px" }}>
-          <OrdersChart/>
-        </div>
-      </section>
-    )}
-  </div>
-);
+      <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
+      {!loading && (
+        <section style={{ display: "flex" }}>
+          <Sidebar style={{ flex: "0 0 auto" }} />
+          <div style={{ marginLeft: "12.5%", marginTop: "40px" }}>
+            <OrdersChart />
+          </div>
+        </section>
+      )}
+    </div>
+  );
 };
 export default OrdersAdmin;
