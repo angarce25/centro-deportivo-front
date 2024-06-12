@@ -53,7 +53,8 @@ function Products() {
                 xl:grid xl:grid-cols-4 xl:w-full xl:max-w-screen-lg
                 lg:grid lg:grid-cols-4 lg:w-full lg:max-w-screen-lg
                 md:grid md:grid-cols-3 md:w-full md:max-w-screen-md
-                sm:grid sm:grid-cols-2 sm:w-full sm:justify-center"
+                sm:grid sm:grid-cols-3 sm:w-full sm:justify-center
+                "
               >
                 {filteredItems.map((item) => (
                   <div key={item._id}>
