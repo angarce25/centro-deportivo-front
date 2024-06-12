@@ -44,7 +44,7 @@ const Header = () => {
             to={userRole === 'admin' ? '/dashboard/users' : '/dashboard/my-players'}
             className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
           >
-           Dashboard
+           Mi Cuenta
           </Link>
           <button
           onClick={logout}
