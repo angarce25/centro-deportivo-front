@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import Registercomponent from "../components/forms/Registercomponent";
 import Logincomponent from "../components/forms/Logincomponent";
 import { useSpinner, Spinner } from "../context/LoadingContext";
 import Header from "../components/home/Header";
+import './Login.css';
 
 const Login = () => {
   const [currentForm, setCurrentForm] = useState("Logincomponent");
@@ -20,7 +21,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login">
       <Header />
       <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
       {!loading && (
