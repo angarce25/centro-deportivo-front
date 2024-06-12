@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useContext, useState, useEffect } from "react";
 import { ShoppingCartContext } from "../../context/ProductContext";
-import { TfiShoppingCartFull } from "react-icons/tfi";
+import AddToCartButton from "./AddToCartButton";
+import SizeSelector from "./SizeSelector";
 
-function ProductsCard({ data }) {
+function ProductsCard({ data, showAddToCart, showSizeSelector }) {
   const context = useContext(ShoppingCartContext);
   const [selectedSize, setSelectedSize] = useState(null);
 
@@ -12,26 +13,14 @@ function ProductsCard({ data }) {
     context.setProductToShow(productDetail);
   };
 
-  const addProductsToCart = (event, productData) => {
-    event.stopPropagation();
-    const productWithSize = { ...productData, selectedSize: selectedSize || productData.sizes[0] };
-    context.setCount(context.count + 1);
-    context.setCartProducts([...context.cartProducts, productWithSize]);
-
-    context.openCheckSideMenu();
-    context.closeProductDetail();
-  };
-
   const handleSizeSelection = (event) => {
     event.stopPropagation();
     setSelectedSize(event.target.value);
   };
 
-    useEffect(() => {
-      // console.log("Size seleccionado:", setSelectedSize);
-    }, [selectedSize]);
-    
-    
+  useEffect(() => {
+    // console.log("Size seleccionado:", selectedSize);
+  }, [selectedSize]);
 
   return (
     <section
@@ -52,17 +41,12 @@ function ProductsCard({ data }) {
           alt={data.name}
           className="w-52 h-60 object-cover rounded-t-lg bg-gradient-to-br from-black via-gray-500 to-white-100"
         />
-        <div
-          style={{
-            maxWidth: "100%",
-            height: "auto",
-            filter: "drop-shadow(0px 1.42184px 1.23px rgba(0, 0, 0, 1))",
-          }}
-          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 rounded-md m-2"
-          onClick={(event) => addProductsToCart(event, data)}
-        >
-          <TfiShoppingCartFull className="text-black w-4 h-6"> </TfiShoppingCartFull>
-        </div>
+        {showAddToCart && (
+          <AddToCartButton 
+          productData={data} 
+          selectedSize={selectedSize}
+           />
+        )}
       </figure>
       <p className="flex justify-between">
         <span className="text-sm text-black font-light m-2 px-1 py-0.5">
@@ -72,28 +56,17 @@ function ProductsCard({ data }) {
           {data.price}€
         </span>
       </p>
-      <div className="flex flex-wrap justify-center ">
-        <select
-          value={selectedSize || ''}
-          onChange={handleSizeSelection}
-          onClick={(event) => event.stopPropagation()}
-          className="m-1 px-12  rounded-md text-sm border font-medium cursor-pointer bg-custom-blue text-white "
-          >
-          <option 
-         
-          >Elige talla</option>
-          {data.sizes.map((size, index) => (
-            <option 
-            key={index} 
-            value={size}
-            >
-              {size}
-            </option>
-          ))}
-        </select>
-      </div>
+      {showSizeSelector && (
+        <SizeSelector
+          selectedSize={selectedSize}
+          handleSizeSelection={handleSizeSelection}
+          sizes={data.sizes}
+        />
+      )}
     </section>
   );
 }
 
 export default ProductsCard;
+
+
