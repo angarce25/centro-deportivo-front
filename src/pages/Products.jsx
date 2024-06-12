@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
 import ProductsCard from "../components/products/ProductsCard";
 import ProductsLayout from "../components/products/ProductsLayout";
 import ProductsNav from "../components/products/ProductsNav";
@@ -58,8 +57,11 @@ function Products() {
               >
                 {filteredItems.map((item) => (
                   <div key={item._id}>
-                    <ProductsCard data={item} />{" "}
-                    {/* Componente de tarjeta de producto */}
+                    <ProductsCard 
+                      data={item} 
+                      showAddToCart={true} 
+                      showSizeSelector={true} 
+                    /> {/* Componente de tarjeta de producto */}
                   </div>
                 ))}
               </div>
