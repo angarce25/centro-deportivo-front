@@ -73,6 +73,15 @@ function Sidebar() {
           <span className="mx-3 items-center justify-center">Mis pedidos</span>
         </a>
       </nav>
+      <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
+        <a
+          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          href="/dashboard/my-memberships"
+        >
+          <AiFillStar style={{ fontSize: "25px", fontWeight: "bold" }} />
+          <span className="mx-3 items-center justify-center">Mi Suscripciónes</span>
+        </a>
+      </nav>
     </>
   );
 
