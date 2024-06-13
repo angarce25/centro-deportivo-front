@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 const NewOrderCard = ({
   date,
   totalProducts,

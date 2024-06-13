@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "date-fns";
+import OrderDetailsModal from "./OrderDetailsModal"; // Importa el nuevo componente de modal
 
 function OrdersChart() {
   const [orders, setOrders] = useState([]);
@@ -12,13 +13,7 @@ function OrdersChart() {
     direction: "ascending",
   });
   const [currentOrder, setCurrentOrder] = useState(null);
-
-  useEffect(() => {
-    if (currentOrder) {
-      const urlDocument = `http://localhost:3000/uploads/${currentOrder}`;
-      console.log("URL DOCUMENT", urlDocument);
-    }
-  }, [currentOrder]);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Estado para el modal
 
   const API = import.meta.env.VITE_API_URL;
 
@@ -118,6 +113,16 @@ function OrdersChart() {
     }
   };
 
+  const handleOrderClick = (order) => {
+    setCurrentOrder(order);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setCurrentOrder(null);
+  };
+
   return (
     <section className="mt-8 flex justify-center">
       {error ? (
@@ -153,7 +158,7 @@ function OrdersChart() {
                         onClick={() => requestSort("_id")}
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
-                        Id del Pedido
+                        Detalles del Pedido
                         <SortArrow
                           direction={
                             sortConfig.key === "_id"
@@ -188,7 +193,6 @@ function OrdersChart() {
                           }
                         />
                       </th>
-                      
                       <th
                         onClick={() => requestSort("createdAt")}
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
@@ -212,7 +216,10 @@ function OrdersChart() {
                             ? `${order.user_id.name} ${order.user_id.lastname}`
                             : "Nombre no disponible"}{" "}
                         </td>
-                        <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                        <td
+                          className="px-4 py-4 whitespace-no-wrap border-b border-black text-center cursor-pointer text-blue-600 underline"
+                          onClick={() => handleOrderClick(order)}
+                        >
                           {order._id}
                         </td>
                         <td
