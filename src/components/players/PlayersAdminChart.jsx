@@ -154,7 +154,7 @@ function PlayersTable() {
                 <td className="font-medium">{player.name} {player.lastname}</td>                
                 <td>{getUserNameById(player.parent_id)}</td>
                 <td>
-                {player.team ? player.team.name : 'Asignar'}
+                {player.team ? player.team.name : 'Sin asignar'}
                   <button
                     onClick={() => handleOpenModal(player)}
                     className="ml-2 text-blue-500 hover:text-blue-700"
