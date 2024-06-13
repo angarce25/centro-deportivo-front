@@ -192,6 +192,20 @@ function OrdersChart() {
                       </th>
 
                       <th
+                        onClick={() => requestSort("summary")}
+                        className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                      >
+                        Estado del Pedido{" "}
+                        <SortArrow
+                          direction={
+                            sortConfig.key === "summary"
+                              ? sortConfig.direction
+                              : null
+                          }
+                        />
+                      </th>
+
+                      <th
                         onClick={() => requestSort("createdAt")}
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
