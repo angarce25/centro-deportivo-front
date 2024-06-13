@@ -43,9 +43,10 @@ function Products() {
           <>
             <Sidebar />
             <ProductsLayout>
-              <h2 className="text-xl font-medium mb-2">
+              <h2 className="text-xl font-medium mb-2 mt-10">
                 Echa un vistazo a nuestro equipamiento deportivo
               </h2>
+              <h4 className="mb-5">Añade al carrito el producto y la talla que quieras, después solicita el pedido adjuntando la factura</h4>
               <ProductsNav setCategory={setCategory} />
               <div
                 className="overflow-y-scroll w-full h-screen    

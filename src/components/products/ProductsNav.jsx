@@ -9,18 +9,18 @@ const ProductsNav = ({ setCategory }) => {
     <nav className="flex flex-row justify-around items-center fixed top-0 w-full py-5 px-8 text-sm font-light">
       <ul className="flex items-center gap-3">
         <li>
-          <button onClick={() => setCategory("Pack Ini Jugador")}>
-            Pack Ini jugador
+          <button onClick={() => setCategory("Pack Ini Jugador")}>       
+            Pack Iniciación Jugador
           </button>
         </li>
         <li>
           <button onClick={() => setCategory("Pack Ini Arquero")}>
-            Pack Ini arquero
+            Pack Iniciación Arquero
           </button>
         </li>
         <li>
           <button onClick={() => setCategory("Extra")}>
-            Extra
+            Otros
           </button>
         </li>
         <li>
