@@ -38,6 +38,13 @@ const Header = () => {
         >
           Nuestros equipos
         </Link>
+        <Link
+          to="https://cdciudadlosangeles.blogspot.com/"
+          className="text-white mx-10 my-2 xl:my-0 hover:text-yellow-d text-lg mt-2"
+          
+        >
+          Actualidad
+        </Link>
         {isAuthenticated ? (
           <>
           <Link

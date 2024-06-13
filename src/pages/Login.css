@@ -1,5 +1,6 @@
 .login {
-    background-image: url('https://img.freepik.com/premium-vector/set-soccer-player-silhouette-illustration-football-player-silhouette_614983-3608.jpg'); /* Ruta de tu imagen */
-    background-size: h-screen;
-    background-position: right;
+    background-image: url('https://res.cloudinary.com/dtppkikkr/image/upload/v1718263692/CDCA/BackGround/BgLoginRegister_r4rf7z.png');
+    background-size: h-full;
+    background-position: 10px 90px;
+
   }

@@ -71,8 +71,14 @@ const Logincomponent = ({ onFormSwitch }) => {
 };
   
   return (
-    <div className="bg-gray-200 min-h-screen flex items-center justify-center">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-md mb-12" style={{ backgroundColor: "#F2F2F2" }}>
+    <div    
+      style={{
+      maxWidth: "100%",
+      height: "auto",
+      filter: "drop-shadow(10px 10px 12px rgba(90, 90, 0, 0.8))",
+    }}
+    className=" bg-gray-200 min-h-screen flex items-center justify-center">
+      <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md mb-12 " style={{ backgroundColor: "#F2F2F2" }}>
         <h2 className="text-3xl font-semibold text-center mb-6">Iniciar sesión</h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="flex flex-col items-center">
@@ -81,12 +87,12 @@ const Logincomponent = ({ onFormSwitch }) => {
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
               type="email" 
-              placeholder="maria@gmail.com"  
+              placeholder="email"  
               id="email" 
               autoComplete="off"
               name="email" 
               required 
-              className="input w-full max-w-xs"  
+              className="input w-full max-w-xs rounded-xl"  
               style={{ borderRadius: "5px" }} 
             />
           </div>
@@ -102,15 +108,15 @@ const Logincomponent = ({ onFormSwitch }) => {
               name="password" 
               minLength="6" 
               required
-              className="input w-full max-w-xs"  
+              className="input w-full max-w-xs rounded-xl"  
               style={{ borderRadius: "5px" }} 
             />
           </div>
           <div className="flex justify-center">
             <button 
-              className="button-login bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+              className="button-login  bg-yellow-l hover:bg-yellow-d text-black font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
               type="submit" 
-              style={{ backgroundColor: "#142740" }}
+              
             >
               Iniciar sesión
             </button>

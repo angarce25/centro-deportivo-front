@@ -21,7 +21,8 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
+    
+    <div className="login w-full overflow-x-auto overflow-y-auto">
       <Header />
       <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
       {!loading && (
@@ -31,7 +32,7 @@ const Login = () => {
           ) : (
             <Registercomponent onFormSwitch={toggleForm} />
           )}
-        </>
+        </> 
       )}
     </div>
   );
