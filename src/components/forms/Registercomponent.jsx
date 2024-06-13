@@ -74,7 +74,13 @@ const Registercomponent = ({ onFormSwitch }) => {
   };
 
   return (
-    <div className="bg-gray-200 min-h-screen flex items-center justify-center">
+    <div 
+    style={{
+      maxWidth: "100%",
+      height: "auto",
+      filter: "drop-shadow(10px 10px 12px rgba(90, 90, 0, 0.8))",
+    }}
+    className="bg-gray-200 min-h-screen flex items-center justify-center">
       <div
         className="bg-white p-8 rounded shadow-md w-full max-w-md mb-12"
         style={{ backgroundColor: "#F2F2F2" }}
