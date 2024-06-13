@@ -13,12 +13,18 @@ function OrdersChart() {
   });
   const [currentOrder, setCurrentOrder] = useState(null);
 
+  const urlDocument = `http://localhost:3000/uploads/` + currentOrder;
+
   useEffect(() => {
     if (currentOrder) {
       const urlDocument = `http://localhost:3000/uploads/${currentOrder}`;
       console.log("URL DOCUMENT", urlDocument);
     }
   }, [currentOrder]);
+
+  console.log("URL DOCUMENT", urlDocument);
+  console.log("CURRENT ORDER", currentOrder);
+  console.log("CURRENT ORDER", setCurrentOrder)
 
   const API = import.meta.env.VITE_API_URL;
 
@@ -236,26 +242,18 @@ function OrdersChart() {
                         >
                           {order.document && (
                             <button
-                              type="button"
-                              onClick={() => {
-                                if (order.document.filename) {
-                                  setCurrentOrder(order.document.filename);
-                                  const urlDocument = `http://localhost:3000/uploads/${order.document.filename}`;
-                                  fetch(urlDocument)
-                                    .then((response) => response.blob())
-                                    .then((blob) => {
-                                      const url = URL.createObjectURL(blob);
-                                      const a = document.createElement("a");
-                                      a.href = url;
-                                      a.download = order.document.originalname;
-                                      a.click();
-                                    });
-                                }
-                              }}
-                              className="text-blue-600 underline"
-                            >
-                              {order.document.originalname}
-                            </button>
+                            type="button"
+                            onClick={() => {
+                              if (order.document.filename) {
+                                const documentUrl = `http://localhost:3000/uploads/${order.document.filename}`;
+                                window.open(documentUrl, "_blank");                                 
+                               
+                              }
+                            }}
+                            className="text-blue-600 underline"
+                          >
+                            {order.document.originalname}
+                          </button>
                           )}
                         </td>
 

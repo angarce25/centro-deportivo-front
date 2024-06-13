@@ -15,7 +15,7 @@ const ProductsNav = ({ setCategory }) => {
         </li>
         <li>
           <button onClick={() => setCategory("Pack Ini Arquero")}>
-            Pack Iniciación Arquero
+            Pack Iniciación Portero
           </button>
         </li>
         <li>
