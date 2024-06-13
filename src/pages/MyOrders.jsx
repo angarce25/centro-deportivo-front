@@ -15,18 +15,18 @@ function MyOrders () {
   }, [setLoading]);
 
 
-  return (    
+  return (
     <div>
-    <Spinner /> 
-    {!loading && (
-      <section style={{ display: "flex" }}>
-        <Sidebar style={{ flex: "0 0 auto" }} />
-        <div style={{ marginLeft: "20px" }}>
-          <OrdersUsersChart/>
-        </div>
-      </section>
-    )}
-  </div>
-);
+      <Spinner />
+      {!loading && (
+        <section style={{ display: "flex" }}>
+          <Sidebar style={{ flex: "0 0 auto" }} />
+          <div style={{ marginLeft: "13%" }}>
+            <OrdersUsersChart />
+          </div>
+        </section>
+      )}
+    </div>
+  );
 }
 export default MyOrders;

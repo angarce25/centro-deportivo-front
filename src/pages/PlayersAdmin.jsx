@@ -3,11 +3,10 @@ import Sidebar from '../components/sideBar/SideBar.jsx';
 
 const PlayersAdmin = () => {
   return (
-    <section style={{ display: 'flex' }}>
-      <Sidebar style={{ flex: '0 0 auto' }} /> 
-      <div style={{ marginLeft: '20px' }}> 
+    <section style={{ display: "flex" }}>
+      <Sidebar style={{ flex: "0 0 auto" }} />
+      <div style={{ marginLeft: "4.0%" }}>
         <PlayersAdminChart />
-        
       </div>
     </section>
   );

@@ -29,7 +29,6 @@ import MyPayment from "./pages/MyPayment.jsx";
 
 function App() {
   
-  
   return (
     <AuthProvider>
     <SpinnerProvider>
@@ -51,11 +50,8 @@ function App() {
               <Route element={<PrivateRoute isAllowed={false} />}>
                 <Route path="/dashboard/my-players" element={<PlayersUser />} />
 
-
-
                 <Route path="/dashboard/my-memberships" element={<UserMemberships />} />
                 <Route path="/dashboard/payment/:playerId" element={<MyPayment />} /> 
-
 
                 <Route path="/dashboard/myorders" element={<MyOrders />} />
                 <Route path="/dashboard/form-player" element={<NewPlayer />} />
