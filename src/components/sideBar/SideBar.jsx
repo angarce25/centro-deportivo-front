@@ -63,7 +63,7 @@ function Sidebar() {
       </nav>
       <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
         <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/dashboard/my-players">
-          <RiTeamLine style={{ fontSize: "25px", fontWeight: "bold" }} />
+          <GiBabyfootPlayers style={{ fontSize: "32px", fontWeight: "bold" }} />
           <span className="mx-3">Mis Jugadores</span>
         </a>
       </nav>
@@ -71,6 +71,15 @@ function Sidebar() {
         <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/dashboard/myorders">
           <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
           <span className="mx-3 items-center justify-center">Mis pedidos</span>
+        </a>
+      </nav>
+      <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
+        <a
+          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          href="/dashboard/my-memberships"
+        >
+          <AiFillStar style={{ fontSize: "25px", fontWeight: "bold" }} />
+          <span className="mx-3 items-center justify-center">Mis Suscripciones</span>
         </a>
       </nav>
     </>
@@ -111,7 +120,7 @@ function Sidebar() {
           href="/dashboard/memberships"
         >
           <AiFillStar style={{ fontSize: "25px", fontWeight: "bold" }} />
-          <span className="mx-3 items-center justify-center">Suscripción</span>
+          <span className="mx-3 items-center justify-center">Suscripciones</span>
         </a>
       </nav>
     </>
