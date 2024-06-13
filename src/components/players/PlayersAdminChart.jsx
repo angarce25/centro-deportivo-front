@@ -114,15 +114,15 @@ function PlayersTable() {
         <table className="table table-zebra">
           <thead>
             <tr className="text-gray-800 text-sm">
-              <th>Nombre</th>
-              <th>Representante</th>
-              <th>Equipo</th>
-              <th>Email</th>
-              <th>Teléfono</th>
-              <th>Código postal</th>
-              <th>DNI</th>
-              <th>Alergias</th>
-              <th>Lesiones</th>
+              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black ">Nombre</th>
+              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Representante</th>
+              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Equipo</th>
+              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Email</th>
+              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Teléfono</th>
+              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Código postal</th>
+              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">DNI</th>
+              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Alergias</th>
+              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Lesiones</th>
             </tr>
           </thead>
           <tbody>
@@ -132,7 +132,7 @@ function PlayersTable() {
                 {/* Cambiar por el nombre del representante */}
                 <td>{player.parent_id}</td>
                 <td>
-                  {player.team ? player.team.name : 'Pendiente'}
+                {player.team ? player.team.name : 'Asignar'}
                   <button
                     onClick={() => handleOpenModal(player)}
                     className="ml-2 text-blue-500 hover:text-blue-700"
@@ -142,10 +142,10 @@ function PlayersTable() {
                 </td>
                 <td>{player.email}</td>
                 <td>{player.phone}</td>
-                <td>{player.post_code}</td>
+                <td className="text-center">{player.post_code}</td>
                 <td>{player.dni}</td>
-                <td>{player.allergies}</td>
-                <td>{player.injury_illness}</td>
+                <td className="text-center">{player.allergies}</td>
+                <td className="text-center">{player.injury_illness}</td>
               </tr>
             ))}
           </tbody>
