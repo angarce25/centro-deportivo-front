@@ -65,7 +65,8 @@ const CheckSideMenu = () => {
           {
           context.cartProducts.map(product => (
             product._id && (
-              <div key={product._id}>
+              <div className="flex-col"
+              key={product._id}>
                 <OrderCard                 
                   _id={product._id}
                   name={product.name} 
