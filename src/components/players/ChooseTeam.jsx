@@ -9,7 +9,7 @@ const AssignTeamModal = ({ isOpen, onClose, player, onSave }) => {
     const fetchTeams = async () => {
       const apiUrl = import.meta.env.VITE_API_URL;
       const extraPath = '/player/teams';
-      const fullUrl = apiUrl + extraPath; // Ruta para obtener la lista de equipos
+      const fullUrl = apiUrl + extraPath;
       try {
         const response = await axios.get(fullUrl, { withCredentials: true });
         setTeams(response.data);
@@ -23,22 +23,16 @@ const AssignTeamModal = ({ isOpen, onClose, player, onSave }) => {
 
   const handleSave = async (e) => {
     e.preventDefault();
-    const apiUrl = import.meta.env.VITE_API_URL;
-      const extraPath = '/player/assign-team';
-      const fullUrl = apiUrl + extraPath;
-
-    try {
-      await axios.post(fullUrl, {
-        playerId: player._id,
-        teamId: teamId
-      }, { withCredentials: true });
-
-      await onSave(player._id, teamId);
-      onClose();
-    } catch (error) {
-      console.error("Error al asignar el equipo:", error);
-    }
+    await onSave(player._id, teamId);
   };
+
+  useEffect(() => {
+    if (player && player.team) {
+      setTeamId(player.team._id);
+    } else {
+      setTeamId('');
+    }
+  }, [player]);
 
   if (!isOpen) return null;
 
@@ -46,7 +40,7 @@ const AssignTeamModal = ({ isOpen, onClose, player, onSave }) => {
     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
       <div className="bg-white rounded-md shadow-md overflow-hidden max-w-sm w-full">
         <form onSubmit={handleSave}>
-          <div className="flex justify-between items-center px-5 py-3 text-gray-700 border-b">
+          <div className="flex justify-between items-center px-5 py-3 text-gray-700 border-b border-black">
             <h3 className="text-sm">Asignar Equipo</h3>
             <button type="button" onClick={onClose}>
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -55,7 +49,7 @@ const AssignTeamModal = ({ isOpen, onClose, player, onSave }) => {
             </button>
           </div>
           
-          <div className="px-5 py-6 bg-gray-200 text-gray-700 border-b">
+          <div className="px-5 py-6 bg-gray-200 text-gray-700 border-b border-black">
             <label className="text-xs">Equipo</label>
             <div className="mt-2 relative rounded-md shadow-sm">
               <select
