@@ -79,7 +79,7 @@ function Sidebar() {
           href="/dashboard/my-memberships"
         >
           <AiFillStar style={{ fontSize: "25px", fontWeight: "bold" }} />
-          <span className="mx-3 items-center justify-center">Mi Suscripciónes</span>
+          <span className="mx-3 items-center justify-center">Mis Suscripciones</span>
         </a>
       </nav>
     </>
@@ -120,7 +120,7 @@ function Sidebar() {
           href="/dashboard/memberships"
         >
           <AiFillStar style={{ fontSize: "25px", fontWeight: "bold" }} />
-          <span className="mx-3 items-center justify-center">Suscripción</span>
+          <span className="mx-3 items-center justify-center">Suscripciones</span>
         </a>
       </nav>
     </>

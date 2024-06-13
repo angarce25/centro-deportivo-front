@@ -163,32 +163,30 @@ function MembershipChart() {
 
   // Función para mostrar el modal y almacenar el pago seleccionado
   const handleViewPDF = (payment) => {
-    const paymentType = 'annual_payment'; // OJO FALTA -_- Aquí debes determinar el tipo de pago actual
+    const paymentType = "annual_payment"; // OJO FALTA -_- Aquí debes determinar el tipo de pago actual
 
     const documentPath = payment[paymentType]?.document?.path;
-  
+
     if (documentPath) {
       // Lógica para mostrar el PDF en el modal utilizando el path del documento
       console.log("Path del documento PDF:", documentPath);
       setSelectedPayment(documentPath);
 
       setShowModal(true);
-    
     } else {
-      console.log("No se encontró el path del documento PDF para el tipo de pago:", paymentType);
+      console.log(
+        "No se encontró el path del documento PDF para el tipo de pago:",
+        paymentType
+      );
     }
-    
-
- 
   };
 
   const hanleViewPDF = (payment) => {
     // Determinar el tipo de pago que se está procesando
     // Aquí suponemos que paymentType es el tipo de pago actual, como 'first_payment'
-    const paymentType = 'annual_payment'; // Aquí debes determinar el tipo de pago actual
-  
+    const paymentType = "annual_payment"; // Aquí debes determinar el tipo de pago actual
+
     // Acceder al path del documento PDF para el tipo de pago específico
-    
   };
 
   // Función para cerrar el modal
@@ -289,7 +287,10 @@ function MembershipChart() {
                         member.membership_payments.includes(payment._id)
                       );
                       return (
-                        <tr key={players._id} className="border-black">
+                        <tr
+                          key={`${players._id}-${index}`}
+                          className="border-black"
+                        >
                           <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
                             {member
                               ? `${member.name} ${member.lastname}`
@@ -311,53 +312,71 @@ function MembershipChart() {
                               key={`${payment._id}-${paymentType}`}
                               className="px-4 py-4 whitespace-no-wrap border-b border-black text-center"
                             >
-                              <select
-                                className={`bg-transparent ${getStatusColor(
-                                  payment[paymentType]?.status || "none"
-                                )}`}
-                                value={payment[paymentType]?.status || "none"}
-                                onChange={(e) =>
-                                  handleStatusChange(
-                                    index,
-                                    paymentType,
-                                    e.target.value
-                                  )
-                                }
-                              >
-                                <option value="none">No recibido</option>
-                                <option value="pendiente">Pendiente</option>
-                                <option value="aceptado">Aceptado</option>
-                                <option value="rechazado">Rechazado</option>
-                              </select>
-                              <button onClick={() => handleViewPDF(payment)}>
-                                Ver PDF
-                              </button>
+                              {payment[paymentType]?.status !== "none" ? (
+                                <>
+                                  <select
+                                    className={`bg-transparent ${getStatusColor(
+                                      payment[paymentType]?.status || "none"
+                                    )}`}
+                                    value={
+                                      payment[paymentType]?.status || "none"
+                                    }
+                                    onChange={(e) =>
+                                      handleStatusChange(
+                                        index,
+                                        paymentType,
+                                        e.target.value
+                                      )
+                                    }
+                                  >
+                                    <option value="none">No recibido</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="aceptado">Aceptado</option>
+                                    <option value="rechazado">Rechazado</option>
+                                  </select>
+                                  <button
+                                    onClick={() => handleViewPDF(payment)}
+                                  >
+                                    Ver PDF
+                                  </button>
+                                </>
+                              ) : (
+                                <span>No recibido</span>
+                              )}
                             </td>
                           ))}
 
                           {/* Renderizar el pago anual */}
                           <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                            <select
-                              className={`bg-transparent ${getStatusColor(
-                                payment.annual_payment?.status || "none"
-                              )}`}
-                              value={payment.annual_payment?.status || "none"}
-                              onChange={(e) =>
-                                handleStatusChange(
-                                  index,
-                                  "annual_payment",
-                                  e.target.value
-                                )
-                              }
-                            >
-                              <option value="none">No recibido</option>
-                              <option value="pendiente">Pendiente</option>
-                              <option value="aceptado">Aceptado</option>
-                              <option value="rechazado">Rechazado</option>
-                            </select>
-                            <button onClick={() => handleViewPDF(payment)}>
-                              Ver PDF
-                            </button>
+                            {payment.annual_payment?.status !== "none" ? (
+                              <>
+                                <select
+                                  className={`bg-transparent ${getStatusColor(
+                                    payment.annual_payment?.status || "none"
+                                  )}`}
+                                  value={
+                                    payment.annual_payment?.status || "none"
+                                  }
+                                  onChange={(e) =>
+                                    handleStatusChange(
+                                      index,
+                                      "annual_payment",
+                                      e.target.value
+                                    )
+                                  }
+                                >
+                                  <option value="none">No recibido</option>
+                                  <option value="pendiente">Pendiente</option>
+                                  <option value="aceptado">Aceptado</option>
+                                  <option value="rechazado">Rechazado</option>
+                                </select>
+                                <button onClick={() => handleViewPDF(payment)}>
+                                  Ver PDF
+                                </button>
+                              </>
+                            ) : (
+                              <span>No recibido</span>
+                            )}
                           </td>
 
                           <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
