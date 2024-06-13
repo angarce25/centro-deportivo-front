@@ -1,6 +1,9 @@
+
 import { useState, useEffect } from "react";
 import axios from "axios";
-import AssignTeamModal from "./ChooseTeam.jsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import AssignTeamModal from "../../components/players/ChooseTeam";
 
 function PlayersTable() {
   const [players, setPlayers] = useState([]);
@@ -56,9 +59,10 @@ function PlayersTable() {
       const response = await axios.post(`${apiUrl}/player/assign-team`, { playerId, teamId });
 
       const updatedPlayers = players.map(player =>
-        player._id === playerId ? { ...player, team: { _id: teamId, name: response.data.teamName } } : player
+        player._id === playerId ? { ...player, team: { _id: teamId, name: response.data.teamName }, status: true } : player
       );
       setPlayers(updatedPlayers);
+      setIsModalOpen(false); // Close the modal
     } catch (error) {
       console.error("Error al asignar el equipo:", error);
     }
@@ -69,6 +73,25 @@ function PlayersTable() {
   };
 
   const filteredPlayers = selectedTeam ? players.filter(player => player.team && player.team._id === selectedTeam) : players;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const extraPath = '/players';
+      const fullUrl = apiUrl + extraPath;
+
+      axios.get(fullUrl, { withCredentials: true })
+        .then((response) => {
+          setPlayers(response.data);
+        })
+        .catch((error) => {
+          setError("Error al obtener los jugadores");
+          console.error("Error al obtener los jugadores:", error);
+        });
+    }, 500); // Se actualizará cada 0.5 segundos (ajusta el valor según tus necesidades)
+
+    return () => clearTimeout(timer);
+  }, [players]); // Se ejecutará cada vez que el estado 'players' cambie
 
   return (
     <section className="mt-8">
@@ -112,11 +135,9 @@ function PlayersTable() {
                   {player.team ? player.team.name : 'Pendiente'}
                   <button
                     onClick={() => handleOpenModal(player)}
-                    className="text-blue-500 hover:text-blue-700"
+                    className="ml-2 text-blue-500 hover:text-blue-700"
                   >
-                    <svg className="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8h16M4 16h16"/>
-                    </svg>
+                    <FontAwesomeIcon icon={faEdit} />
                   </button>
                 </td>
                 <td>{player.email}</td>
@@ -140,5 +161,6 @@ function PlayersTable() {
     </section>
   );
 }
+
 
 export default PlayersTable;
