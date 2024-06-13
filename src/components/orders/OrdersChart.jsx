@@ -124,16 +124,14 @@ function OrdersChart() {
   };
 
   return (
-    <section className="max-w-7xl overflow-y-auto max-h-[90vh]">
+    <section className="mt-8 flex justify-center">
       {error ? (
         <div className="text-red-500 font-bold mb-4">{error}</div>
       ) : (
         <div className="max-w-4xl w-full">
           <div className="overflow-x-auto">
             <div className="flex items-center justify-between">
-              <h4 className="text-gray-600 font-bold mb-6 underline">
-                Pedidos
-              </h4>
+              <h4 className="text-gray-600 font-bold mb-6">Pedidos</h4>
             </div>
           </div>
 
@@ -195,21 +193,6 @@ function OrdersChart() {
                           }
                         />
                       </th>
-
-                      <th
-                        onClick={() => requestSort("summary")}
-                        className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
-                      >
-                        Estado del Pedido{" "}
-                        <SortArrow
-                          direction={
-                            sortConfig.key === "summary"
-                              ? sortConfig.direction
-                              : null
-                          }
-                        />
-                      </th>
-
                       <th
                         onClick={() => requestSort("createdAt")}
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
@@ -266,7 +249,7 @@ function OrdersChart() {
                             </button>
                           )}
                         </td>
-
+                        
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
                           {order.summary}
                         </td>
@@ -322,6 +305,13 @@ function OrdersChart() {
             </div>
           </div>
         </div>
+      )}
+      {isModalOpen && currentOrder && (
+        <OrderDetailsModal
+          isOpen={isModalOpen}
+          onRequestClose={closeModal}
+          order={currentOrder}
+        />
       )}
     </section>
   );
