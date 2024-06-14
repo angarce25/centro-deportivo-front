@@ -37,12 +37,6 @@ describe('Footer Component', () => {
       });
     });
   
-    // Uncomment and adjust this test if you decide to add the Link components back
-    // it('should display the correct link texts', () => {
-    //   cy.get('footer').within(() => {
-    //     cy.get('a[href="/"]').contains('¿Link 1?').should('exist');
-    //     cy.get('a[href="/"]').contains('¿Link 2?').should('exist');
-    //   });
-    // });
+    
   });
   

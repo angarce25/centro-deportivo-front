@@ -34,4 +34,7 @@ Cypress.Commands.add('confirmCaptcha', function () {
         cy.wrap(body).find('.recaptcha-checkbox-border').should('be.visible').click();
       });
   });
+
+
+  
   
