@@ -3,7 +3,7 @@ import Registercomponent from "../components/forms/Registercomponent";
 import Logincomponent from "../components/forms/Logincomponent";
 import { useSpinner, Spinner } from "../context/LoadingContext";
 import Header from "../components/home/Header";
-import './Login.css';
+import './BgLogin.css';
 
 const Login = () => {
   const [currentForm, setCurrentForm] = useState("Logincomponent");
@@ -22,7 +22,7 @@ const Login = () => {
 
   return (
     
-    <div className="login w-full overflow-x-auto overflow-y-auto">
+    <div className="BgLogin w-full overflow-x-auto overflow-y-auto">
       <Header />
       <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
       {!loading && (
