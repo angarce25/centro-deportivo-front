@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "date-fns";
-import OrderDetailsModal from "./OrderDetailsModal"; // Importa el nuevo componente de modal
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 function OrdersChart() {
   const [orders, setOrders] = useState([]);
@@ -13,11 +13,18 @@ function OrdersChart() {
     direction: "ascending",
   });
   const [currentOrder, setCurrentOrder] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Estado para el modal
 
-  const API = import.meta.env.VITE_API_URL;
+  // const urlDetails = `http://localhost:3000/details/` + currentOrder;
+  // useEffect(() => {
+  //   if (currentOrder) {
+  //     const urlDetails = `http://localhost:3000/details/${currentOrder}`;
+  //     console.log("URL DETAILS", urlDetails);
+  //   }
+  // }, [currentOrder]);
+
 
   useEffect(() => {
+    const API = import.meta.env.VITE_API_URL;
     const extraPath = "/orders";
     const fullUrl = API + extraPath;
 
@@ -35,7 +42,9 @@ function OrdersChart() {
             setError("Ocurrió un error al obtener los pedidos.");
           }
         } else {
-          setError("Error de conexión. Por favor, inténtalo de nuevo más tarde.");
+          setError(
+            "Error de conexión. Por favor, inténtalo de nuevo más tarde."
+          );
         }
       }
     };
@@ -81,7 +90,6 @@ function OrdersChart() {
         return "text-gray-500";
     }
   };
-
   const SortArrow = ({ direction }) => {
     if (!direction) return null;
     if (direction === "ascending") {
@@ -93,16 +101,16 @@ function OrdersChart() {
 
   const handleStatusChange = async (orderId, newStatus) => {
     try {
+      const API = import.meta.env.VITE_API_URL;
       const extraPath = `/orders/order/${orderId}/status`;
       const fullUrl = API + extraPath;
-      console.log("Updating order status:", { orderId, newStatus, fullUrl });
 
       const response = await axios.put(
         fullUrl,
         { status: newStatus },
         { withCredentials: true }
       );
-      console.log(response);
+
       setOrders((prevOrders) =>
         prevOrders.map((order) =>
           order._id === orderId ? { ...order, status: newStatus } : order
@@ -113,25 +121,17 @@ function OrdersChart() {
     }
   };
 
-  const handleOrderClick = (order) => {
-    setCurrentOrder(order);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setCurrentOrder(null);
-  };
-
   return (
-    <section className="mt-8 flex justify-center">
+    <section className="max-w-7xl overflow-y-auto max-h-[90vh]">
       {error ? (
         <div className="text-red-500 font-bold mb-4">{error}</div>
       ) : (
         <div className="max-w-4xl w-full">
           <div className="overflow-x-auto">
             <div className="flex items-center justify-between">
-              <h4 className="text-gray-600 font-bold mb-6">Pedidos</h4>
+              <h4 className="text-gray-600 font-bold mb-6 underline">
+                Pedidos
+              </h4>
             </div>
           </div>
 
@@ -158,10 +158,10 @@ function OrdersChart() {
                         onClick={() => requestSort("_id")}
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
-                        Detalles del Pedido
+                        Detalle de Pedido
                         <SortArrow
                           direction={
-                            sortConfig.key === "_id"
+                            sortConfig.key === "urlDetails"
                               ? sortConfig.direction
                               : null
                           }
@@ -193,6 +193,21 @@ function OrdersChart() {
                           }
                         />
                       </th>
+
+                      <th
+                        onClick={() => requestSort("status")}
+                        className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                      >
+                        Estado del Pedido{" "}
+                        <SortArrow
+                          direction={
+                            sortConfig.key === "status"
+                              ? sortConfig.direction
+                              : null
+                          }
+                        />
+                      </th>
+
                       <th
                         onClick={() => requestSort("createdAt")}
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
@@ -216,11 +231,13 @@ function OrdersChart() {
                             ? `${order.user_id.name} ${order.user_id.lastname}`
                             : "Nombre no disponible"}{" "}
                         </td>
-                        <td
-                          className="px-4 py-4 whitespace-no-wrap border-b border-black text-center cursor-pointer text-blue-600 underline"
-                          onClick={() => handleOrderClick(order)}
-                        >
-                          {order._id}
+                        <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                          <Link
+                            to={`/dashboard/order/${order._id}`} // Dynamic link to order details page
+                            className="text-blue-600 underline"
+                          >
+                            Detalle de Pedido
+                          </Link>
                         </td>
                         <td
                           className={`px-4 py-4 whitespace-no-wrap border-b border-black text-center`}
@@ -249,7 +266,6 @@ function OrdersChart() {
                             </button>
                           )}
                         </td>
-                        
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
                           {order.summary}
                         </td>
@@ -306,13 +322,7 @@ function OrdersChart() {
           </div>
         </div>
       )}
-      {isModalOpen && currentOrder && (
-        <OrderDetailsModal
-          isOpen={isModalOpen}
-          onRequestClose={closeModal}
-          order={currentOrder}
-        />
-      )}
+     
     </section>
   );
 }
