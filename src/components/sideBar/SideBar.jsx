@@ -23,12 +23,42 @@ function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
 
+
+  //------------------------modification------------------------
+  // función para determinar la clase de color de fondo basada en la ruta actual
+  function getBackgroundColorClass(locationPathname) {
+    switch (locationPathname) {
+      //users
+      case "/dashboard/products":
+        return "bg-yellow-d";
+      case "/dashboard/my-players":
+        return "bg-yellow-d";
+      case "/dashboard/myorders":
+        return "bg-yellow-d";
+      case "/dashboard/my-memberships":
+        return "bg-yellow-d";
+      //admin
+      case "/dashboard/users":
+        return "bg-yellow-d";
+      case "/dashboard/players":
+        return "bg-yellow-d";
+      case "/dashboard/orders":
+        return "bg-yellow-d";
+      case "/dashboard/memberships":
+        return "bg-yellow-d";
+      default:
+        return "bg-transparent";
+    }
+  }
+  //------------------------modification------------------------
+
+
   useEffect(() => {
-    const token = Cookies.get('token');
+    const token = Cookies.get("token");
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
-        setIsAdmin(decodedToken.isAdmin === 'admin' ? 'admin' : 'user'); // Ajuste aquí para asegurarse de que 'admin' o 'user'
+        setIsAdmin(decodedToken.isAdmin === "admin" ? "admin" : "user"); // Ajuste aquí para asegurarse de que 'admin' o 'user'
         // console.log('DECODED TOKEN EN SIDEBAR:', decodedToken)
         setUserName(decodedToken.username); // Assuming you store the username in the token
       } catch (error) {
@@ -36,50 +66,85 @@ function Sidebar() {
       }
     }
 
-    if (userName && !welcomeShown && location.pathname === '/') {
+    if (userName && !welcomeShown && location.pathname === "/") {
       Swal.fire({
-        icon: 'success',
+        icon: "success",
         title: `<span style="font-size: 18px;">¡Bienvenido, ${userName}!</span>`,
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
       });
       setWelcomeShown(true);
     }
   }, [welcomeShown, location.pathname, userName]);
   const handleLogout = () => {
-    Cookies.remove('token'); // Replace 'token' with the actual name of your authentication token cookie
-    Cookies.remove('isAdmin'); // Remove the admin status cookie if needed
-    Cookies.remove('name'); // Remove the user name cookie if needed
-    navigate('/'); // Redirect to the home page
+    Cookies.remove("token"); // Replace 'token' with the actual name of your authentication token cookie
+    Cookies.remove("isAdmin"); // Remove the admin status cookie if needed
+    Cookies.remove("name"); // Remove the user name cookie if needed
+    navigate("/"); // Redirect to the home page
   };
 
   const renderUserLinks = () => (
     <>
-      <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
-        <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/dashboard/products">
+      <nav
+        className={`mt-3 flex justify-center transition duration-500 ${
+          location.pathname === "/dashboard/products"
+            ? "bg-gray text-white"
+            : ""
+        } hover:bg-yellow-d`}
+      >
+        <a
+          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          href="/dashboard/products"
+        >
           <GiClothes style={{ fontSize: "25px", fontWeight: "bold" }} />
           <span className="mx-3">Productos</span>
         </a>
       </nav>
-      <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
-        <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/dashboard/my-players">
+      <nav
+        className={`mt-3 flex justify-center transition duration-500 ${
+          location.pathname === "/dashboard/my-players"
+            ? "bg-gray text-white"
+            : ""
+        } hover:bg-yellow-d`}
+      >
+        <a
+          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          href="/dashboard/my-players"
+        >
           <GiBabyfootPlayers style={{ fontSize: "32px", fontWeight: "bold" }} />
           <span className="mx-3">Mis Jugadores</span>
         </a>
       </nav>
-      <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
-        <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/dashboard/myorders">
+      <nav
+        className={`mt-3 flex justify-center transition duration-500 ${
+          location.pathname === "/dashboard/myorders"
+            ? "bg-gray text-white"
+            : ""
+        } hover:bg-yellow-d`}
+      >
+        <a
+          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          href="/dashboard/myorders"
+        >
           <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
           <span className="mx-3 items-center justify-center">Mis pedidos</span>
         </a>
       </nav>
-      <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
+      <nav
+        className={`mt-3 flex justify-center transition duration-500 ${
+          location.pathname === "/dashboard/my-memberships"
+            ? "bg-gray text-white"
+            : ""
+        } hover:bg-yellow-d`}
+      >
         <a
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
           href="/dashboard/my-memberships"
         >
           <AiFillStar style={{ fontSize: "25px", fontWeight: "bold" }} />
-          <span className="mx-3 items-center justify-center">Mis Suscripciones</span>
+          <span className="mx-3 items-center justify-center">
+            Mis Suscripciones
+          </span>
         </a>
       </nav>
     </>
@@ -87,7 +152,11 @@ function Sidebar() {
 
   const renderAdminLinks = () => (
     <>
-      <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
+      <nav
+        className={`mt-3 flex justify-center transition duration-500 ${
+          location.pathname === "/dashboard/users" ? "bg-gray text-white" : ""
+        } hover:bg-yellow-d`}
+      >
         <a
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
           href="/dashboard/users"
@@ -96,7 +165,11 @@ function Sidebar() {
           <span className="mx-3 flex justify-center">Usuarios</span>
         </a>
       </nav>
-      <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
+      <nav
+        className={`mt-3 flex justify-center transition duration-500 ${
+          location.pathname === "/dashboard/players" ? "bg-gray text-white" : ""
+        } hover:bg-yellow-d`}
+      >
         <a
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
           href="/dashboard/players"
@@ -105,7 +178,11 @@ function Sidebar() {
           <span className="mx-3 items-center justify-center">Jugadores</span>
         </a>
       </nav>
-      <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
+      <nav
+        className={`mt-3 flex justify-center transition duration-500 ${
+          location.pathname === "/dashboard/orders" ? "bg-gray text-white" : ""
+        } hover:bg-yellow-d`}
+      >
         <a
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
           href="/dashboard/orders"
@@ -114,13 +191,21 @@ function Sidebar() {
           <span className="mx-3 items-center justify-center">Pedidos</span>
         </a>
       </nav>
-      <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
+      <nav
+        className={`mt-3 flex justify-center transition duration-500 ${
+          location.pathname === "/dashboard/memberships"
+            ? "bg-gray text-white"
+            : ""
+        } hover:bg-yellow-d`}
+      >
         <a
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
           href="/dashboard/memberships"
         >
           <AiFillStar style={{ fontSize: "25px", fontWeight: "bold" }} />
-          <span className="mx-3 items-center justify-center">Suscripciones</span>
+          <span className="mx-3 items-center justify-center">
+            Suscripciones
+          </span>
         </a>
       </nav>
     </>
@@ -128,13 +213,25 @@ function Sidebar() {
 
   return (
     <>
-      <button className="p-2 text-gray-700 lg:hidden" onClick={() => setSidebarOpen(!sidebarOpen)}>
+      <button
+        className="p-2 text-gray-700 lg:hidden"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+      >
         <IoIosArrowForward size={24} />
       </button>
 
-      <div className={`${sidebarOpen ? 'block' : 'hidden'} fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden`} onClick={() => setSidebarOpen(false)}></div>
+      <div
+        className={`${
+          sidebarOpen ? "block" : "hidden"
+        } fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden`}
+        onClick={() => setSidebarOpen(false)}
+      ></div>
 
-      <div className={`${sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'} fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-l lg:translate-x-0 lg:static lg:inset-0 h-screen`}>
+      <div
+        className={`${
+          sidebarOpen ? "translate-x-0 ease-out" : "-translate-x-full ease-in"
+        } fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-l lg:translate-x-0 lg:static lg:inset-0 h-screen`}
+      >
         <div className="flex items-center justify-center mt-8">
           <div className="flex items-center">
             <img className="w-20 h-30" src={imagen} alt="Escudo" />
@@ -142,20 +239,29 @@ function Sidebar() {
         </div>
 
         <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
-          <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/">
+          <a
+            className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+            href="/"
+          >
             <IoHomeOutline style={{ fontSize: "25px", fontWeight: "bold" }} />
             <span className="mx-3">Home</span>
           </a>
         </nav>
 
-        {isAdmin === 'admin' ? renderAdminLinks() : renderUserLinks()}
+        {isAdmin === "admin" ? renderAdminLinks() : renderUserLinks()}
 
         <nav className="mt-7 justify-center flex items-center hover:bg-custom-blue hover:text-white transition duration-500">
-        <a className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" href="/">
-          <button className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25" onClick={handleLogout}>
-            <i className="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
-            <span className="mx-3">Cerrar sesión</span>
-          </button>
+          <a
+            className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+            href="/"
+          >
+            <button
+              className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+              onClick={handleLogout}
+            >
+              <i className="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
+              <span className="mx-3">Cerrar sesión</span>
+            </button>
           </a>
         </nav>
       </div>
