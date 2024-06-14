@@ -288,11 +288,6 @@ function MembershipChart() {
                               ? `${member.name} ${member.lastname}`
                               : "Nombre no disponible"}
                           </td>
-
-
-
-
-                          
                           <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
                             {players.find(
                               (player) => player._id === payment.players_id
@@ -374,19 +369,19 @@ function MembershipChart() {
                                   <option value="rechazado">Rechazado</option>
                                 </select>
                                 <button
-  onClick={() => {
-    const annualPayment = payment.annual_payment;
-    if (annualPayment && annualPayment.document && annualPayment.document.filename) {
-      const documentUrl = `http://localhost:3000/uploads/${annualPayment.document.filename}`;
-      window.open(documentUrl, "_blank");                                 
-    } else {
-      console.error("El nombre de archivo del documento no está disponible.");
-      // Aquí podrías mostrar un mensaje de error o manejar la situación de otra manera
-    }
-  }}
->
-  Ver PDF
-</button>
+                                  onClick={() => {
+                                      const annualPayment = payment.annual_payment;
+                                      if (annualPayment && annualPayment.document && annualPayment.document.filename) {
+                                        const documentUrl = `http://localhost:3000/uploads/${annualPayment.document.filename}`;
+                                        window.open(documentUrl, "_blank");                                 
+                                      } else {
+                                        console.error("El nombre de archivo del documento no está disponible.");
+                                        // Aquí podrías mostrar un mensaje de error o manejar la situación de otra manera
+                                      }
+                                    }}
+                                  >
+                                  Ver PDF
+                                </button>
                               </>
                             ) : (
                               <span>No recibido</span>
