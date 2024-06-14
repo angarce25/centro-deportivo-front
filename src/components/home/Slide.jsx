@@ -42,13 +42,7 @@ const Slide = () => {
     pauseOnFocus: true,
   };
 
-  /*
-    <div
-      className="relative overflow-hidden min-h-[550px]
-    sm:min-h-[650px] bg-gray-l flex justify-center items-center
-     dark:bg-white dark:text-black duration-200"
-    >
-  */
+  
 
   return (
     <div
@@ -112,15 +106,3 @@ const Slide = () => {
 
 export default Slide;
 
-/*
-<div className="relative z-10">
-                    <img
-                      src={data.img}
-                      alt={data.title}
-                      className="w-[600px] h-[600px]  
-                     sm:w-[450px] sm:scale-125 lg:scale-120
-                     object-contain mx-auto rounded-md"
-                    />
-                  </div>
-
-*/

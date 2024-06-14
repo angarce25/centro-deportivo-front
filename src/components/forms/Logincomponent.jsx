@@ -87,7 +87,7 @@ const Logincomponent = ({ onFormSwitch }) => {
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
               type="email" 
-              placeholder="email"  
+              placeholder="Correo electrónico"  
               id="email" 
               autoComplete="off"
               name="email" 
