@@ -53,7 +53,7 @@ const ProductsNav = ({ setCategory }) => {
       </ul>
       <ul className="flex items-center gap-3">
         
-        <li className="flex items-center gap-1"><TfiShoppingCartFull /> {context.count}</li>
+        <li className="flex items-center gap-1"><TfiShoppingCartFull /> {context.cartProducts.length}</li>
       </ul>
     </nav>
   );
