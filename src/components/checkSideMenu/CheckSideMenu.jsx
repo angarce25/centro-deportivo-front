@@ -24,7 +24,7 @@ const CheckSideMenu = () => {
 
  
   const handleCheckout = () => {
-    const date = new Date();
+    const date = new Date();  
     const totalProducts = context.cartProducts.length;
     const totalPrice = context.cartProducts.reduce((acc, product) => acc + product.price, 0);
   

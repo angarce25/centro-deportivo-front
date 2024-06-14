@@ -4,9 +4,10 @@ import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const NewOrderCard = ({
-  date,
+  
   totalProducts,
   totalPrice,
   products,
@@ -23,20 +24,12 @@ const NewOrderCard = ({
       if (!document || !summary) {
         toast.error("Error al crear el pedido: Faltan datos");
         return;
-      }
-
-      // const formData = new FormData();
-
-      // const newOrder = formData.append('product_ids', products.map(product => product._id));
-      // formData.append('sizes', products.map(product => product.selectedSize));
-      // formData.append('summary', summary);
-      // formData.append('document', document);
-      // console.log('Resumen pedido front:', newOrder)
+      }      
+      
 
       const formData = new FormData();
 
-      products.forEach((product) => {
-        console.log(product.selectedSize);
+      products.forEach((product) => {        
         formData.append("product_ids", product._id);
         formData.append("selectedSize", product.selectedSize);
       });
@@ -80,6 +73,14 @@ const NewOrderCard = ({
     }
   };
 
+  const [date, setDate] = useState('');
+
+  useEffect(() => {
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString(); // Formato de fecha local, puedes personalizarlo
+    setDate(formattedDate);
+  }, []);
+
   return (
     <section className="m-10 w-150 bg-base-100 shadow-l flex flex-col md:flex-row justify-between">
       <div className="m-10 flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -94,11 +95,7 @@ const NewOrderCard = ({
                 alt={product.name}
               />
               <div>
-                <h4 className="card-title mb-5">{product.name}</h4>
-                <div className="flex-col">
-                  <p className="text-sm font-semibold">ID producto:</p>
-                  <p className="text-sm ">{product._id}</p>
-                </div>
+                <h4 className="card-title mb-5">{product.name}</h4>               
                 <div className="flex-col">
                   <p className="text-sm font-semibold">Talla:</p>
                   <p className="text-sm ">{product.selectedSize}</p>
@@ -177,7 +174,7 @@ const NewOrderCard = ({
 };
 
 NewOrderCard.propTypes = {
-  date: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+  date: PropTypes.string,
   totalProducts: PropTypes.number,
   totalPrice: PropTypes.number,
   products: PropTypes.arrayOf(PropTypes.object),
