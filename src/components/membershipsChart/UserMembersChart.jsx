@@ -1,52 +1,48 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+// import { Fragment } from "react";
 
-function PlayersUserChart() {
+function UserMembersChart() {
   const [myPlayers, setMyPlayers] = useState([]);
   const [myPayments, setMyPayments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Estado para manejar la carga
 
   useEffect(() => {
-    const apiUrl = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
-    const extraPath = "/myplayers"; // Añade la parte adicional de la URL
-    const paymentsExtraPath = "/memberships/my-payments"; // Segundo extra path para recoger info de payments
-    const fullUrl = apiUrl + extraPath; // Combina la URL base con la parte adicional
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const extraPath = "/myplayers";
+    const paymentsExtraPath = "/memberships/my-payments";
+    const fullUrl = apiUrl + extraPath;
     const paymentsFullUrl = apiUrl + paymentsExtraPath;
 
     axios
-      .get(fullUrl, { withCredentials: true })
-      .then((response) => {
-        setMyPlayers(response.data);
-        console.log("SIIIIIU PLAYERS:", response.data); // Verifica la estructura de myPlayers
-      })
+      .all([
+        axios.get(fullUrl, { withCredentials: true }),
+        axios.get(paymentsFullUrl, { withCredentials: true }),
+      ])
+      .then(axios.spread((playersResponse, paymentsResponse) => {
+        setMyPlayers(playersResponse.data);
+        setMyPayments(paymentsResponse.data);
+        setIsLoading(false); // Marcamos que la carga ha terminado
+      }))
       .catch((error) => {
-        console.error("Error al obtener tus jugadores:", error);
-      });
-
-    axios
-      .get(paymentsFullUrl, { withCredentials: true })
-      .then((response) => {
-        setMyPayments(response.data);
-        console.log("SIIIIIU PAYMENTS:", response.data); // Verifica la estructura de myPayments
-      })
-      .catch((error) => {
-        console.error("Error al obtener los pagos:", error);
+        console.error("Error al obtener datos:", error);
+        setIsLoading(false); // En caso de error, también marcamos que la carga ha terminado
       });
   }, []);
 
-  // Colores para cada estado de pagos
   const getStatusColor = (status) => {
     switch (status) {
       case "none":
-        return "text-blue-500"; // Color azul para no recibido
+        return "text-blue-500";
       case "pendiente":
-        return "text-yellow-500"; // Color amarillo para pendiente
+        return "text-yellow-500";
       case "aceptado":
-        return "text-green-500"; // Color verde para aceptado
+        return "text-green-500";
       case "rechazado":
-        return "text-red-500"; // Color rojo para rechazado
+        return "text-red-500";
       default:
-        return "text-gray-500"; // Color gris para otros estados
+        return "text-gray-500";
     }
   };
 
@@ -62,7 +58,6 @@ function PlayersUserChart() {
 
       <div className="flex flex-col mt-6">
         <div className="max-w-screen-xl mx-auto overflow-x-auto overflow-y-auto max-h-[80vh] mb-8">
-          {/* modificacion de la table  */}
           <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
             <table className="table table-zebra min-w-full">
               <thead>
@@ -101,7 +96,13 @@ function PlayersUserChart() {
               </thead>
 
               <tbody>
-                {myPlayers.length === 0 ? (
+                {isLoading ? (
+                  <tr>
+                    <td colSpan="11" className="text-center py-4">
+                      Cargando...
+                    </td>
+                  </tr>
+                ) : myPlayers.length === 0 ? (
                   <tr>
                     <td colSpan="11" className="text-center py-4">
                       No hay jugadores disponibles.
@@ -109,15 +110,9 @@ function PlayersUserChart() {
                   </tr>
                 ) : (
                   myPlayers.map((player) => {
-                    // Mensaje de depuración para verificar el jugador actual
-                    console.log("Jugador actual:", player);
-
-                    // Buscar el pago correspondiente al jugador actual en myPayments
-                    const playerPayment = myPayments.find(
+                    const playerPayments = myPayments.filter(
                       (payment) => payment.player_id === player._id
                     );
-                    // Mensaje de depuración para verificar el pago asociado al jugador actual
-                    console.log("Pago del jugador:", playerPayment);
 
                     return (
                       <tr key={player._id}>
@@ -136,42 +131,16 @@ function PlayersUserChart() {
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
                           {player.status ? "Activo" : "Inactivo"}
                         </td>
-                        <td
-                          className={`px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center ${getStatusColor(
-                            playerPayment ? playerPayment.first_payment : "none"
-                          )}`}
-                        >
-                          {playerPayment ? playerPayment.first_payment : "none"}
-                        </td>
-                        <td
-                          className={`px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center ${getStatusColor(
-                            playerPayment
-                              ? playerPayment.second_payment
-                              : "none"
-                          )}`}
-                        >
-                          {playerPayment
-                            ? playerPayment.second_payment
-                            : "none"}
-                        </td>
-                        <td
-                          className={`px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center ${getStatusColor(
-                            playerPayment ? playerPayment.third_payment : "none"
-                          )}`}
-                        >
-                          {playerPayment ? playerPayment.third_payment : "none"}
-                        </td>
-                        <td
-                          className={`px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center ${getStatusColor(
-                            playerPayment
-                              ? playerPayment.annual_payment
-                              : "none"
-                          )}`}
-                        >
-                          {playerPayment
-                            ? playerPayment.annual_payment
-                            : "none"}
-                        </td>
+                        {["first_payment", "second_payment", "third_payment", "annual_payment"].map((paymentType) => (
+                          <td
+                            key={paymentType}
+                            className={`px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center ${getStatusColor(
+                              playerPayments.length > 0 ? playerPayments[0][paymentType] : "none"
+                            )}`}
+                          >
+                            {playerPayments.length > 0 ? playerPayments[0][paymentType] : "none"}
+                          </td>
+                        ))}
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
                           <Link to={`/dashboard/payment/${player._id}`}>
                             <button className="text-black font-bold py-2 px-4 rounded bg-yellow-d hover:bg-yellow-l">
@@ -192,4 +161,4 @@ function PlayersUserChart() {
   );
 }
 
-export default PlayersUserChart;
+export default UserMembersChart;
