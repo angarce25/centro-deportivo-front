@@ -13,18 +13,20 @@ const Registercomponent = ({ onFormSwitch }) => {
     handleSubmit,
     formState: { errors },
     setError,
+    getValues, //para comparar contraseñas
   } = useForm();
   const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
-
   const onChange = (value) => setIsRecaptchaVerified(!!value);
-
   const handleTermsChange = () => setTermsAccepted(!termsAccepted);
+
+  const [passwordMismatchError, setPasswordMismatchError] = useState(""); //para comparar contraseñas
+
+  
 
   const onSubmit = async (data) => {
     console.log("Datos enviados al formulario:", data);
@@ -73,6 +75,12 @@ const Registercomponent = ({ onFormSwitch }) => {
     },
   };
 
+  const confirmPasswordValidation = {
+    required: "Campo obligatorio",
+    validate: (value) =>
+      value === watch("password") || "Las contraseñas no coinciden",
+  };
+
   return (
     <div
       style={{
@@ -80,7 +88,7 @@ const Registercomponent = ({ onFormSwitch }) => {
         height: "auto",
         filter: "drop-shadow(10px 10px 12px rgba(90, 90, 0, 0.8))",
       }}
-      className="bg-gray-200 min-h-screen flex items-center justify-center"
+      className="bg-gray-200 min-h-screen flex items-center justify-center mt-4"
     >
       <div
         className="bg-white p-8 rounded shadow-md w-full max-w-md mb-12"
@@ -164,6 +172,12 @@ const Registercomponent = ({ onFormSwitch }) => {
                   type="password"
                   placeholder="Contraseña"
                   className="input w-full max-w-xs"
+                  onChange={(e) => {
+                    // actualiza el valor del campo
+                    field.onChange(e);
+                    // limpia el mensaje de error de comparación de contraseñas
+                    setPasswordMismatchError("");
+                  }}
                 />
               )}
             />
@@ -178,14 +192,56 @@ const Registercomponent = ({ onFormSwitch }) => {
             )}
           </div>
           <div className="flex flex-col items-center">
+          <Controller
+            control={control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <>
+                <input
+                  {...field}
+                  type="password"
+                  placeholder="Confirmar Contraseña"
+                  className="input w-full max-w-xs"
+                  onChange={(e) => {
+                    // Actualiza el valor del campo
+                    field.onChange(e);
+                    // Obtiene el valor actual del campo de contraseña
+                    const passwordValue = getValues("password");
+                    // Compara las contraseñas
+                    const passwordMatch = e.target.value === passwordValue;
+                    // Actualiza el mensaje de error basado en la comparación
+                    setPasswordMismatchError(
+                      passwordMatch ? "" : "Las contraseñas no coinciden"
+                    );
+                  }}
+                />
+                {/* Muestra el mensaje de error si las contraseñas no coinciden */}
+                {passwordMismatchError && (
+                  <p className="text-red-500">{passwordMismatchError}</p>
+                )}
+              </>
+            )}
+          />
+          </div>
+
+          <div className="flex flex-col items-center">
             <Controller
               control={control}
               name="mobile"
               rules={{
                 required: "Campo obligatorio",
-                minLength: 9,
-                maxLength: 9,
-                pattern: /^[0-9]+$/,
+                minLength: {
+                  value: 9,
+                  message: "Debe contener exactamente 9 dígitos",
+                },
+                maxLength: {
+                  value: 9,
+                  message: "Debe contener exactamente 9 dígitos",
+                },
+                pattern: {
+                  value: /^[0-9]+$/,
+                  message: "Solo se permiten números",
+                },
               }}
               render={({ field }) => (
                 <input
