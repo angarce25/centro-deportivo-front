@@ -46,13 +46,13 @@ const TermsAndConditionsModal = ({ isOpen, onClose }) => {
             {currentPage === 1 && (
               <div>
                 <h3 className="text-xl font-semibold mb-4">
-                  CLÁUSULA INFORMATIVA DE PROTECCION DE DATOS PARA JUGADORES/AS
+                  CLÁUSULA INFORMATIVA DE PROTECCIÓN DE DATOS PARA JUGADORES/AS
                 </h3>
                 <p className="text-sm text-gray-500">
   De conformidad con lo dispuesto en el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016,
   con el <span className="font-bold">C.D. CIUDAD LOS ANGELES</span> con C.I.F. G86089588 como responsable de tratamiento,
   y domiciliado en la calle Alianza nº4 (28041) (PDM FELIX RUBIO) de Madrid, le informa que los datos que nos ha proporcionado
-  formarán parte de un registro de datos acorde a su edad, denominado <span className="font-bold">JUGADORES/AS</span> o 
+  formarán parte de un registro de datos acorde a su edad, denominado <span className="font-bold M-2">JUGADORES/AS</span> / 
   <span className="font-bold">JUGADORES/AS MENORES</span>, ambos titularidad del <span className="font-bold">C.D. CIUDAD LOS ANGELES</span>.<br /><br />
   
   <span className="font-bold">Responsable de Tratamiento:</span> C.D. CIUDAD LOS ANGELES.<br />
