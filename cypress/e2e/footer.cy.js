@@ -7,7 +7,7 @@ describe('Footer Component', () => {
     it('should display social media links with correct attributes', () => {
       cy.get('footer').within(() => {
         // Facebook link
-        cy.get('a[href="https://www.facebook.com/"]')
+        cy.get('a[href="https://www.facebook.com/123Ciudad/"]')
           .should('have.attr', 'target', '_blank')
           .and('have.attr', 'rel', 'noopener noreferrer')
           .within(() => {
@@ -15,23 +15,16 @@ describe('Footer Component', () => {
           });
   
         // Instagram link
-        cy.get('a[href="https://www.instagram.com/"]')
+        cy.get('a[href="https://www.instagram.com/cd_ciudad/"]')
           .should('have.attr', 'target', '_blank')
           .and('have.attr', 'rel', 'noopener noreferrer')
           .within(() => {
             cy.get('svg').should('exist'); // Assuming IgIcon is an SVG
           });
   
-        // LinkedIn link
-        cy.get('a[href="https://www.linkedin.com/"]')
-          .should('have.attr', 'target', '_blank')
-          .and('have.attr', 'rel', 'noopener noreferrer')
-          .within(() => {
-            cy.get('svg').should('exist'); // Assuming LnkdIcon is an SVG
-          });
-  
+        
         // Gmail link
-        cy.get('a[href="mailto:ejemplo@gmail.com"]').within(() => {
+        cy.get('a[href="mailto:hola_ciudad@hotmail.com"]').within(() => {
           cy.get('svg').should('exist'); // Assuming GmailIcon is an SVG
         });
       });

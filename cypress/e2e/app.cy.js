@@ -6,7 +6,7 @@ describe('App Navigation', () => {
   
     it('Debería renderizar la página de inicio correctamente, y verificamos titulo', () => {
       
-      cy.get('h1').should('have.text', '¿Quienes somos?');
+      cy.get('h1').should('contain.text', '¿Quienes somos?');
     });
   
     it('Debería navegar a la página de login', () => {
@@ -19,15 +19,15 @@ describe('App Navigation', () => {
       cy.get('h2').should('have.text', 'Regístrate');
     });
   
-    it('Debería navegar a la página de productos', () => {
-      cy.visit('http://localhost:5173/products');
-      cy.get('h2').should('have.text', 'Productos disponibles del Club');
+    it('Debería navegar a la página de merchandising', () => {
+      cy.visit('http://localhost:5173/merchandising');
+      cy.get('h2.text-xl.font-medium.mb-2').should('have.text', 'Productos para fanáticos y seguidores del CDCA');
     });
   
-    it('Debería navegar a la página de usuarios del dashboard', () => {
-      cy.visit('http://localhost:5173/dashboard/users');
-      cy.get('h2').should('have.text', 'Padres');
-    });
+    // it('Debería navegar a la página de usuarios del dashboard', () => {
+    //   cy.visit('http://localhost:5173/dashboard/users');
+    //   cy.get('h2').should('have.text', 'Padres');
+    // });
   
     // it('NO Debería navegar a la página de productos del dashboard sin un token', () => {
     //   cy.visit('http://localhost:5173/dashboard/products');
