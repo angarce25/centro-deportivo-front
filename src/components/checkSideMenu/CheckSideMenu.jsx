@@ -17,7 +17,7 @@ const CheckSideMenu = () => {
 
   const handleDelete = (_id) => {
     const filteredProducts = context.cartProducts.filter(
-      (product) => product._id !== _id
+      (product => product._id !== _id)
     );
     context.setCartProducts(filteredProducts);
   };

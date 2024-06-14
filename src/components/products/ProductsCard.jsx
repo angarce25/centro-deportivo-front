@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useContext, useState, useEffect } from "react";
 import { ShoppingCartContext } from "../../context/ProductContext";
 import AddToCartButton from "./AddToCartButton";
@@ -43,9 +42,9 @@ function ProductsCard({ data, showAddToCart, showSizeSelector }) {
         />
         {showAddToCart && (
           <AddToCartButton 
-          productData={data} 
-          selectedSize={selectedSize}
-           />
+            data={data} 
+            selectedSize={selectedSize} 
+          />
         )}
       </figure>
       <p className="flex justify-between">
@@ -68,5 +67,3 @@ function ProductsCard({ data, showAddToCart, showSizeSelector }) {
 }
 
 export default ProductsCard;
-
-
