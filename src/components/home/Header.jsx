@@ -22,7 +22,7 @@ const Header = () => {
         >
           <img
             src="escudo.svg"
-            width="40"
+            width="60"
             className="d-inline-block align-top"
             alt="Logo"
           />

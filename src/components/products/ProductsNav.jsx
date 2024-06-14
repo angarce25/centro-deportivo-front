@@ -8,8 +8,8 @@ const ProductsNav = ({ setCategory }) => {
   const context = useContext(ShoppingCartContext);
 
   return (
-    <nav className="flex flex-row justify-around items-center fixed top-0 w-full py-5 px-8 text-sm font-light">
-      <ul className="flex items-center gap-3 font-medium mr-10 bg-gray-100 rounded-lg p-2">
+    <nav className="flex flex-row justify-center fixed top-0 w-full py-5 px-8 text-sm font-light">
+      <ul className="flex items-center gap-1 font-medium mr-10 bg-gray-100 rounded-lg p-2">
         <li className="mr-10 ml-10">
           <button onClick={() => setCategory("Pack Ini Jugador")}>       
           <FontAwesomeIcon

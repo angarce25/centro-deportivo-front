@@ -118,7 +118,7 @@ const Home = () => {
               data-aos="fade-up"
               className="etxt-sm text.grey tracking-wide leading-5"
             >
-              <h1 className="text-4xl font-bold mb-6 ml-12">Futbol Base</h1>
+              <h1 className="text-4xl font-bold mb-6 ml-12">Fútbol Base</h1>
 
               <hr className="border-t-4 border-yellow-300 mt-2 mb-10 ml-12" />
               <p
