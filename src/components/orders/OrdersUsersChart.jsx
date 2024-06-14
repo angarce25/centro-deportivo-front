@@ -20,9 +20,9 @@ function OrdersUsersChart() {
     }
   }, [currentOrder]);
 
-  console.log("URL DOCUMENT", urlDocument);
-  console.log("CURRENT ORDER", currentOrder);
-  console.log("CURRENT ORDER", setCurrentOrder)
+  // console.log("URL DOCUMENT", urlDocument);
+  // console.log("CURRENT ORDER", currentOrder);
+  // console.log("CURRENT ORDER", setCurrentOrder)
 
   const API = import.meta.env.VITE_API_URL;
 
@@ -104,16 +104,7 @@ function OrdersUsersChart() {
                               onClick={() => {
                                 if (order.document.filename) {
                                   const documentUrl = `http://localhost:3000/uploads/${order.document.filename}`;
-                                  window.open(documentUrl, "_blank");
-                                  // fetch(`${urlDocument}`)
-                                  //   .then((response) => response.blob())
-                                  //   .then((blob) => {
-                                  //     const url = URL.createObjectURL(blob);
-                                  //     const a = document.createElement("a");
-                                  //     a.href = url;
-                                  //     a.download = order.document.originalname;
-                                  //     a.click();
-                                  //   });
+                                  window.open(documentUrl, "_blank");                                 
                                  
                                 }
                               }}
