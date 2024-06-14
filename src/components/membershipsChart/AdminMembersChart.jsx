@@ -281,6 +281,12 @@ function MembershipChart() {
                     </tr>
                   </thead>
 
+
+
+
+
+
+
                   <tbody>
                     {payments.map((payment, index) => {
                       const member = members.find((member) =>
