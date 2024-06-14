@@ -7,8 +7,7 @@ function MembershipChart() {
   const [payments, setPayments] = useState([]);
   const [players, setPlayers] = useState([]); // Nuevo estado para almacenar los nombres de los jugadores asociados al player_id de pagos
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [MembersPerPage] = useState(10);
+
   const [error, setError] = useState(null);
   const [sortConfig, setSortConfig] = useState({
     key: "createdAt",
@@ -17,67 +16,49 @@ function MembershipChart() {
 
   useEffect(() => {
     const API = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
-    const membersPath = "/user"; // Ruta para obtener los miembros
-
     const paymentsPath = "/memberships/status"; // Ruta para obtener los pagos(VERIFICAR)
-
     const playersPath = "/players"; // Ruta para obtener los jugadores
-
-    const fullMembersUrl = API + membersPath; // Combina la URL base con la ruta de miembros
+  
     const fullPaymentsUrl = API + paymentsPath; // Combina la URL base con la ruta de pagos
     const fullPlayersUrl = API + playersPath; // Combina la URL base con la ruta de jugadores
-
-    const fetchMembersAndPayments = async () => {
+  
+    const fetchPlayersAndPayments = async () => {
       try {
-        const membersResponse = await axios.get(fullMembersUrl, {
+        const playersResponse = await axios.get(fullPlayersUrl, {
           withCredentials: true,
         });
         const paymentsResponse = await axios.get(fullPaymentsUrl, {
           withCredentials: true,
         });
-
-        console.log("MEMBERS RESPONSE: ", membersResponse.data);
+  
+        console.log("PLAYERS RESPONSE: ", playersResponse.data);
         console.log("PAYMENTS RESPONSE DE ADMIN DASH: ", paymentsResponse.data);
-
-        const members = membersResponse.data;
+  
+        const players = playersResponse.data;
         const payments = paymentsResponse.data;
-
-        const combinedData = members
-          .filter((member) =>
-            payments.some((payment) => payment.parent_id === member._id)
+  
+        const combinedData = players
+          .filter((player) =>
+            payments.some((payment) => payment.players_id === player._id) //OJO playerS_id
           )
-          .map((member) => ({
-            ...member,
+          .map((player) => ({
+            ...player,
             payments: payments.filter((payment) =>
-              member.payments_id.includes(payment._id)
+              player.membership_payments === payment._id
             ),
           }));
-
+  
         setPayments(payments);
         console.log(
-          "INFORMACION DE USUARIOS CON PAGOS DE MEMBRESIA : ",
+          "INFORMACION DE JUGADORES CON PAGOS DE MEMBRESIA : ",
           combinedData
         );
-        setMembers(combinedData);
+        setPlayers(combinedData);
       } catch (error) {
         handleFetchError(error);
       }
     };
-
-    const fetchPlayers = async () => {
-      try {
-        // Realizar una solicitud para obtener los datos de los jugadores
-        const playersResponse = await axios.get(fullPlayersUrl, {
-          withCredentials: true,
-        });
-        const playersData = playersResponse.data;
-        console.log("PLAYERS: ", playersData);
-        setPlayers(playersData); // Guardar los datos de los jugadores en el estado
-      } catch (error) {
-        console.error("Error fetching players:", error);
-      }
-    };
-
+  
     const handleFetchError = (error) => {
       if (error.response) {
         if (error.response.status === 401) {
@@ -91,12 +72,14 @@ function MembershipChart() {
         setError("Error de conexión. Por favor, inténtalo de nuevo más tarde.");
       }
     };
-
-    fetchMembersAndPayments();
-    fetchPlayers();
+  
+    fetchPlayersAndPayments();
   }, []);
+  
 
   // ---------------- PAGINACIÓN Y ORDENACIÓN ---------------- //
+  const [currentPage, setCurrentPage] = useState(1);
+  const [MembersPerPage] = useState(10);
   const indexOfLastMember = currentPage * MembersPerPage;
   const indexOfFirstMember = indexOfLastMember - MembersPerPage;
 
@@ -154,63 +137,65 @@ function MembershipChart() {
     }
   };
 
-  // ---------------- MODAL VER PDF ---------------- //
 
-  // Estado para controlar la visibilidad del modal
-  const [showModal, setShowModal] = useState(false);
-  // Estado para almacenar el pago seleccionado
-  const [selectedPayment, setSelectedPayment] = useState(null);
 
-  // Función para mostrar el modal y almacenar el pago seleccionado
-  const handleViewPDF = (payment) => {
-    const paymentType = "annual_payment"; // OJO FALTA -_- Aquí debes determinar el tipo de pago actual
 
-    const documentPath = payment[paymentType]?.document?.path;
 
-    if (documentPath) {
-      // Lógica para mostrar el PDF en el modal utilizando el path del documento
-      console.log("Path del documento PDF:", documentPath);
-      setSelectedPayment(documentPath);
 
-      setShowModal(true);
-    } else {
-      console.log(
-        "No se encontró el path del documento PDF para el tipo de pago:",
-        paymentType
-      );
+  // ---------------- VER PDF ---------------- //
+
+
+  
+  const [currentMembership, setCurrentMembership] = useState(null);
+
+  const urlDocument = `http://localhost:3000/uploads/` + currentMembership;
+
+  useEffect(() => {
+    if (currentMembership) {
+      const urlDocument = `http://localhost:3000/uploads/${currentMembership}`;
+      console.log("URL DOCUMENT", urlDocument);
     }
-  };
+  }, [currentMembership]);
 
-  const hanleViewPDF = (payment) => {
-    // Determinar el tipo de pago que se está procesando
-    // Aquí suponemos que paymentType es el tipo de pago actual, como 'first_payment'
-    const paymentType = "annual_payment"; // Aquí debes determinar el tipo de pago actual
 
-    // Acceder al path del documento PDF para el tipo de pago específico
-  };
+  // ---------------- FINAL DE  VER PDF ---------------- //
 
-  // Función para cerrar el modal
-  const closeModal = () => {
-    setShowModal(false);
-    setSelectedPayment(null);
-  };
 
-  // ---------------- FINAL DE MODAL VER PDF ---------------- //
+
+
+
+
+
 
   // ---------------- ACTUALIZAR ESTADO DE PAGO ---------------- //
   //  OJO FALTA IMPLEMENTAR Manejar cambio de estado y el anual?
   const handleStatusChange = (paymentIndex, paymentType, newStatus) => {
-    const paymentId = payments[paymentIndex]._id;
+    // Asegúrate de que 'payments' esté definido y tenga la longitud suficiente
+    if (!payments || payments.length <= paymentIndex) {
+        console.error("El índice de pago no es válido.");
+        return;
+    }
 
-    const updatedMembers = members.map((member) => {
-      const updatedPayments = member.payments.map((payment) => {
-        if (payment._id === paymentId && payment.type === paymentType) {
-          return { ...payment, status: newStatus };
-        }
-        return payment;
+    const paymentId = payments[paymentIndex]._id;
+    console.log('PAYMENT ID: ', paymentId);
+    //console.log('PLAYERS DENTRO DE FUNCION: ', players);
+
+    const updatedMembers = players.map((player) => {
+      const membershipPayments = Array.isArray(player.membership_payments) ? player.membership_payments : [];
+      console.log(`Membership payments for player ${player._id}:`, membershipPayments);
+
+      const updatedPayments = membershipPayments.map((payment) => {
+          if (payment._id === paymentId && payment.type === paymentType) {
+              return { ...payment, status: newStatus };
+          }
+          return payment;
       });
-      return { ...member, payments: updatedPayments };
-    });
+
+      console.log(`Updated payments for player ${player._id}:`, updatedPayments);
+      return { ...player, membership_payments: updatedPayments };
+  });
+
+  console.log('UPDATED MEMBERS: ', updatedMembers);
 
     setMembers(updatedMembers);
 
@@ -220,14 +205,15 @@ function MembershipChart() {
     const data = { [paymentType]: { status: newStatus } };
 
     axios
-      .put(fullStatusUrl, data, { withCredentials: true })
-      .then((response) => {
-        console.log("Estado actualizado con éxito:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error al actualizar el estado:", error);
-      });
-  };
+        .put(fullStatusUrl, data, { withCredentials: true })
+        .then((response) => {
+            console.log("Estado actualizado con éxito:", response.data);
+        })
+        .catch((error) => {
+            console.error("Error al actualizar el estado:", error);
+        });
+};
+
 
   // ---------------- FINAL DE ACTUALIZAR ESTADO DE PAGO ---------------- //
 
@@ -296,6 +282,11 @@ function MembershipChart() {
                               ? `${member.name} ${member.lastname}`
                               : "Nombre no disponible"}
                           </td>
+
+
+
+
+                          
                           <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
                             {players.find(
                               (player) => player._id === payment.players_id
@@ -335,7 +326,13 @@ function MembershipChart() {
                                     <option value="rechazado">Rechazado</option>
                                   </select>
                                   <button
-                                    onClick={() => handleViewPDF(payment)}
+                                   onClick={() => {
+                                    if (payment[paymentType]?.document.filename) {
+                                      const documentUrl = `http://localhost:3000/uploads/${payment[paymentType].document.filename}`;
+                                      window.open(documentUrl, "_blank");                                 
+                                     
+                                    }
+                                  }}
                                   >
                                     Ver PDF
                                   </button>
@@ -370,9 +367,20 @@ function MembershipChart() {
                                   <option value="aceptado">Aceptado</option>
                                   <option value="rechazado">Rechazado</option>
                                 </select>
-                                <button onClick={() => handleViewPDF(payment)}>
-                                  Ver PDF
-                                </button>
+                                <button
+  onClick={() => {
+    const annualPayment = payment.annual_payment;
+    if (annualPayment && annualPayment.document && annualPayment.document.filename) {
+      const documentUrl = `http://localhost:3000/uploads/${annualPayment.document.filename}`;
+      window.open(documentUrl, "_blank");                                 
+    } else {
+      console.error("El nombre de archivo del documento no está disponible.");
+      // Aquí podrías mostrar un mensaje de error o manejar la situación de otra manera
+    }
+  }}
+>
+  Ver PDF
+</button>
                               </>
                             ) : (
                               <span>No recibido</span>
@@ -416,56 +424,7 @@ function MembershipChart() {
             </div>
           </div>
 
-          {/* Modal para mostrar el PDF */}
-          {showModal && (
-            <div className="fixed z-10 inset-0 overflow-y-auto">
-              <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                {/* Fondo oscuro detrás del modal */}
-                <div
-                  className="fixed inset-0 transition-opacity"
-                  aria-hidden="true"
-                  onClick={closeModal}
-                >
-                  <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-                </div>
-
-                {/* Contenido del modal */}
-                <span
-                  className="hidden sm:inline-block sm:align-middle sm:h-screen"
-                  aria-hidden="true"
-                >
-                  &#8203;
-                </span>
-                <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                  {/* Contenido del modal */}
-                  <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <div className="sm:flex sm:items-start">
-                      <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                        {/* Aquí puedes mostrar el PDF asociado al pago */}
-                        <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
-                          PDF del Pago
-                        </h3>
-                        {/* Por ejemplo, podrías mostrar una imagen del PDF */}
-                        <img
-                          src={selectedPayment?.pdfUrl}
-                          alt="PDF del Pago"
-                          className="w-full max-w-xs mx-auto mb-4"
-                        />
-                        {/* Botón para cerrar el modal */}
-                        <button
-                          type="button"
-                          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center ml-auto"
-                          onClick={closeModal}
-                        >
-                          Cerrar
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+          
         </div>
       )}
     </section>
