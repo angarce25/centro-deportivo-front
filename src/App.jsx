@@ -24,7 +24,7 @@ import NotFound from "./components/notfound/NotFound.jsx"
 import OrdersUsersChart from "./components/orders/OrdersUsersChart.jsx";
 import AdminMemberships from "./pages/AdminMemberships.jsx";
 import MyPayment from "./pages/MyPayment.jsx";
-import './commands';
+
 
 
 
