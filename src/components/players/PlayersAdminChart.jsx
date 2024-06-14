@@ -8,6 +8,7 @@ import AssignTeamModal from "../../components/players/ChooseTeam";
 function PlayersTable() {
   const [players, setPlayers] = useState([]);
   const [teams, setTeams] = useState([]);
+  const [users, setUsers] = useState([]);
   const [selectedTeam, setSelectedTeam] = useState("");
   const [error, setError] = useState(null);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
@@ -40,6 +41,21 @@ function PlayersTable() {
       .catch((error) => {
         setError("Error al obtener los equipos");
         console.error("Error al obtener los equipos:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const extraPath = '/user';
+    const fullUrl = apiUrl + extraPath;
+
+    axios.get(fullUrl, { withCredentials: true })
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        setError("Error al obtener los usuarios");
+        console.error("Error al obtener los usuarios:", error);
       });
   }, []);
 
@@ -88,10 +104,17 @@ function PlayersTable() {
           setError("Error al obtener los jugadores");
           console.error("Error al obtener los jugadores:", error);
         });
-    }, 500); // Se actualizará cada 0.5 segundos (ajusta el valor según tus necesidades)
+    }, 2000); // Se actualizará cada 1 segundo (ajusta el valor según tus necesidades)
 
     return () => clearTimeout(timer);
   }, [players]); // Se ejecutará cada vez que el estado 'players' cambie
+
+  const getUserNameById = (userId) => {
+    // console.log("Buscando usuario con ID:", userId);
+    const user = users.find(user => String(user._id) === String(userId));
+    // console.log("Usuario encontrado:", user);
+    return user ? `${user.name} ${user.lastname}` : "Desconocido";
+  };
 
   return (
     <section className="mt-8">
@@ -128,11 +151,10 @@ function PlayersTable() {
           <tbody>
             {filteredPlayers.map((player) => (
               <tr key={player._id}>
-                <td className="font-medium">{player.name} {player.lastname}</td>
-                {/* Cambiar por el nombre del representante */}
-                <td>{player.parent_id}</td>
+                <td className="font-medium">{player.name} {player.lastname}</td>                
+                <td>{getUserNameById(player.parent_id)}</td>
                 <td>
-                {player.team ? player.team.name : 'Asignar'}
+                {player.team ? player.team.name : 'Sin asignar'}
                   <button
                     onClick={() => handleOpenModal(player)}
                     className="ml-2 text-blue-500 hover:text-blue-700"

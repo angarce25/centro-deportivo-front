@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { IoHomeOutline } from "react-icons/io5";
 import { CiShop } from "react-icons/ci";
 import { GiClothes } from "react-icons/gi";
@@ -8,12 +8,12 @@ import { GiBabyfootPlayers } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
 import { RiTeamLine } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
-import imagen from '../../assets/icons/escudo.png';
-import Cookies from 'js-cookie';
-import Swal from 'sweetalert2';
-import { useLocation } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
+import imagen from "../../assets/icons/escudo.png";
+import Cookies from "js-cookie";
+import Swal from "sweetalert2";
+import { useLocation } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -22,7 +22,6 @@ function Sidebar() {
   const [welcomeShown, setWelcomeShown] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-
 
   //------------------------modification------------------------
   // función para determinar la clase de color de fondo basada en la ruta actual
@@ -51,7 +50,6 @@ function Sidebar() {
     }
   }
   //------------------------modification------------------------
-
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -90,7 +88,7 @@ function Sidebar() {
           location.pathname === "/dashboard/products"
             ? "bg-gray text-white"
             : ""
-        } hover:bg-yellow-d`}
+        }  hover:bg-yellow-d hover:text-black !important`}
       >
         <a
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
@@ -105,7 +103,7 @@ function Sidebar() {
           location.pathname === "/dashboard/my-players"
             ? "bg-gray text-white"
             : ""
-        } hover:bg-yellow-d`}
+        }  hover:bg-yellow-d hover:text-black !important`}
       >
         <a
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
@@ -120,7 +118,7 @@ function Sidebar() {
           location.pathname === "/dashboard/myorders"
             ? "bg-gray text-white"
             : ""
-        } hover:bg-yellow-d`}
+        }  hover:bg-yellow-d hover:text-black !important`}
       >
         <a
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
@@ -135,7 +133,7 @@ function Sidebar() {
           location.pathname === "/dashboard/my-memberships"
             ? "bg-gray text-white"
             : ""
-        } hover:bg-yellow-d`}
+        }  hover:bg-yellow-d hover:text-black !important`}
       >
         <a
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
@@ -155,7 +153,7 @@ function Sidebar() {
       <nav
         className={`mt-3 flex justify-center transition duration-500 ${
           location.pathname === "/dashboard/users" ? "bg-gray text-white" : ""
-        } hover:bg-yellow-d`}
+        }  hover:bg-yellow-d hover:text-black !important`}
       >
         <a
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
@@ -168,20 +166,23 @@ function Sidebar() {
       <nav
         className={`mt-3 flex justify-center transition duration-500 ${
           location.pathname === "/dashboard/players" ? "bg-gray text-white" : ""
-        } hover:bg-yellow-d`}
+        } hover:bg-yellow-d hover:text-black !important`}
       >
         <a
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
           href="/dashboard/players"
         >
           <GiBabyfootPlayers style={{ fontSize: "32px", fontWeight: "bold" }} />
-          <span className="mx-3 items-center justify-center">Jugadores</span>
+          <span className="mx-3 items-center justify-center hover:text-black">
+            Jugadores
+          </span>
         </a>
       </nav>
+
       <nav
         className={`mt-3 flex justify-center transition duration-500 ${
           location.pathname === "/dashboard/orders" ? "bg-gray text-white" : ""
-        } hover:bg-yellow-d`}
+        }  hover:bg-yellow-d hover:text-black !important`}
       >
         <a
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
@@ -196,7 +197,7 @@ function Sidebar() {
           location.pathname === "/dashboard/memberships"
             ? "bg-gray text-white"
             : ""
-        } hover:bg-yellow-d`}
+        }  hover:bg-yellow-d hover:text-black !important`}
       >
         <a
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"

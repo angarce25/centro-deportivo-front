@@ -6,40 +6,73 @@ import { usePlayers } from "../../context/PlayerContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+//Modal DNI/Teléfono
+const ModalInfoAge = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="bg-white p-4 rounded relative">
+        <button onClick={onClose} className="absolute top-2 right-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <h3 className="text-m font-bold mb-4">Información importante</h3>
+        <p>Si eres menor de 14 años, por favor, añade DNI y Teléfono del representante.</p>
+      </div>
+    </div>
+  );
+};
+
+
 export default function FormNewPlayer() {
   const { register, handleSubmit } = useForm();
   const { createPlayer } = usePlayers();
   const navigate = useNavigate();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  
+  const [modalAgeIsOpen, setModalAgeIsOpen] = useState(false); 
+
   const onSubmit = handleSubmit(async (data) => {
     try {
       const apiUrl = import.meta.env.VITE_API_URL; 
       const extraPath = '/newplayer'; 
       const fullUrl = apiUrl + extraPath; 
      
-      console.log(fullUrl)
+      // console.log(fullUrl)
       const response = await axios.post(fullUrl, data, { withCredentials: true });
       const player = response.data; 
-      createPlayer(response.data); // Actualiza el contexto del jugador creado
-      toast.success(`¡Jugador ${player.name} ${player.lastname} creado con éxito!`, {
+      createPlayer(response.data); 
+      toast.success(`Jugador ${player.name} ${player.lastname} creado correctamente`, {
         toastStyle: {
           marginTop: "12rem", 
         }});
       navigate("/dashboard/my-players")
     } catch (error) {
-      console.error("Error al crear el jugador:", error);
+      // console.error("Error al crear el jugador:", error);
       toast.error("Error al crear jugador");
     }
   });
+  
+  
 
+  //Modal equipamiento deportivo
   const openModal = () => {
     setModalIsOpen(true);
   };
 
   const closeModal = () => {
     setModalIsOpen(false);
+  };
+
+
+  //Modal DNI/Teléfono
+  const openAgeModal = () => {
+    setModalAgeIsOpen(true);
+  };
+
+  const closeAgeModal = () => {
+    setModalAgeIsOpen(false);
   };
 
   return (
@@ -71,13 +104,26 @@ export default function FormNewPlayer() {
                 <input className="input input-bordered w-full max-w-xs" type="text" {...register("email", {required: true})} />
               </div>
               <div className="w-full lg:w-1/2 ml-4">
-                <label className="block text-gray font-bold mb-2" htmlFor="telefono">Teléfono</label>
+                <label className="text-gray font-bold mb-2 flex hover:underline cursor-pointer" 
+                htmlFor="telefono"
+                onClick={openAgeModal}
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+              </svg>
+                  Teléfono</label>
                 <input className="input input-bordered w-full max-w-xs" type="text" {...register("phone", {required: true})} />
               </div>
             </div>
             <div className="flex mb-4">
               <div className="w-full lg:w-1/2 mr-4 lg:mr-0">
-                <label className="block text-gray font-bold mb-2" htmlFor="dni">DNI (representante)</label>
+                <label className="text-gray font-bold mb-2 flex hover:underline cursor-pointer" 
+                htmlFor="dni"
+                onClick={openAgeModal}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+              </svg>
+                  DNI</label>
                 <input className="input input-bordered w-full max-w-xs" type="text" {...register("dni", {required: true})} />
               </div>
               <div className="w-full lg:w-1/2 ml-4">
@@ -162,6 +208,7 @@ export default function FormNewPlayer() {
         </form>
         {/* </form>  */}
       </div>
+      <ModalInfoAge isOpen={modalAgeIsOpen} onClose={closeAgeModal} />
     </section>
   );
 }

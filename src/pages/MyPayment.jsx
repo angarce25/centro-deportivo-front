@@ -82,7 +82,7 @@ const MyPayment = () => {
       if (response.status === 201) {
         toast.success("Nuevo pago creado con éxito");
         setTimeout(() => {
-          navigate("/dashboard/myorders"); // Redirigir después de crear el pago
+          navigate("/dashboard/my-memberships"); // Redirigir después de crear el pago
         }, 2000);
       }
     } catch (error) {

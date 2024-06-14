@@ -17,14 +17,14 @@ const CheckSideMenu = () => {
 
   const handleDelete = (_id) => {
     const filteredProducts = context.cartProducts.filter(
-      (product) => product._id !== _id
+      (product => product._id !== _id)
     );
     context.setCartProducts(filteredProducts);
   };
 
  
   const handleCheckout = () => {
-    const date = new Date();
+    const date = new Date();  
     const totalProducts = context.cartProducts.length;
     const totalPrice = context.cartProducts.reduce((acc, product) => acc + product.price, 0);
   
@@ -65,7 +65,8 @@ const CheckSideMenu = () => {
           {
           context.cartProducts.map(product => (
             product._id && (
-              <div key={product._id}>
+              <div className="flex-col"
+              key={product._id}>
                 <OrderCard                 
                   _id={product._id}
                   name={product.name} 
