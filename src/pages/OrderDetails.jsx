@@ -1,208 +1,107 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
-import Cookies from "js-cookie";
+import axios from 'axios';
+import PropTypes from 'prop-types';
+import Cookie from 'js-cookie';
 
-const OrdersDetail = async() => {
-  const { orderId } = useParams(); // Assuming orderId is obtained from URL params
-  const [order, setOrder] = useState();
-  //const [product, setProduct] = useState (null)
-  const [summary, setSummary] = useState('');
-  //const [document, setDocument] = useState(null);
+const OrderDetailsCard = () => {
+  const { orderId } = useParams();
+  const [orderDetails, setOrderDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [test, setTest] = useState()
-
-  // useEffect(() => {
-  //   // const fetchOrderDetails = async () => {
-
-  //     const token = Cookies.get('token');
-  //     const config = {
-  //       headers: {
-  //         'Authorization': token,
-  //       }
-  //     };
-
-  //     try {
-  //      axios.get(`http://localhost:3000/api/orders/order-details/${orderId}`, config)
-  //       .then(res => setOrder(res.data))
-  //       .then(data  => console.log(data))
-  //       // setSummary(response.data.summary); // Set initial summary from fetched data
-  //     } catch (error) {
-  //       console.error('Error fetching order details:', error);
-  //       setError('Error fetching order details');
-  //     }
-  //   // };
-    
-  //   // fetchOrderDetails();
-  // }, []);
-
-  // useEffect(() => {
-
-    // const fetchOrderDetails = async() =>{
-
-      const token = Cookies.get('token');
-      const config = {
-        headers: {
-          'Authorization': token,
-        }
-      };
-
+  useEffect(() => {
+    const fetchOrder = async () => {
       try {
+        const token = Cookie.get('token'); 
+        const response = await axios.get(`http://localhost:3000/api/orders/order/${orderId}`, {
+          headers: {
+            'Authorization': token,
+            'Content-Type': 'application/json'
+          },
+        });
+        setOrderDetails(response.data);
         
-    const response = await axios.get(`http://localhost:3000/api/orders/order-details/${orderId}`, config)
-    const data = await response.data
-    setTest("hola")
-    console.log(data)
-    console.log(test)
-    // setOrder(data)
-    // console.log(order)
-    // console.log(response)
-      } catch (error) {
-        console.log(error)
+        setLoading(false);
+      } catch (err) {
+        setError(err.message || 'Error al obtener el pedido');
+        setLoading(false);
       }
+    };
 
-  // } 
+    fetchOrder();
+  }, [orderId]);
 
-  // fetchOrderDetails()
+  console.log(orderDetails)
 
-  // }, [])
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  
-  // const formData = new FormData();  
-  // products.forEach(product => {
-  //   console.log(product.selectedSize)
-  //   formData.append('product_ids', product._id);
-  //   formData.append('selectedSize', product.selectedSize);
-  // });  
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     if (!document || !summary) {
-  //       toast.error('Error al actualizar el pedido: Faltan datos');
-  //       return;
-  //     }
-
-  //     const formData = new FormData();
-  //     formData.append('summary', summary);
-  //     formData.append('document', document);
-
-  //     const token = Cookies.get('token');
-  //     const config = {
-  //       headers: {
-  //         'Authorization': token,
-  //         'Content-Type': 'multipart/form-data'
-  //       }
-  //     }
-  //   }
-  
-  //     const response = await axios.put(`http://localhost:3000/api/orders/${orderId}`, formData, config);
-
-  //     if (response.status === 200) {
-  //       toast.success('Pedido actualizado con éxito');
-  //       // Optionally, redirect or perform other actions after successful update
-  //     }
-  //   } catch (error) {
-  //     console.error('Error updating order:', error);
-  //     toast.error('Error al actualizar el pedido');
-  //   }
-  // };
-
-  // if (!order) {
-  //   return <div>Cargando detalle del pedido...</div>;
-  // }
-
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+  const { order, productInfo } = orderDetails;
+console.log (order, productInfo)
   return (
-    <div>
-      <h1>{data.name}</h1>
+    <section className="m-10 w-150 bg-base-100 shadow-l flex flex-col md:flex-row justify-between">
+    <div className="m-10 flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <h4 className="card-title mb-5 col-span-full">Detalles del Pedido</h4>
+
+      <div className="col-span-full">
+        <p className="mb-1 font-semibold">Fecha del pedido: {new Date(order.createdAt).toLocaleDateString()}</p>
+        <p className="mb-1 font-semibold">Nombre del Cliente: {order.user_id && `${order.user_id.name} ${order.user_id.lastname}`}</p>
+        <p className="mb-1 font-semibold">Email del Cliente: {order.user_id && order.user_id.email}</p>
+        <p className="font-semibold">Total del Pedido: {order.resume.total}€</p>
+        {order.status && <p className="font-semibold">Estado del Pedido: {order.status}</p>}
+      </div>
+
+      <h4 className="card-title mb-5 col-span-full">Productos</h4>
+      <table className="table-fixed w-full col-span-full">
+        <thead>
+          <tr>
+            <th className="w-1/3 px-4 py-2">Nombre</th>
+            <th className="w-1/4 px-4 py-2">Talla</th>
+            <th className="w-1/4 px-4 py-2">Precio</th>
+            <th className="w-1/6 px-4 py-2">Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          {productInfo && productInfo.map((product, index) => (
+            <tr key={product._id}>
+              <td className="border px-4 py-2">{product.name}</td>
+              <td className="border px-4 py-2">{order.selectedSize && order.selectedSize[index]}</td>
+              <td className="border px-4 py-2">{product.price}€</td>
+              <td className="border px-4 py-2">{order.resume.quantity && order.resume.quantity[index]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
-    // <section className="m-10 w-150 bg-base-100 shadow-l flex flex-col md:flex-row justify-between">
-  //     <div className="m-10 flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  //       <h4 className="card-title mb-5 col-span-full">Detalles del Pedido</h4>
-
-  //       {/* {order.products.map((product) => ( */}
-  //         <div key={order._id} className="mb-6">
-  //           <div className="flex items-center mb-3">
-  //             <img
-  //               className="w-32 h-32 mr-4"
-  //               src={order.image}
-  //               alt={order.name}
-  //             />
-  //             <div>
-  //               <h4 className="card-title mb-5">{order.name}</h4>
-  //               <div className="flex-col">
-  //                 <p className="text-sm font-semibold">ID producto:</p>
-  //                 <p className="text-sm ">{order._id}</p>
-  //               </div>
-  //               <div className="flex-col">
-  //                 <p className="text-sm font-semibold">Talla:</p>
-  //                 <p className="text-sm ">{order.selectedSize}</p>
-  //               </div>
-
-  //               <div className="flex-col mt-3">
-  //                 <p className="mr-2 text-sm font-semibold">Precio:</p>
-  //                 <p className="text-sm">{order.price}€</p>
-  //               </div>
-  //             </div>
-  //           </div>
-  //         </div>
-  //       {/* ))} */}
-
-  //       <form onSubmit={handleSubmit} encType="multipart/form-data">
-  //         <div className="flex-col">
-  //           <label htmlFor="summary" className="font-semibold">
-  //             Breve descripción del pedido:
-  //           </label>
-  //           <input
-  //             type="text"
-  //             id="summary"
-  //             name="summary"
-  //             placeholder="Ejemplo: Camiseta talla S"
-  //             required="required"
-  //             className="input input-bordered w-full max-w-xs mb-5"
-  //             value={summary}
-  //             onChange={(e) => setSummary(e.target.value)}
-  //           />
-  //         </div>
-
-  //         {/* <div className="flex-col">
-  //           <label htmlFor="document" className="font-semibold">
-  //             Adjuntar factura del pago del material:
-  //           </label>
-  //           <input
-  //             type="file"
-  //             id="document"
-  //             name="document"
-  //             required="required"
-  //             className="w-full max-w-xs"
-  //             onChange={(e) => setDocument(e.target.files[0])}
-  //           />
-  //         </div> */}
-
-  //         <div className="mt-5 card-actions flex-1 col-span-full">
-  //           <button
-  //             type='submit'
-  //             className="button-register bg-yellow-l hover:bg-yellow-d text-black font-semibold py-2 px-4 rounded"
-  //           >
-  //             Actualizar pedido
-  //           </button>
-  //         </div>
-  //       </form>
-
-  //       <div className="flex justify-between items-end mt-10 col-span-full">
-  //         <div className="flex-col justify-between items-end col-span-full">
-  //           <p className="mb-1 font-semibold">Fecha pedido: {order.date}</p>
-  //           <p className="mb-1 font-semibold">
-  //             Productos totales: {order.totalProducts}
-  //           </p>
-  //           <p className="font-semibold">Precio total: {order.totalPrice}€</p>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </section>
+  </section>
   );
-}
+};
 
-export default OrdersDetail;
+OrderDetailsCard.propTypes = {
+  order: PropTypes.shape({
+    createdAt: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]).isRequired,
+    user: PropTypes.shape({
+      name: PropTypes.string,
+      lastname: PropTypes.string,
+      email: PropTypes.string,
+    }).isRequired,
+    product_ids: PropTypes.arrayOf(PropTypes.shape({
+      _id: PropTypes.string,
+      name: PropTypes.string,
+      price: PropTypes.number,
+      selectedSize: PropTypes.string, // Agregar PropTypes para selectedSize
+    })).isRequired,
+    resume: PropTypes.shape({
+      total: PropTypes.number,
+      quantity: PropTypes.arrayOf(PropTypes.number),
+    }).isRequired,
+    status: PropTypes.string,
+  })
+};
+
+export default OrderDetailsCard;
