@@ -268,25 +268,28 @@ function MembershipChart() {
                     </tr>
                   </thead>
 
+
                   <tbody>
                     {/* Agrupar pagos por jugador */}
                     {payments
                       .reduce((acc, payment) => {
+                        // Encuentra el miembro correspondiente al pago actual
                         const member = members.find((member) =>
                           member.membership_payments.includes(payment._id)
                         );
 
-                        // Si aún no hemos agregado este jugador a la lista de filas
+                        // Verifica si ya hemos agregado este jugador a la lista de filas
                         if (
                           !acc.some(
                             (row) => row.playerId === payment.players_id
                           )
                         ) {
+                          // Agrupa todos los pagos del mismo jugador
                           const groupedPayments = payments.filter(
                             (p) => p.players_id === payment.players_id
                           );
 
-                          // Añadir la fila para este jugador con sus pagos agrupados
+                          // Añade una nueva fila para el jugador con sus pagos agrupados
                           acc.push({
                             playerId: payment.players_id,
                             member,
@@ -294,9 +297,10 @@ function MembershipChart() {
                           });
                         }
 
-                        return acc;
+                        return acc; // Devuelve el acumulador para la siguiente iteración
                       }, [])
                       .map((row, index) => {
+                        
                         const columns = [
                           "first_payment",
                           "second_payment",
@@ -304,11 +308,12 @@ function MembershipChart() {
                           "annual_payment",
                         ];
 
+                        // Verifica si todos los pagos en cada columna tienen el estado "none"
                         const allNone = columns.reduce((acc, column) => {
                           acc[column] = row.payments.every(
                             (payment) => payment[column]?.status === "none"
                           );
-                          return acc;
+                          return acc; // Devuelve el acumulador para la siguiente iteración
                         }, {});
 
                         return (
@@ -326,8 +331,6 @@ function MembershipChart() {
                                 (player) => player._id === row.playerId
                               )?.name || "Nombre no disponible"}
                             </td>
-
-                            {/* Renderizar los pagos en cuotas */}
                             {columns.slice(0, 3).map((paymentType, idx) => (
                               <td
                                 key={`${row.playerId}-${paymentType}`}
@@ -392,8 +395,6 @@ function MembershipChart() {
                                 )}
                               </td>
                             ))}
-
-                            {/* Renderizar el pago anual */}
                             <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
                               {allNone.annual_payment ? (
                                 <span>No recibido</span>
@@ -448,7 +449,6 @@ function MembershipChart() {
                                 )
                               )}
                             </td>
-
                             <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
                               {format(
                                 new Date(row.payments[0].createdAt),
@@ -459,6 +459,8 @@ function MembershipChart() {
                         );
                       })}
                   </tbody>
+
+
                 </table>
               </div>
             </div>
