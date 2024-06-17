@@ -226,7 +226,7 @@ function MembershipChart() {
         <div className="max-w-4xl w-full">
           <div className="overflow-x-auto">
             <div className="flex items-center justify-between">
-              <h4 className="text-gray-600 font-bold mb-6">Membresías</h4>
+              <h4 className="text-gray-600 font-bold mb-6">Suscripciones de Jugadores</h4>
             </div>
           </div>
 
@@ -239,16 +239,15 @@ function MembershipChart() {
                     <tr className="text-gray-800 text-sm">
                       <th
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
-                        onClick={() => requestSort("name")}
+                        onClick={() => requestSort("payments._id")}
                       >
-                        Representante{" "}
-                        <SortArrow direction={sortConfig.direction} />
+                        Nombre <SortArrow direction={sortConfig.direction} />
                       </th>
                       <th
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                         onClick={() => requestSort("payments._id")}
                       >
-                        Jugador <SortArrow direction={sortConfig.direction} />
+                        Apellidos <SortArrow direction={sortConfig.direction} />
                       </th>
                       <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                         Pago 1
@@ -267,7 +266,6 @@ function MembershipChart() {
                       </th>
                     </tr>
                   </thead>
-
 
                   <tbody>
                     {/* Agrupar pagos por jugador */}
@@ -300,7 +298,6 @@ function MembershipChart() {
                         return acc; // Devuelve el acumulador para la siguiente iteración
                       }, [])
                       .map((row, index) => {
-                        
                         const columns = [
                           "first_payment",
                           "second_payment",
@@ -322,15 +319,16 @@ function MembershipChart() {
                             className="border-black"
                           >
                             <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                              {row.member
-                                ? `${row.member.name} ${row.member.lastname}`
-                                : "Nombre no disponible"}
-                            </td>
-                            <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
                               {players.find(
                                 (player) => player._id === row.playerId
                               )?.name || "Nombre no disponible"}
                             </td>
+                            <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                              {players.find(
+                                (player) => player._id === row.playerId
+                              )?.lastname || "Nombre no disponible"}
+                            </td>
+
                             {columns.slice(0, 3).map((paymentType, idx) => (
                               <td
                                 key={`${row.playerId}-${paymentType}`}
@@ -459,8 +457,6 @@ function MembershipChart() {
                         );
                       })}
                   </tbody>
-
-
                 </table>
               </div>
             </div>
