@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "date-fns";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 function OrdersChart() {
   const [orders, setOrders] = useState([]);
@@ -26,9 +27,9 @@ function OrdersChart() {
   console.log("CURRENT ORDER", currentOrder);
   console.log("CURRENT ORDER", setCurrentOrder)
 
-  const API = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
+    const API = import.meta.env.VITE_API_URL;
     const extraPath = "/orders";
     const fullUrl = API + extraPath;
 
@@ -46,7 +47,9 @@ function OrdersChart() {
             setError("Ocurrió un error al obtener los pedidos.");
           }
         } else {
-          setError("Error de conexión. Por favor, inténtalo de nuevo más tarde.");
+          setError(
+            "Error de conexión. Por favor, inténtalo de nuevo más tarde."
+          );
         }
       }
     };
@@ -92,7 +95,6 @@ function OrdersChart() {
         return "text-gray-500";
     }
   };
-
   const SortArrow = ({ direction }) => {
     if (!direction) return null;
     if (direction === "ascending") {
@@ -104,16 +106,16 @@ function OrdersChart() {
 
   const handleStatusChange = async (orderId, newStatus) => {
     try {
+      const API = import.meta.env.VITE_API_URL;
       const extraPath = `/orders/order/${orderId}/status`;
       const fullUrl = API + extraPath;
-      console.log("Updating order status:", { orderId, newStatus, fullUrl });
 
       const response = await axios.put(
         fullUrl,
         { status: newStatus },
         { withCredentials: true }
       );
-      console.log(response);
+
       setOrders((prevOrders) =>
         prevOrders.map((order) =>
           order._id === orderId ? { ...order, status: newStatus } : order
@@ -160,11 +162,12 @@ function OrdersChart() {
                       <th
                         onClick={() => requestSort("_id")}
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        
                       >
-                        Id del Pedido
+                        Detalle de Pedido
                         <SortArrow
                           direction={
-                            sortConfig.key === "_id"
+                            sortConfig.key === "urlDetails"
                               ? sortConfig.direction
                               : null
                           }
@@ -198,13 +201,13 @@ function OrdersChart() {
                       </th>
 
                       <th
-                        onClick={() => requestSort("summary")}
+                        onClick={() => requestSort("status")}
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Estado del Pedido{" "}
                         <SortArrow
                           direction={
-                            sortConfig.key === "summary"
+                            sortConfig.key === "status"
                               ? sortConfig.direction
                               : null
                           }
@@ -235,7 +238,14 @@ function OrdersChart() {
                             : "Nombre no disponible"}{" "}
                         </td>
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                          {order._id}
+                          <a
+                            href={`/dashboard/order/${order._id}`} // Dynamic link to order details page
+                            className="text-blue-600 underline"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Detalle de Pedido
+                          </a>
                         </td>
                         <td
                           className={`px-4 py-4 whitespace-no-wrap border-b border-black text-center`}
@@ -256,7 +266,6 @@ function OrdersChart() {
                           </button>
                           )}
                         </td>
-
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
                           {order.summary}
                         </td>
@@ -313,6 +322,7 @@ function OrdersChart() {
           </div>
         </div>
       )}
+     
     </section>
   );
 }

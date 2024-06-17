@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "date-fns";
 
+
 function MembershipChart() {
   const [members, setMembers] = useState([]);
   const [payments, setPayments] = useState([]);
@@ -13,6 +14,8 @@ function MembershipChart() {
     key: "createdAt",
     direction: "ascending",
   });
+
+
 
   useEffect(() => {
     const API = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
@@ -59,6 +62,8 @@ function MembershipChart() {
       }
     };
   
+
+
     const handleFetchError = (error) => {
       if (error.response) {
         if (error.response.status === 401) {
@@ -139,13 +144,9 @@ function MembershipChart() {
 
 
 
-
-
-
   // ---------------- VER PDF ---------------- //
 
 
-  
   const [currentMembership, setCurrentMembership] = useState(null);
 
   const urlDocument = `http://localhost:3000/uploads/` + currentMembership;
@@ -225,7 +226,7 @@ function MembershipChart() {
         <div className="max-w-4xl w-full">
           <div className="overflow-x-auto">
             <div className="flex items-center justify-between">
-              <h4 className="text-gray-600 font-bold mb-6">Membresías</h4>
+              <h4 className="text-gray-600 font-bold mb-6">Suscripciones de Jugadores</h4>
             </div>
           </div>
 
@@ -238,16 +239,15 @@ function MembershipChart() {
                     <tr className="text-gray-800 text-sm">
                       <th
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
-                        onClick={() => requestSort("name")}
+                        onClick={() => requestSort("payments._id")}
                       >
-                        Representante{" "}
-                        <SortArrow direction={sortConfig.direction} />
+                        Nombre <SortArrow direction={sortConfig.direction} />
                       </th>
                       <th
                         className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                         onClick={() => requestSort("payments._id")}
                       >
-                        Jugador <SortArrow direction={sortConfig.direction} />
+                        Apellidos <SortArrow direction={sortConfig.direction} />
                       </th>
                       <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                         Pago 1
@@ -268,136 +268,194 @@ function MembershipChart() {
                   </thead>
 
                   <tbody>
-                    {payments.map((payment, index) => {
-                      const member = members.find((member) =>
-                        member.membership_payments.includes(payment._id)
-                      );
-                      return (
-                        <tr
-                          key={`${players._id}-${index}`}
-                          className="border-black"
-                        >
-                          <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                            {member
-                              ? `${member.name} ${member.lastname}`
-                              : "Nombre no disponible"}
-                          </td>
+                    {/* Agrupar pagos por jugador */}
+                    {payments
+                      .reduce((acc, payment) => {
+                        // Encuentra el miembro correspondiente al pago actual
+                        const member = members.find((member) =>
+                          member.membership_payments.includes(payment._id)
+                        );
 
+                        // Verifica si ya hemos agregado este jugador a la lista de filas
+                        if (
+                          !acc.some(
+                            (row) => row.playerId === payment.players_id
+                          )
+                        ) {
+                          // Agrupa todos los pagos del mismo jugador
+                          const groupedPayments = payments.filter(
+                            (p) => p.players_id === payment.players_id
+                          );
 
+                          // Añade una nueva fila para el jugador con sus pagos agrupados
+                          acc.push({
+                            playerId: payment.players_id,
+                            member,
+                            payments: groupedPayments,
+                          });
+                        }
 
+                        return acc; // Devuelve el acumulador para la siguiente iteración
+                      }, [])
+                      .map((row, index) => {
+                        const columns = [
+                          "first_payment",
+                          "second_payment",
+                          "third_payment",
+                          "annual_payment",
+                        ];
 
-                          
-                          <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                            {players.find(
-                              (player) => player._id === payment.players_id
-                            )?.name || "Nombre no disponible"}
-                          </td>
+                        // Verifica si todos los pagos en cada columna tienen el estado "none"
+                        const allNone = columns.reduce((acc, column) => {
+                          acc[column] = row.payments.every(
+                            (payment) => payment[column]?.status === "none"
+                          );
+                          return acc; // Devuelve el acumulador para la siguiente iteración
+                        }, {});
 
-                          {/* Renderizar los pagos en cuotas */}
-                          {[
-                            "first_payment",
-                            "second_payment",
-                            "third_payment",
-                          ].map((paymentType, index) => (
-                            <td
-                              key={`${payment._id}-${paymentType}`}
-                              className="px-4 py-4 whitespace-no-wrap border-b border-black text-center"
-                            >
-                              {payment[paymentType]?.status !== "none" ? (
-                                <>
-                                  <select
-                                    className={`bg-transparent ${getStatusColor(
-                                      payment[paymentType]?.status || "none"
-                                    )}`}
-                                    value={
-                                      payment[paymentType]?.status || "none"
-                                    }
-                                    onChange={(e) =>
-                                      handleStatusChange(
-                                        index,
-                                        paymentType,
-                                        e.target.value
-                                      )
-                                    }
-                                  >
-                                    <option value="none">No recibido</option>
-                                    <option value="pendiente">Pendiente</option>
-                                    <option value="aceptado">Aceptado</option>
-                                    <option value="rechazado">Rechazado</option>
-                                  </select>
-                                  <button
-                                   onClick={() => {
-                                    if (payment[paymentType]?.document.filename) {
-                                      const documentUrl = `http://localhost:3000/uploads/${payment[paymentType].document.filename}`;
-                                      window.open(documentUrl, "_blank");                                 
-                                     
-                                    }
-                                  }}
-                                  >
-                                    Ver PDF
-                                  </button>
-                                </>
-                              ) : (
+                        return (
+                          <tr
+                            key={`${row.playerId}-${index}`}
+                            className="border-black"
+                          >
+                            <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                              {players.find(
+                                (player) => player._id === row.playerId
+                              )?.name || "Nombre no disponible"}
+                            </td>
+                            <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                              {players.find(
+                                (player) => player._id === row.playerId
+                              )?.lastname || "Nombre no disponible"}
+                            </td>
+
+                            {columns.slice(0, 3).map((paymentType, idx) => (
+                              <td
+                                key={`${row.playerId}-${paymentType}`}
+                                className="px-4 py-4 whitespace-no-wrap border-b border-black text-center"
+                              >
+                                {allNone[paymentType] ? (
+                                  <span>No recibido</span>
+                                ) : (
+                                  row.payments.map((payment) =>
+                                    payment[paymentType]?.status !== "none" ? (
+                                      <div
+                                        key={`${payment._id}-${paymentType}`}
+                                      >
+                                        <select
+                                          className={`bg-transparent ${getStatusColor(
+                                            payment[paymentType]?.status ||
+                                              "none"
+                                          )}`}
+                                          value={
+                                            payment[paymentType]?.status ||
+                                            "none"
+                                          }
+                                          onChange={(e) =>
+                                            handleStatusChange(
+                                              paymentType,
+                                              e.target.value
+                                            )
+                                          }
+                                        >
+                                          <option value="none">
+                                            No recibido
+                                          </option>
+                                          <option value="pendiente">
+                                            Pendiente
+                                          </option>
+                                          <option value="aceptado">
+                                            Aceptado
+                                          </option>
+                                          <option value="rechazado">
+                                            Rechazado
+                                          </option>
+                                        </select>
+                                        <button
+                                          onClick={() => {
+                                            if (
+                                              payment[paymentType]?.document
+                                                ?.filename
+                                            ) {
+                                              const documentUrl = `http://localhost:3000/uploads/${payment[paymentType].document.filename}`;
+                                              window.open(
+                                                documentUrl,
+                                                "_blank"
+                                              );
+                                            }
+                                          }}
+                                        >
+                                          Ver PDF
+                                        </button>
+                                      </div>
+                                    ) : null
+                                  )
+                                )}
+                              </td>
+                            ))}
+                            <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                              {allNone.annual_payment ? (
                                 <span>No recibido</span>
+                              ) : (
+                                row.payments.map((payment) =>
+                                  payment.annual_payment?.status !== "none" ? (
+                                    <div key={`${payment._id}-annual`}>
+                                      <select
+                                        className={`bg-transparent ${getStatusColor(
+                                          payment.annual_payment?.status ||
+                                            "none"
+                                        )}`}
+                                        value={
+                                          payment.annual_payment?.status ||
+                                          "none"
+                                        }
+                                        onChange={(e) =>
+                                          handleStatusChange(
+                                            "annual_payment",
+                                            e.target.value
+                                          )
+                                        }
+                                      >
+                                        <option value="none">
+                                          No recibido
+                                        </option>
+                                        <option value="pendiente">
+                                          Pendiente
+                                        </option>
+                                        <option value="aceptado">
+                                          Aceptado
+                                        </option>
+                                        <option value="rechazado">
+                                          Rechazado
+                                        </option>
+                                      </select>
+                                      <button
+                                        onClick={() => {
+                                          if (
+                                            payment.annual_payment?.document
+                                              ?.filename
+                                          ) {
+                                            const documentUrl = `http://localhost:3000/uploads/${payment.annual_payment.document.filename}`;
+                                            window.open(documentUrl, "_blank");
+                                          }
+                                        }}
+                                      >
+                                        Ver PDF
+                                      </button>
+                                    </div>
+                                  ) : null
+                                )
                               )}
                             </td>
-                          ))}
-
-                          {/* Renderizar el pago anual */}
-                          <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                            {payment.annual_payment?.status !== "none" ? (
-                              <>
-                                <select
-                                  className={`bg-transparent ${getStatusColor(
-                                    payment.annual_payment?.status || "none"
-                                  )}`}
-                                  value={
-                                    payment.annual_payment?.status || "none"
-                                  }
-                                  onChange={(e) =>
-                                    handleStatusChange(
-                                      index,
-                                      "annual_payment",
-                                      e.target.value
-                                    )
-                                  }
-                                >
-                                  <option value="none">No recibido</option>
-                                  <option value="pendiente">Pendiente</option>
-                                  <option value="aceptado">Aceptado</option>
-                                  <option value="rechazado">Rechazado</option>
-                                </select>
-                                <button
-  onClick={() => {
-    const annualPayment = payment.annual_payment;
-    if (annualPayment && annualPayment.document && annualPayment.document.filename) {
-      const documentUrl = `http://localhost:3000/uploads/${annualPayment.document.filename}`;
-      window.open(documentUrl, "_blank");                                 
-    } else {
-      console.error("El nombre de archivo del documento no está disponible.");
-      // Aquí podrías mostrar un mensaje de error o manejar la situación de otra manera
-    }
-  }}
->
-  Ver PDF
-</button>
-                              </>
-                            ) : (
-                              <span>No recibido</span>
-                            )}
-                          </td>
-
-                          <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
-                            {payment.createdAt
-                              ? format(
-                                  new Date(payment.createdAt),
-                                  "dd/MM/yyyy HH:mm"
-                                )
-                              : "Fecha no disponible"}
-                          </td>
-                        </tr>
-                      );
-                    })}
+                            <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                              {format(
+                                new Date(row.payments[0].createdAt),
+                                "dd/MM/yyyy HH:mm"
+                              ) || "Fecha no disponible"}
+                            </td>
+                          </tr>
+                        );
+                      })}
                   </tbody>
                 </table>
               </div>
@@ -423,8 +481,6 @@ function MembershipChart() {
               </nav>
             </div>
           </div>
-
-          
         </div>
       )}
     </section>
