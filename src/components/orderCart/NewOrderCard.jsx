@@ -24,21 +24,26 @@ const NewOrderCard = ({
       if (!document || !summary) {
         toast.error("Error al crear el pedido: Faltan datos");
         return;
-      }      
-      
+      }
 
       const formData = new FormData();
-
-      products.forEach((product) => {        
-        formData.append("product_ids", product._id);
-        formData.append("selectedSize", product.selectedSize);
+    
+      products.forEach(product => {
+        formData.append('product_ids', product._id);
+        formData.append('selectedSize', product.selectedSize);
       });
 
-      formData.append("summary", summary);
-      formData.append("document", document);
+      // Crear el campo resume
+      const resume = {
+        quantity: products.map(product => product.quantity || 1), // Asignar una cantidad predeterminada si falta
+        total: totalPrice,
+      };
+       console.log(resume)
+      formData.append('summary', summary);      
+      formData.append('document', document);
+      formData.append('resume', JSON.stringify(resume)); // Añadir resume como cadena JSON
 
-      const token = Cookies.get("token");
-      //console.log(token)
+      const token = Cookies.get('token');
       const config = {
         headers: {
           Authorization: token,
@@ -46,14 +51,10 @@ const NewOrderCard = ({
         },
       };
 
-      const response = await axios.post(
-        "http://localhost:3000/api/orders/add-order",
-        formData,
-        config
-      );
+      const response = await axios.post('http://localhost:3000/api/orders/add-order', formData, config);
 
-      if (response.status === 201) {
-        toast.success("Nuevo pedido creado con éxito");
+      if (response.status === 201) {        
+        toast.success('Nuevo pedido creado con éxito');
         setTimeout(() => {
           navigate("/dashboard/myorders"); // Redirigir después de crear el pedido
         }, 2000);
@@ -105,6 +106,14 @@ const NewOrderCard = ({
                   <p className="mr-2 text-sm font-semibold">Precio:</p>
                   <p className="text-sm">{product.price}€</p>
                 </div>
+
+                {/* Añadir cantidad si está definida */}
+                {product.quantity && (
+                  <div className="flex-col mt-3">
+                    <p className="mr-2 text-sm font-semibold">Cantidad:</p>
+                    <p className="text-sm">{product.quantity}</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -160,18 +169,17 @@ const NewOrderCard = ({
 
           <div className="mt-5 card-actions flex-1 col-span-full">
             <button
-              // onClick={handleSubmit}
-              type="submit"
+              type='submit'
               className="button-register bg-yellow-l hover:bg-yellow-d text-black font-semibold py-2 px-4 rounded"
             >
               Confirmar pedido
             </button>
           </div>
-        </form>
+        </form>        
       </div>
     </section>
   );
-};
+}
 
 NewOrderCard.propTypes = {
   date: PropTypes.string,
