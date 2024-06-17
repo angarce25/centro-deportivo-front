@@ -49,10 +49,11 @@ function UserMembersChart() {
   return (
     <section className="mt-8">
       <div className="overflow-x-auto">
-        <div className="flex items-center justify-between">
+        <div className="flex-col items-center justify-between">
           <h4 className="text-gray-600 font-bold mb-10">
-            Mis Pagos de Membresía
+            Suscripción de mis Jugadores
           </h4>
+          <h5>Aquí tienes un resumen de los pagos de cada jugador. Los pagos pueden ser trimestrales o anuales. Haz clic en Añadir pago para adjuntar tu factura.</h5>
         </div>
       </div>
 
