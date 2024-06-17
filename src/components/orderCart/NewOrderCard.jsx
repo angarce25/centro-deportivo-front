@@ -41,7 +41,7 @@ const NewOrderCard = ({
        console.log(resume)
       formData.append('summary', summary);      
       formData.append('document', document);
-      //formData.append('resume', JSON.stringify(resume)); // Añadir resume como cadena JSON
+      formData.append('resume', JSON.stringify(resume)); // Añadir resume como cadena JSON
 
       const token = Cookies.get('token');
       const config = {
