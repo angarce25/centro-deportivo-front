@@ -15,16 +15,15 @@ function MembershipChart() {
     direction: "ascending",
   });
 
+  const API = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
+  const paymentsPath = "/memberships/status"; // Ruta para obtener los pagos(VERIFICAR)
+  const playersPath = "/players"; // Ruta para obtener los jugadores
+
+  const fullPaymentsUrl = API + paymentsPath; // Combina la URL base con la ruta de pagos
+  const fullPlayersUrl = API + playersPath; // Combina la URL base con la ruta de jugadores
 
 
-  useEffect(() => {
-    const API = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
-    const paymentsPath = "/memberships/status"; // Ruta para obtener los pagos(VERIFICAR)
-    const playersPath = "/players"; // Ruta para obtener los jugadores
-  
-    const fullPaymentsUrl = API + paymentsPath; // Combina la URL base con la ruta de pagos
-    const fullPlayersUrl = API + playersPath; // Combina la URL base con la ruta de jugadores
-  
+  useEffect(() => {      
     const fetchPlayersAndPayments = async () => {
       try {
         const playersResponse = await axios.get(fullPlayersUrl, {
@@ -61,8 +60,7 @@ function MembershipChart() {
       } catch (error) {
         handleFetchError(error);
       }
-    };
-  
+    }; 
 
 
     const handleFetchError = (error) => {
@@ -81,9 +79,8 @@ function MembershipChart() {
   
     fetchPlayersAndPayments();
   }, []);
-  
 
-  // ---------------- PAGINACIÓN Y ORDENACIÓN ---------------- //
+
   const [currentPage, setCurrentPage] = useState(1);
   const [MembersPerPage] = useState(10);
   const indexOfLastMember = currentPage * MembersPerPage;
@@ -114,11 +111,9 @@ function MembershipChart() {
     }
     setSortConfig({ key, direction });
   };
+ 
 
-  // ---------------- FINAL DE PAGINACIÓN Y ORDENACIÓN ---------------- //
-
-  // Colores para cada estado
-  const getStatusColor = (status) => {
+   const getStatusColor = (status) => {
     switch (status) {
       case "none":
         return "text-blue-500"; // Color azul para no recibido
@@ -143,13 +138,8 @@ function MembershipChart() {
     }
   };
 
-
-
   // ---------------- VER PDF ---------------- //
-
-
   const [currentMembership, setCurrentMembership] = useState(null);
-
   const urlDocument = `http://localhost:3000/uploads/` + currentMembership;
 
   useEffect(() => {
@@ -158,20 +148,9 @@ function MembershipChart() {
       console.log("URL DOCUMENT", urlDocument);
     }
   }, [currentMembership]);
+ 
 
-
-  // ---------------- FINAL DE  VER PDF ---------------- //
-
-
-
-
-
-
-
-
-  // ---------------- ACTUALIZAR ESTADO DE PAGO ---------------- //
-  //  OJO FALTA IMPLEMENTAR Manejar cambio de estado y el anual?
-
+  // ACTUALIZAR ESTADO DE PAGO
   const handleStatusChange = (paymentId, paymentType, newStatus) => {
     const updatedPlayers = players.map((player) => {
         const updatedPayments = player.membership_payments.map((payment) => {
@@ -185,37 +164,7 @@ function MembershipChart() {
     });
 
     setPlayers(updatedPlayers);
-
-  // const handleStatusChange = (paymentIndex, paymentType, newStatus) => {
-  //   // Asegúrate de que 'payments' esté definido y tenga la longitud suficiente
-  //   if (!payments || payments.length <= paymentIndex) {
-  //       console.error("El índice de pago no es válido.");
-  //       return;
-  //   }
-  //   const paymentId = payments[paymentIndex]._id;
-  //   console.log('PAYMENT ID: ', payments[3]._id);
-  //   //console.log('PLAYERS DENTRO DE FUNCION: ', players);
-
-  //   const updatedMembers = players.map((player) => {
-  //     // console.log(player.id)
-  //     const membershipPayments = Array.isArray(player.membership_payments) ? player.membership_payments : [];
-  //     console.log(`Membership payments for player ${player._id}:`, membershipPayments);
-
-  //     const updatedPayments = membershipPayments.map((payment) => {
-  //         // if (payment._id === paymentId && payment.type === paymentType) {
-  //         if (payment._id && payment.type === paymentType) {
-  //             return { ...payment, status: newStatus };
-  //         }
-  //         return payment;
-  //     });
-
-  //     console.log(`Updated payments for player ${player._id}:`, updatedPayments);
-  //     return { ...player, membership_payments: updatedPayments };
-  // });
-
-  // console.log('UPDATED MEMBERS: ', updatedMembers);
-
-  //   setMembers(updatedMembers);
+  
 
     // Actualizar el estado en el servidor
     const API = import.meta.env.VITE_MEMBERSHIP_STATUS_URL;
@@ -230,10 +179,47 @@ function MembershipChart() {
         .catch((error) => {
             console.error("Error al actualizar el estado:", error);
         });
+        const fetchPlayersAndPayments = async () => {
+          try {
+            const playersResponse = await axios.get(fullPlayersUrl, {
+              withCredentials: true,
+            });
+            const paymentsResponse = await axios.get(fullPaymentsUrl, {
+              withCredentials: true,
+            });
+
+            console.log("PLAYERS RESPONSE: ", playersResponse.data);
+            console.log("PAYMENTS RESPONSE DE ADMIN DASH: ", paymentsResponse.data);
+
+            const players = playersResponse.data;
+            const payments = paymentsResponse.data;
+
+            const combinedData = players
+              .filter((player) =>
+                payments.some((payment) => payment.players_id === player._id) //OJO playerS_id
+              )
+              .map((player) => ({
+                ...player,
+                payments: payments.filter((payment) =>
+                  player.membership_payments === payment._id
+                ),
+              }));
+
+            setPayments(payments);
+            console.log(
+              "INFORMACION DE JUGADORES CON PAGOS DE MEMBRESIA : ",
+              combinedData
+            );
+            setPlayers(combinedData);
+          } catch (error) { 
+            console.log("Error al obtener los datos:", error);}
+        };
+
+        fetchPlayersAndPayments();
 };
 
 
-  // ---------------- FINAL DE ACTUALIZAR ESTADO DE PAGO ---------------- //
+  
 
   return (
     <section className="mt-8 flex justify-center">

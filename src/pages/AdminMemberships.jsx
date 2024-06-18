@@ -22,7 +22,7 @@ function AdminMemberships () {
       {!loading && (
         <section style={{ display: "flex" }}>
           <Sidebar style={{ flex: "0 0 auto" }} />
-          <div style={{ marginLeft: "12.5%" }}>
+          <div style={{ marginLeft: "1%" }}>
             <AdminMembersChart />
           </div>
         </section>

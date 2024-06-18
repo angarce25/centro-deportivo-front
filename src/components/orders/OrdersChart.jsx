@@ -71,8 +71,7 @@ function OrdersChart() {
   const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
   const currentOrders = sortedOrders.slice(indexOfFirstOrder, indexOfLastOrder);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  
   const requestSort = (key) => {
     let direction = "ascending";
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
@@ -127,11 +126,11 @@ function OrdersChart() {
   };
 
   return (
-    <section className="max-w-7xl overflow-y-auto max-h-[90vh]">
+    <section className="max-w-screen overflow-y-auto h-full">
       {error ? (
         <div className="text-red-500 font-bold mb-4">{error}</div>
       ) : (
-        <div className="max-w-4xl w-full">
+        <div className="w-full h-full">
           <div className="overflow-x-auto">
             <div className="flex items-center justify-between">
               <h4 className="text-gray-600 font-bold mb-6 underline">
@@ -301,24 +300,7 @@ function OrdersChart() {
                 </table>
               </div>
             </div>
-            <div className="flex justify-center mt-4">
-              <nav>
-                <ul className="flex list-none">
-                  {Array.from(
-                    { length: Math.ceil(orders.length / ordersPerPage) },
-                    (_, index) => (
-                      <li
-                        key={index}
-                        className="px-3 py-2 mx-1 cursor-pointer bg-white border rounded"
-                        onClick={() => paginate(index + 1)}
-                      >
-                        {index + 1}
-                      </li>
-                    )
-                  )}
-                </ul>
-              </nav>
-            </div>
+            
           </div>
         </div>
       )}
