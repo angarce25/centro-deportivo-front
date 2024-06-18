@@ -54,8 +54,7 @@ export default function FormNewPlayer() {
       const apiUrl = import.meta.env.VITE_API_URL;
       const extraPath = "/newplayer";
       const fullUrl = apiUrl + extraPath;
-
-      // console.log(fullUrl)
+      
       const response = await axios.post(fullUrl, data, {
         withCredentials: true,
       });
@@ -76,7 +75,6 @@ export default function FormNewPlayer() {
       toast.error("Error al crear jugador");
     }
   });  
-
  
 
   //Modal equipamiento deportivo
@@ -414,8 +412,7 @@ export default function FormNewPlayer() {
               Añadir jugador
             </button>
           </div>
-        </form>
-        {/* </form>  */}
+        </form>       
       </div>
       <ModalInfoAge isOpen={modalAgeIsOpen} onClose={closeAgeModal} />
     </section>

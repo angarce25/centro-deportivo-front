@@ -27,8 +27,7 @@ const MyPayment = () => {
         });
         setPlayer(response.data);
         setParentId(response.data.parent_id);
-        console.log("Información del jugador:", response.data);
-        console.log("ID del padre:", response.data.parent_id);
+        
       } catch (error) {
         console.error("Error al obtener la información del jugador:", error);
       }

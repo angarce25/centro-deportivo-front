@@ -22,7 +22,6 @@ import { PrivateRoute, AdminPrivateRoute } from "./context/PrivateRoutes.jsx";
 import OrdersAdmin from "./pages/OrdersAdmin.jsx";
 import OrderDetails from "./pages/OrderDetails.jsx" //Lea`s route
 import NotFound from "./components/notfound/NotFound.jsx"
-import OrdersUsersChart from "./components/orders/OrdersUsersChart.jsx";
 import AdminMemberships from "./pages/AdminMemberships.jsx";
 import MyPayment from "./pages/MyPayment.jsx";
 

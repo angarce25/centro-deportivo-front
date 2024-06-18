@@ -24,8 +24,7 @@ function PlayersTable() {
         setPlayers(response.data);
       })
       .catch((error) => {
-        setError("Error al obtener los jugadores");
-        console.error("Error al obtener los jugadores:", error);
+        setError("Error al obtener los jugadores");       
       });
   }, []);
 
@@ -39,8 +38,7 @@ function PlayersTable() {
         setTeams(response.data);
       })
       .catch((error) => {
-        setError("Error al obtener los equipos");
-        console.error("Error al obtener los equipos:", error);
+        setError("Error al obtener los equipos");        
       });
   }, []);
 
@@ -54,8 +52,7 @@ function PlayersTable() {
         setUsers(response.data);
       })
       .catch((error) => {
-        setError("Error al obtener los usuarios");
-        console.error("Error al obtener los usuarios:", error);
+        setError("Error al obtener los usuarios");       
       });
   }, []);
 
@@ -101,8 +98,7 @@ function PlayersTable() {
           setPlayers(response.data);
         })
         .catch((error) => {
-          setError("Error al obtener los jugadores");
-          console.error("Error al obtener los jugadores:", error);
+          setError("Error al obtener los jugadores");         
         });
     }, 2000); // Se actualizará cada 1 segundo (ajusta el valor según tus necesidades)
 
@@ -110,9 +106,8 @@ function PlayersTable() {
   }, [players]); // Se ejecutará cada vez que el estado 'players' cambie
 
   const getUserNameById = (userId) => {
-    // console.log("Buscando usuario con ID:", userId);
     const user = users.find(user => String(user._id) === String(userId));
-    // console.log("Usuario encontrado:", user);
+    
     return user ? `${user.name} ${user.lastname}` : "Desconocido";
   };
 

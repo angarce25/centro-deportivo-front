@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from '../../context/AuthContext'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isAuthenticated, userRole, logout} = useAuth(); 

@@ -31,12 +31,8 @@ function ProductOrder() {
       // Crear un objeto de pedido
       const API = import.meta.env.VITE_API_URL;
       const extraPath = "/orders/add-order";
-      const fullUrl = API + extraPath;
+      const fullUrl = API + extraPath;   
       
-      
-      
-
-
       const response = await fetch(fullUrl, {
         method: 'POST',        
         body: JSON.stringify({
@@ -50,17 +46,14 @@ function ProductOrder() {
 
       if (!response.ok) {
         throw new Error('Error al crear el pedido');
-      }
-
-      //const data = await response.json();
-      
-      toast.success('Pedido creado correctamente');
-      
-
+      }      
+      toast.success('Pedido creado correctamente');    
     } catch (error) {
       setError('Error al crear el pedido. Por favor, inténtalo de nuevo más tarde.');
     }
-  };
+  };     
+
+
 
   return (
     <div className="flex">

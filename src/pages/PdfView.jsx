@@ -1,4 +1,3 @@
-// Supongamos que estás usando React para el front-end
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 

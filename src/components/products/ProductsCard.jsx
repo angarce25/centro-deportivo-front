@@ -17,8 +17,7 @@ function ProductsCard({ data, showAddToCart, showSizeSelector }) {
     setSelectedSize(event.target.value);
   };
 
-  useEffect(() => {
-    // console.log("Size seleccionado:", selectedSize);
+  useEffect(() => {    
   }, [selectedSize]);
 
   return (

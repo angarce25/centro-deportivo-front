@@ -215,7 +215,7 @@ const Registercomponent = ({ onFormSwitch }) => {
                     );
                   }}
                 />
-                {/* Muestra el mensaje de error si las contraseñas no coinciden */}
+                
                 {passwordMismatchError && (
                   <p className="text-red-500">{passwordMismatchError}</p>
                 )}

@@ -19,13 +19,10 @@ function OrdersChart() {
   useEffect(() => {
     if (currentOrder) {
       const urlDocument = `http://localhost:3000/uploads/${currentOrder}`;
-      console.log("URL DOCUMENT", urlDocument);
-    }
-  }, [currentOrder]);
+      
+    }  }, [currentOrder]);
 
-  console.log("URL DOCUMENT", urlDocument);
-  console.log("CURRENT ORDER", currentOrder);
-  console.log("CURRENT ORDER", setCurrentOrder)
+ 
 
 
   useEffect(() => {
@@ -71,7 +68,8 @@ function OrdersChart() {
   const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
   const currentOrders = sortedOrders.slice(indexOfFirstOrder, indexOfLastOrder);
 
-  
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   const requestSort = (key) => {
     let direction = "ascending";
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
@@ -121,16 +119,16 @@ function OrdersChart() {
         )
       );
     } catch (error) {
-      console.error("Error Status Order NOT updated", error);
+      set.error("Error Status Order NOT updated", error);
     }
   };
 
   return (
-    <section className="max-w-screen overflow-y-auto h-full">
+    <section className="max-w-full overflow-y-auto max-h-[90vh]">
       {error ? (
         <div className="text-red-500 font-bold mb-4">{error}</div>
       ) : (
-        <div className="w-full h-full">
+        <div className="w-full">
           <div className="overflow-x-auto">
             <div className="flex items-center justify-between">
               <h4 className="text-gray-600 font-bold mb-6 underline">
@@ -300,7 +298,24 @@ function OrdersChart() {
                 </table>
               </div>
             </div>
-            
+            <div className="flex justify-center mt-4">
+              <nav>
+                <ul className="flex list-none">
+                  {Array.from(
+                    { length: Math.ceil(orders.length / ordersPerPage) },
+                    (_, index) => (
+                      <li
+                        key={index}
+                        className="px-3 py-2 mx-1 cursor-pointer bg-white border rounded"
+                        onClick={() => paginate(index + 1)}
+                      >
+                        {index + 1}
+                      </li>
+                    )
+                  )}
+                </ul>
+              </nav>
+            </div>
           </div>
         </div>
       )}

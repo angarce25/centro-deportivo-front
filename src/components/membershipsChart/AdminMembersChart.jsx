@@ -174,7 +174,7 @@ function MembershipChart() {
     axios
         .put(fullStatusUrl, data, { withCredentials: true })
         .then((response) => {
-            console.log("Estado actualizado con éxito:", response.data);
+            // console.log("Estado actualizado con éxito:", response.data);
         })
         .catch((error) => {
             console.error("Error al actualizar el estado:", error);
@@ -187,9 +187,7 @@ function MembershipChart() {
             const paymentsResponse = await axios.get(fullPaymentsUrl, {
               withCredentials: true,
             });
-
-            console.log("PLAYERS RESPONSE: ", playersResponse.data);
-            console.log("PAYMENTS RESPONSE DE ADMIN DASH: ", paymentsResponse.data);
+            
 
             const players = playersResponse.data;
             const payments = paymentsResponse.data;
@@ -206,13 +204,13 @@ function MembershipChart() {
               }));
 
             setPayments(payments);
-            console.log(
-              "INFORMACION DE JUGADORES CON PAGOS DE MEMBRESIA : ",
-              combinedData
-            );
+            // console.log(
+            //   "INFORMACION DE JUGADORES CON PAGOS DE MEMBRESIA : ",
+            //   combinedData
+            // );
             setPlayers(combinedData);
           } catch (error) { 
-            console.log("Error al obtener los datos:", error);}
+            // console.log("Error al obtener los datos:", error);}
         };
 
         fetchPlayersAndPayments();
@@ -487,6 +485,6 @@ function MembershipChart() {
       )}
     </section>
   );
-}
+}}
 
 export default MembershipChart;
