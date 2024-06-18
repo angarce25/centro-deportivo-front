@@ -15,6 +15,8 @@ const getTokenFromCookies = () => {
 //   }
 // };
 
+
+
 export const PrivateRoute = ({ redirectPath = "/login" }) => {
   const token = getTokenFromCookies();
   const isAdmin = Cookies.get('isAdmin');
