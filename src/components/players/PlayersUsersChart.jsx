@@ -96,8 +96,8 @@ function PlayersUsersChart() {
                       <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
                         {player.shoe_size}
                       </td>
-                      <td className={`px-4 py-4 whitespace-no-wrap border-b border-black text-center ${player.status ? 'text-green-600' : 'text-red-600'}`}>
-                        {player.status ? "Activo" : "Inactivo"}
+                      <td className={`px-4 py-4 whitespace-no-wrap border-b border-black text-center ${player.team ? 'text-green-600' : 'text-red-600'}`}>
+                        {player.team ? "Activo" : "Inactivo"}
                       </td>
                     </tr>
                   ))
