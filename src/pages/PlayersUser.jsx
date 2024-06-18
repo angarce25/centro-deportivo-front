@@ -21,7 +21,7 @@ const PlayersUser = () => {
       {!loading && (
         <section style={{ display: "flex" }}>
           <Sidebar style={{ flex: "0 0 auto" }} />
-          <div style={{ marginLeft: "10%" }}>
+          <div style={{ marginLeft: "1%" }}>
             <PlayersUserChart />
           </div>
         </section>

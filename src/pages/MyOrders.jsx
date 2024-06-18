@@ -16,12 +16,12 @@ function MyOrders () {
 
 
   return (
-    <div>
+    <div className="">
       <Spinner />
       {!loading && (
         <section style={{ display: "flex" }}>
           <Sidebar style={{ flex: "0 0 auto" }} />
-          <div style={{ marginLeft: "13%" }}>
+          <div style={{ marginLeft: "1%" }}>
             <OrdersUsersChart />
           </div>
         </section>

@@ -20,7 +20,7 @@ const UserP = () => {
         <section style={{ display: "flex" }}>
           <Sidebar style={{ flex: "0 0 auto" }} />{" "}
           {/* Fija el Sidebar en la pantalla */}
-          <div style={{ marginLeft: "12.5%" }}>
+          <div style={{ marginLeft: "1%" }}>
             {" "}
             {/* Ajusta el espacio entre el Sidebar y los nuevos componentes */}
             <UsersChart/>
