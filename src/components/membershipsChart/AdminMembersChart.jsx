@@ -39,15 +39,16 @@ function MembershipChart() {
   
         const players = playersResponse.data;
         const payments = paymentsResponse.data;
+
   
         const combinedData = players
           .filter((player) =>
-            payments.some((payment) => payment.players_id === player._id) //OJO playerS_id
+            payments.some((payment) => payment.players_id === player.id), //OJO playerS_id
           )
           .map((player) => ({
             ...player,
             payments: payments.filter((payment) =>
-              player.membership_payments === payment._id
+              player.membership_payments === payment.id
             ),
           }));
   
@@ -170,35 +171,51 @@ function MembershipChart() {
 
   // ---------------- ACTUALIZAR ESTADO DE PAGO ---------------- //
   //  OJO FALTA IMPLEMENTAR Manejar cambio de estado y el anual?
-  const handleStatusChange = (paymentIndex, paymentType, newStatus) => {
-    // Asegúrate de que 'payments' esté definido y tenga la longitud suficiente
-    if (!payments || payments.length <= paymentIndex) {
-        console.error("El índice de pago no es válido.");
-        return;
-    }
 
-    const paymentId = payments[paymentIndex]._id;
-    console.log('PAYMENT ID: ', paymentId);
-    //console.log('PLAYERS DENTRO DE FUNCION: ', players);
+  const handleStatusChange = (paymentId, paymentType, newStatus) => {
+    const updatedPlayers = players.map((player) => {
+        const updatedPayments = player.membership_payments.map((payment) => {
+            if (payment._id === paymentId) {
+                return { ...payment, [paymentType]: { ...payment[paymentType], status: newStatus } };
+            }
+            return payment;
+        });
 
-    const updatedMembers = players.map((player) => {
-      const membershipPayments = Array.isArray(player.membership_payments) ? player.membership_payments : [];
-      console.log(`Membership payments for player ${player._id}:`, membershipPayments);
+        return { ...player, membership_payments: updatedPayments };
+    });
 
-      const updatedPayments = membershipPayments.map((payment) => {
-          if (payment._id === paymentId && payment.type === paymentType) {
-              return { ...payment, status: newStatus };
-          }
-          return payment;
-      });
+    setPlayers(updatedPlayers);
 
-      console.log(`Updated payments for player ${player._id}:`, updatedPayments);
-      return { ...player, membership_payments: updatedPayments };
-  });
+  // const handleStatusChange = (paymentIndex, paymentType, newStatus) => {
+  //   // Asegúrate de que 'payments' esté definido y tenga la longitud suficiente
+  //   if (!payments || payments.length <= paymentIndex) {
+  //       console.error("El índice de pago no es válido.");
+  //       return;
+  //   }
+  //   const paymentId = payments[paymentIndex]._id;
+  //   console.log('PAYMENT ID: ', payments[3]._id);
+  //   //console.log('PLAYERS DENTRO DE FUNCION: ', players);
 
-  console.log('UPDATED MEMBERS: ', updatedMembers);
+  //   const updatedMembers = players.map((player) => {
+  //     // console.log(player.id)
+  //     const membershipPayments = Array.isArray(player.membership_payments) ? player.membership_payments : [];
+  //     console.log(`Membership payments for player ${player._id}:`, membershipPayments);
 
-    setMembers(updatedMembers);
+  //     const updatedPayments = membershipPayments.map((payment) => {
+  //         // if (payment._id === paymentId && payment.type === paymentType) {
+  //         if (payment._id && payment.type === paymentType) {
+  //             return { ...payment, status: newStatus };
+  //         }
+  //         return payment;
+  //     });
+
+  //     console.log(`Updated payments for player ${player._id}:`, updatedPayments);
+  //     return { ...player, membership_payments: updatedPayments };
+  // });
+
+  // console.log('UPDATED MEMBERS: ', updatedMembers);
+
+  //   setMembers(updatedMembers);
 
     // Actualizar el estado en el servidor
     const API = import.meta.env.VITE_MEMBERSHIP_STATUS_URL;
@@ -329,7 +346,7 @@ function MembershipChart() {
                               )?.lastname || "Nombre no disponible"}
                             </td>
 
-                            {columns.slice(0, 3).map((paymentType, idx) => (
+                            {columns.slice(0, 3).map((paymentType) => (
                               <td
                                 key={`${row.playerId}-${paymentType}`}
                                 className="px-4 py-4 whitespace-no-wrap border-b border-black text-center"
@@ -353,8 +370,7 @@ function MembershipChart() {
                                           }
                                           onChange={(e) =>
                                             handleStatusChange(
-                                              paymentType,
-                                              e.target.value
+                                              payment._id, paymentType, e.target.value, console.log(payment._id)
                                             )
                                           }
                                         >
