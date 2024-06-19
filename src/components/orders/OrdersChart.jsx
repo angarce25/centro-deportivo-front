@@ -241,7 +241,7 @@ function OrdersChart() {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            Detalle de Pedido
+                            Ver resumen pedido
                           </a>
                         </td>
                         <td

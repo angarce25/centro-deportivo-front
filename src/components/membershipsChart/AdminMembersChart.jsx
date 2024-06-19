@@ -13,18 +13,18 @@ function MembershipChart() {
   const [sortConfig, setSortConfig] = useState({
     key: "createdAt",
     direction: "ascending",
-  });
-
+  }); 
   const API = import.meta.env.VITE_API_URL; // Obtiene la URL base de la API desde las variables de entorno
   const paymentsPath = "/memberships/status"; // Ruta para obtener los pagos(VERIFICAR)
   const playersPath = "/players"; // Ruta para obtener los jugadores
 
   const fullPaymentsUrl = API + paymentsPath; // Combina la URL base con la ruta de pagos
-  const fullPlayersUrl = API + playersPath; // Combina la URL base con la ruta de jugadores
+  const fullPlayersUrl = API + playersPath; // Combina la URL base con la ruta de jugadores  
 
-
-  useEffect(() => {      
-    const fetchPlayersAndPayments = async () => {
+  useEffect(() => { 
+     
+    
+  const fetchPlayersAndPayments = async () => {
       try {
         const playersResponse = await axios.get(fullPlayersUrl, {
           withCredentials: true,
@@ -33,9 +33,7 @@ function MembershipChart() {
           withCredentials: true,
         });
   
-        console.log("PLAYERS RESPONSE: ", playersResponse.data);
-        console.log("PAYMENTS RESPONSE DE ADMIN DASH: ", paymentsResponse.data);
-  
+          
         const players = playersResponse.data;
         const payments = paymentsResponse.data;
 
@@ -52,10 +50,7 @@ function MembershipChart() {
           }));
   
         setPayments(payments);
-        console.log(
-          "INFORMACION DE JUGADORES CON PAGOS DE MEMBRESIA : ",
-          combinedData
-        );
+        
         setPlayers(combinedData);
       } catch (error) {
         handleFetchError(error);
@@ -145,7 +140,7 @@ function MembershipChart() {
   useEffect(() => {
     if (currentMembership) {
       const urlDocument = `http://localhost:3000/uploads/${currentMembership}`;
-      console.log("URL DOCUMENT", urlDocument);
+      
     }
   }, [currentMembership]);
  
@@ -174,11 +169,12 @@ function MembershipChart() {
     axios
         .put(fullStatusUrl, data, { withCredentials: true })
         .then((response) => {
-            // console.log("Estado actualizado con éxito:", response.data);
+            
         })
         .catch((error) => {
-            console.error("Error al actualizar el estado:", error);
+            set.error("Error al actualizar el estado:", error);
         });
+
         const fetchPlayersAndPayments = async () => {
           try {
             const playersResponse = await axios.get(fullPlayersUrl, {
@@ -203,14 +199,10 @@ function MembershipChart() {
                 ),
               }));
 
-            setPayments(payments);
-            // console.log(
-            //   "INFORMACION DE JUGADORES CON PAGOS DE MEMBRESIA : ",
-            //   combinedData
-            // );
+            setPayments(payments);           
             setPlayers(combinedData);
           } catch (error) { 
-            // console.log("Error al obtener los datos:", error);}
+            set.error("Error al obtener los datos:", error);}
         };
 
         fetchPlayersAndPayments();
@@ -354,7 +346,7 @@ function MembershipChart() {
                                           }
                                           onChange={(e) =>
                                             handleStatusChange(
-                                              payment._id, paymentType, e.target.value, console.log(payment._id)
+                                              payment._id, paymentType, e.target.value
                                             )
                                           }
                                         >
@@ -411,8 +403,7 @@ function MembershipChart() {
                                         }
                                         onChange={(e) =>
                                           handleStatusChange(
-                                            "annual_payment",
-                                            e.target.value
+                                            payment._id, e.target.value, 
                                           )
                                         }
                                       >
@@ -485,6 +476,6 @@ function MembershipChart() {
       )}
     </section>
   );
-}}
+}
 
 export default MembershipChart;
