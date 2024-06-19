@@ -1,0 +1,131 @@
+.icon-footer {
+  transition: transform 0.3s ease-in-out; /* Transición suave */
+}
+
+.icon-footer:hover {
+  transform: translateY(-5px); /* Mover hacia arriba 5px */
+}
+
+.slider__item {
+  max-width: 100%;
+  height: 650px;
+}
+
+.slider__item-01 {
+  background: url("../src/assets/slide/ALEVINA.jpg");
+  background-position: center -60px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slider__item-02 {
+  background: url("../src/assets/slide/ALEVINB.jpg");
+ background-position: center -60px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slider__item-03 {
+  background: url("../src/assets/slide/BENJAMINA.jpg");
+ background-position: center -60px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slider__item-04 {
+  background: url("../src/assets/slide/CADETEA.jpg");
+ background-position: center -60px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slider__item-05 {
+  background: url("../src/assets/slide/CADETEB.jpg");
+background-position: center -60px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slider__item-06 {
+  background: url("../src/assets/slide/INFANTILA.jpg");
+ background-position: center -60px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slider__item-07 {
+  background: url("../src/assets/slide/INFANTILB.jpg");
+ background-position: center -60px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slider__item-08 {
+  background: url("../src/assets/slide/JUVENILA.jpg");
+ background-position: center -60px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slider__item-09 {
+  background: url("../src/assets/slide/JUVENILB.jpg");
+  background-position: center -60px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slider__item-10 {
+  background: url("../src/assets/slide/JUVENILC.jpg");
+background-position: center -60px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero__slider {
+  overflow: hidden;
+}
+
+.slider__content {
+  padding-top: 150px;
+}
+
+.slider__content h1 {
+  font-size: 3.2rem;
+  font-weight: 600;
+}
+
+.reserve__btn {
+  background: #fff !important;
+  color: #000d6b !important;
+  border: none;
+  outline: none;
+}
+
+.text-light {
+  color: white;
+}
+
+@media only screen and (max-width: 992px) {
+  .slider__item {
+    height: 530px;
+    max-width: 100vw;
+  }
+
+  .slider__content {
+    margin-top: -50px;
+  }
+
+  .slider__content h1 {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .slider__item {
+    height: 450px;
+  }
+
+  .slider__content h1 {
+    font-size: 1.5rem;
+  }
+}
