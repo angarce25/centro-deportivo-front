@@ -27,8 +27,7 @@ const MyPayment = () => {
         });
         setPlayer(response.data);
         setParentId(response.data.parent_id);
-        console.log("Información del jugador:", response.data);
-        console.log("ID del padre:", response.data.parent_id);
+        
       } catch (error) {
         console.error("Error al obtener la información del jugador:", error);
       }
@@ -105,7 +104,7 @@ const MyPayment = () => {
   }
 
   return (
-    <section className="m-10 w-150 bg-base-100 shadow-lg flex flex-col md:flex-row justify-between">
+    <section className="m- w-150 bg-base-100 shadow-lg flex flex-col md:flex-row justify-between">
       <div className="m-10 flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <h4 className="card-title mb-5 col-span-full">Resumen del jugador</h4>
         <div>
@@ -142,6 +141,7 @@ const MyPayment = () => {
       <div className="m-10 flex-1">
         <form onSubmit={handleSubmit}>
           <h4 className="card-title mb-5">Adjuntar PDF de pago</h4>
+          <p className="mb-5">Nº de cuenta: ES18 0073 0100 5405 0591 9252</p>
           <label htmlFor="document">Comprobante de pago:</label>
           <input
             type="file"
@@ -153,7 +153,7 @@ const MyPayment = () => {
           <textarea
             value={summary}
             onChange={handleSummaryChange}
-            placeholder="Resumen del pago"
+            placeholder="Ejemplo: Adjunto factura del primer pago"
             className="block w-full text-sm text-gray-500 border border-gray-300 rounded mt-2 p-2"
           ></textarea>
           

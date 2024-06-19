@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import { Fragment } from "react";
 
 function UserMembersChart() {
   const [myPlayers, setMyPlayers] = useState([]);
   const [myPayments, setMyPayments] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Estado para manejar la carga
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL;
@@ -20,14 +19,16 @@ function UserMembersChart() {
         axios.get(fullUrl, { withCredentials: true }),
         axios.get(paymentsFullUrl, { withCredentials: true }),
       ])
-      .then(axios.spread((playersResponse, paymentsResponse) => {
-        setMyPlayers(playersResponse.data);
-        setMyPayments(paymentsResponse.data);
-        setIsLoading(false); // Marcamos que la carga ha terminado
-      }))
+      .then(
+        axios.spread((playersResponse, paymentsResponse) => {
+          setMyPlayers(playersResponse.data);
+          setMyPayments(paymentsResponse.data);
+          setIsLoading(false);
+        })
+      )
       .catch((error) => {
         console.error("Error al obtener datos:", error);
-        setIsLoading(false); // En caso de error, también marcamos que la carga ha terminado
+        setIsLoading(false);
       });
   }, []);
 
@@ -46,12 +47,38 @@ function UserMembersChart() {
     }
   };
 
+  const consolidatePayments = (playerPayments) => {
+    const consolidated = {
+      first_payment: "none",
+      second_payment: "none",
+      third_payment: "none",
+      annual_payment: "none",
+    };
+
+    playerPayments.forEach((payment) => {
+      if (payment.first_payment && payment.first_payment !== "none") {
+        consolidated.first_payment = payment.first_payment;
+      }
+      if (payment.second_payment && payment.second_payment !== "none") {
+        consolidated.second_payment = payment.second_payment;
+      }
+      if (payment.third_payment && payment.third_payment !== "none") {
+        consolidated.third_payment = payment.third_payment;
+      }
+      if (payment.annual_payment && payment.annual_payment !== "none") {
+        consolidated.annual_payment = payment.annual_payment;
+      }
+    });
+
+    return consolidated;
+  };
+
   return (
     <section className="mt-8">
       <div className="overflow-x-auto">
         <div className="flex items-center justify-between">
           <h4 className="text-gray-600 font-bold mb-10">
-            Mis Pagos de Membresía
+            Mis Suscripciones de Jugadores
           </h4>
         </div>
       </div>
@@ -67,16 +94,7 @@ function UserMembersChart() {
                   </th>
                   <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Apellido
-                  </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                    Edad
-                  </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                    Equipo
-                  </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                    Estado
-                  </th>
+                  </th>                  
                   <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Primer Pago
                   </th>
@@ -114,6 +132,9 @@ function UserMembersChart() {
                       (payment) => payment.player_id === player._id
                     );
 
+                    const consolidatedPayments =
+                      consolidatePayments(playerPayments);
+
                     return (
                       <tr key={player._id}>
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
@@ -121,24 +142,21 @@ function UserMembersChart() {
                         </td>
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
                           {player.lastname}
-                        </td>
-                        <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
-                          {player.age} años
-                        </td>
-                        <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
-                          {player.team ? player.team.name : "Pendiente"}
-                        </td>
-                        <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
-                          {player.status ? "Activo" : "Inactivo"}
-                        </td>
-                        {["first_payment", "second_payment", "third_payment", "annual_payment"].map((paymentType) => (
+                        </td>                     
+                        
+                        {[
+                          "first_payment",
+                          "second_payment",
+                          "third_payment",
+                          "annual_payment",
+                        ].map((paymentType) => (
                           <td
                             key={paymentType}
                             className={`px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center ${getStatusColor(
-                              playerPayments.length > 0 ? playerPayments[0][paymentType] : "none"
+                              consolidatedPayments[paymentType]
                             )}`}
                           >
-                            {playerPayments.length > 0 ? playerPayments[0][paymentType] : "none"}
+                            {consolidatedPayments[paymentType]}
                           </td>
                         ))}
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">

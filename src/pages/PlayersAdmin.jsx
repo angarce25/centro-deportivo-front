@@ -5,7 +5,7 @@ const PlayersAdmin = () => {
   return (
     <section style={{ display: "flex" }}>
       <Sidebar style={{ flex: "0 0 auto" }} />
-      <div style={{ marginLeft: "4.0%" }}>
+      <div style={{ marginLeft: "1%" }}>
         <PlayersAdminChart />
       </div>
     </section>

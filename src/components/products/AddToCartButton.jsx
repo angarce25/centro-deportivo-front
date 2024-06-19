@@ -27,7 +27,7 @@ const AddToCartButton = ({ data, selectedSize }) => {
       context.openCheckSideMenu();
       context.closeProductDetail();
     } else {
-      console.log('El producto ya está en el carrito.');
+      // console.log('El producto ya está en el carrito.');
     }
   };
 

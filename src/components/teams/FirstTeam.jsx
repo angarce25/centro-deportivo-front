@@ -1,5 +1,4 @@
 import React from 'react';
-import imgabout from '../../assets/home/imgabout.png';
 import PrimeraAficionados from '../../assets/teams/PrimeraAficionados.jpg'; // Importar la imagen
 
 function FirstTeam() {

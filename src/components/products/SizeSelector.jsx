@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 function SizeSelector({ selectedSize, handleSizeSelection, sizes }) {
   return (
     <div className="flex flex-wrap justify-center">

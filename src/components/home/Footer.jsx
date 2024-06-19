@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaInstagram, FaTimes, FaPen } from "react-icons/fa";
 import { MdEmail } from "react-icons/md"; // Importa el ícono MdEmail de react-icons
-import "../../../styles/hero-slider.css";
+import "../home/hero-slider.css";
 
 const Footer = () => {
   return (

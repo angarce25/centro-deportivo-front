@@ -55,7 +55,7 @@ function OrdersUsersChart() {
   }, []);
 
   return (
-    <section className="mt-8">
+    <section className="mt-8 ml-5">
       {error ? (
         <div className="text-red-500 font-bold mb-4">{error}</div>
       ) : (
@@ -96,7 +96,7 @@ function OrdersUsersChart() {
                         <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
                           {order._id} {/* Mostrar el _id de la orden */}
                         </td>
-                        <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
                           {order.document && (
                             
                             <button
@@ -108,7 +108,7 @@ function OrdersUsersChart() {
                                  
                                 }
                               }}
-                              className="text-blue-600 underline"
+                              className="text-blue-600 underline text-center"
                             >
                               {order.document.originalname}
                             </button>
