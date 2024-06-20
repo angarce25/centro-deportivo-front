@@ -116,6 +116,7 @@ Este proyecto tiene como objetivo desarrollar el frontend para el sitio web del 
 
 
 
+
 | BRANCH   | Description                                                                           |
 | -------- | ------------------------------------------------------------------------------------- |
 | main     | Rama principal. Aquí alojamos solo los resultados finales                             |
