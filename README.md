@@ -21,7 +21,7 @@ Este proyecto tiene como objetivo desarrollar el frontend para el sitio web del 
 ### Frameworks y Librerías
 
 <a href="#" rel="nofollow"> <img src="https://github.com/danielcranney/profileme-dev/blob/main/public/icons/skills/vite-colored.svg" alt="vite" width="40" height="40" style="max-width: 100%;"> Vite </a>
-<a href="#"><img src="https://raw.githubusercontent.com/danielcranney/profileme-dev/3fc3595593bc992e6febba6580d6c9571f5e625f/public/icons/skills/react-colored.svg" alt="react"  width="40" height="40" style="max-width: 100%;">React</a>
+<img src="https://camo.githubusercontent.com/f77dffc3996a3c199ae20c7805666f667f56cf215f8db26c73ee9ddebc07c09b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f72656163742532302d2532333230323332612e7376673f267374796c653d666f722d7468652d6261646765266c6f676f3d7265616374266c6f676f436f6c6f723d253233363144414642266c6162656c436f6c6f723d313031303130" alt="React" data-canonical-src="https://img.shields.io/badge/react%20-%2320232a.svg?&amp;style=for-the-badge&amp;logo=react&amp;logoColor=%2361DAFB&amp;labelColor=101010" style="max-width: 100%;">
 
 <a href="#"><img src="https://raw.githubusercontent.com/danielcranney/profileme-dev/3fc3595593bc992e6febba6580d6c9571f5e625f/public/icons/skills/tailwindcss-colored.svg" alt="tailwind"  width="40" height="40" style="max-width: 100%;">Tailwind</a>
 
@@ -106,12 +106,14 @@ Este proyecto tiene como objetivo desarrollar el frontend para el sitio web del 
 
 
 <h4 id="version-control">Version Control</h4>
-<a href="https://git-scm.com/" rel="nofollow"> <img src="https://camo.githubusercontent.com/fcafa5ebc1f5f789ae7d012a3ecd8fe7bda49516591caf7c37698f764165d880/68747470733a2f2f7777772e766563746f726c6f676f2e7a6f6e652f6c6f676f732f6769742d73636d2f6769742d73636d2d69636f6e2e737667" alt="git" width="40" height="40" data-canonical-src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" style="max-width: 100%;"> </a>
 
+<p><a href="#"><img src="https://img.shields.io/badge/git%20-%23F05033.svg?&amp;style=for-the-badge&amp;logo=git&amp;logoColor=white&amp;labelColor=101010" alt="Git"></a>
+<a href="#"><img src="https://img.shields.io/badge/github%20-%23121011.svg?&amp;style=for-the-badge&amp;logo=github&amp;logoColor=whit&amp;logoColor=white&amp;labelColor=101010" alt="Github"></a></p>
 
 
 # git branches
- ![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green)
+   ![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green)
+
 
 
 | BRANCH   | Description                                                                           |
@@ -119,11 +121,12 @@ Este proyecto tiene como objetivo desarrollar el frontend para el sitio web del 
 | main     | Rama principal. Aquí alojamos solo los resultados finales                             |
 | develop      | Rama para implementaciones en étapa de desarrollo |
 | origin/feature/auth | Rama para gestion de token y registro de usuarios, login |
-| origin/feature/adminDash | Rama para integracion de token con las funcionalidades propias del admin |
+| origin/feature/admin-dash | Rama para integracion de token con las funcionalidades propias del admin |
 | origin/feature/footer | Rama UI footer|
 | origin/feature/header | Rama para UI header y funcionalidades de contaxto |
+| origin/feature/header | Rama para UI sidebar |
 | origin/feature/design | Rama de diseños generales para estilos de retoques en componentes |
-| origin/feature/formPlayer  | Rama de estilos y funcionalidades del formulario de jugador |
+| origin/feature/form-player  | Rama de estilos y funcionalidades del formulario de jugador |
 | origin/feature/forms | Rama de estilos y funcionalidades del formularios de registro e inicio de sesión |
 | origin/feature/home | Rama de UI para pagina de inicio |
 | origin/feature/merchandising | Rama de UI para merchandising sin inicio de sesión |
@@ -133,11 +136,16 @@ Este proyecto tiene como objetivo desarrollar el frontend para el sitio web del 
 | origin/feature/products | Rama de UI y funcionalidades para que el admin vea pedidos de productos |
 | origin/feature/resources | Rama de recursos generales para UI |
 | origin/feature/sidebar | Rama UI y funcionalidades para sidebar de admin y user |
-| origin/feature/terms_and_conditions | Rama UI y funcionalidades de términos y condiciones bajo LOPD |
-| origin/feature/userProfile | Rama UI y funcionalidades para la información propia a cada usuario |
+| origin/feature/terms-and-conditions | Rama UI y funcionalidades de términos y condiciones bajo LOPD |
+| origin/feature/user-profile | Rama UI y funcionalidades para la información propia a cada usuario |
 | origin/feature/users-and-players-view | Rama UI y funcionalidades para la información vinculada entre usuarios y jugadores |
+| origin/feature/new-player-form-integration | Rama UI y funcionalidades para la información de formularios |
+| origin/feature/orders-detail-view | Rama UI y funcionalidades para la vista detallada de compra productos |
+| origin/feature/order-pdf | Rama UI y funcionalidades para anexar pdf a pago de producto |
 | origin/readme | Rama para modificaciones en pleno desarrollo sobre el archivo README.md |
 | origin/test/e2e | Rama de frontend para test end to end |
+| origin/chore/security-sanitization | Rama UI y funcionalidades extras de seguridad |
+| origin/security/decode| Rama UI y funcionalidades para verificacion de tokens |
 
 
 
@@ -152,11 +160,11 @@ Este proyecto tiene como objetivo desarrollar el frontend para el sitio web del 
 # Nuestro equipo
 
 - Carla Escobar (https://github.com/carlaprimola)
-- Leandra Montoya(https://github.com/leamontoya19)
-- Andrea GARCÍA CEDEÑO (https://github.com/angarce25)
-- Fiorella ()
-- Alvaro ()
-- Isaac (https://github.com/Isarok)
+- Leandra Montoya (https://github.com/leamontoya19)
+- Andrea García (https://github.com/angarce25)
+- Fiorella Sandoval ()
+- Alvaro González ()
+- Isaac García Adjuntar (https://github.com/Isarok)
 - Abelardo Acosta(https://github.com/Moriarty369)
 
 
