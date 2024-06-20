@@ -100,7 +100,7 @@ Este proyecto tiene como objetivo desarrollar el frontend para el sitio web del 
  ```bash
  npm run dev
 
-4. **Configurar la base de datos según las instrucciones proporcionadas.**
+4. **Configurar la base de datos según las instrucciones proporcionadas.
 
 
 
