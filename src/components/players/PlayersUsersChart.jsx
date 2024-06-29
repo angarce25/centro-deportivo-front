@@ -21,13 +21,13 @@ function PlayersUsersChart() {
   }, []);
 
   return (
-    <section className="mt-8">
+    <section className="flex flex-col ml-72  mt-4">
       <div className="overflow-x-auto">
-        <div className="flex items-center justify-between">
-          <h4 className="text-gray-600 font-bold mb-10">Mis Jugadores</h4>
+        <div className=" items-center justify-between">
+          <h4 className="text-gray-600 font-bold mb-10 ">Mis Jugadores</h4>
         </div>
         <Link to="/dashboard/form-player">
-          <button className="text-black font-bold py-2 px-4 rounded bg-yellow-d hover:bg-yellow-l">
+          <button className=" text-black font-bold py-2 px-4 rounded bg-yellow-d hover:bg-yellow-l">
             Añadir jugador
           </button>
         </Link>

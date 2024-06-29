@@ -37,7 +37,7 @@ function Products() {
 
   return (
     <>
-      <div className="flex min-h-screen h-screen overflow-hidden">
+      <div className="flex max-h-screen justify-between ">
         <Spinner /> {/* Spinner mientras se cargan los productos */}
         {!loading && (
           <>
@@ -49,7 +49,7 @@ function Products() {
               <h4 className="mb-5">Añade al carrito el producto y la talla que quieras, después solicita el pedido adjuntando la factura</h4>
               <ProductsNav setCategory={setCategory} />
               <div
-                className="overflow-y-scroll w-full h-screen    
+                className=" overflow-y-scroll 
                 2xl:grid 2xl:grid-cols-5 2xl:w-full 2xl:max-w-screen-2xl
                 xl:grid xl:grid-cols-4 xl:w-full xl:max-w-screen-lg
                 lg:grid lg:grid-cols-4 lg:w-full lg:max-w-screen-lg

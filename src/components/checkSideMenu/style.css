@@ -1,5 +1,5 @@
 .check-side-menu {
-  width: 380px;
-  height: calc(100vh - 69px);
-  top: 98px;
+    width:380px;
+    height: 100vh;
+    top: 138px;
 }

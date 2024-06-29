@@ -26,7 +26,7 @@ const ProductsDetail = () => {
               </CgCloseR>
               </div>
           </div>
-          <figure className="px-6">
+          <figure className="px-4">
             <img 
             className="w-full rounded-lg object-cover rounded-t-lg bg-gradient-to-br from-black via-gray-500 to-white-100"
              src={context.productToShow.image}

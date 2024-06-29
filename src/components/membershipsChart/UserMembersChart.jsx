@@ -74,10 +74,10 @@ function UserMembersChart() {
   };
 
   return (
-    <section className="mt-8">
+    <section className="flex flex-col ml-72 mt-4 ">
       <div className="overflow-x-auto">
         <div className="flex items-center justify-between">
-          <h4 className="text-gray-600 font-bold mb-10">
+          <h4 className="text-gray-600 font-bold mb-10 mr-96">
             Mis Suscripciones de Jugadores
           </h4>
         </div>

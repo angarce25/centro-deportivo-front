@@ -55,20 +55,20 @@ function OrdersUsersChart() {
   }, []);
 
   return (
-    <section className="mt-8 ml-5">
+    <section className="flex flex-col ml-72 mt-4">
       {error ? (
         <div className="text-red-500 font-bold mb-4">{error}</div>
       ) : (
         <div>
           <div className="overflow-x-auto">
             <div className="flex items-center justify-between">
-              <h4 className="text-gray-600 font-bold mb-10">Mis Pedidos</h4>
+              <h4 className="text-gray-600 font-bold mb-10 ">Mis Pedidos</h4>
             </div>
           </div>
 
           {/* Tabla para pedidos */}
           <div className="flex flex-col mt-6">
-            <div className="-my-2 overflow-x-auto">
+            <div className="my-2 overflow-x-auto">
               <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
                 <table className="table table-zebra">
                   <thead>

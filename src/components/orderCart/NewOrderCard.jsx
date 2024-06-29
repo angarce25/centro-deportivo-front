@@ -83,15 +83,15 @@ const NewOrderCard = ({
   }, []);
 
   return (
-    <section className="m-10 w-150 bg-base-100 shadow-l flex flex-col md:flex-row justify-between">
+    <section className="flex flex-col ml-72 mt-4 m-10 w-150 bg-base-100 shadow-l  md:flex-row justify-between">
       <div className="m-10 flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <h4 className="card-title mb-5 col-span-full">Resumen del Pedido</h4>
 
         {products.map((product) => (
-          <div key={product._id} className="mb-6">
+          <div key={product._id} className="mb-2">
             <div className="flex items-center mb-3">
               <img
-                className="w-32 h-32 mr-4"
+                className="w-28 h-32 mr-4"
                 src={product.image}
                 alt={product.name}
               />

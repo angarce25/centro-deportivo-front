@@ -98,9 +98,9 @@ export default function FormNewPlayer() {
   };
 
   return (
-    <section className="ml-20">
-      <div className="p-8 flex flex-col lg:flex-row">
-        <form className="flex-1 mb-8 lg:mb-0 lg:mr-4" onSubmit={handleSubmit(onSubmit)}>
+    <section className="flex ml-80 mt-4 ">
+      <div className="flex-1 p-4 lg:flex-row">
+        <form className="w-full mb-2 lg:mb-0 lg:mr-4" onSubmit={handleSubmit(onSubmit)}>
           {/* Datos personales */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-4">
@@ -306,7 +306,7 @@ export default function FormNewPlayer() {
           {/* Columna derecha */}
 
           {/* Datos equipamiento deportivo */}
-          <div className="mb-8">
+          <div className=" mb-8">
             <h2 className="text-2xl font-bold mb-3">
               Datos equipamiento deportivo
             </h2>

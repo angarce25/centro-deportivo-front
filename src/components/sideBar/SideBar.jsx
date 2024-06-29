@@ -214,8 +214,9 @@ function Sidebar() {
 
   return (
     <>
+    <div className="flex flex-col h-screen fixed  ">
       <button
-        className="p-2 text-gray-700 lg:hidden"
+        className=" p-2 text-gray-700 lg:hidden"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
         <IoIosArrowForward size={24} />
@@ -265,6 +266,7 @@ function Sidebar() {
             </button>
           </a>
         </nav>
+      </div>
       </div>
     </>
   );
