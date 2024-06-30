@@ -5,8 +5,7 @@ import { useEffect } from "react";
 
 
 const PlayersUser = () => {
-   const { loading, setLoading } = useSpinner();
- 
+   const { loading, setLoading } = useSpinner(); 
 
    useEffect(() => {
      setLoading(true); // Activa el spinner

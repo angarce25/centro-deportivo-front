@@ -2,12 +2,10 @@ import { React, useEffect } from "react";
 import { useSpinner, Spinner } from "../context/LoadingContext";
 import Sidebar from '../components/sideBar/SideBar.jsx';
 import UserMembersChart from "../components/membershipsChart/UserMembersChart.jsx";
-import { toast } from 'react-toastify';
 
 
 const UserMemberships = () => {
-   const { loading, setLoading } = useSpinner();
-   
+   const { loading, setLoading } = useSpinner();  
  
 
    useEffect(() => {

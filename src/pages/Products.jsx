@@ -37,8 +37,8 @@ function Products() {
 
   return (
     <>
-      <div className="flex max-h-screen justify-between ">
-        <Spinner /> {/* Spinner mientras se cargan los productos */}
+      <div className="flex min-h-screen h-screen overflow-hidden">
+        <Spinner /> 
         {!loading && (
           <>
             <Sidebar />

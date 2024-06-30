@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { IoHomeOutline } from "react-icons/io5";
-import { CiShop } from "react-icons/ci";
 import { GiClothes } from "react-icons/gi";
 import { AiFillStar } from "react-icons/ai";
 import { FaCartArrowDown } from "react-icons/fa6";
 import { GiBabyfootPlayers } from "react-icons/gi";
 import { LuUsers2 } from "react-icons/lu";
-import { RiTeamLine } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
 import imagen from "../../assets/icons/escudo.png";
 import Cookies from "js-cookie";
@@ -23,8 +21,7 @@ function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  //------------------------modification------------------------
-  // función para determinar la clase de color de fondo basada en la ruta actual
+ // función para determinar la clase de color de fondo basada en la ruta actual
   function getBackgroundColorClass(locationPathname) {
     switch (locationPathname) {
       //users
@@ -49,7 +46,7 @@ function Sidebar() {
         return "bg-transparent";
     }
   }
-  //------------------------modification------------------------
+ 
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -57,7 +54,7 @@ function Sidebar() {
       try {
         const decodedToken = jwtDecode(token);
         setIsAdmin(decodedToken.isAdmin === "admin" ? "admin" : "user"); // Ajuste aquí para asegurarse de que 'admin' o 'user'
-        // console.log('DECODED TOKEN EN SIDEBAR:', decodedToken)
+       
         setUserName(decodedToken.username); // Assuming you store the username in the token
       } catch (error) {
         console.error("Error decoding token:", error);

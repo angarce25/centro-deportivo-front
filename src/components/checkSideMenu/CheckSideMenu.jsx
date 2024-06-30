@@ -21,7 +21,6 @@ const CheckSideMenu = () => {
     );
     context.setCartProducts(filteredProducts);
   };
-
  
   const handleCheckout = () => {
     const date = new Date();  
@@ -35,10 +34,7 @@ const CheckSideMenu = () => {
       navigate(
         `/dashboard/add-order?date=${orderToAdd.date}&totalProducts=${orderToAdd.totalProducts}&totalPrice=${orderToAdd.totalPrice}`
       );
-    }
-  
-  
-
+    } 
   
 
 
