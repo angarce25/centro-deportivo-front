@@ -19,11 +19,9 @@ const PlayersUser = () => {
     <div>
       <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
       {!loading && (
-        <section style={{ display: "flex" }}>
-          <Sidebar style={{ flex: "0 0 auto" }} />
-          <div style={{ marginLeft: "1%" }}>
+        <section className='flex'>
+          <Sidebar />
             <PlayersUserChart />
-          </div>
         </section>
       )}
     </div>

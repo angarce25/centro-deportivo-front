@@ -98,7 +98,7 @@ export default function FormNewPlayer() {
   };
 
   return (
-    <section className="flex ml-80 mt-4 ">
+    <section className="flex ml-72 mt-4 ">
       <div className="flex-1 p-4 lg:flex-row">
         <form className="w-full mb-2 lg:mb-0 lg:mr-4" onSubmit={handleSubmit(onSubmit)}>
           {/* Datos personales */}
