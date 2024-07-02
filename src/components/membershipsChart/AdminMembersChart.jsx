@@ -212,15 +212,16 @@ function MembershipChart() {
   
 
   return (
-    <section className="mt-8 flex justify-center">
+    <section className="mt-8 flex ml-20 2xl:ml-64 xl:ml-64 lg:ml-60 md:ml-48 justify-center">
       {error ? (
-        <div className="text-red-500 font-bold mb-4">{error}</div>
+        <div className="text-red-500 font-bold ">{error}</div>
       ) : (
-        <div className="max-w-4xl w-full">
-          <div className="overflow-x-auto">
+        <div className="max-w-screen 2xl:max-w-7xl mr-2 mb-8">
+          
             <div className="flex items-center justify-between">
-              <h4 className="text-gray-600 font-bold mb-6">Suscripciones de Jugadores</h4>
-            </div>
+            <option value="">Todos los equipos</option>
+              <h4 className="text-gray-600 font-bold  underline">Suscripciones de Jugadores</h4>
+            
           </div>
 
           {/* Tabla para pedidos */}
@@ -231,7 +232,7 @@ function MembershipChart() {
                   <thead>
                     <tr className="text-gray-800 text-sm">
                       <th
-                        className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                         onClick={() => requestSort("payments._id")}
                       >
                         Nombre <SortArrow direction={sortConfig.direction} />
@@ -242,19 +243,19 @@ function MembershipChart() {
                       >
                         Apellidos <SortArrow direction={sortConfig.direction} />
                       </th>
-                      <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
+                      <th className=" bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                         Pago 1
                       </th>
-                      <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
+                      <th className=" bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                         Pago 2
                       </th>
-                      <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
+                      <th className=" bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                         Pago 3
                       </th>
-                      <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
+                      <th className=" bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                         Pago Anual
                       </th>
-                      <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
+                      <th className=" bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                         Fecha
                       </th>
                     </tr>
@@ -309,14 +310,14 @@ function MembershipChart() {
                         return (
                           <tr
                             key={`${row.playerId}-${index}`}
-                            className="border-black"
+                            className="border-black "
                           >
-                            <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                            <td className="p-4 whitespace-no-wrap border-b border-black text-center">
                               {players.find(
                                 (player) => player._id === row.playerId
                               )?.name || "Nombre no disponible"}
                             </td>
-                            <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                            <td className="p-4 whitespace-no-wrap border-b border-black text-center">
                               {players.find(
                                 (player) => player._id === row.playerId
                               )?.lastname || "Nombre no disponible"}
@@ -325,7 +326,7 @@ function MembershipChart() {
                             {columns.slice(0, 3).map((paymentType) => (
                               <td
                                 key={`${row.playerId}-${paymentType}`}
-                                className="px-4 py-4 whitespace-no-wrap border-b border-black text-center"
+                                className="p-4 whitespace-no-wrap border-b border-black text-center "
                               >
                                 {allNone[paymentType] ? (
                                   <span>No recibido</span>
@@ -336,7 +337,7 @@ function MembershipChart() {
                                         key={`${payment._id}-${paymentType}`}
                                       >
                                         <select
-                                          className={`bg-transparent ${getStatusColor(
+                                          className={`bg-transparent flex flex-col ${getStatusColor(
                                             payment[paymentType]?.status ||
                                               "none"
                                           )}`}
@@ -377,7 +378,7 @@ function MembershipChart() {
                                             }
                                           }}
                                         >
-                                          Ver PDF
+                                          <a href="Ver PDF">Ver PDF</a>
                                         </button>
                                       </div>
                                     ) : null
@@ -385,7 +386,7 @@ function MembershipChart() {
                                 )}
                               </td>
                             ))}
-                            <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                            <td className="p-4 whitespace-no-wrap border-b border-black text-center">
                               {allNone.annual_payment ? (
                                 <span>No recibido</span>
                               ) : (
@@ -393,7 +394,7 @@ function MembershipChart() {
                                   payment.annual_payment?.status !== "none" ? (
                                     <div key={`${payment._id}-annual`}>
                                       <select
-                                        className={`bg-transparent ${getStatusColor(
+                                        className={`bg-transparent flex flex-col ${getStatusColor(
                                           payment.annual_payment?.status ||
                                             "none"
                                         )}`}
@@ -420,7 +421,8 @@ function MembershipChart() {
                                           Rechazado
                                         </option>
                                       </select>
-                                      <button
+                                      <button 
+                                      className=""
                                         onClick={() => {
                                           if (
                                             payment.annual_payment?.document
@@ -432,13 +434,14 @@ function MembershipChart() {
                                         }}
                                       >
                                         Ver PDF
+                                        
                                       </button>
                                     </div>
                                   ) : null
                                 )
                               )}
                             </td>
-                            <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                            <td className="p-4 whitespace-no-wrap border-b border-black text-center">
                               {format(
                                 new Date(row.payments[0].createdAt),
                                 "dd/MM/yyyy HH:mm"
@@ -453,7 +456,7 @@ function MembershipChart() {
             </div>
 
             {/* Paginación */}
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-20">
               <nav>
                 <ul className="flex list-none">
                   {Array.from(

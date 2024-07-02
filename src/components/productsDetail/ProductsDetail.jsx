@@ -17,24 +17,24 @@ const ProductsDetail = () => {
     className= {`${context.isProductDetailOpen ? "flex" : "hidden" }
     product-detail flex-col fixed right-0 border border-black rounded-lg bg-white   `}>
         
-          <div className="flex justify-between items-center p-6">
-            <h2 className="text-xl font-medium ">Detalle</h2>
+          <div className="flex justify-between items-center p-4 2xl:p-6">
+            <h2 className="text-xl font-medium lg:text-md xl:text-lg">Detalle</h2>
             <div>
               <CgCloseR 
-              className="text-2xl cursor-pointer"
+              className="text-2xl cursor-pointer xl:text-lg"
               onClick={() => context.closeProductDetail()}>
               </CgCloseR>
               </div>
           </div>
-          <figure className="px-4">
+          <figure className="px-3 ">
             <img 
             className="w-full rounded-lg object-cover rounded-t-lg bg-gradient-to-br from-black via-gray-500 to-white-100"
              src={context.productToShow.image}
              alt={context.productToShow.name}/>
           </figure>
-          <p className="flex flex-col p-6">
-            <span className="font-medium text-2xl">{context.productToShow.price}€</span>
-            <span className="font-medium text-md">{context.productToShow.name}</span>
+          <p className="flex flex-wrap justify-between p-4">
+            <span className="font-medium text-2xl lg:text-xl 2xl:text-2xl">{context.productToShow.price}€</span>
+            <span className="font-medium mt-2 text-md lg:text-sm 2xl:text-xl">{context.productToShow.name}</span>
             <span className="font-light text-sm">{context.productToShow.description}</span>
           </p>
             

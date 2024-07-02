@@ -112,13 +112,13 @@ function PlayersTable() {
   };
 
   return (
-    <section className="mt-8">
-      <div className="overflow-x-auto max-w-6xl mx-auto overflow-y-auto max-h-[89vh] mb-8">
-        <div className="flex shadow items-center justify-between">
-          <h4 className="text-gray-600 font-bold mb-10 underline">
+    <section className="mt-8 flex flex-col ml-20 2xl:ml-72 xl:ml-72 lg:ml-60 md:ml-48 justify-center">
+      <div className=" max-w-screen 2xl:max-w-7xl mr-2 mb-8">
+        <div className="flex items-center justify-between">
+          <h4 className="text-gray-600 font-bold mb-8 underline ml-1">
             Listado de Jugadores
           </h4>
-          <select onChange={handleTeamChange} value={selectedTeam} className="select select-bordered">
+          <select onChange={handleTeamChange} value={selectedTeam} className="select select-bordered -mt-6">
             <option value="">Todos los equipos</option>
             {teams.map((team) => (
               <option key={team._id} value={team._id}>
@@ -128,46 +128,48 @@ function PlayersTable() {
           </select>
         </div>
         {error && <p>{error}</p>}
-
-        <table className="table table-zebra">
+        <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-black">
+        <table className="table table-zebra min-w-full">
           <thead>
             <tr className="text-gray-800 text-sm">
-              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black ">Nombre</th>
-              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Representante</th>
-              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Equipo</th>
-              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Email</th>
-              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Teléfono</th>
-              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Código postal</th>
-              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">DNI</th>
-              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Alergias</th>
-              <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Lesiones</th>
+              <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black ">Nombre</th>
+              <th className="p-0 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Representante</th>
+              <th className="p-2 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Equipo</th>
+              <th className="p-0 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Email</th>
+              <th className="p-0 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Teléfono</th>
+              <th className="p-0 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Código postal</th>
+              <th className="p-0 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">DNI</th>
+              <th className="p-0 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Alergias</th>
+              <th className="p-0 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Lesiones</th>
             </tr>
           </thead>
           <tbody>
             {filteredPlayers.map((player) => (
               <tr key={player._id}>
-                <td className="font-medium">{player.name} {player.lastname}</td>                
-                <td>{getUserNameById(player.parent_id)}</td>
+                <td className="font-medium py-4">{player.name} {player.lastname}</td>                
+                <td className="p-4">{getUserNameById(player.parent_id)}</td>
                 <td>
                 {player.team ? player.team.name : 'Sin asignar'}
                   <button
                     onClick={() => handleOpenModal(player)}
-                    className="ml-2 text-blue-500 hover:text-blue-700"
+                    className="ml-2  text-blue-500 hover:text-blue-700"
                   >
                     <FontAwesomeIcon icon={faEdit} />
                   </button>
                 </td>
-                <td>{player.email}</td>
-                <td>{player.phone}</td>
-                <td className="text-center">{player.post_code}</td>
+                <td className="text-center p-2">{player.email}</td>
+                <td className="p-2">{player.phone}</td>
+                <td className="text-center ">{player.post_code}</td>
                 <td>{player.dni}</td>
-                <td className="text-center">{player.allergies}</td>
-                <td className="text-center">{player.injury_illness}</td>
+                <td className="text-center p-1">{player.allergies}</td>
+                <td className="text-center p-1">{player.injury_illness}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      </div>
+      
 
       <AssignTeamModal
         isOpen={isModalOpen}

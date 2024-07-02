@@ -19,11 +19,11 @@ function OrdersAdmin () {
     <div>
       <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
       {!loading && (
-        <section style={{ display: "flex" }}>
-          <Sidebar style={{ flex: "0 0 auto" }} />
-          <div style={{ marginLeft: "1%", marginTop: "40px" }}>
+        <section className="flex">
+          <Sidebar  />
+          
             <OrdersChart />
-          </div>
+          
         </section>
       )}
     </div>

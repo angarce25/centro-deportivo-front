@@ -1,5 +1,43 @@
 .product-detail {
     width:380px;
-    height: 100vh;
-    top: 138px;
+    top: 100px;
 }
+
+@media (min-width: 640px) {
+  .product-detail {
+    max-width: 384px; /* sm */
+    
+  }
+}
+
+@media (min-width: 768px) {
+  .product-detail {
+    max-width: 448px; /* md */
+    width:300px;
+    top: 140px
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-detail {
+    max-width: 512px; /* lg */
+     /* Resetea el margen superior en pantallas grandes */
+  }
+}
+
+@media (min-width: 1245px) {
+  .product-detail {
+    max-width: 576px; /* xl */
+    width:270px;
+    top: 110px
+  }
+}
+
+@media (min-width: 1536px) {
+  .product-detail {
+    max-width: 672px; /* 2xl */
+    width:380px;
+    top: 150px
+  }
+}
+

@@ -74,40 +74,40 @@ function UserMembersChart() {
   };
 
   return (
-    <section className="flex flex-col ml-72 mt-4 ">
-      <div className="overflow-x-auto">
-        <div className="flex items-center justify-between">
-          <h4 className="text-gray-600 font-bold mb-10 mr-96">
+    <section className="flex flex-col mt-8 ml-20 2xl:ml-72 xl:ml-72 lg:ml-60 md:ml-48 justify-center">
+      <div className="max-w-screen 2xl:max-w-7xl  ">
+        <div className="items-center justify-between">
+          <h4 className="text-gray-600 font-bold mb-6 ml-1 ">
             Mis Suscripciones de Jugadores
           </h4>
         </div>
       </div>
 
-      <div className="flex flex-col mt-6">
-        <div className="max-w-screen-xl mx-auto overflow-x-auto overflow-y-auto max-h-[80vh] mb-8">
+      <div className="flex flex-col mt-2">
+        
           <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
             <table className="table table-zebra min-w-full">
               <thead>
                 <tr className="text-gray-800 text-sm">
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="p-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Nombre
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="p-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Apellido
                   </th>                  
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="p-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Primer Pago
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="p-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Segundo Pago
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="p-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Tercer Pago
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="p-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Pago Anual
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="p-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Añadir un pago
                   </th>
                 </tr>
@@ -174,7 +174,7 @@ function UserMembersChart() {
             </table>
           </div>
         </div>
-      </div>
+      
     </section>
   );
 }

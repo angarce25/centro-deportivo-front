@@ -27,7 +27,7 @@ function ProductsCard({ data, showAddToCart, showSizeSelector }) {
         height: "auto",
         filter: "drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.2))",
       }}
-      className="bg-gray-l cursor-pointer w-52 h-68 rounded-lg m-6 mb-4"
+      className="bg-gray-l cursor-pointer w-52 h-68 rounded-lg m-6  "
       onClick={() => showProduct(data)}
     >
       <figure className="relative mb-4 w-full h-4/5">

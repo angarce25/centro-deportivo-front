@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSpinner, Spinner } from "../context/LoadingContext";
-import ProductsLayout from "../components/products/ProductsLayout";
+
 import ProductsCard from "../components/products/ProductsCard";
 import Header from "../components/home/Header";
 import Footer from "../components/home/Footer";
@@ -38,7 +38,7 @@ function Merchandising() {
         <Spinner />
         {!loading && (
           <>
-            <ProductsLayout>
+            <section className="mt-4 flex flex-col items-center">
               <h2 className="text-xl font-medium mb-2">
                 Productos para fanáticos y seguidores del CDCA
               </h2>
@@ -63,7 +63,7 @@ function Merchandising() {
               </div>
               <ProductsDetail />
               <CheckSideMenu />
-            </ProductsLayout>
+              </section>
           </>
         )}
       </div>

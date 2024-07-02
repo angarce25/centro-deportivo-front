@@ -91,7 +91,7 @@ function Sidebar() {
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
           href="/dashboard/products"
         >
-          <GiClothes style={{ fontSize: "25px", fontWeight: "bold" }} />
+          <GiClothes className="text-3xl" />
           <span className="mx-3">Productos</span>
         </a>
       </nav>
@@ -106,7 +106,7 @@ function Sidebar() {
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
           href="/dashboard/my-players"
         >
-          <GiBabyfootPlayers style={{ fontSize: "32px", fontWeight: "bold" }} />
+          <GiBabyfootPlayers className="text-2xl" />
           <span className="mx-3">Mis Jugadores</span>
         </a>
       </nav>
@@ -121,7 +121,7 @@ function Sidebar() {
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
           href="/dashboard/myorders"
         >
-          <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
+          <LuUsers2 className="text-2xl" />
           <span className="mx-3 items-center justify-center">Mis pedidos</span>
         </a>
       </nav>
@@ -136,7 +136,7 @@ function Sidebar() {
           className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
           href="/dashboard/my-memberships"
         >
-          <AiFillStar style={{ fontSize: "25px", fontWeight: "bold" }} />
+          <AiFillStar className="text-2xl" />
           <span className="mx-3 items-center justify-center">
             Mis Suscripciones
           </span>
@@ -211,12 +211,12 @@ function Sidebar() {
 
   return (
     <>
-    <div className="flex flex-col h-screen fixed  ">
+    <div className="flex flex-col fixed">
       <button
         className=" p-2 text-gray-700 lg:hidden"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
-        <IoIosArrowForward size={24} />
+        <IoIosArrowForward className="text-2xl" />
       </button>
 
       <div
@@ -242,7 +242,7 @@ function Sidebar() {
             className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
             href="/"
           >
-            <IoHomeOutline style={{ fontSize: "25px", fontWeight: "bold" }} />
+            <IoHomeOutline className="text-2xl" />
             <span className="mx-3">Home</span>
           </a>
         </nav>

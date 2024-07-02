@@ -45,39 +45,43 @@ function UsersChart() {
   };
 
   return (
-    <section className="mt-8">
-      <div className="overflow-x-auto max-w-6xl mx-auto overflow-y-auto max-h-[80vh] mb-8">
-        <div className="flex shadow items-center justify-between">
-          <h4 className="text-gray-600 font-bold mb-4 underline">Padres</h4>
-        </div>
-      </div>
+    <section className="flex flex-col mt-2 ml-20 2xl:ml-64 xl:ml-64 lg:ml-60 md:ml-48 justify-center">
+      
+        <div className="max-w-screen 2xl:max-w-7xl mr-2 ">
 
-      <div className="flex flex-col mt-6">
-        <div className="max-w-screen-xl mx-auto overflow-x-auto overflow-y-auto max-h-[80vh] mb-8">
+          <div className="flex items-center justify-between">
+            <h4 className=" text-gray-600 font-bold underline ml-1">
+              Padres</h4>
+          </div>
+
+          </div>
+      
+
+      <div className="flex flex-col mt-8">
           <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-black">
             <table className="table table-zebra min-w-full">
               <thead>
                 <tr className="text-gray-800 text-sm">
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="px-9 py-9 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Nombres
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="px-9 py-9 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Apellidos
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="px-9 py-9 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Correo Electrónico
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="px-9 py-9 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Número de Teléfono
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="px-9 py-9 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Perfil
                   </th>
                   <th
                     onClick={() => requestSort("createdAt")}
                     className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                   >
-                    Fecha{" "}
+                    Fecha
                     <SortArrow
                       direction={
                         sortConfig.key === "createdAt"
@@ -122,8 +126,27 @@ function UsersChart() {
               </tbody>
             </table>
           </div>
-        </div>
+          <div className="flex justify-center mt-20">
+              <nav>
+             {/*    <ul className="flex list-none">
+                  {Array.from(
+                    { length: Math.ceil(orders.length / ordersPerPage) },
+                    (_, index) => (
+                      <li
+                        key={index}
+                        className="px-3 py-2 mx-1 cursor-pointer bg-white border rounded"
+                        onClick={() => paginate(index + 1)}
+                      >
+                        {index + 1}
+                      </li>
+                    )
+                  )}
+                </ul> */}
+              </nav>
+            </div>
+        
       </div>
+      
     </section>
   );
 }

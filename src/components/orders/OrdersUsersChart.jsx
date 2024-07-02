@@ -55,37 +55,34 @@ function OrdersUsersChart() {
   }, []);
 
   return (
-    <section className="flex flex-col ml-72 mt-4">
+    <section className="mt-8 flex ml-20 2xl:ml-72 xl:ml-72 lg:ml-64 md:ml-48 justify-center">
       {error ? (
         <div className="text-red-500 font-bold mb-4">{error}</div>
       ) : (
         <div>
-          <div className="overflow-x-auto">
-            <div className="flex items-center justify-between">
-              <h4 className="text-gray-600 font-bold mb-10 ">Mis Pedidos</h4>
-            </div>
-          </div>
+          <h4 className="text-gray-600 font-bold mt-6 ml-1 ">Mis Pedidos</h4>
+          
 
           {/* Tabla para pedidos */}
           <div className="flex flex-col mt-6">
-            <div className="my-2 overflow-x-auto">
+            
               <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
                 <table className="table table-zebra">
                   <thead>
                     <tr className="text-gray-800 text-sm">
-                      <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Id del Pedido
                       </th>
-                      <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Documento de Pago
                       </th>                      
-                      <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Observaciones del Pedido
                       </th>
-                      <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Estado del Pedido
                       </th>
-                      <th className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Fecha
                       </th>
                     </tr>
@@ -114,13 +111,13 @@ function OrdersUsersChart() {
                             </button>
                           )}
                         </td>
-                        <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <td className="p-2 whitespace-no-wrap border-b border-gray-200">
                           {order.summary}
                         </td>
-                        <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <td className="p-2 text-center whitespace-no-wrap border-b border-gray-200">
                           {order.status}
                         </td>
-                        <td className="px-4 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <td className="p-2 whitespace-no-wrap border-b border-gray-200">
                           {format(
                             new Date(order.createdAt),
                             "dd/MM/yyyy HH:mm"
@@ -135,7 +132,7 @@ function OrdersUsersChart() {
           </div>
 
           
-        </div>
+       
       )}
     </section>
   );

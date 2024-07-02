@@ -124,28 +124,27 @@ function OrdersChart() {
   };
 
   return (
-    <section className="max-w-full overflow-y-auto max-h-[90vh]">
+    <section className=" mt-2 flex ml-20 2xl:ml-72 xl:ml-72 lg:ml-60 md:ml-48 justify-center">
       {error ? (
-        <div className="text-red-500 font-bold mb-4">{error}</div>
+        <div className="text-red-500 font-bold ">{error}</div>
       ) : (
-        <div className="w-full">
-          <div className="overflow-x-auto">
+        <div className="max-w-screen 2xl:max-w-7xl mr-2 ">
+          
             <div className="flex items-center justify-between">
-              <h4 className="text-gray-600 font-bold mb-6 underline">
+              <h4 className="text-gray-600 font-bold underline ml-1">
                 Pedidos
               </h4>
-            </div>
+            
           </div>
 
-          <div className="flex flex-col mt-6">
-            <div className="-my-2 overflow-x-auto">
-              <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+          <div className="flex flex-col mt-8">
+          <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-black">
                 <table className="table table-zebra min-w-full">
                   <thead>
                     <tr className="text-gray-800 text-sm">
                       <th
                         onClick={() => requestSort("_id")}
-                        className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Usuario
                         <SortArrow
@@ -158,7 +157,7 @@ function OrdersChart() {
                       </th>
                       <th
                         onClick={() => requestSort("_id")}
-                        className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                         
                       >
                         Detalle de Pedido
@@ -172,7 +171,7 @@ function OrdersChart() {
                       </th>
                       <th
                         onClick={() => requestSort("document")}
-                        className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-4  bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Documento de Pago{" "}
                         <SortArrow
@@ -185,7 +184,7 @@ function OrdersChart() {
                       </th>
                       <th
                         onClick={() => requestSort("summary")}
-                        className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Observaciones del Pedido{" "}
                         <SortArrow
@@ -199,7 +198,7 @@ function OrdersChart() {
 
                       <th
                         onClick={() => requestSort("status")}
-                        className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Estado del Pedido{" "}
                         <SortArrow
@@ -213,7 +212,7 @@ function OrdersChart() {
 
                       <th
                         onClick={() => requestSort("createdAt")}
-                        className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Fecha{" "}
                         <SortArrow
@@ -296,11 +295,11 @@ function OrdersChart() {
                     ))}
                   </tbody>
                 </table>
-              </div>
+              
             </div>
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-20">
               <nav>
-                <ul className="flex list-none">
+             {/*    <ul className="flex list-none">
                   {Array.from(
                     { length: Math.ceil(orders.length / ordersPerPage) },
                     (_, index) => (
@@ -313,7 +312,7 @@ function OrdersChart() {
                       </li>
                     )
                   )}
-                </ul>
+                </ul> */}
               </nav>
             </div>
           </div>

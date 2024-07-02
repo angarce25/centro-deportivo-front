@@ -21,46 +21,45 @@ function PlayersUsersChart() {
   }, []);
 
   return (
-    <section className="flex flex-col ml-72  mt-4">
-      <div className="overflow-x-auto">
-        <div className=" items-center justify-between">
-          <h4 className="text-gray-600 font-bold mb-10 ">Mis Jugadores</h4>
-        </div>
+    <section className="flex flex-wrap ml-20 md:ml-40 lg:ml-72 xl:ml-72 2xl:ml-72 mt-4">
+      <div className=" max-w-screen 2xl:max-w-7xl  mb-8">
+          <h4 className="flex flex-wrap xl:flex-row 2xl:flex-row justify-between  text-gray-600 font-bold mt-8 ml-1 ">Mis Jugadores
+        
         <Link to="/dashboard/form-player">
-          <button className=" text-black font-bold py-2 px-4 rounded bg-yellow-d hover:bg-yellow-l">
+          <button className=" 2xl:-mt-8 text-black font-bold p-2 px-4 rounded bg-yellow-d hover:bg-yellow-l">
             Añadir jugador
           </button>
         </Link>
-      </div>
-
+        </h4>
+      
       <div className="flex flex-col mt-6">
-        <div className="max-w-screen-xl mx-auto overflow-x-auto overflow-y-auto max-h-[80vh] mb-8">
+        
           <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-black">
             <table className="table table-zebra min-w-full">
               <thead>
                 <tr className="text-gray-800 text-sm">
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Nombre
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Apellido
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Edad
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Equipo
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Talla Camisa
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Talla Pantalón
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Talla Zapato
                   </th>
-                  <th className="px-6 py-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Estado
                   </th>
                 </tr>
@@ -106,7 +105,7 @@ function PlayersUsersChart() {
             </table>
           </div>
         </div>
-      </div>
+        </div>
     </section>
   );
 }
