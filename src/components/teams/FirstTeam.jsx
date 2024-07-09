@@ -96,6 +96,7 @@ function FirstTeam() {
           </p>
           <a
             href="https://www.rffm.es/competicion/calendario?temporada=19&tipojuego=1&competicion=17145393&grupo=17145396"
+            target="_blank"
             className="text-blue-500 underline"
           >
             Ver Clasificaciones

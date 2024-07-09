@@ -57,7 +57,7 @@ const CheckSideMenu = () => {
               </CgCloseR>
               </div>
           </div>
-          <div className="px-6 py-4 overflow-y-scroll h-96">
+          <div className="px-6 py-4 overflow-y-scroll h-72 2xl:h-96">
           {
           context.cartProducts.map(product => (
             product._id && (

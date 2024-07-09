@@ -91,7 +91,7 @@ const Registercomponent = ({ onFormSwitch }) => {
       className="bg-gray-200 min-h-screen flex items-center justify-center mt-4"
     >
       <div
-        className="bg-white p-8 rounded shadow-md w-full max-w-md mb-12"
+        className="bg-white p-8 rounded shadow-md w-full max-w-md mb-12 2xl:mb-40 "
         style={{ backgroundColor: "#F2F2F2" }}
       >
         <h2 className="text-3xl font-semibold text-center mb-6">Regístrate</h2>

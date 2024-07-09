@@ -124,27 +124,27 @@ function OrdersChart() {
   };
 
   return (
-    <section className=" mt-2 flex ml-20 2xl:ml-72 xl:ml-72 lg:ml-60 md:ml-48 justify-center">
+    <section className=" mt-8 flex ml-20 2xl:ml-72 xl:ml-72 lg:ml-60 md:ml-48 justify-center">
       {error ? (
         <div className="text-red-500 font-bold ">{error}</div>
       ) : (
-        <div className="max-w-screen 2xl:max-w-7xl mr-2 ">
+        <div className="max-w-screen 2xl:max-w-7xl mr-1 mb-8 ">
           
             <div className="flex items-center justify-between">
-              <h4 className="text-gray-600 font-bold underline ml-1">
+              <h4 className="text-gray-600 font-bold mb-8 underline ml-1 2xl:text-2xl 2xl:mb-10">
                 Pedidos
               </h4>
             
           </div>
 
-          <div className="flex flex-col mt-8">
+          
           <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-black">
                 <table className="table table-zebra min-w-full">
                   <thead>
                     <tr className="text-gray-800 text-sm">
                       <th
                         onClick={() => requestSort("_id")}
-                        className="p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-0 py-4 2xl:px-14 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Usuario
                         <SortArrow
@@ -157,7 +157,7 @@ function OrdersChart() {
                       </th>
                       <th
                         onClick={() => requestSort("_id")}
-                        className="p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-0 py-4 2xl:px-14 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                         
                       >
                         Detalle de Pedido
@@ -171,7 +171,7 @@ function OrdersChart() {
                       </th>
                       <th
                         onClick={() => requestSort("document")}
-                        className="p-4  bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-0 py-4 2xl:px-14 2xl:py-10  md:p-4  bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Documento de Pago{" "}
                         <SortArrow
@@ -184,7 +184,7 @@ function OrdersChart() {
                       </th>
                       <th
                         onClick={() => requestSort("summary")}
-                        className="p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-0 py-4 2xl:px-14 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Observaciones del Pedido{" "}
                         <SortArrow
@@ -198,7 +198,7 @@ function OrdersChart() {
 
                       <th
                         onClick={() => requestSort("status")}
-                        className="p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-0 py-4 2xl:px-14 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Estado del Pedido{" "}
                         <SortArrow
@@ -212,7 +212,7 @@ function OrdersChart() {
 
                       <th
                         onClick={() => requestSort("createdAt")}
-                        className="p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-0 py-4 px-4 2xl:px-14 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                       >
                         Fecha{" "}
                         <SortArrow
@@ -297,9 +297,9 @@ function OrdersChart() {
                 </table>
               
             </div>
-            <div className="flex justify-center mt-20">
+            <div className="flex justify-center mt-10">
               <nav>
-             {/*    <ul className="flex list-none">
+                <ul className="flex list-none">
                   {Array.from(
                     { length: Math.ceil(orders.length / ordersPerPage) },
                     (_, index) => (
@@ -312,10 +312,10 @@ function OrdersChart() {
                       </li>
                     )
                   )}
-                </ul> */}
+                </ul>
               </nav>
             </div>
-          </div>
+          
         </div>
       )}
      

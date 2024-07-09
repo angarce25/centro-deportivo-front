@@ -45,41 +45,42 @@ function UsersChart() {
   };
 
   return (
-    <section className="flex flex-col mt-2 ml-20 2xl:ml-64 xl:ml-64 lg:ml-60 md:ml-48 justify-center">
+    <section className="flex flex-col mt-12 ml-20 2xl:ml-64 xl:ml-64 lg:ml-60 md:ml-48 justify-center">
       
         <div className="max-w-screen 2xl:max-w-7xl mr-2 ">
 
           <div className="flex items-center justify-between">
-            <h4 className=" text-gray-600 font-bold underline ml-1">
+            <h4 className=" text-gray-600 font-bold underline ml-1
+            2xl:text-2xl 2xl:mb-10">
               Padres</h4>
           </div>
 
           </div>
       
 
-      <div className="flex flex-col mt-8">
+      <div className="flex flex-col mt-2 2xl:mt-4">
           <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-black">
             <table className="table table-zebra min-w-full">
               <thead>
                 <tr className="text-gray-800 text-sm">
-                  <th className="px-9 py-9 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-6 2xl:p-10 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Nombres
                   </th>
-                  <th className="px-9 py-9 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-6 2xl:p-10 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Apellidos
                   </th>
-                  <th className="px-9 py-9 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-6 2xl:p-10 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Correo Electrónico
                   </th>
-                  <th className="px-9 py-9 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-6 2xl:p-10 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Número de Teléfono
                   </th>
-                  <th className="px-9 py-9 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-6 2xl:p-10 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Perfil
                   </th>
                   <th
                     onClick={() => requestSort("createdAt")}
-                    className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                    className="p-6 2xl:p-10 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                   >
                     Fecha
                     <SortArrow
@@ -102,22 +103,22 @@ function UsersChart() {
                 ) : (
                   sortedUsers.map((user) => (
                     <tr key={user._id}>
-                      <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                      <td className="p-4 2xl:p-6 whitespace-no-wrap border-b border-black text-center">
                         {user.name}
                       </td>
-                      <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                      <td className="p-4 2xl:p-6 whitespace-no-wrap border-b border-black text-center">
                         {user.lastname}
                       </td>
-                      <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                      <td className="p-4 2xl:p-6 whitespace-no-wrap border-b border-black text-center">
                         {user.email}
                       </td>
-                      <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                      <td className="p-4 2xl:p-6 whitespace-no-wrap border-b border-black text-center">
                         {user.mobile}
                       </td>
-                      <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                      <td className="p-4 2xl:p-6 whitespace-no-wrap border-b border-black text-center">
                         {user.rol_id}
                       </td>
-                      <td className="px-4 py-4 whitespace-no-wrap border-b border-black text-center">
+                      <td className="p-4 2xl:p-6 whitespace-no-wrap border-b border-black text-center">
                         {format(new Date(user.createdAt), 'dd/MM/yyyy')}
                       </td>
                     </tr>

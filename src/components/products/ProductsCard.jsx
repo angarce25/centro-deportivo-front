@@ -25,12 +25,12 @@ function ProductsCard({ data, showAddToCart, showSizeSelector }) {
       style={{
         maxWidth: "100%",
         height: "auto",
-        filter: "drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.2))",
+        filter: "drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.6))",
       }}
       className="bg-gray-l cursor-pointer w-52 h-68 rounded-lg m-6  "
       onClick={() => showProduct(data)}
     >
-      <figure className="relative mb-4 w-full h-4/5">
+      <figure className="relative mb-4 w-full h-4/5 ">
         <span className="absolute bottom-0 left-0 bg-black/30 rounded-lg text-white text-xs m-2 px-3 py-0.5">
           {data.category}
         </span>

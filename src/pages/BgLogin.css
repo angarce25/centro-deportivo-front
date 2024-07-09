@@ -4,3 +4,12 @@
     background-position: 10px 110px;
 
   }
+
+  @media (min-width: 1245px) {
+    .BgLogin {
+      max-width: h-screen;
+      width:h-screen;
+      background-position: 10px 140px;
+      background-size: 90vh;
+    }
+  }

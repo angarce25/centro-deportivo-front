@@ -113,12 +113,12 @@ function PlayersTable() {
 
   return (
     <section className="mt-8 flex flex-col ml-20 2xl:ml-72 xl:ml-72 lg:ml-60 md:ml-48 justify-center">
-      <div className=" max-w-screen 2xl:max-w-7xl mr-2 mb-8">
+      <div className=" max-w-screen 2xl:max-w-7xl mr-1 mb-8">
         <div className="flex items-center justify-between">
-          <h4 className="text-gray-600 font-bold mb-8 underline ml-1">
+          <h4 className="text-gray-600 font-bold mb-8 underline ml-1 2xl:text-2xl 2xl:mb-10">
             Listado de Jugadores
           </h4>
-          <select onChange={handleTeamChange} value={selectedTeam} className="select select-bordered -mt-6">
+          <select onChange={handleTeamChange} value={selectedTeam} className="flex select select-bordered -mt-8 2xl:-mt-8 2xl:-mr-96">
             <option value="">Todos los equipos</option>
             {teams.map((team) => (
               <option key={team._id} value={team._id}>
@@ -132,15 +132,15 @@ function PlayersTable() {
         <table className="table table-zebra min-w-full">
           <thead>
             <tr className="text-gray-800 text-sm">
-              <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black ">Nombre</th>
-              <th className="p-0 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Representante</th>
-              <th className="p-2 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Equipo</th>
-              <th className="p-0 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Email</th>
-              <th className="p-0 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Teléfono</th>
-              <th className="p-0 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Código postal</th>
-              <th className="p-0 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">DNI</th>
-              <th className="p-0 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Alergias</th>
-              <th className="p-0 py-4 2xl:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Lesiones</th>
+              <th className="p-0 py-4 2xl:px-14 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black ">Nombre</th>
+              <th className="p-0 py-4 2xl:px-14 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Representante</th>
+              <th className="p-2 py-4 2xl:px-14 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Equipo</th>
+              <th className="p-0 py-4 2xl:px-14 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Email</th>
+              <th className="p-0 py-4 2xl:px-14 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Teléfono</th>
+              <th className="p-0 py-4 2xl:px-14 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Código postal</th>
+              <th className="p-0 py-4 2xl:px-14 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">DNI</th>
+              <th className="p-0 py-4 2xl:px-14 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Alergias</th>
+              <th className="p-0 py-4 2xl:px-14 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">Lesiones</th>
             </tr>
           </thead>
           <tbody>
@@ -158,7 +158,7 @@ function PlayersTable() {
                   </button>
                 </td>
                 <td className="text-center p-2">{player.email}</td>
-                <td className="p-2">{player.phone}</td>
+                <td className="text-center p-2">{player.phone}</td>
                 <td className="text-center ">{player.post_code}</td>
                 <td>{player.dni}</td>
                 <td className="text-center p-1">{player.allergies}</td>
@@ -168,6 +168,7 @@ function PlayersTable() {
           </tbody>
         </table>
       </div>
+      
       </div>
       
 
@@ -177,6 +178,7 @@ function PlayersTable() {
         player={selectedPlayer}
         onSave={handleSaveTeam}
       />
+      
     </section>
   );
 }

@@ -21,7 +21,7 @@ const Register = () => {
   };
 
   return (
-    <div className="bgRegister">
+    <div className="bgRegister w-full overflow-x-auto overflow-y-auto fixed">
       <Header/>
       {loading ? (
         <Spinner /> // Muestra el spinner mientras loading es true

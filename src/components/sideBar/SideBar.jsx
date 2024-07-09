@@ -81,14 +81,18 @@ function Sidebar() {
   const renderUserLinks = () => (
     <>
       <nav
-        className={`mt-3 flex justify-center transition duration-500 ${
+        className={`mt-1 2xl:mt-6 flex justify-center transition duration-500 ${
           location.pathname === "/dashboard/products"
             ? "bg-gray text-white"
             : ""
         }  hover:bg-yellow-d hover:text-black !important`}
       >
         <a
-          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          className="flex items-center p-2 mt-3 mb-3 text-gray-100 bg-gray-700 bg-opacity-25 
+          2xl:py-2
+          2xl:mt-4 
+          2xl:mb-6 
+          "
           href="/dashboard/products"
         >
           <GiClothes className="text-3xl" />
@@ -96,29 +100,36 @@ function Sidebar() {
         </a>
       </nav>
       <nav
-        className={`mt-3 flex justify-center transition duration-500 ${
+        className={`mt-1 2xl:mt-6 flex justify-center transition duration-500 ${
           location.pathname === "/dashboard/my-players"
             ? "bg-gray text-white"
             : ""
         }  hover:bg-yellow-d hover:text-black !important`}
       >
         <a
-          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          className="flex items-center p-2 mt-3 mb-3 text-gray-100 bg-gray-700 bg-opacity-25
+          2xl:py-2
+          2xl:mt-4 
+          2xl:mb-6 "
           href="/dashboard/my-players"
         >
           <GiBabyfootPlayers className="text-2xl" />
           <span className="mx-3">Mis Jugadores</span>
         </a>
       </nav>
+
       <nav
-        className={`mt-3 flex justify-center transition duration-500 ${
+        className={`mt-1 2xl:mt-6 flex justify-center transition duration-500 ${
           location.pathname === "/dashboard/myorders"
             ? "bg-gray text-white"
             : ""
         }  hover:bg-yellow-d hover:text-black !important`}
       >
         <a
-          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          className="flex items-center py-2 mt-3 mb-3 text-gray-100 bg-gray-700 bg-opacity-25
+          2xl:py-2
+          2xl:mt-4 
+          2xl:mb-6"
           href="/dashboard/myorders"
         >
           <LuUsers2 className="text-2xl" />
@@ -126,14 +137,17 @@ function Sidebar() {
         </a>
       </nav>
       <nav
-        className={`mt-3 flex justify-center transition duration-500 ${
+        className={`mt-1 2xl:mt-6 flex justify-center transition duration-500 ${
           location.pathname === "/dashboard/my-memberships"
             ? "bg-gray text-white"
             : ""
         }  hover:bg-yellow-d hover:text-black !important`}
       >
         <a
-          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          className="flex items-center p-2 mt-3 mb-3 text-gray-100 bg-gray-700 bg-opacity-25
+          2xl:py-2
+          2xl:mt-4 
+          2xl:mb-6"
           href="/dashboard/my-memberships"
         >
           <AiFillStar className="text-2xl" />
@@ -148,28 +162,34 @@ function Sidebar() {
   const renderAdminLinks = () => (
     <>
       <nav
-        className={`mt-3 flex justify-center transition duration-500 ${
+        className={`mt-1 2xl:mt-6 flex justify-center transition duration-500 ${
           location.pathname === "/dashboard/users" ? "bg-gray text-white" : ""
         }  hover:bg-yellow-d hover:text-black !important`}
       >
         <a
-          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          className="flex items-center p-2 mt-3 mb-3 text-gray-100 bg-gray-700 bg-opacity-25
+          2xl:py-2
+          2xl:mt-6 
+          2xl:mb-4 "
           href="/dashboard/users"
         >
-          <LuUsers2 style={{ fontSize: "25px", fontWeight: "bold" }} />
+          <LuUsers2 className="text-2xl" />
           <span className="mx-3 flex justify-center">Usuarios</span>
         </a>
       </nav>
       <nav
-        className={`mt-3 flex justify-center transition duration-500 ${
+        className={`mt-1 2xl:mt-6 flex justify-center transition duration-500 ${
           location.pathname === "/dashboard/players" ? "bg-gray text-white" : ""
         } hover:bg-yellow-d hover:text-black !important`}
       >
         <a
-          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          className="flex items-center p-2 mt-3 mb-3 text-gray-100 bg-gray-700 bg-opacity-25
+          2xl:py-2
+          2xl:mt-6 
+          2xl:mb-4"
           href="/dashboard/players"
         >
-          <GiBabyfootPlayers style={{ fontSize: "32px", fontWeight: "bold" }} />
+          <GiBabyfootPlayers className="text-2xl" />
           <span className="mx-3 items-center justify-center hover:text-black">
             Jugadores
           </span>
@@ -177,30 +197,38 @@ function Sidebar() {
       </nav>
 
       <nav
-        className={`mt-3 flex justify-center transition duration-500 ${
+        className={`mt-1 2xl:mt-6 flex justify-center transition duration-500
+          ${
           location.pathname === "/dashboard/orders" ? "bg-gray text-white" : ""
         }  hover:bg-yellow-d hover:text-black !important`}
       >
         <a
-          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          className="flex items-center py-2 mt-3 mb-3 text-gray-100 bg-gray-700 bg-opacity-25
+          2xl:py-2
+          2xl:mt-6 
+          2xl:mb-4"
           href="/dashboard/orders"
         >
-          <FaCartArrowDown style={{ fontSize: "25px", fontWeight: "bold" }} />
+          <FaCartArrowDown className="text-2xl" />
           <span className="mx-3 items-center justify-center">Pedidos</span>
         </a>
       </nav>
       <nav
-        className={`mt-3 flex justify-center transition duration-500 ${
+        className={`mt-1 2xl:mt-6 flex justify-center transition duration-500
+          ${
           location.pathname === "/dashboard/memberships"
             ? "bg-gray text-white"
             : ""
         }  hover:bg-yellow-d hover:text-black !important`}
       >
         <a
-          className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+          className="flex items-center p-2 mt-3 mb-3 text-gray-100 bg-gray-700 bg-opacity-25
+          2xl:py-2
+          2xl:mt-6 
+          2xl:mb-4"
           href="/dashboard/memberships"
         >
-          <AiFillStar style={{ fontSize: "25px", fontWeight: "bold" }} />
+          <AiFillStar className="text-2xl" />
           <span className="mx-3 items-center justify-center">
             Suscripciones
           </span>
@@ -233,13 +261,16 @@ function Sidebar() {
       >
         <div className="flex items-center justify-center mt-8">
           <div className="flex items-center">
-            <img className="w-20 h-30" src={imagen} alt="Escudo" />
+            <img className="w-20 h-30 2xl:w-40 2xl:h-30" src={imagen} alt="Escudo" />
           </div>
         </div>
 
-        <nav className="mt-3 flex justify-center hover:bg-yellow-d transition duration-500">
+        <nav className="mt-1 flex justify-center hover:bg-yellow-d transition duration-500
+        2xl:py-2
+        2xl:mt-6 
+        2xl:mb-4 ">
           <a
-            className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+            className="flex items-center py-2 mt-3 mb-3 text-gray-100 bg-gray-700 bg-opacity-25"
             href="/"
           >
             <IoHomeOutline className="text-2xl" />
@@ -249,9 +280,9 @@ function Sidebar() {
 
         {isAdmin === "admin" ? renderAdminLinks() : renderUserLinks()}
 
-        <nav className="mt-7 justify-center flex items-center hover:bg-custom-blue hover:text-white transition duration-500">
+        <nav className="2xl:mt-32 mt-9 justify-center flex items-center hover:bg-custom-blue hover:text-white transition duration-500">
           <a
-            className="flex items-center py-2 mt-4 mb-4 text-gray-100 bg-gray-700 bg-opacity-25"
+            className="flex items-center p-2 mt-4 mb-4 2xl:mt-7 2xl:mb-7 text-gray-100 bg-gray-700 bg-opacity-25"
             href="/"
           >
             <button

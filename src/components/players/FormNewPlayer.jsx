@@ -267,7 +267,7 @@ export default function FormNewPlayer() {
                   className="input input-bordered w-full max-w-xs"
                   type="text"                  
                   {...register("post_code", {
-                    validate: value => value.length === 4 || "Formato no válido"
+                    validate: value => value.length === 5 || "Formato no válido"
                   })}
                 />
                 {errors.post_code && <p style={{ color: "red" }}>{errors.post_code.message}</p>}

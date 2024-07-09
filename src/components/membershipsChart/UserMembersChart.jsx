@@ -74,40 +74,41 @@ function UserMembersChart() {
   };
 
   return (
-    <section className="flex flex-col mt-8 ml-20 2xl:ml-72 xl:ml-72 lg:ml-60 md:ml-48 justify-center">
-      <div className="max-w-screen 2xl:max-w-7xl  ">
+    <section className="flex flex-col mt-12 ml-20 2xl:ml-72 xl:ml-72 lg:ml-60 md:ml-48 justify-center">
+      <div className="max-w-screen ">
         <div className="items-center justify-between">
-          <h4 className="text-gray-600 font-bold mb-6 ml-1 ">
+          <h4 className="text-gray-600 font-bold mb-6 ml-1 
+          2xl:text-2xl 2xl:mb-10 ">
             Mis Suscripciones de Jugadores
           </h4>
         </div>
       </div>
 
-      <div className="flex flex-col mt-2">
+      <div className="flex flex-col mt-2 2xl:mt-4">
         
           <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
             <table className="table table-zebra min-w-full">
               <thead>
                 <tr className="text-gray-800 text-sm">
-                  <th className="p-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="p-6 2xl:p-10 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Nombre
                   </th>
-                  <th className="p-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="p-6 2xl:p-10 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Apellido
                   </th>                  
-                  <th className="p-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="p-6 2xl:p-10 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Primer Pago
                   </th>
-                  <th className="p-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="p-6 2xl:p-10 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Segundo Pago
                   </th>
-                  <th className="p-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="p-6 2xl:p-10 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Tercer Pago
                   </th>
-                  <th className="p-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="p-6 2xl:p-10 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Pago Anual
                   </th>
-                  <th className="p-6 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="p-6 2xl:p-10 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     Añadir un pago
                   </th>
                 </tr>

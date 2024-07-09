@@ -21,12 +21,16 @@ function PlayersUsersChart() {
   }, []);
 
   return (
-    <section className="flex flex-wrap ml-20 md:ml-40 lg:ml-72 xl:ml-72 2xl:ml-72 mt-4">
-      <div className=" max-w-screen 2xl:max-w-7xl  mb-8">
-          <h4 className="flex flex-wrap xl:flex-row 2xl:flex-row justify-between  text-gray-600 font-bold mt-8 ml-1 ">Mis Jugadores
+    <section className="flex flex-wrap ml-20 md:ml-40 lg:ml-72 xl:ml-72 2xl:ml-72 mt-3">
+      <div className=" max-w-screen 2xl:max-w-7xl mb-6">
+          <h4 className="flex flex-wrap  justify-between text-gray-600 font-bold mt-8 ml-1 
+          2xl:text-2xl 
+          2xl:mb-10
+          2xl:flex-row
+          xl:flex-row  ">Mis Jugadores
         
         <Link to="/dashboard/form-player">
-          <button className=" 2xl:-mt-8 text-black font-bold p-2 px-4 rounded bg-yellow-d hover:bg-yellow-l">
+          <button className=" 2xl:-mt-8 2xl:text-lg text-black font-bold p-2 px-4 rounded bg-yellow-d hover:bg-yellow-l">
             Añadir jugador
           </button>
         </Link>
@@ -38,28 +42,28 @@ function PlayersUsersChart() {
             <table className="table table-zebra min-w-full">
               <thead>
                 <tr className="text-gray-800 text-sm">
-                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-10 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Nombre
                   </th>
-                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-10 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Apellido
                   </th>
-                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-10 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Edad
                   </th>
-                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-10 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Equipo
                   </th>
-                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-10 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Talla Camisa
                   </th>
-                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-10 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Talla Pantalón
                   </th>
-                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-10 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Talla Zapato
                   </th>
-                  <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
+                  <th className="p-1 2xl:p-10 lg:p-6 md:p-4 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black">
                     Estado
                   </th>
                 </tr>

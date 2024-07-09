@@ -15,7 +15,7 @@ const ProductsDetail = () => {
     }}
     
     className= {`${context.isProductDetailOpen ? "flex" : "hidden" }
-    product-detail flex-col fixed right-0 border border-black rounded-lg bg-white   `}>
+    product-detail flex-col fixed center sm:center md:center lg:right-0 xl:right-0 2xl:right-0 border border-black rounded-lg bg-white   `}>
         
           <div className="flex justify-between items-center p-4 2xl:p-6">
             <h2 className="text-xl font-medium lg:text-md xl:text-lg">Detalle</h2>

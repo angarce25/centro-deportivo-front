@@ -216,46 +216,47 @@ function MembershipChart() {
       {error ? (
         <div className="text-red-500 font-bold ">{error}</div>
       ) : (
-        <div className="max-w-screen 2xl:max-w-7xl mr-2 mb-8">
+        <div className="max-w-screen 2xl:max-w-10xl mr-1 ">
           
             <div className="flex items-center justify-between">
-            <option value="">Todos los equipos</option>
-              <h4 className="text-gray-600 font-bold  underline">Suscripciones de Jugadores</h4>
+            <option 
+            className="flex 2xl:-mt-8 2xl:-mr-96 2xl:text-xl "
+            value="">Todos los equipos</option>
+              <h4 className="text-gray-600 font-bold underline ml-1 2xl:text-2xl 2xl:mb-10">Suscripciones de Jugadores</h4>
             
           </div>
 
           {/* Tabla para pedidos */}
-          <div className="flex flex-col mt-6">
-            <div className="-my-2 overflow-x-auto">
+            <div className="mt-8 2xl:mt-0">
               <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
                 <table className="table table-zebra min-w-full">
                   <thead>
                     <tr className="text-gray-800 text-sm">
                       <th
-                        className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-0 py-4 2xl:px-20 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                         onClick={() => requestSort("payments._id")}
                       >
-                        Nombre <SortArrow direction={sortConfig.direction} />
+                        Nombre <SortArrow className="hidden" direction={sortConfig.direction} />
                       </th>
                       <th
-                        className="px-6 py-6 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
+                        className="p-0 py-4 2xl:px-20 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer"
                         onClick={() => requestSort("payments._id")}
                       >
                         Apellidos <SortArrow direction={sortConfig.direction} />
                       </th>
-                      <th className=" bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
+                      <th className="p-0 py-4 2xl:px-20 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                         Pago 1
                       </th>
-                      <th className=" bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
+                      <th className="p-0 py-4 2xl:px-20 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                         Pago 2
                       </th>
-                      <th className=" bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
+                      <th className="p-0 py-4 2xl:px-20 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                         Pago 3
                       </th>
-                      <th className=" bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
+                      <th className="p-0 py-4 2xl:px-20 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                         Pago Anual
                       </th>
-                      <th className=" bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
+                      <th className="p-0 py-4 2xl:px-20 2xl:py-10  md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider border-black cursor-pointer">
                         Fecha
                       </th>
                     </tr>
@@ -312,12 +313,12 @@ function MembershipChart() {
                             key={`${row.playerId}-${index}`}
                             className="border-black "
                           >
-                            <td className="p-4 whitespace-no-wrap border-b border-black text-center">
+                            <td className="p-4 border-b border-black text-center">
                               {players.find(
                                 (player) => player._id === row.playerId
                               )?.name || "Nombre no disponible"}
                             </td>
-                            <td className="p-4 whitespace-no-wrap border-b border-black text-center">
+                            <td className="p-4 border-b border-black text-center">
                               {players.find(
                                 (player) => player._id === row.playerId
                               )?.lastname || "Nombre no disponible"}
@@ -326,7 +327,7 @@ function MembershipChart() {
                             {columns.slice(0, 3).map((paymentType) => (
                               <td
                                 key={`${row.playerId}-${paymentType}`}
-                                className="p-4 whitespace-no-wrap border-b border-black text-center "
+                                className="p-4 border-b border-black text-center  "
                               >
                                 {allNone[paymentType] ? (
                                   <span>No recibido</span>
@@ -337,7 +338,7 @@ function MembershipChart() {
                                         key={`${payment._id}-${paymentType}`}
                                       >
                                         <select
-                                          className={`bg-transparent flex flex-col ${getStatusColor(
+                                          className={`bg-transparent flex flex-col 2xl:ml-10 2xl:mt-1  ${getStatusColor(
                                             payment[paymentType]?.status ||
                                               "none"
                                           )}`}
@@ -378,7 +379,8 @@ function MembershipChart() {
                                             }
                                           }}
                                         >
-                                          <a href="Ver PDF">Ver PDF</a>
+                                          <a className="text-sky-400 underline hover:text-sky-700"
+                                          href="Ver PDF">Ver PDF</a>
                                         </button>
                                       </div>
                                     ) : null
@@ -386,7 +388,7 @@ function MembershipChart() {
                                 )}
                               </td>
                             ))}
-                            <td className="p-4 whitespace-no-wrap border-b border-black text-center">
+                            <td className="p-4 whitespace-no-wrap border-b border-black text-center ">
                               {allNone.annual_payment ? (
                                 <span>No recibido</span>
                               ) : (
@@ -394,7 +396,7 @@ function MembershipChart() {
                                   payment.annual_payment?.status !== "none" ? (
                                     <div key={`${payment._id}-annual`}>
                                       <select
-                                        className={`bg-transparent flex flex-col ${getStatusColor(
+                                        className={`bg-transparent flex flex-col 2xl:ml-16 ${getStatusColor(
                                           payment.annual_payment?.status ||
                                             "none"
                                         )}`}
@@ -474,7 +476,7 @@ function MembershipChart() {
                 </ul>
               </nav>
             </div>
-          </div>
+          
         </div>
       )}
     </section>

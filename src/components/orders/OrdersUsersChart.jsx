@@ -60,29 +60,29 @@ function OrdersUsersChart() {
         <div className="text-red-500 font-bold mb-4">{error}</div>
       ) : (
         <div>
-          <h4 className="text-gray-600 font-bold mt-6 ml-1 ">Mis Pedidos</h4>
+          <h4 className="text-gray-600 font-bold mt-5 ml-1 2xl:text-2xl 2xl:mb-10 ">Mis Pedidos</h4>
           
 
           {/* Tabla para pedidos */}
-          <div className="flex flex-col mt-6">
+          <div className="flex flex-col mt-9">
             
               <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
                 <table className="table table-zebra">
                   <thead>
                     <tr className="text-gray-800 text-sm">
-                      <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="p-1 2xl:p-10 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Id del Pedido
                       </th>
-                      <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="p-1 2xl:p-10 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Documento de Pago
                       </th>                      
-                      <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="p-1 2xl:p-10 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Observaciones del Pedido
                       </th>
-                      <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="p-1 2xl:p-10 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Estado del Pedido
                       </th>
-                      <th className="p-1 2xl:p-12 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="p-1 2xl:p-10 lg:p-6 md:p-4 bg-white text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                         Fecha
                       </th>
                     </tr>

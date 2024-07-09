@@ -8,8 +8,8 @@ const ProductsNav = ({ setCategory }) => {
   const context = useContext(ShoppingCartContext);
 
   return (
-    <nav className="flex flex-row justify-center fixed top-0 w-full py-5 px-8 text-sm font-light">
-      <ul className="flex items-center gap-1 font-medium mr-10 bg-gray-100 rounded-lg p-2">
+    <nav className="flex flex-row justify-center top-0 p-2 px-8 text-sm 2xl:text-lg font-light">
+      <ul className="flex items-center gap-8 mr-9 font-medium 2xl:mr-60 bg-gray-100 rounded-lg p-2">
         <li>
           <button onClick={() => setCategory("Pack Ini Jugador")}>       
           <FontAwesomeIcon
@@ -18,7 +18,7 @@ const ProductsNav = ({ setCategory }) => {
             Pack Iniciación Jugador
           </button>
         </li>
-        <li className="mr-10 ml-10 ">
+        <li className="mr-10 ml-10 2xl:mr-12 2xl:ml-12">
           <button onClick={() => setCategory("Pack Ini Arquero")}>
           <FontAwesomeIcon
           className="mr-1"
@@ -26,7 +26,7 @@ const ProductsNav = ({ setCategory }) => {
             Pack Iniciación Portero
           </button>
         </li>
-        <li className="mr-10 ml-10">
+        <li className="mr-10 ml-10 2xl:mr-12 2xl:ml-12">
           <button onClick={() => setCategory("Extra")}>
           <FontAwesomeIcon
           className="mr-1"
@@ -34,7 +34,7 @@ const ProductsNav = ({ setCategory }) => {
             Otros
           </button>
         </li>
-        <li className="mr-10 ml-10">
+        <li className="mr-10 ml-10 2xl:mr-12 2xl:ml-12">
           <button onClick={() => setCategory("Merchandising")}>
           <FontAwesomeIcon
           className="mr-1"
@@ -42,10 +42,10 @@ const ProductsNav = ({ setCategory }) => {
             Merchandising
           </button>
         </li>
-        <li>
+        <li className=" 2xl:mr-12 2xl:ml-12">
           <button onClick={() => setCategory("all")}>
           <FontAwesomeIcon
-          className="mr-1"
+          className="mr-1 "
           icon={faFilter} />
             Todos
           </button>

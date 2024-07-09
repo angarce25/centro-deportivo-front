@@ -37,19 +37,19 @@ function Products() {
 
   return (
     <>
-      <div className="flex min-h-screen h-screen overflow-hidden">
+      <div className="flex">
         <Spinner /> 
         {!loading && (
           <>
             <Sidebar />
             <ProductsLayout>
-              <h2 className="text-xl font-medium mb-2 mt-10">
+              <h2 className="text-xl font-medium mb-2 mt-0 2xl:text-3xl">
                 Echa un vistazo a nuestro equipamiento deportivo
               </h2>
               <h4 className="mb-5">Añade al carrito el producto y la talla que quieras, después solicita el pedido adjuntando la factura</h4>
-              <ProductsNav setCategory={setCategory} />
+              <ProductsNav  setCategory={setCategory} />
               <div
-                className=" overflow-y-scroll 
+                className=" 
                 2xl:grid 2xl:grid-cols-5 2xl:w-full 2xl:max-w-screen-2xl
                 xl:grid xl:grid-cols-4 xl:w-full xl:max-w-screen-lg
                 lg:grid lg:grid-cols-4 lg:w-full lg:max-w-screen-lg

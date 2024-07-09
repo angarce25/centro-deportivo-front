@@ -1,18 +1,19 @@
 .product-detail {
     width:380px;
-    top: 100px;
+    height: 80vh;
+    top: 195px;
 }
 
 @media (min-width: 640px) {
   .product-detail {
-    max-width: 384px; /* sm */
+    max-width: 384px;
     
   }
 }
 
 @media (min-width: 768px) {
   .product-detail {
-    max-width: 448px; /* md */
+    max-width: 448px;
     width:300px;
     top: 140px
   }
@@ -20,24 +21,24 @@
 
 @media (min-width: 1024px) {
   .product-detail {
-    max-width: 512px; /* lg */
-     /* Resetea el margen superior en pantallas grandes */
+    max-width: 512px; 
+     
   }
 }
 
 @media (min-width: 1245px) {
   .product-detail {
-    max-width: 576px; /* xl */
-    width:270px;
-    top: 110px
+    max-width: 576px;
+    width:270px 270px;
+    top: 145px
   }
 }
 
 @media (min-width: 1536px) {
   .product-detail {
-    max-width: 672px; /* 2xl */
+    max-width: 672px; 
     width:380px;
-    top: 150px
+    top: 190px
   }
 }
 

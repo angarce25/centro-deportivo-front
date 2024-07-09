@@ -22,7 +22,7 @@ const Login = () => {
 
   return (
     
-    <div className="BgLogin w-full overflow-x-auto overflow-y-auto">
+    <div className="BgLogin w-full overflow-x-auto overflow-y-auto fixed ">
       <Header />
       <Spinner /> {/* Asegúrate de incluir el Spinner aquí */}
       {!loading && (
