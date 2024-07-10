@@ -1,0 +1,21 @@
+.underline-from-left {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .underline-from-left::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px; /* Puedes ajustar el grosor del subrayado aquí */
+    background-color: currentColor; /* Usa el color del texto */
+    transition: width 0.4s ease-in-out;
+    margin-left: 20px;
+  }
+  
+  .underline-from-left:hover::after {
+    width: 100%;
+    
+  }

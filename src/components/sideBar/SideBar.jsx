@@ -239,7 +239,7 @@ function Sidebar() {
 
   return (
     <>
-    <div className="flex flex-col fixed">
+    <div className="flex flex-col fixed z-10">
       <button
         className=" p-2 text-gray-700 lg:hidden"
         onClick={() => setSidebarOpen(!sidebarOpen)}

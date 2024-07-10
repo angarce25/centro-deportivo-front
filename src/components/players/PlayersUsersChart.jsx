@@ -21,22 +21,22 @@ function PlayersUsersChart() {
   }, []);
 
   return (
-    <section className="flex flex-wrap ml-20 md:ml-40 lg:ml-72 xl:ml-72 2xl:ml-72 mt-3">
+    <section className="flex flex-wrap  ml-20 md:ml-40 lg:ml-72 xl:ml-72 2xl:ml-72 mt-3">
       <div className=" max-w-screen 2xl:max-w-7xl mb-6">
-          <h4 className="flex flex-wrap  justify-between text-gray-600 font-bold mt-8 ml-1 
+          <h4 className="flex flex-col  justify-between text-gray-600 font-bold mt-8 ml-1 
           2xl:text-2xl 
           2xl:mb-10
           2xl:flex-row
           xl:flex-row  ">Mis Jugadores
         
         <Link to="/dashboard/form-player">
-          <button className=" 2xl:-mt-8 2xl:text-lg text-black font-bold p-2 px-4 rounded bg-yellow-d hover:bg-yellow-l">
+          <button className=" 2xl:-mt-8 2xl:text-lg mt-5 text-black font-bold p-2 px-4 rounded bg-yellow-d hover:bg-yellow-l">
             Añadir jugador
           </button>
         </Link>
         </h4>
       
-      <div className="flex flex-col mt-6">
+      <div className="flex flex-col mt-6 ">
         
           <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-black">
             <table className="table table-zebra min-w-full">
