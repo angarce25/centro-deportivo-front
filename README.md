@@ -152,7 +152,7 @@ Este proyecto tiene como objetivo desarrollar el frontend para el sitio web del 
 # Nuestro equipo
 
 - Carla Escobar (https://github.com/carlaprimola)
-- Leandra Montoya(https://github.com/leamontoya19)
+- Leandra Montoya(https://github.com/Leamonfranco)
 - Andrea GARCÍA CEDEÑO (https://github.com/angarce25)
 - Fiorella ()
 - Alvaro ()
