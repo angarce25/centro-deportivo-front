@@ -12,18 +12,11 @@ Este proyecto tiene como objetivo desarrollar el frontend para el sitio web del 
 
 ### Lenguajes de Programación
 
-<a href="#"><img src="https://raw.githubusercontent.com/danielcranney/profileme-dev/3fc3595593bc992e6febba6580d6c9571f5e625f/public/icons/skills/html5-colored.svg" alt="HTML"  width="40" height="40" style="max-width: 100%;" ></a>
-
-<a href="#"><img src="https://raw.githubusercontent.com/danielcranney/profileme-dev/3fc3595593bc992e6febba6580d6c9571f5e625f/public/icons/skills/css3-colored.svg" alt="CSS"  width="40" height="40" style="max-width: 100%;"></a>
-
-<a href="#"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white&labelColor=101010" alt="JavaScript"  width="40" height="40" style="max-width: 100%;"></a>
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)  ![JAVASCRIPT](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 
 ### Frameworks y Librerías
 
-<a href="#" rel="nofollow"> <img src="https://github.com/danielcranney/profileme-dev/blob/main/public/icons/skills/vite-colored.svg" alt="vite" width="40" height="40" style="max-width: 100%;"> Vite </a>
-<a href="#"><img src="https://raw.githubusercontent.com/danielcranney/profileme-dev/3fc3595593bc992e6febba6580d6c9571f5e625f/public/icons/skills/react-colored.svg" alt="react"  width="40" height="40" style="max-width: 100%;">React</a>
-
-<a href="#"><img src="https://raw.githubusercontent.com/danielcranney/profileme-dev/3fc3595593bc992e6febba6580d6c9571f5e625f/public/icons/skills/tailwindcss-colored.svg" alt="tailwind"  width="40" height="40" style="max-width: 100%;">Tailwind</a>
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 ### Bases de Datos
 
@@ -100,18 +93,20 @@ Este proyecto tiene como objetivo desarrollar el frontend para el sitio web del 
  ```bash
  npm run dev
 
-4. **Configurar la base de datos según las instrucciones proporcionadas.**
+4. **Configurar la base de datos según las instrucciones proporcionadas.
 
 
-
+````
 
 <h4 id="version-control">Version Control</h4>
 <a href="https://git-scm.com/" rel="nofollow"> <img src="https://camo.githubusercontent.com/fcafa5ebc1f5f789ae7d012a3ecd8fe7bda49516591caf7c37698f764165d880/68747470733a2f2f7777772e766563746f726c6f676f2e7a6f6e652f6c6f676f732f6769742d73636d2f6769742d73636d2d69636f6e2e737667" alt="git" width="40" height="40" data-canonical-src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" style="max-width: 100%;"> </a>
-
+<p><a href="#"><img src="https://img.shields.io/badge/git%20-%23F05033.svg?&amp;style=for-the-badge&amp;logo=git&amp;logoColor=white&amp;labelColor=101010" alt="Git"></a>
+<a href="#"><img src="https://img.shields.io/badge/github%20-%23121011.svg?&amp;style=for-the-badge&amp;logo=github&amp;logoColor=whit&amp;logoColor=white&amp;labelColor=101010" alt="Github"></a></p>
 
 
 # git branches
- ![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green)
+   ![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green)
+
 
 
 | BRANCH   | Description                                                                           |
@@ -119,11 +114,12 @@ Este proyecto tiene como objetivo desarrollar el frontend para el sitio web del 
 | main     | Rama principal. Aquí alojamos solo los resultados finales                             |
 | develop      | Rama para implementaciones en étapa de desarrollo |
 | origin/feature/auth | Rama para gestion de token y registro de usuarios, login |
-| origin/feature/adminDash | Rama para integracion de token con las funcionalidades propias del admin |
+| origin/feature/admin-dash | Rama para integracion de token con las funcionalidades propias del admin |
 | origin/feature/footer | Rama UI footer|
 | origin/feature/header | Rama para UI header y funcionalidades de contaxto |
+| origin/feature/header | Rama para UI sidebar |
 | origin/feature/design | Rama de diseños generales para estilos de retoques en componentes |
-| origin/feature/formPlayer  | Rama de estilos y funcionalidades del formulario de jugador |
+| origin/feature/form-player  | Rama de estilos y funcionalidades del formulario de jugador |
 | origin/feature/forms | Rama de estilos y funcionalidades del formularios de registro e inicio de sesión |
 | origin/feature/home | Rama de UI para pagina de inicio |
 | origin/feature/merchandising | Rama de UI para merchandising sin inicio de sesión |
@@ -133,11 +129,16 @@ Este proyecto tiene como objetivo desarrollar el frontend para el sitio web del 
 | origin/feature/products | Rama de UI y funcionalidades para que el admin vea pedidos de productos |
 | origin/feature/resources | Rama de recursos generales para UI |
 | origin/feature/sidebar | Rama UI y funcionalidades para sidebar de admin y user |
-| origin/feature/terms_and_conditions | Rama UI y funcionalidades de términos y condiciones bajo LOPD |
-| origin/feature/userProfile | Rama UI y funcionalidades para la información propia a cada usuario |
+| origin/feature/terms-and-conditions | Rama UI y funcionalidades de términos y condiciones bajo LOPD |
+| origin/feature/user-profile | Rama UI y funcionalidades para la información propia a cada usuario |
 | origin/feature/users-and-players-view | Rama UI y funcionalidades para la información vinculada entre usuarios y jugadores |
+| origin/feature/new-player-form-integration | Rama UI y funcionalidades para la información de formularios |
+| origin/feature/orders-detail-view | Rama UI y funcionalidades para la vista detallada de compra productos |
+| origin/feature/order-pdf | Rama UI y funcionalidades para anexar pdf a pago de producto |
 | origin/readme | Rama para modificaciones en pleno desarrollo sobre el archivo README.md |
 | origin/test/e2e | Rama de frontend para test end to end |
+| origin/chore/security-sanitization | Rama UI y funcionalidades extras de seguridad |
+| origin/security/decode| Rama UI y funcionalidades para verificacion de tokens |
 
 
 
@@ -152,11 +153,11 @@ Este proyecto tiene como objetivo desarrollar el frontend para el sitio web del 
 # Nuestro equipo
 
 - Carla Escobar (https://github.com/carlaprimola)
-- Leandra Montoya(https://github.com/Leamonfranco)
-- Andrea GARCÍA CEDEÑO (https://github.com/angarce25)
-- Fiorella ()
-- Alvaro ()
-- Isaac (https://github.com/Isarok)
+- Leandra Montoya (https://github.com/Leamonfranco)
+- Andrea García (https://github.com/angarce25)
+- Fiorella Sandoval (https://github.com/FiorellaSF)
+- Alvaro González (https://github.com/agt1984)
+- Isaac García Adjuntar (https://github.com/Isarok)
 - Abelardo Acosta(https://github.com/Moriarty369)
 
 
@@ -174,4 +175,3 @@ Para contribuir a este proyecto, por favor sigue los siguientes pasos:
 ## Licencia
 
 Este proyecto está bajo la Licencia. Para más detalles, por favor consulta el archivo LICENSE.
-````
